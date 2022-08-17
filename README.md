@@ -1,7 +1,7 @@
 # Horticulture Fluorescence Sensor Project
 
-# Simulation
+### Simulation
 This folder contains all code required to run a fluorescence simulation.
 
-# Sensor
+### Sensor
 This folder contains all code required for the peripheral Bluetooth ESP32 devices and central Raspberry Pi device. 
