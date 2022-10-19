@@ -3,6 +3,8 @@ from bleak import BleakClient, BleakScanner, BleakError
 import struct
 import asyncio
 
+import graphs
+
 _ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
 _HANDLES = set() 
 
@@ -30,7 +32,11 @@ def scan_handler(device, data):
     print_ad_data(data)
 
 def notification_handler(sender, data):
-    print(f"{sender}: {decode(data)}")
+    decoded_data = decode(data)
+    print(f"{sender}: {decoded_data}")
+    # update the visuals
+    temp_timestamp = datetime.now()
+    graphs.update(temp_timestamp, 0, float(decoded_data) * 4095, float(decoded_data) * 100, 0.2)
 
 def disconnect_handler(client):
     print(f"Disconnected from {client.address}")
