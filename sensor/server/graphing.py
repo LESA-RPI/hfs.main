@@ -96,12 +96,6 @@ class RTGraph:
         sensor_count = sum(x is not None for x in self.sensors)
         
         self.fig_axis.legend(self.sensors[:sensor_count], [('Sensor #' + str(i)) for i in range(sensor_count)], fontsize = 'small', bbox_to_anchor = (1, 1), loc = 'upper left')
-        print(self.ydata)
-        print(self.xdata)
-        print([('Sensor #' + str(i)) for i in range(sensor_count)])
-        print(sensor_count)
-        print(len(self.ydata))
-        print(len(list(filter(lambda item: item is not None, self.ydata))))
         plt.table(cellText = list(filter(lambda item: item is not None, self.ydata)),
                         rowLabels=[('Sensor #' + str(i)) for i in range(sensor_count)],
                         colLabels=self.xdata,
