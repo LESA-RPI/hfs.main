@@ -8,9 +8,13 @@ mv -v "/usr/local/src/hfs/index.html" "/usr/local/src/hfs/public/index.html"
 
 # install Node.js v16 from the unoffical arm6l release following this https://gist.github.com/davps/6c6e0ba59d023a9e3963cea4ad0fb516 guide
 wget -P /usr/local https://unofficial-builds.nodejs.org/download/release/v16.9.1/node-v16.9.1-linux-armv6l.tar.gz
-tar -xvzf /usr/local/node-v16.9.1-linux-armv6l.tar.gz
+tar -xvzf /usr/local/node-v16.9.1-linux-armv6l.tar.gz -C /usr/local
 rm -rvf /usr/local/node-v16.9.1-linux-armv6l.tar.gz
-cp -R /usr/local/node-v16.9.1-linux-armv6l/ /usr/local
+cp -Rv /usr/local/node-v16.9.1-linux-armv6l/bin /usr/local/bin
+cp -Rv /usr/local/node-v16.9.1-linux-armv6l/lib /usr/local/lib
+cp -Rv /usr/local/node-v16.9.1-linux-armv6l/include /usr/local/include
+cp -Rv /usr/local/node-v16.9.1-linux-armv6l/share /usr/local/share
+
 rm -rvf /usr/local/node-v16.9.1-linux-armv6l
 node -v
 npm -v
