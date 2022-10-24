@@ -7,7 +7,11 @@ Microcontrollers must have Bluetooth capability.
 ## Central device
 The central device has been tested with a *Raspberry Pi Zero W*.
 
-Install the [bleak](https://github.com/hbldh/bleak) library via `pip install bleak`.
+Install the HFS library in `/home/biosense1/hfs.main/`, then run the following command:
+
+```sudo sh /home/biosense1/hfs.main/sensor/server/install.sh```
+
+To start the server, simply reboot the PI and both the webpage and bluetooth capabilities will automatically launch.
 
 ## Peripheral device
 The peripheral device has been tested with an *ESP32 DevKitc V4* and is designed to run on [bare metal](https://www.techopedia.com/definition/2153/bare-metal).

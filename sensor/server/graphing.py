@@ -7,9 +7,8 @@ Created on Wed Sep 21 13:56:11 2022
 import matplotlib.pyplot as plt
 from os.path import exists
 from matplotlib.dates import (AutoDateLocator, DateFormatter)
-from datetime import datetime, timedelta
+from datetime import datetime
 import random
-import time
 import pickle
 import copy
 
@@ -186,19 +185,19 @@ def save():
     graph_chlf.save()
 
 # feed in some dummy data
-sensors = 10
-vals = [0] * sensors
-for i in range(1000):
-    t = datetime.now()
-    for sid in range(sensors):
-        if i == 0:
-            vals[sid] = random.random()
-        vals[sid] = max(min((random.random() / 100) + vals[sid] - 0.005, 1), 0)
-        
-        # make sure to convert the decimal percentages to actual percentages!
-        update(t, sid, vals[sid] * 4095, 100 * vals[sid], 100 * (vals[sid] ** 2))
-    # save the graphs
-    save()
+#sensors = 10
+#vals = [0] * sensors
+#for i in range(1000):
+#    t = datetime.now()
+#    for sid in range(sensors):
+#        if i == 0:
+#            vals[sid] = random.random()
+#        vals[sid] = max(min((random.random() / 100) + vals[sid] - 0.005, 1), 0)
+#        
+#        # make sure to convert the decimal percentages to actual percentages!
+#        update(t, sid, vals[sid] * 4095, 100 * vals[sid], 100 * (vals[sid] ** 2))
+#    # save the graphs
+#    save()
 
 
 
