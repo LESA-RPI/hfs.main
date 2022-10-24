@@ -9,11 +9,17 @@ The central device has been tested with a *Raspberry Pi Zero W*.
 
 Install the HFS library in `/usr/local/src/` using the following command: 
 
-```sudo git clone https://github.com/LESA-RPI/hfs.main.git /usr/local/src/hfs.main```
+```
+wget -O hfs.zip "https://github.com/LESA-RPI/hfs.main/archive/refs/heads/graphing.zip"
+sudo unzip -j hfs.zip 'hfs.*/sensor/server/*' -d /usr/local/src/hfs/
+```
 
 Then to install the server dependencies, run:
 
-```sudo sh /usr/local/src/hfs.main/sensor/server/install.sh```
+```
+sudo sh /usr/local/src/hfs.main/sensor/server/install.sh
+```
+
 
 To start the server, simply reboot the PI and both the webpage and bluetooth capabilities will automatically launch.
 

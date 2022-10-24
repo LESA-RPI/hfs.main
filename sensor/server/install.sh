@@ -2,6 +2,10 @@
 
 echo "Installing required server packages and files..."
 
+# create a public directory and move the index file into it
+mkdir "/usr/local/src/hfs/public"
+mv "/usr/local/src/hfs/index.html" "/usr/local/src/hfs/public/index.html" 
+
 # install Node.js v16 from the unoffical arm6l release following this https://gist.github.com/davps/6c6e0ba59d023a9e3963cea4ad0fb516 guide
 wget https://unofficial-builds.nodejs.org/download/release/v16.9.1/node-v16.9.1-linux-armv6l.tar.gz -P /usr/local
 tar -xzf /usr/local/node-v16.9.1-linux-armv6l.tar.gz
@@ -23,9 +27,9 @@ pip3 install matplotlib==3.6.* --force-reinstall
 sudo apt-get install libatlas-base-dev
 
 # make the Bluetooth application
-echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3 /usr/local/src/hfs.main/sensor/server/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
+echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
 
 # make the local Webserver application
-echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs.main/sensor/server/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-local.service"
+echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-local.service"
 
 echo "Install completed, please reboot to launch the server."
