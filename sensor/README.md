@@ -7,9 +7,13 @@ Microcontrollers must have Bluetooth capability.
 ## Central device
 The central device has been tested with a *Raspberry Pi Zero W*.
 
-Install the HFS library in `/home/biosense1/hfs.main/`, then run the following command:
+Install the HFS library in `/usr/local/src/` using the following command: 
 
-```sudo sh /home/biosense1/hfs.main/sensor/server/install.sh```
+```sudo git clone https://github.com/LESA-RPI/hfs.main.git /usr/local/src/hfs.main```
+
+Then to install the server dependencies, run:
+
+```sudo sh /usr/local/src/hfs.main/sensor/server/install.sh```
 
 To start the server, simply reboot the PI and both the webpage and bluetooth capabilities will automatically launch.
 
