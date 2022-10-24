@@ -14,7 +14,7 @@ wget -O hfs.zip "https://github.com/LESA-RPI/hfs.main/archive/refs/heads/graphin
 sudo unzip -o -j hfs.zip 'hfs.*/sensor/server/*' -d /usr/local/src/hfs/
 ```
 
-Then to install the server dependencies, run:
+Then to install and build the server dependencies, run:
 
 ```
 sudo sh /usr/local/src/hfs/install.sh

@@ -10,10 +10,10 @@ mv -v "/usr/local/src/hfs/index.html" "/usr/local/src/hfs/public/index.html"
 wget -P /usr/local https://unofficial-builds.nodejs.org/download/release/v16.9.1/node-v16.9.1-linux-armv6l.tar.gz
 tar -xvzf /usr/local/node-v16.9.1-linux-armv6l.tar.gz -C /usr/local
 rm -rvf /usr/local/node-v16.9.1-linux-armv6l.tar.gz
-cp -Rv /usr/local/node-v16.9.1-linux-armv6l/bin /usr/local/bin
-cp -Rv /usr/local/node-v16.9.1-linux-armv6l/lib /usr/local/lib
-cp -Rv /usr/local/node-v16.9.1-linux-armv6l/include /usr/local/include
-cp -Rv /usr/local/node-v16.9.1-linux-armv6l/share /usr/local/share
+cp -Rv /usr/local/node-v16.9.1-linux-armv6l/bin /usr/
+cp -Rv /usr/local/node-v16.9.1-linux-armv6l/lib /usr/
+cp -Rv /usr/local/node-v16.9.1-linux-armv6l/include /usr/
+cp -Rv /usr/local/node-v16.9.1-linux-armv6l/share /usr/
 
 rm -rvf /usr/local/node-v16.9.1-linux-armv6l
 node -v
@@ -33,6 +33,6 @@ apt-get install libatlas-base-dev
 echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
 
 # make the local Webserver application
-echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-local.service"
+echo "[Unit]\nDescription=The local site service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-local.service"
 
 echo "Install completed, please reboot to launch the server."
