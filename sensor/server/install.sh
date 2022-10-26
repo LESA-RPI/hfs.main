@@ -25,6 +25,11 @@ pip3 install bleak==0.14.* --force-reinstall -vvv
 # install all requirements for local webserver
 # NOTE: compatible numpy versions can be found here https://github.com/matplotlib/matplotlib/blob/ac3d0caf0007389579a5fa2576d95657b03d3f02/doc/devel/min_dep_policy.rst#id1
 pip3 install matplotlib==3.6.* --force-reinstall -vvv
+python3 -c "import matplotlib"
+
+# requirements for the database management
+pip3 install psycopg2==2.9.* --force-reinstall -vvv
+apt-get install postgresql-14
 
 # this is often missing on Raspberry Pi and is required for numpy
 apt-get install libatlas-base-dev
