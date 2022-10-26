@@ -1,5 +1,7 @@
 print("Initializing...")
 from bleak import BleakClient, BleakScanner, BleakError
+import json
+from math import pi
 
 import time
 import struct
@@ -8,11 +10,26 @@ from datetime import datetime
 
 import graphing
 
+# load the configurations
+_CONFIG = None
+_AVERAGE_FLUX = 1
+
+# initialize the addresses and uuids
 _ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
 _HANDLES = set() 
 
 _COMM_UUID = "26c00001-ece0-4f7a-b663-223de05387cc"
 _COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
+
+def load_config():
+    global _CONFIG, _AVERAGE_FLUX
+    # load the config file
+    with open("/usr/local/src/hfs/config.json", "r") as file:
+        _CONFIG = json.load(file)
+    # compute the average flux
+    sensing_area = ((_CONFIG["constants"]["cutoff_diameter_mm"] / 2) ** 2) * pi
+    _AVERAGE_FLUX = _CONFIG["constants"]["total_canopy_flux"] / sensing_area
+    
 
 def address_filter(x):
     return x.address in _ADDRESSES
@@ -28,18 +45,26 @@ def print_ad_data(data):
 
 # decode value from characteristic
 def decode(data):
-    return struct.unpack("<h", data)[0] / 100
+    decoded_data = struct.unpack("<iii", data)
+    return (decoded_data[0], decoded_data[1] / 100, decoded_data[2])
 
 def scan_handler(device, data):
     print(f"Found '{device.address}'")
     print_ad_data(data)
 
 def notification_handler(sender, data):
-    decoded_data = decode(data)
-    print(f"{sender}: {decoded_data}")
-    # update the visuals
-    temp_timestamp = datetime.now()
-    graphing.update(temp_timestamp, 0, float(decoded_data) * 4095, float(decoded_data) * 100, 0.2)
+    # decode the data and print to logs
+    chlf_raw, distance_mm, timestamp = decode(data)
+    print(f"{sender}: {timestamp} {chlf_raw} {distance_mm}")
+    # compute the datetime, sensor id, normal chlf, and chlf factor
+    dt_timestamp = datetime.fromtimestamp(timestamp)
+    chlf_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
+    chlf_normal = chlf_raw / _CONFIG["constants"]["max_raw_value"]
+    sensor_id = 0 # todo
+    # update the local visuals
+    graphing.update(dt_timestamp, sensor_id, chlf_raw, chlf_normal, chlf_factor)
+    # update the database
+    # todo
 
 def disconnect_handler(client):
     print(f"Disconnected from {client.address}")
@@ -73,6 +98,9 @@ async def connect_to_device(device):
             print(f"{client.address} does not contain necessary characteristic")
 
 async def main():
+    print("Loading config.json...")
+    await load_config()
+
     found_device = False
     while not found_device:
         devices = await scan()
