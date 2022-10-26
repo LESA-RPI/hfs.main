@@ -1,7 +1,12 @@
+print("Initializing...")
 from bleak import BleakClient, BleakScanner, BleakError
 
+import time
 import struct
 import asyncio
+from datetime import datetime
+
+import graphing
 
 _ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
 _HANDLES = set() 
@@ -30,7 +35,11 @@ def scan_handler(device, data):
     print_ad_data(data)
 
 def notification_handler(sender, data):
-    print(f"{sender}: {decode(data)}")
+    decoded_data = decode(data)
+    print(f"{sender}: {decoded_data}")
+    # update the visuals
+    temp_timestamp = datetime.now()
+    graphing.update(temp_timestamp, 0, float(decoded_data) * 4095, float(decoded_data) * 100, 0.2)
 
 def disconnect_handler(client):
     print(f"Disconnected from {client.address}")
@@ -44,7 +53,7 @@ async def scan(timeout=5.0):
     await scanner.stop()
     print("Scan finished.")
 
-    return filter(address_filter, scanner.discovered_devices)
+    return list( filter(address_filter, scanner.discovered_devices) )
 
 async def connect_to_device(device):
     print(f"Connecting to {device}...")
@@ -64,7 +73,16 @@ async def connect_to_device(device):
             print(f"{client.address} does not contain necessary characteristic")
 
 async def main():
-    devices = await scan()
+    found_device = False
+    while not found_device:
+        devices = await scan()
+        if devices:
+            print("Found device(s).")
+            found_device = True
+        else:
+            print("No devices found. Retrying in 10 seconds..")
+            time.sleep(10)
+
     await asyncio.gather(*(connect_to_device(dev) for dev in devices))
 
 if __name__ == "__main__":
