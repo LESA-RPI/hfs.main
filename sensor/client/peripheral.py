@@ -1,6 +1,10 @@
+# Bluetooth peripheral code for fluorescence sensor 
+
 import aioble
 import uasyncio as asyncio
 import bluetooth as bt
+
+from machine import Pin, ADC
 
 import random
 import struct
@@ -20,25 +24,26 @@ comm_characteristic = aioble.Characteristic(
 )
 aioble.register_services(comm_service)
 
-# encode data to characteristic
+# set up pins
+measured_result = ADC( Pin(14, Pin.IN) )
+
+# TODO
+# tof_scl = Pin(22
+# tof_sda = Pin(21
+# tof_shutdown = Pin(19
+# 
+
 def encode(data):
     return struct.pack("<h", int(data * 100))
 
-# write to characteristic
 async def write(conn):
-    # slight delay to avoid multi-connection issues
-    #await asyncio.sleep(3.0)
-
-    t = 50
     while True:
-        # FOR TESTING PURPOSES, REMOVE LATER
-        t += random.uniform(-0.5, 0.5)
-        print(f"Writing '{t}' to peripheral...")
-        comm_characteristic.write( encode(t) )
+        result = encode( measured_result.read_u16() )
+        print(f"Writing '{result}' to peripheral...")
+        comm_characteristic.write(result)
         comm_characteristic.notify(conn)
-        await asyncio.sleep_ms(500)
+        await asyncio.sleep_ms(500) # change time accordingly
 
-# advertise services
 async def advertise():
     while True:
         async with await aioble.advertise(
@@ -48,10 +53,9 @@ async def advertise():
         ) as connection:
             print(f"Connection from {connection.device}")
             await write(connection)
-            await connection.disconnected(timeout_ms=None)
+            await connection.disconnected(timeout_ms=None) # may need timeout later
 
 async def main():
     asyncio.run(advertise())
 
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.run(main())

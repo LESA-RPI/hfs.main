@@ -2,6 +2,8 @@ print("Initializing...")
 from bleak import BleakClient, BleakScanner, BleakError
 import json
 from math import pi
+
+import time
 import struct
 import asyncio
 from datetime import datetime
@@ -63,7 +65,7 @@ def notification_handler(sender, data):
     graphing.update(dt_timestamp, sensor_id, chlf_raw, chlf_normal, chlf_factor)
     # update the database
     # todo
-    
+
 def disconnect_handler(client):
     print(f"Disconnected from {client.address}")
 
@@ -76,7 +78,7 @@ async def scan(timeout=5.0):
     await scanner.stop()
     print("Scan finished.")
 
-    return filter(address_filter, scanner.discovered_devices)
+    return list( filter(address_filter, scanner.discovered_devices) )
 
 async def connect_to_device(device):
     print(f"Connecting to {device}...")
@@ -98,7 +100,17 @@ async def connect_to_device(device):
 async def main():
     print("Loading config.json...")
     await load_config()
-    devices = await scan()
+
+    found_device = False
+    while not found_device:
+        devices = await scan()
+        if devices:
+            print("Found device(s).")
+            found_device = True
+        else:
+            print("No devices found. Retrying in 10 seconds..")
+            time.sleep(10)
+
     await asyncio.gather(*(connect_to_device(dev) for dev in devices))
 
 if __name__ == "__main__":
