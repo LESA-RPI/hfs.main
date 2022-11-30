@@ -1,13 +1,12 @@
 print("Initializing...")
-from bleak import BleakClient, BleakScanner, BleakError
+#from bleak import BleakClient, BleakScanner, BleakError
 import json
 from math import pi
-
+import subprocess
 import time
 import struct
 import asyncio
 from datetime import datetime
-
 import graphing
 
 # load the configurations
@@ -21,15 +20,19 @@ _HANDLES = set()
 _COMM_UUID = "26c00001-ece0-4f7a-b663-223de05387cc"
 _COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
 
-def load_config():
+def load_config(path="/usr/local/src/hfs/config.json"):
     global _CONFIG, _AVERAGE_FLUX
     # load the config file
-    with open("/usr/local/src/hfs/config.json", "r") as file:
-        _CONFIG = json.load(file)
-    # compute the average flux
-    sensing_area = ((_CONFIG["constants"]["cutoff_diameter_mm"] / 2) ** 2) * pi
-    _AVERAGE_FLUX = _CONFIG["constants"]["total_canopy_flux"] / sensing_area
-    
+    try:
+        with open(path, "r") as file:
+            _CONFIG = json.load(file)
+        # compute the average flux
+        sensing_area = ((_CONFIG["constants"]["cutoff_diameter_mm"] / 2) ** 2) * pi
+        _AVERAGE_FLUX = _CONFIG["constants"]["total_canopy_flux"] / sensing_area
+        return True
+    except:
+        print(f"WARNING: {path} not found")
+        return False
 
 def address_filter(x):
     return x.address in _ADDRESSES
@@ -45,8 +48,8 @@ def print_ad_data(data):
 
 # decode value from characteristic
 def decode(data):
-    decoded_data = struct.unpack("<iii", data)
-    return (decoded_data[0], decoded_data[1] / 100, decoded_data[2])
+    decoded_data = struct.unpack("<iiii", data)
+    return (decoded_data[0], decoded_data[1], decoded_data[2] / 100, decoded_data[3])
 
 def scan_handler(device, data):
     print(f"Found '{device.address}'")
@@ -54,17 +57,20 @@ def scan_handler(device, data):
 
 def notification_handler(sender, data):
     # decode the data and print to logs
-    chlf_raw, distance_mm, timestamp = decode(data)
-    print(f"{sender}: {timestamp} {chlf_raw} {distance_mm}")
+    id, timestamp, distance_mm, chlf_raw  = decode(data)
+    print(f"{sender}: {timestamp} {id} {chlf_raw} {distance_mm}")
     # compute the datetime, sensor id, normal chlf, and chlf factor
     dt_timestamp = datetime.fromtimestamp(timestamp)
-    chlf_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
+    f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
     chlf_normal = chlf_raw / _CONFIG["constants"]["max_raw_value"]
-    sensor_id = 0 # todo
     # update the local visuals
-    graphing.update(dt_timestamp, sensor_id, chlf_raw, chlf_normal, chlf_factor)
+    graphing.update(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
     # update the database
-    # todo
+    cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
+    subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"])
+    
+load_config("./config.json")
+notification_handler('dummy', struct.pack('<iiii', 0, int(time.time()), int(15.30 * 100), 3207))
 
 def disconnect_handler(client):
     print(f"Disconnected from {client.address}")
@@ -99,7 +105,10 @@ async def connect_to_device(device):
 
 async def main():
     print("Loading config.json...")
-    await load_config()
+    
+    if not load_config():
+        print("WARNING: Loading expected config.json failed, resorting to local configuration")
+        load_config("./config.json")
 
     found_device = False
     while not found_device:
