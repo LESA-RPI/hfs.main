@@ -7,14 +7,13 @@ Microcontrollers must have Bluetooth capability.
 ## Central device
 The central device has been tested with a *Raspberry Pi Zero W*.
 
-To install or update the HFS library in `/usr/local/src/`, run the following commands: 
+To install or update the HFS library in `/usr/local/src/`, run the following command: 
 
 ```
-wget -O hfs.zip "https://github.com/LESA-RPI/hfs.main/archive/refs/heads/main.zip"
-sudo unzip -o -j hfs.zip 'hfs.*/sensor/server/*' -d /usr/local/src/hfs/
+wget -O hfs.zip "https://github.com/LESA-RPI/hfs.main/archive/refs/heads/main.zip" && sudo unzip -o -j hfs.zip 'hfs.*/sensor/server/*' -d /usr/local/src/hfs/ && rm hfs.zip
 ```
 
-Then to install and build the server dependencies, run:
+Then to build the server dependencies and begin server setup, run:
 
 ```
 sudo sh /usr/local/src/hfs/install.sh
