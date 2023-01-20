@@ -1,6 +1,8 @@
 #!/bin/bash
 
 echo "Installing required server packages and files..."
+echo "WARNING: installation can take upwards of three hours"
+echo "INFO: this installation is only for developers and rebuilds all required packages from scratch"
 
 # Make the app directory
 mkdir -v "/usr/local/src/hfs/public"
@@ -15,10 +17,15 @@ sudo apt install libatlas-base-dev -y # this is often missing on Raspberry Pi an
 sudo apt update
 
 # install Python 3.11
-sudo add-apt-repository ppa:deadsnakes/ppa -y
-sudo apt update
-sudo apt install python3.11 -y
-sudo apt install python3.11-dev -y
+wget "https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz"
+sudo tar -xf Python-3.11.0.tar.xz
+sudo ./Python-3.11.0/configure --enable-optimizations
+sudo make altinstall
+
+#sudo add-apt-repository ppa:deadsnakes/ppa -y
+#sudo apt update
+#sudo apt install python3.11 -y
+#sudo apt install python3.11-dev -y
 
 # install pip3.11
 wget -P "/usr/local/src/hfs" "https://bootstrap.pypa.io/get-pip.py"
