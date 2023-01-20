@@ -10,10 +10,12 @@ Before proceding, make sure you have the following installed:
 	* [Pymakr Extension](https://lemariva.com/blog/2018/12/micropython-visual-studio-code-as-ide#:~:text=Code%20%2D%20Pymakr%20extension-,To,-use%20VSCode%20for)
 		* [Node.js](https://nodejs.org/en/)
 ## How to use
-To start, plug the microcontroller in and open VScode. Type `ctrl + shift+ p` and select the `Get Started: Open Walkthrough... > Pymakr 2 - Getting Started` option. Follow the `Connect a Device` tutorial to gain access to the microcontroller. To run files, you can do one of two things:
-1. Create a new project using the pymakr window, choosing to copy files over from the microcontroller as the project source.
-2. Enable `dev-mode` for the project in the pymakr window (optional)
-3. Click the sync project to device button to upload and run your file (not required if `dev-mode` is enabled)
+To start, plug the microcontroller in and open VScode. Type `ctrl + shift+ p` and select the `Get Started: Open Walkthrough... > Pymakr 2 - Getting Started` option. Follow the `Connect a Device` tutorial to gain access to the microcontroller. To run files:
+1. Download this repo to your local device.
+2. Create a new project using the pymakr window, selecting the root folder as `../hfs.main/sensor/client` (make sure you don't select any of the default package options, ALL of them will erase `boot.py` and `main.py`.
+3. Enable `dev-mode` for the project in the pymakr window (optional).
+4. Click the sync project to device button to upload and run your file (not required if `dev-mode` is enabled).
+
 
 > ### Common Issues
 > So many things go wrong, and if they do, this is the place for you.
