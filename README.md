@@ -1,5 +1,5 @@
 # Horticulture Fluorescence Sensor Project
-The Horticulture Fluorescence Sensor (HFS) is a remote chlorophyll-A flourescence sensor. If you are doing **any** editing of this project, please do it on a branch and merge down after approval. Do **not** edit directly onto the main branch.
+The Horticulture Fluorescence Sensor (HFS) is a remote chlorophyll-A flourescence sensor. If you are doing __***any***__ editing of this project, please do it on a branch and merge down after approval. Do __***not***__ edit directly onto the main branch.
 
 ### Sensors
 This project relies on a controller inside of the sensor casing to run device code. These devices are not connected to wi-fi, instead using BLE communication. For information on how to setup and run the sensor code on a microcontroller, click [here](sensor/client/README.md).
