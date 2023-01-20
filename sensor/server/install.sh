@@ -11,16 +11,17 @@ sudo apt upgrade -y
 sudo apt install wget -y
 sudo apt install ca-certificates -y
 sudo apt install software-properties-common -y # need add-apt-repository
-sudo apt install postgresql-14 -y 
-apt-get install libatlas-base-dev -y # this is often missing on Raspberry Pi and is required for numpy
+sudo apt install libatlas-base-dev -y # this is often missing on Raspberry Pi and is required for numpy
+sudo apt update
 
 # install Python 3.11
 sudo add-apt-repository ppa:deadsnakes/ppa -y
+sudo apt update
 sudo apt install python3.11 -y
 sudo apt install python3.11-dev -y
 
 # install pip3.11
-wget -P "/usr/local/src/hfs" "https://unofficial-builds.nodejs.org/download/release/v16.9.1/node-v16.9.1-linux-armv6l.tar.gz"
+wget -P "/usr/local/src/hfs" "https://bootstrap.pypa.io/get-pip.py"
 sudo python3.11 get-pip.py
 pip3.11 install --upgrade setuptools
 rm -rvf "/usr/local/src/hfs/get-pip.py"
@@ -55,6 +56,8 @@ python3.11 -c "import matplotlib"
 #pip3.11 install psycopg2-binary==2.8.* --force-reinstall -vvv
 wget --quiet -O - "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | sudo apt-key add -
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+sudo apt update
+sudo apt install postgresql-14
 sudo sed -i 's/local   all             postgres                                peer/local   all             postgres                                trust/' '/etc/postgresql/14/main/pg_hba.conf'
 sudo sed -i 's/local   all             all                                     peer/local   all             all                                     trust/' '/etc/postgresql/14/main/pg_hba.conf'
 sudo passwd -d postgres
