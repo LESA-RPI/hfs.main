@@ -1,5 +1,5 @@
 
 # Dependency directories
-node_modules/
-__pycache__/
-__pypackages__/
+**/node_modules/
+**/__pycache__/
+**/__pypackages__/
