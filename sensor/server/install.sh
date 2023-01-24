@@ -4,6 +4,9 @@ echo "Installing required server packages and files..."
 echo "WARNING: installation can take upwards of three hours"
 echo "INFO: this installation is only for developers and rebuilds all required packages from scratch"
 
+# Increase the number of retries
+echo 'Acquire::Retries "50";' > "/etc/apt/apt.conf.d/80-retries"
+
 # Make the app directory
 mkdir -v "/usr/local/src/hfs/public"
 
@@ -21,7 +24,8 @@ wget "https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz"
 sudo tar -xf Python-3.11.0.tar.xz
 sudo ./Python-3.11.0/configure --enable-optimizations
 sudo make altinstall
-
+# https://raw.githubusercontent.com/tvdsluijs/sh-python-installer/main/python.sh
+# https://itheo.tech/ultimate-python-installation-on-a-raspberry-pi-and-ubuntu-script
 #sudo add-apt-repository ppa:deadsnakes/ppa -y
 #sudo apt update
 #sudo apt install python3.11 -y
@@ -81,6 +85,9 @@ echo "[Unit]\nDescription=The local site service for HFS sensor\n\n[Service]\nEx
 
 # cleanup
 sudo apt autoremove -y
+
+# reset the number of retries
+echo 'Acquire::Retries "3";' > "/etc/apt/apt.conf.d/80-retries"
 
 # verify installation
 python3.11 --V
