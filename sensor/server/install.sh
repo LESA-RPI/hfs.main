@@ -8,9 +8,9 @@ NC='\033[0m'
 # add the google nameserver (temporarilly) because it isn't there half the time
 sudo sh -c "echo nameserver 192.168.1.1'\n'nameserver 8.8.8.8 > /etc/resolv.conf"
 
-echo -e "${BLUE}INFO: installing required server packages and files..."
-echo -e "${YELLOW}WARNING: installation can take upwards of three hours on a new build as python3.11, pip3.11, and node16.9.1 must be rebuilt from the source!"
-echo -e "${BLUE}INFO: this installation is only for developers and rebuilds all required packages from scratch"
+echo "${BLUE}INFO: installing required server packages and files...{NC}"
+echo "${YELLOW}WARNING: installation can take upwards of three hours on a new build as python3.11, pip3.11, and node16.9.1 must be rebuilt from the source!{NC}"
+echo "${BLUE}INFO: this installation is only for developers and rebuilds all required packages from scratch{NC}"
 
 # Increase the number of retries
 echo 'Acquire::Retries "50";' > "/etc/apt/apt.conf.d/80-retries"
@@ -67,7 +67,7 @@ if ! type "$node" > /dev/null; then
 	rm -rvf /usr/local/node-v16.9.1-linux-armv6l
 fi
 
-echo -e "${BLUE} INFO Reinstalling project dependencies"
+echo -e "${BLUE} INFO Reinstalling project dependencies{NC}"
 
 # install the required node packages
 npm install "/usr/local/src/hfs"
@@ -115,11 +115,11 @@ pip3.11 -V
 node -v
 output=$(node -v)
 if [ "$output" != "v16.9.1" ]; then
-    echo -e "${RED}ERROR: build failed, node ${output} is installed instead of node v16.9.1"
+    echo -e "${RED}ERROR: build failed, node ${output} is installed instead of node v16.9.1{NC}"
 	return 1
 fi
 npm -v
 sudo systemctl status postgresql
 su - postgres -c 'psql -c "TABLE data"'
 
-echo -e "${BLUE}Install completed, please reboot to launch the server."
+echo -e "${BLUE}Install completed, please reboot to launch the server.{NC}"
