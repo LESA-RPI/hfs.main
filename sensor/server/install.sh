@@ -5,6 +5,8 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+# add the google nameserver (temporarilly) because it isn't there half the time
+sudo sh -c "echo nameserver 192.168.1.1'\n'nameserver 8.8.8.8 > /etc/resolv.conf"
 
 echo -e "${BLUE}INFO: installing required server packages and files..."
 echo -e "${YELLOW}WARNING: installation can take upwards of three hours on a new build as python3.11, pip3.11, and node16.9.1 must be rebuilt from the source!"
