@@ -10,6 +10,7 @@ sudo sh -c "echo nameserver 192.168.1.1'\n'nameserver 8.8.8.8 > /etc/resolv.conf
 
 echo "${BLUE}INFO: installing required server packages and files...${NC}"
 echo "${YELLOW}WARNING: installation can take upwards of three hours on a new build as python3.11, pip3.11, and node16.9.1 must be rebuilt from the source!${NC}"
+echo "${YELLOW}WARNING: it is reccomended that you use screen to run this command${NC}"
 echo "${BLUE}INFO: this installation is only for developers and rebuilds all required packages from scratch${NC}"
 
 # Increase the number of retries
