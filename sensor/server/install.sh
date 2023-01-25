@@ -75,7 +75,7 @@ echo "${BLUE} INFO Reinstalling project dependencies${NC}"
 # install the required node packages
 npm install "/usr/local/src/hfs"
 sudo rm -r "./node_modules/undefined"
-sudo rm "./node_modules"
+sudo rm -d "./node_modules"
 
 # install all requirements for the Bluetooth connectivity
 pip3.9 install bleak==0.14.* --force-reinstall -vvv
