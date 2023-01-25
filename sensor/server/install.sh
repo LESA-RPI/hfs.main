@@ -9,7 +9,7 @@ NC='\033[0m'
 sudo sh -c "echo nameserver 192.168.1.1'\n'nameserver 8.8.8.8 > /etc/resolv.conf"
 
 echo "${BLUE}INFO: installing required server packages and files...${NC}"
-echo "${YELLOW}WARNING: installation can take upwards of three hours on a new build as python3.11, pip3.11, and node16.9.1 must be rebuilt from the source!${NC}"
+echo "${YELLOW}WARNING: installation can take upwards of an hour on a new build as node16.9.1 must be rebuilt from the source!${NC}"
 echo "${YELLOW}WARNING: it is reccomended that you use screen to run this command${NC}"
 echo "${BLUE}INFO: this installation is only for developers and rebuilds all required packages from scratch${NC}"
 
@@ -28,25 +28,27 @@ sudo apt install software-properties-common -y # need add-apt-repository
 sudo apt install libatlas-base-dev -y # this is often missing on Raspberry Pi and is required for numpy
 sudo apt update
 
-# install python3.11
-if ! type "$python3.11" > /dev/null; then
-	wget "https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz"
-	sudo tar -xf Python-3.11.0.tar.xz
-	sudo ./Python-3.11.0/configure --enable-optimizations
-	sudo make altinstall
+# install python3.9
+sudo apt install python3.9
+#if ! type "$python3.9" > /dev/null; then
+	
+	#wget "https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz"
+	#sudo tar -xf Python-3.11.0.tar.xz
+	#sudo ./Python-3.11.0/configure --enable-optimizations
+	#sudo make altinstall
 	# https://raw.githubusercontent.com/tvdsluijs/sh-python-installer/main/python.sh
 	# https://itheo.tech/ultimate-python-installation-on-a-raspberry-pi-and-ubuntu-script
 	#sudo add-apt-repository ppa:deadsnakes/ppa -y
 	#sudo apt update
 	#sudo apt install python3.11 -y
 	#sudo apt install python3.11-dev -y
-fi
+#fi
 
-# install pip3.11
-if ! type "$pip3.11" > /dev/null; then
+# install pip3.9
+if ! type "$pip3.9" > /dev/null; then
 	wget -P "/usr/local/src/hfs" "https://bootstrap.pypa.io/get-pip.py"
-	sudo python3.11 get-pip.py
-	pip3.11 install --upgrade setuptools
+	sudo python3.9 get-pip.py
+	pip3.9 install --upgrade setuptools
 	rm -rvf "/usr/local/src/hfs/get-pip.py"
 	#export PATH=/usr/lib/postgresql/14/bin/:$PATH
 	# pip install -r packageName/requrirements.txt
@@ -74,21 +76,20 @@ echo -e "${BLUE} INFO Reinstalling project dependencies${NC}"
 npm install "/usr/local/src/hfs"
 
 # install all requirements for the Bluetooth connectivity
-pip3.11 install bleak==0.14.* --force-reinstall -vvv
+pip3.9 install bleak==0.14.* --force-reinstall -vvv
 
 # install all requirements for local webserver
 # NOTE: compatible numpy versions can be found here https://github.com/matplotlib/matplotlib/blob/ac3d0caf0007389579a5fa2576d95657b03d3f02/doc/devel/min_dep_policy.rst#id1
-pip3.11 install matplotlib==3.6.* --force-reinstall -vvv
-python3.11 -c "import matplotlib"
+pip3.9 install matplotlib==3.6.* --force-reinstall -vvv
+python3.9 -c "import matplotlib"
 
 # install psql
 if ! type "$psql" > /dev/null; then
 	# requirements for the database management
-	#pip3.11 install psycopg2-binary==2.8.* --force-reinstall -vvv
 	wget --quiet -O - "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | sudo apt-key add -
 	sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 	sudo apt update
-	sudo apt install postgresql-14
+	sudo apt install postgresql-13
 	sudo sed -i 's/local   all             postgres                                peer/local   all             postgres                                trust/' '/etc/postgresql/14/main/pg_hba.conf'
 	sudo sed -i 's/local   all             all                                     peer/local   all             all                                     trust/' '/etc/postgresql/14/main/pg_hba.conf'
 	sudo passwd -d postgres
@@ -111,8 +112,8 @@ sudo apt autoremove -y
 echo 'Acquire::Retries "3";' > "/etc/apt/apt.conf.d/80-retries"
 
 # verify installation
-python3.11 --V
-pip3.11 -V
+python3.9 -V
+pip3.9 -V
 node -v
 output=$(node -v)
 if [ "$output" != "v16.9.1" ]; then
