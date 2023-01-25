@@ -45,7 +45,7 @@ sudo apt install python3.9
 #fi
 
 # install pip3.9
-if ! type "$pip3.9" > /dev/null; then
+if ! type "pip3.9" > /dev/null; then
 	wget -P "/usr/local/src/hfs" "https://bootstrap.pypa.io/get-pip.py"
 	sudo python3.9 get-pip.py
 	pip3.9 install --upgrade setuptools
@@ -58,7 +58,7 @@ fi
 mv -v "/usr/local/src/hfs/index.html" "/usr/local/src/hfs/public/index.html" 
 
 # install node
-if ! type "$node" > /dev/null; then
+if ! type "node" > /dev/null; then
 	echo "Installing Node.js v16 from the unoffical arm6l release following this https://gist.github.com/davps/6c6e0ba59d023a9e3963cea4ad0fb516 guide"
 	wget -P "/usr/local" https://unofficial-builds.nodejs.org/download/release/v16.9.1/node-v16.9.1-linux-armv6l.tar.gz
 	tar -xvzf "/usr/local/node-v16.9.1-linux-armv6l.tar.gz" -C "/usr/local"
@@ -84,7 +84,7 @@ pip3.9 install matplotlib==3.6.* --force-reinstall -vvv
 python3.9 -c "import matplotlib"
 
 # install psql
-if ! type "$psql" > /dev/null; then
+if ! type "psql" > /dev/null; then
 	# requirements for the database management
 	wget --quiet -O - "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | sudo apt-key add -
 	sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
