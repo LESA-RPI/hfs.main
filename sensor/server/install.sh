@@ -47,7 +47,7 @@ sudo apt install python3.9
 # install pip3.9
 if ! type "pip3.9" > /dev/null; then
 	wget -P "/usr/local/src/hfs" "https://bootstrap.pypa.io/get-pip.py"
-	sudo python3.9 get-pip.py
+	sudo python3.9 "/usr/local/src/hfs/get-pip.py"
 	pip3.9 install --upgrade setuptools
 	rm -rvf "/usr/local/src/hfs/get-pip.py"
 	#export PATH=/usr/lib/postgresql/14/bin/:$PATH
@@ -70,7 +70,7 @@ if ! type "node" > /dev/null; then
 	rm -rvf /usr/local/node-v16.9.1-linux-armv6l
 fi
 
-echo -e "${BLUE} INFO Reinstalling project dependencies${NC}"
+echo "${BLUE} INFO Reinstalling project dependencies${NC}"
 
 # install the required node packages
 npm install "/usr/local/src/hfs"
@@ -102,7 +102,7 @@ if ! type "psql" > /dev/null; then
 fi
 
 # make the Bluetooth application
-echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3.11 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
+echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3.9 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
 
 # make the local Webserver application
 echo "[Unit]\nDescription=The local site service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-local.service"
@@ -119,11 +119,11 @@ pip3.9 -V
 node -v
 output=$(node -v)
 if [ "$output" != "v16.9.1" ]; then
-    echo -e "${RED}ERROR: build failed, node ${output} is installed instead of node v16.9.1${NC}"
+    echo "${RED}ERROR: build failed, node ${output} is installed instead of node v16.9.1${NC}"
 	return 1
 fi
 npm -v
 sudo systemctl status postgresql
 su - postgres -c 'psql -c "TABLE data"'
 
-echo -e "${BLUE}Install completed, please reboot to launch the server.${NC}"
+echo "${BLUE}Install completed, please reboot to launch the server.${NC}"
