@@ -73,7 +73,7 @@ fi
 echo "${BLUE} INFO Reinstalling project dependencies${NC}"
 
 # install the required node packages
-npm install "/usr/local/src/hfs"
+npm --prefix "/usr/local/src/hfs" install "/usr/local/src/hfs"
 sudo rm -r "./node_modules/undefined"
 sudo rm -d "./node_modules"
 
