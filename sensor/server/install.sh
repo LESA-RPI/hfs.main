@@ -83,6 +83,8 @@ pip3.9 install bleak==0.14.* --force-reinstall -vvv
 # install all requirements for local webserver
 # NOTE: compatible numpy versions can be found here https://github.com/matplotlib/matplotlib/blob/ac3d0caf0007389579a5fa2576d95657b03d3f02/doc/devel/min_dep_policy.rst#id1
 pip3.9 install matplotlib==3.6.* --force-reinstall -vvv
+pip3.9 uninstall numpy
+apt install python3-numpy
 python3.9 -c "import matplotlib"
 
 # install psql

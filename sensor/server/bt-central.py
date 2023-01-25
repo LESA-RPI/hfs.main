@@ -7,7 +7,7 @@ import time
 import struct
 import asyncio
 from datetime import datetime
-import graphing
+import dynamic_graphs as dgraphing
 
 # load the configurations
 _CONFIG = None
@@ -64,7 +64,7 @@ def notification_handler(sender, data):
     f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
     chlf_normal = chlf_raw / _CONFIG["constants"]["max_raw_value"]
     # update the local visuals
-    graphing.update(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
+    dgraphing.update(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
     # update the database
     cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
     subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"])
