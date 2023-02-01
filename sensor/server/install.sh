@@ -51,6 +51,7 @@ sudo apt update
 # install the python version we want
 sudo apt install python3 -y
 sudo apt install python3-dev -y
+sudo apt install python3-pip -y
 
 version=$(python3 -V)
 expected_version="Python 3.9.2"
@@ -119,13 +120,14 @@ echo "${BLUE}INFO: reinstalling project dependencies${NC}"
 npm --prefix "/usr/local/src/hfs" install "/usr/local/src/hfs"
 
 # install all requirements for the Bluetooth connectivity
-pip install bleak==0.14.* --force-reinstall -vvv
+pip3 install bleak==0.14.* --force-reinstall -vvv
 
 # install all requirements for local webserver
 # NOTE: compatible numpy versions can be found here https://github.com/matplotlib/matplotlib/blob/ac3d0caf0007389579a5fa2576d95657b03d3f02/doc/devel/min_dep_policy.rst#id1
-pip install matplotlib==3.6.* --force-reinstall -vvv
-pip uninstall numpy
+pip3 install matplotlib==3.6.* --force-reinstall -vvv
+#pip3 uninstall numpy -y
 apt install python3-numpy -y
+sudo apt install libopenjp2-7
 python -c "import matplotlib"
 
 # install psql
@@ -135,8 +137,8 @@ if ! type "psql" > /dev/null; then
 	sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 	sudo apt update
 	sudo apt install postgresql-13 -y
-	sudo sed -i 's/local   all             postgres                                peer/local   all             postgres                                trust/' '/etc/postgresql/14/main/pg_hba.conf'
-	sudo sed -i 's/local   all             all                                     peer/local   all             all                                     trust/' '/etc/postgresql/14/main/pg_hba.conf'
+	sudo sed -i 's/local   all             postgres                                peer/local   all             postgres                                trust/' '/etc/postgresql/13/main/pg_hba.conf'
+	sudo sed -i 's/local   all             all                                     peer/local   all             all                                     trust/' '/etc/postgresql/13/main/pg_hba.conf'
 	sudo passwd -d postgres
 	sudo systemctl restart postgresql
 	sudo systemctl enable postgresql
@@ -145,7 +147,7 @@ if ! type "psql" > /dev/null; then
 fi
 
 # make the Bluetooth application
-echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3.9 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
+echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
 
 # make the local Webserver application
 echo "[Unit]\nDescription=The local site service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-local.service"
@@ -157,8 +159,8 @@ sudo apt autoremove -y
 echo 'Acquire::Retries "3";' > "/etc/apt/apt.conf.d/80-retries"
 
 # verify installation
-python -V
-pip -V
+python3 -V
+pip3 -V
 node -v
 output=$(node -v)
 if [ "$output" != "v16.9.1" ]; then
@@ -169,4 +171,7 @@ npm -v
 sudo systemctl status postgresql
 su - postgres -c 'psql -c "TABLE data"'
 
-echo "${BLUE}Install completed, please reboot to launch the server.${NC}"
+sudo systemctl start hfs-local.service
+sudo systemctl start hfs-bluetooth.service
+
+echo "${BLUE}install completed${NC}"
