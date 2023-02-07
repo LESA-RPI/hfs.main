@@ -30,7 +30,7 @@
 			var table = document.getElementById('data-table');
 			table.innerHTML='';
 			let ip = location.host;
-			$.getJSON('http://' + ip + ':3000/api/db?id=0&limit=20', function(data) {
+			$.getJSON('http://' + ip + '/api/db?id=0&limit=20', function(data) {
 				data.forEach(function(row_data) {
 					let row = document.createElement('tr');
 					let time = document.createElement('td');
@@ -73,7 +73,7 @@
 	<script>
 		var image = document.getElementById('cycle');
 		let ip = location.host;
-		image.src = 'http://' + ip + ':3000/api/file/flourescence_factor_data.jpg';
+		image.src = 'http://' + ip + '/api/file/flourescence_factor_data.jpg';
 		console.log(image.src);
 		var clicks = 0;
 		image.addEventListener('click', function(){
@@ -81,9 +81,9 @@
 			console.log('click')
 			let ip = location.host;
 			if (clicks > 2) clicks = 0;
-			if (clicks === 0) image.src = 'http://' + ip + ':3000/api/file/flourescence_factor_data.jpg';
-			if (clicks === 1) image.src = 'http://' + ip + ':3000/api/file/normalized_flourescence_data.jpg';
-			if (clicks === 2) image.src = 'http://' + ip + ':3000/api/file/raw_flourescence_data.jpg';
+			if (clicks === 0) image.src = 'http://' + ip + '/api/file/flourescence_factor_data.jpg';
+			if (clicks === 1) image.src = 'http://' + ip + '/api/file/normalized_flourescence_data.jpg';
+			if (clicks === 2) image.src = 'http://' + ip + '/api/file/raw_flourescence_data.jpg';
 		});
 	</script>
   </div>
