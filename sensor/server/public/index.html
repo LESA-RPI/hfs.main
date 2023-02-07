@@ -29,6 +29,7 @@
 			console.log('updateData');
 			var table = document.getElementById('data-table');
 			table.innerHTML='';
+			let ip = location.host;
 			$.getJSON('http://' + ip + ':3000/api/db?id=0&limit=20', function(data) {
 				data.forEach(function(row_data) {
 					let row = document.createElement('tr');
@@ -68,14 +69,16 @@
 <body style="margin:0; padding:0;">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
   <div class="container" style="text-align:center;"> 
-	<img src = "http://" + ip + ":3000/api/file/flourescence_factor_data.jpg" id="cycle">
+	<img src = "" id="cycle">
 	<script>
 		var image = document.getElementById('cycle');
+		let ip = location.host;
+		image.src = 'http://' + ip + ':3000/api/file/flourescence_factor_data.jpg';
 		var clicks = 0;
 		image.addEventListener('click', function(){
 			clicks = clicks + 1;
 			console.log('click')
-			var ip = location.host;
+			let ip = location.host;
 			if (clicks > 2) clicks = 0;
 			if (clicks === 0) image.src = 'http://' + ip + ':3000/api/file/flourescence_factor_data.jpg';
 			if (clicks === 1) image.src = 'http://' + ip + ':3000/api/file/normalized_flourescence_data.jpg';
