@@ -55,10 +55,7 @@ function fileAPI(res, file) {
     var stream = fs.createReadStream(file);
 	
 	var had_error = false;
-	stream.on('end', function() {res.end()});
-	stream.on('close', function(){
-	  if (!had_error) {fs.unlink(file)};
-	});
+	stream.on('end', function() {if (!had_error) {fs.unlink(file); res.end();} });
     stream.on('open', function () {
         res.setHeader('Content-Type', type);
 		console.log(type);
