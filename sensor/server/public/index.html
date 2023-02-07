@@ -74,6 +74,7 @@
 		var image = document.getElementById('cycle');
 		let ip = location.host;
 		image.src = 'http://' + ip + ':3000/api/file/flourescence_factor_data.jpg';
+		console.log(image.src);
 		var clicks = 0;
 		image.addEventListener('click', function(){
 			clicks = clicks + 1;
