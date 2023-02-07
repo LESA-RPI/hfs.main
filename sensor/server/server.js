@@ -9,7 +9,7 @@ const { Client } = require('pg');
 const CLIENT_DATA = {
 	user: 'postgres',
 	database: 'postgres',
-	port: 5433,
+	port: 5432,
 	password: 'admin'
 	};
 
@@ -25,45 +25,66 @@ var mime = {
 };
 
 async function dbAPI(id, limit) {
+	console.log('dbAPI: start');
 	const client = new Client(CLIENT_DATA);
-	await client.connect();
+	
+	try {
+		await client.connect();
+	} catch (error) {
+		console.error('dbAPI: error', error);
+		return {}
+	}
+	
+	console.log('dbAPI: connected');
 	var res = null;
 	if (id === '*') {
+		console.log('dbAPI: id = *');
 		res = await client.query(`SELECT * FROM data WHERE id=${id} ORDER BY timestamp LIMIT ${limit}`);
 	} else {
+		console.log('dbAPI: id != *');
 		res = await client.query(`SELECT * FROM data ORDER BY timestamp LIMIT ${limit}`);
 	}
 	await client.end();
+	console.log('dbAPI: end');
 	return res.rows
 }
 
 function fileAPI(res, file) {
+	console.log('fileAPI: start');
 	var type = mime[path.extname(file).slice(1)] || 'text/plain';
     var s = fs.createReadStream(file);
     s.on('open', function () {
         res.setHeader('Content-Type', type);
         s.pipe(res);
+		console.log('fileAPI: found');
+		return res.end();
     });
+	
     s.on('error', function () {
         res.setHeader('Content-Type', 'text/plain');
         res.statusCode = 404;
+		console.log('fileAPI: error 404');
         return res.end('Not found');
     });
+	console.log('fileAPI: end');
 }
 
 var server = http.createServer(async function (req, res) {
+	console.log('server: request');
     var reqpath = req.url.toString().split('?')[0];
-	
 	// Only accept GET requests from here onward
     if (req.method !== 'GET') {
+		console.log('server: GET');
         res.statusCode = 501;
         res.setHeader('Content-Type', 'text/plain');
         return res.end('Method not implemented');
     }
 	if (reqpath.startsWith('/api/file/')) {
+		console.log('server: file API');
 		return fileAPI(res, path.join(dir, reqpath.replace('/api/file', '')));
 	}
 	if (reqpath.startsWith('/api/db')) {
+		console.log('server: database API ');
 		let id = null;
 		let limit = null;
 		for (const param of req.url.toString().split('?')[1].split('&')) {
