@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HFS Sensor Dashboard</title>
+	<link rel="stylesheet" href="main.css">
+	<script>
+		function updateData() {
+			console.log('updateData');
+			var table = document.getElementById('data-table');
+			
+			let ip = location.host;
+			$.getJSON('http://' + ip + '/api/db?id=0&limit=20', function(data) {
+				table.innerHTML='';
+				data.forEach(function(row_data) {
+					let row = document.createElement('tr');
+					let time = document.createElement('td');
+					let id = document.createElement('td');
+					let d = document.createElement('td');
+					let chlf_r = document.createElement('td');
+					let chlf_n = document.createElement('td');
+					let f = document.createElement('td');
+					time.innerHTML = row_data['timestamp'];
+					id.innerHTML = row_data['id'];
+					d.innerHTML = row_data['distance'];
+					chlf_r.innerHTML = row_data['chlf_raw'];
+					chlf_n.innerHTML = row_data['chlf_normal'];
+					f.innerHTML = row_data['f_factor'];
+					row.appendChild(time);
+					row.appendChild(id);
+					row.appendChild(d);
+					row.appendChild(chlf_r);
+					row.appendChild(chlf_n);
+					row.appendChild(f);
+					table.appendChild(row);   
+				})
+			});
+			
+		}
+		setInterval(function() {
+			console.log("interval");
+			updateData();
+		}, 10000);
+	</script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="description" content="" />
+</head>
+<body style="margin:0; padding:0;">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+  <div id="mySidenav" class="sidenav">
+	  <a href="settings.html" id="settings">Settings</a>
+	  <a href="data.html" id="data">Data</a>
+	  <a href="ffgraph.html" id="graph" style="top:140px">Flourescence Factor Graph</a>
+	  <a href="nfgraph.html" id="graph" style="top:225px">Normalized Flourescence Graph</a>
+	  <a href="rfgraph.html" id="graph" style="top:335px">Raw Flourescence Graph</a>
+	</div>
+  <table style="margin-left:auto;margin-right:auto;width:90%;">
+	<thead>
+		<tr>
+			<th style="padding-right:70px; padding-left:70px;">Timestamp</th>
+			<th>Sensor ID</th>
+			<th>Distance (m)</th>
+			<th>Raw Flourescence (FU)</th>
+			<th>Normalized Flourescence (%)</th>
+			<th>Flourescence Factor</th>
+		</tr>
+	</thead>
+	<tbody id="data-table"></tbody>
+	<script> updateData(); </script>
+	</table>
+</body>
+</html>

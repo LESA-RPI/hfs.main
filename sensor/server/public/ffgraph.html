@@ -3,6 +3,23 @@
 <head>
 	<title>HFS Sensor Dashboard</title>
 	<link rel="stylesheet" href="main.css">
+	<script>
+		function updateImage() {
+			console.log("updateImage");
+			var images = document.getElementsByTagName('img');
+			for (var i = 0; i < images.length; i++) {
+				var dt = new Date();
+				var img = images[i];
+			  const url = new URL(img.src);
+			  url.search = 'time=' + dt.getTime();
+			  img.src = url.href;
+			}
+		}
+		setInterval(function() {
+			console.log("interval");
+			updateImage();
+		}, 10000);
+	</script>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<meta name="description" content="" />
@@ -16,5 +33,14 @@
 	  <a href="nfgraph.html" id="graph" style="top:225px">Normalized Flourescence Graph</a>
 	  <a href="rfgraph.html" id="graph" style="top:335px">Raw Flourescence Graph</a>
 	</div>
+  <div class="container" style="text-align:center;"> 
+	<img src = "" id="cycle">
+	<script>
+		var image = document.getElementById('cycle');
+		let ip = location.host;
+		image.src = 'http://' + ip + '/api/file/flourescence_factor_data.jpg';
+		console.log(image.src);
+	</script>
+  </div>
 </body>
 </html>
