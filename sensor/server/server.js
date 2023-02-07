@@ -52,15 +52,21 @@ async function dbAPI(id, limit) {
 function fileAPI(res, file) {
 	console.log('fileAPI: start');
 	var type = mime[path.extname(file).slice(1)] || 'text/plain';
-    var s = fs.createReadStream(file);
-    s.on('open', function () {
-        res.setHeader('Content-Type', type);
-        s.pipe(res);
-		console.log('fileAPI: found');
-		return res.end();
-    });
+    var stream = fs.createReadStream(file);
 	
-    s.on('error', function () {
+	var had_error = false;
+	stream.on('end', function() {res.end()});
+	stream.on('close', function(){
+	  if (!had_error) fs.unlink('<filepath>/example.pdf');
+	});
+    stream.on('open', function () {
+        res.setHeader('Content-Type', type);
+		console.log(type);
+		console.log('fileAPI: found');
+        stream.pipe(res);
+    });
+    stream.on('error', function () {
+		had_error = true;
         res.setHeader('Content-Type', 'text/plain');
         res.statusCode = 404;
 		console.log('fileAPI: error 404');
