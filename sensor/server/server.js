@@ -57,7 +57,7 @@ function fileAPI(res, file) {
 	var had_error = false;
 	stream.on('end', function() {res.end()});
 	stream.on('close', function(){
-	  if (!had_error) fs.unlink('<filepath>/example.pdf');
+	  if (!had_error) {fs.unlink(file)};
 	});
     stream.on('open', function () {
         res.setHeader('Content-Type', type);
