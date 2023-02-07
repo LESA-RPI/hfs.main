@@ -25,5 +25,5 @@ To start the server, simply reboot the PI and both the webpage and bluetooth cap
 Finally, one might want to simply update the code on the server. To do so, run:
 
 ```
-wget -O hfs.zip "https://github.com/LESA-RPI/hfs.main/archive/refs/heads/main.zip" && sudo unzip -o -j hfs.zip 'hfs.*/sensor/server/*' -d /usr/local/src/hfs/ && rm hfs.zip && mv -v "/usr/local/src/hfs/index.html" "/usr/local/src/hfs/public/index.html" 
+wget -O hfs.zip "https://github.com/LESA-RPI/hfs.main/archive/refs/heads/server-ui.zip" && sudo unzip -o -j hfs.zip 'hfs.*/sensor/server/*' -d /usr/local/src/hfs/ && rm hfs.zip && sudo mv -v "/usr/local/src/hfs/index.html" "/usr/local/src/hfs/public/index.html" 
 ```

@@ -15,6 +15,7 @@
       </style>
 	<script>
 		function updateImage() {
+			console.log("updateImage");
 			var images = document.getElementsByTagName('img');
 			for (var i = 0; i < images.length; i++) {
 				var dt = new Date();
@@ -25,7 +26,7 @@
 			}
 		}
 		function updateData() {
-			console.log('update');
+			console.log('updateData');
 			var table = document.getElementById('data-table');
 			table.innerHTML='';
 			$.getJSON('http://localhost:3000/api/db?id=0&limit=20', function(data) {
@@ -55,6 +56,7 @@
 			
 		}
 		setInterval(function() {
+			console.log("interval");
 			updateImage();
 			updateData();
 		}, 10000);
@@ -72,7 +74,7 @@
 		var clicks = 0;
 		image.addEventListener('click', function(){
 			clicks = clicks + 1;
-			console.log('test')
+			console.log('click')
 			if (clicks > 2) clicks = 0;
 			if (clicks === 0) image.src = 'http://127.0.0.1:3000/api/file/flourescence_factor_data.jpg';
 			if (clicks === 1) image.src = 'http://127.0.0.1:3000/api/file/normalized_flourescence_data.jpg';
