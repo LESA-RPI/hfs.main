@@ -28,9 +28,10 @@
 		function updateData() {
 			console.log('updateData');
 			var table = document.getElementById('data-table');
-			table.innerHTML='';
+			
 			let ip = location.host;
 			$.getJSON('http://' + ip + '/api/db?id=0&limit=20', function(data) {
+				table.innerHTML='';
 				data.forEach(function(row_data) {
 					let row = document.createElement('tr');
 					let time = document.createElement('td');
