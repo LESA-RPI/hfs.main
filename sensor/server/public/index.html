@@ -25,6 +25,7 @@
 			}
 		}
 		function updateData() {
+			console.log('update');
 			var table = document.getElementById('data-table');
 			table.innerHTML='';
 			$.getJSON('http://localhost:3000/api/db?id=0&limit=20', function(data) {
