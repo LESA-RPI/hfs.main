@@ -29,7 +29,7 @@
 			console.log('updateData');
 			var table = document.getElementById('data-table');
 			table.innerHTML='';
-			$.getJSON('http://localhost:3000/api/db?id=0&limit=20', function(data) {
+			$.getJSON('http://' + ip + ':3000/api/db?id=0&limit=20', function(data) {
 				data.forEach(function(row_data) {
 					let row = document.createElement('tr');
 					let time = document.createElement('td');
@@ -68,17 +68,18 @@
 <body style="margin:0; padding:0;">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
   <div class="container" style="text-align:center;"> 
-	<img src = "http://127.0.0.1:3000/api/file/flourescence_factor_data.jpg" id="cycle">
+	<img src = "http://" + ip + ":3000/api/file/flourescence_factor_data.jpg" id="cycle">
 	<script>
 		var image = document.getElementById('cycle');
 		var clicks = 0;
 		image.addEventListener('click', function(){
 			clicks = clicks + 1;
 			console.log('click')
+			var ip = location.host;
 			if (clicks > 2) clicks = 0;
-			if (clicks === 0) image.src = 'http://127.0.0.1:3000/api/file/flourescence_factor_data.jpg';
-			if (clicks === 1) image.src = 'http://127.0.0.1:3000/api/file/normalized_flourescence_data.jpg';
-			if (clicks === 2) image.src = 'http://127.0.0.1:3000/api/file/raw_flourescence_data.jpg';
+			if (clicks === 0) image.src = 'http://' + ip + ':3000/api/file/flourescence_factor_data.jpg';
+			if (clicks === 1) image.src = 'http://' + ip + ':3000/api/file/normalized_flourescence_data.jpg';
+			if (clicks === 2) image.src = 'http://' + ip + ':3000/api/file/raw_flourescence_data.jpg';
 		});
 	</script>
   </div>
