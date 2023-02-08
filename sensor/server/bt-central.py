@@ -20,7 +20,6 @@ log.addHandler(handler)
 handler = RotatingFileHandler(log_name, maxBytes=1024 * 5 * 1024, backupCount=2, encoding=None, delay=0)
 log.addHandler(handler)
 
-
 # load the configurations
 _CONFIG = None
 _AVERAGE_FLUX = 1
@@ -86,7 +85,7 @@ def notification_handler(sender, data):
     cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
     subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"])
     
-load_config("./config.json")
+load_config()
 notification_handler('dummy', struct.pack('<iiii', 0, int(time.time()), int(15.30 * 100), 3207))
 
 def disconnect_handler(client):
