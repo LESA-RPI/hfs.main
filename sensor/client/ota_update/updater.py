@@ -131,8 +131,8 @@ class OTAUpdater:
         return (current_version, latest_version)
     
     def _check_for_new_dev_version(self):
-        current_version = self.get_version(self.modulepath(""))
-        latest_version = self.http_client.get(self.dev_version_url).text
+        current_version = self.get_version(self.modulepath("next"))
+        latest_version = self.http_client.get(self.dev_version_url).text.strip().strip('\n')
         
         print('[INFO] Current version:', current_version)
         print('[INFO] Latest version:', latest_version)
@@ -173,17 +173,14 @@ class OTAUpdater:
     def _install_all_files(self, version, sub_dir=''):
         #url = 'https://api.github.com/repos/{}/contents{}{}{}?ref=refs/tags/{}'.format(self.github_repo, self.github_src_dir, self.main_dir, sub_dir, version)       
         url = 'https://api.github.com/repos/{}/contents/{}{}'.format(self.github_repo, self.github_src_dir, sub_dir)
-        print(url)
         gc.collect()
         file_list = self.http_client.get(url)
         file_list_json = file_list.json()
-        print(file_list_json)
         for file in file_list_json:
             
             path = self.modulepath(file['path'].replace(self.main_dir + '/', '').replace(self.github_src_dir, ''))
             if file['type'] == 'file':
                 gitPath = file['path']
-                print('[INFO] Downloading: ', gitPath, 'to', path)
                 self._install_file(version, gitPath, path)
             elif file['type'] == 'dir':
                 if self.update_sub_dir:
@@ -201,6 +198,7 @@ class OTAUpdater:
     def _install_file(self, version, gitPath, path):
         #self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, version, gitPath), saveToFile=path)
         self.remove(path)
+        print('[INFO] Downloading: ', gitPath, 'to', path)
         self.http_client.get('https://raw.githubusercontent.com/{}/main/{}'.format(self.github_repo, gitPath), saveToFile=path)
 
     def _copy_secrets_file(self):

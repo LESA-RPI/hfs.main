@@ -11,7 +11,6 @@ UPDATE_SUB_DIR = False
 
 from machine import Pin
 
-Pin(2, Pin.OUT).value(0)
 # get the config file, if it exists
 try:
     import json
@@ -21,11 +20,14 @@ try:
         LAN_SSID = config["lan-ssid"]
         LAN_PASSWORD = config["lan-password"]
         GITHUB_URL = config["github-url"]
+        UPDATE_SUB_DIR = config["update-sub-dir"]
+        GITHUB_SRC_DIR = config["github-src-dir"]
+        DEV_VERSION_FILE = config["dev-version-file"]
 except Exception as e:
     print("[WARNING] No valid config.json file found, using default options ({})".format(e))
 # check for updates
 if (CHECK_FOR_UPDATES):
-    print("[INFO] Updating device...")
+    print("[INFO] Checking for updates...")
     #try: 
         # monitor memory
     import time, machine, network, gc
@@ -47,9 +49,8 @@ if (CHECK_FOR_UPDATES):
     update = ota_updater.dev_install_update_if_available()
     del(ota_updater)
     if (update):
-        Pin(2, Pin.OUT).value(1)
+        print("[INFO] Upgrade complete, reseting...")
         machine.reset()
     #except Exception as e:
     #    print("WARNING: Update failed ({})".format(e))
 
-Pin(2, Pin.OUT).value(1)

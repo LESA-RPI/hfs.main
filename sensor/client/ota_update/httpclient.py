@@ -7,7 +7,6 @@ class Response:
         self._encoding = 'utf-8'
         if saveToFile is not None:
             CHUNK_SIZE = 512 # bytes
-            print(saveToFile)
             with open(saveToFile, 'w') as outfile:
                 data = self._socket.read(CHUNK_SIZE)
                 while data:
