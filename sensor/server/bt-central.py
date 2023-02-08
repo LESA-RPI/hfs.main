@@ -8,6 +8,7 @@ import asyncio
 from datetime import datetime
 import dynamic_graphs as dgraphing
 import logging
+from logging.handlers import RotatingFileHandler
 
 # Load the logfile
 log_name = "/usr/local/src/hfs/public/public.log"
