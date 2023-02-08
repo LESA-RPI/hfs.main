@@ -5,14 +5,6 @@ var fs = require('fs');
 var dir = path.join(__dirname, 'public');
 var os = require('os');
 
-const { Client } = require('pg');
-const CLIENT_DATA = {
-	user: 'postgres',
-	database: 'postgres',
-	port: 5432,
-	password: 'admin'
-	};
-
 var mime = {
     html: 'text/html',
     txt: 'text/plain',

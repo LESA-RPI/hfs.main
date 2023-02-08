@@ -95,11 +95,14 @@ fi
 #	# pip install -r packageName/requrirements.txt
 #fi
 
-# Move the index file to public
-mv -v "/usr/local/src/hfs/index.html" "/usr/local/src/hfs/public/index.html" 
+# Move the required files to public
+(cd /usr/local/src/hfs; mv -v *.html "/usr/local/src/hfs/public/")
+(cd /usr/local/src/hfs; mv -v *.css "/usr/local/src/hfs/public/")
+
+# make the log file
+touch "/usr/local/src/hfs/public/public.log"
 
 # install node
-
 if ! type "node" > /dev/null; then
 	echo "${BLUE}INFO: installing Node.js${NC}"
 

@@ -1,5 +1,7 @@
-print("Initializing...")
-#from bleak import BleakClient, BleakScanner, BleakError
+print('HFS server starting...')
+log.info('HFS server starting...')
+
+from bleak import BleakClient, BleakScanner, BleakError
 import json
 from math import pi
 import subprocess
@@ -8,6 +10,16 @@ import struct
 import asyncio
 from datetime import datetime
 import dynamic_graphs as dgraphing
+import logging
+
+# Load the logfile
+log_name = "/usr/local/src/hfs/public/public.log"
+logging.basicConfig(filename=log,level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+log = logging.getLogger()
+log.addHandler(handler)
+handler = RotatingFileHandler(log_name, maxBytes=1024 * 5 * 1024, backupCount=2, encoding=None, delay=0)
+log.addHandler(handler)
+
 
 # load the configurations
 _CONFIG = None
@@ -15,7 +27,7 @@ _AVERAGE_FLUX = 1
 
 # initialize the addresses and uuids
 _ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
-_HANDLES = set() 
+_HANDLES = set()
 
 _COMM_UUID = "26c00001-ece0-4f7a-b663-223de05387cc"
 _COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
@@ -32,6 +44,7 @@ def load_config(path="/usr/local/src/hfs/config.json"):
         return True
     except:
         print(f"WARNING: {path} not found")
+        log.warning(f"{path} not found")
         return False
 
 def address_filter(x):
@@ -41,8 +54,10 @@ def address_filter(x):
 def print_ad_data(data):
     if data.local_name:
         print(f"\tName: {data.local_name}")
+        log.info(f"\tName: {data.local_name}")
     if data.service_uuids:
         print("\tServices:")
+        log.info("\tServices:")
         for service in data.service_uuids:
             print(f"\t- {service}")
 
@@ -53,12 +68,14 @@ def decode(data):
 
 def scan_handler(device, data):
     print(f"Found '{device.address}'")
+    log.info(f"Found '{device.address}'")
     print_ad_data(data)
 
 def notification_handler(sender, data):
     # decode the data and print to logs
     id, timestamp, distance_mm, chlf_raw  = decode(data)
-    print(f"{sender}: {timestamp} {id} {chlf_raw} {distance_mm}")
+    print(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
+    log.info(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
     # compute the datetime, sensor id, normal chlf, and chlf factor
     dt_timestamp = datetime.fromtimestamp(timestamp)
     f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
@@ -74,24 +91,29 @@ notification_handler('dummy', struct.pack('<iiii', 0, int(time.time()), int(15.3
 
 def disconnect_handler(client):
     print(f"Disconnected from {client.address}")
+    log.info(f"Disconnected from {client.address}")
 
 async def scan(timeout=5.0):
     scanner = BleakScanner(detection_callback=scan_handler)
 
     print("Starting scan...")
+    log.info('Starting scan...')
     await scanner.start()
     await asyncio.sleep(timeout)
     await scanner.stop()
     print("Scan finished.")
+    log.info('Scan finished.')
 
     return list( filter(address_filter, scanner.discovered_devices) )
 
 async def connect_to_device(device):
     print(f"Connecting to {device}...")
+    log.info(f'Connecting to {device}.')
     async with BleakClient(
         device, timeout=5.0, disconnected_callback=disconnect_handler
     ) as client:
         print(f"Connected to {client.address}")
+        log.info(f"Connected to {client.address}")
         try:
             await client.start_notify(_COMM_RW_UUID, notification_handler)
             while True:
@@ -99,15 +121,19 @@ async def connect_to_device(device):
                     await asyncio.sleep(0.5)
                 except KeyboardInterrupt:
                     print("shutting down central...")
+                    log.info("Shutting down server...")
                     return
         except BleakError:
             print(f"{client.address} does not contain necessary characteristic")
+            log.info(f"{client.address} does not contain necessary characteristic")
 
 async def main():
     print("Loading config.json...")
+    log.info("Loading config.json...")
     
     if not load_config():
         print("WARNING: Loading expected config.json failed, resorting to local configuration")
+        log.warning("Loading expected config.json failed, resorting to local configuration")
         load_config("./config.json")
 
     found_device = False
@@ -115,9 +141,11 @@ async def main():
         devices = await scan()
         if devices:
             print("Found device(s).")
+            log.info("Found device(s).")
             found_device = True
         else:
             print("No devices found. Retrying in 10 seconds..")
+            log.info("No devices found. Retrying in 10 seconds..")
             time.sleep(10)
 
     await asyncio.gather(*(connect_to_device(dev) for dev in devices))

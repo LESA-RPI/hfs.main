@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>HFS Sensor Dashboard</title>
+	<title>HFS Dashboard</title>
 	<link rel="stylesheet" href="main.css">
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<meta name="description" content="" />
 </head>
 <body style="margin:0; padding:0;">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-  <div id="mySidenav" class="sidenav">
-	  <a href="settings.html" id="settings">Settings</a>
-	  <a href="data.html" id="data">Data</a>
-	  <a href="ffgraph.html" id="graph" style="top:140px">Flourescence Factor Graph</a>
-	  <a href="nfgraph.html" id="graph" style="top:225px">Normalized Flourescence Graph</a>
-	  <a href="rfgraph.html" id="graph" style="top:335px">Raw Flourescence Graph</a>
-	</div>
+	<table style="padding-left:20%;padding-top:20px;width:80%;text-align:left">
+		<thead>
+			<tr>
+				<td>
+					<button type="button">Push Settings to Sensors</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="option-program" style="padding-right:20px">Program</label>
+					<select name="option-program" id="option-program" style="font-size:20px">
+						<option style="font-size:20px" value="default">default</option>
+						<option style="font-size:20px" value="tests/distance">distance test</option>
+						<option style="font-size:20px" value="tests/farfield">farfield test</option>
+						<option style="font-size:20px" value="tests/frequency">frequency test</option>
+						<option style="font-size:20px" value="tests/noise">noise test</option>
+					</select>
+				</td>
+			</tr>
+		</thead>
+	<tbody id="settings-table"></tbody>
+	</table>
 </body>
 </html>

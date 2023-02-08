@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>HFS Sensor Dashboard</title>
+	<title>HFS Data Report</title>
 	<link rel="stylesheet" href="main.css">
 	<script>
 		function updateData() {
@@ -25,12 +25,12 @@
 					chlf_r.innerHTML = row_data['chlf_raw'];
 					chlf_n.innerHTML = row_data['chlf_normal'];
 					f.innerHTML = row_data['f_factor'];
-					row.appendChild(time);
 					row.appendChild(id);
 					row.appendChild(d);
 					row.appendChild(chlf_r);
 					row.appendChild(chlf_n);
 					row.appendChild(f);
+					row.appendChild(time);
 					table.appendChild(row);   
 				})
 			});
@@ -46,23 +46,15 @@
 	<meta name="description" content="" />
 </head>
 <body style="margin:0; padding:0;">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-  <div id="mySidenav" class="sidenav">
-	  <a href="settings.html" id="settings">Settings</a>
-	  <a href="data.html" id="data">Data</a>
-	  <a href="ffgraph.html" id="graph" style="top:140px">Flourescence Factor Graph</a>
-	  <a href="nfgraph.html" id="graph" style="top:225px">Normalized Flourescence Graph</a>
-	  <a href="rfgraph.html" id="graph" style="top:335px">Raw Flourescence Graph</a>
-	</div>
   <table style="margin-left:auto;margin-right:auto;width:90%;">
 	<thead>
 		<tr>
-			<th style="padding-right:70px; padding-left:70px;">Timestamp</th>
 			<th>Sensor ID</th>
 			<th>Distance (m)</th>
 			<th>Raw Flourescence (FU)</th>
 			<th>Normalized Flourescence (%)</th>
 			<th>Flourescence Factor</th>
+			<th>Timestamp</th>
 		</tr>
 	</thead>
 	<tbody id="data-table"></tbody>
