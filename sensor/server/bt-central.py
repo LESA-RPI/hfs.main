@@ -1,6 +1,3 @@
-print('HFS server starting...')
-log.info('HFS server starting...')
-
 from bleak import BleakClient, BleakScanner, BleakError
 import json
 from math import pi
@@ -19,6 +16,9 @@ log = logging.getLogger()
 log.addHandler(handler)
 handler = RotatingFileHandler(log_name, maxBytes=1024 * 5 * 1024, backupCount=2, encoding=None, delay=0)
 log.addHandler(handler)
+
+print('HFS server starting...')
+log.info('HFS server starting...')
 
 # load the configurations
 _CONFIG = None
