@@ -11,7 +11,7 @@ import logging
 
 # Load the logfile
 log_name = "/usr/local/src/hfs/public/public.log"
-logging.basicConfig(filename=log,level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+logging.basicConfig(filename=log_name,level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
 log = logging.getLogger()
 log.addHandler(handler)
 handler = RotatingFileHandler(log_name, maxBytes=1024 * 5 * 1024, backupCount=2, encoding=None, delay=0)
