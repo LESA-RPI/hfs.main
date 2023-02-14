@@ -5,9 +5,10 @@ CHECK_FOR_UPDATES = True
 LAN_SSID = "SLERC3"
 LAN_PASSWORD = "ganlightemittingdiode"
 GITHUB_URL = "https://github.com/LESA-RPI/hfs.main"
-DEV_VERSION_FILE = "https://raw.githubusercontent.com/LESA-RPI/hfs.main/main/sensor/client/DEVELOPER_VERSION"
+DEV_VERSION_FILE = "https://raw.githubusercontent.com/LESA-RPI/hfs.main/dev-deploy/sensor/client/DEVELOPER_VERSION"
 GITHUB_SRC_DIR = "sensor/client"
 UPDATE_SUB_DIR = False
+GITHUB_BRANCH = "dev-deploy"
 
 from machine import Pin
 
@@ -45,7 +46,7 @@ if (CHECK_FOR_UPDATES):
     print('[INFO] Connected to', LAN_SSID)
     print('[INFO] Network config {}'.format(sta_if.ifconfig()))
     # download and install an update if availible
-    ota_updater = ota.OTAUpdater(GITHUB_URL, github_src_dir=GITHUB_SRC_DIR, dev_version_url=DEV_VERSION_FILE, update_sub_dir=UPDATE_SUB_DIR, main_dir="main")
+    ota_updater = ota.OTAUpdater(GITHUB_URL, github_src_dir=GITHUB_SRC_DIR, dev_version_url=DEV_VERSION_FILE, update_sub_dir=UPDATE_SUB_DIR, main_dir=GITHUB_BRANCH)
     update = ota_updater.dev_install_update_if_available()
     del(ota_updater)
     if (update):
