@@ -52,10 +52,12 @@ def address_filter(x):
 def print_ad_data(data):
     if data.local_name:
         #log.info(f"\tName: {data.local_name}")
+        pass
     if data.service_uuids:
         #log.info("\tServices:")
         for service in data.service_uuids:
             #log.info(f"\t- {service}")
+            pass
 
 # decode value from characteristic
 def decode(data):
@@ -85,6 +87,7 @@ notification_handler('dummy', struct.pack('<iiii', 0, int(time.time()), int(15.3
 
 def disconnect_handler(client):
     #log.info(f"Disconnected from {client.address}")
+    pass
 
 async def scan(timeout=5.0):
     scanner = BleakScanner(detection_callback=scan_handler)
@@ -112,8 +115,10 @@ async def connect_to_device(device):
                     #log.info("Shutting down server...")
                     return
         except BleakError:
+            
             #log.info(f"{client.address} does not contain necessary characteristic")
-
+            pass
+            
 async def main():
     #log.info("Loading config.json...")
     
