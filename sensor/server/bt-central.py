@@ -14,10 +14,9 @@ from logging.handlers import RotatingFileHandler
 log_name = "/usr/local/src/hfs/public/public.log"
 logging.basicConfig(filename=log_name,level=logging.DEBUG,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
 log = logging.getLogger()
-handler = RotatingFileHandler(log_name, maxBytes=1024 * 5 * 1024, backupCount=2, encoding=None, delay=0)
+handler = RotatingFileHandler(log_name, maxBytes=35 * 6 * 30, backupCount=2, encoding=None, delay=0) # 1024 * 5 * 1024
 log.addHandler(handler)
 
-print('HFS server starting...')
 log.info('HFS server starting...')
 
 # load the configurations
@@ -42,7 +41,6 @@ def load_config(path="/usr/local/src/hfs/config.json"):
         _AVERAGE_FLUX = _CONFIG["constants"]["total_canopy_flux"] / sensing_area
         return True
     except:
-        print(f"WARNING: {path} not found")
         log.warning(f"{path} not found")
         return False
 
@@ -52,13 +50,11 @@ def address_filter(x):
 # helper to print advertisement data
 def print_ad_data(data):
     if data.local_name:
-        print(f"\tName: {data.local_name}")
         log.info(f"\tName: {data.local_name}")
     if data.service_uuids:
-        print("\tServices:")
         log.info("\tServices:")
         for service in data.service_uuids:
-            print(f"\t- {service}")
+            log.info(f"\t- {service}")
 
 # decode value from characteristic
 def decode(data):
@@ -66,14 +62,12 @@ def decode(data):
     return (decoded_data[0], decoded_data[1], decoded_data[2] / 100, decoded_data[3])
 
 def scan_handler(device, data):
-    print(f"Found '{device.address}'")
     log.info(f"Found '{device.address}'")
     print_ad_data(data)
 
 def notification_handler(sender, data):
     # decode the data and print to logs
     id, timestamp, distance_mm, chlf_raw  = decode(data)
-    print(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
     log.info(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
     # compute the datetime, sensor id, normal chlf, and chlf factor
     dt_timestamp = datetime.fromtimestamp(timestamp)
@@ -89,29 +83,24 @@ load_config()
 notification_handler('dummy', struct.pack('<iiii', 0, int(time.time()), int(15.30 * 100), 3207))
 
 def disconnect_handler(client):
-    print(f"Disconnected from {client.address}")
     log.info(f"Disconnected from {client.address}")
 
 async def scan(timeout=5.0):
     scanner = BleakScanner(detection_callback=scan_handler)
 
-    print("Starting scan...")
     log.info('Starting scan...')
     await scanner.start()
     await asyncio.sleep(timeout)
     await scanner.stop()
-    print("Scan finished.")
     log.info('Scan finished.')
 
     return list( filter(address_filter, scanner.discovered_devices) )
 
 async def connect_to_device(device):
-    print(f"Connecting to {device}...")
     log.info(f'Connecting to {device}.')
     async with BleakClient(
         device, timeout=5.0, disconnected_callback=disconnect_handler
     ) as client:
-        print(f"Connected to {client.address}")
         log.info(f"Connected to {client.address}")
         try:
             await client.start_notify(_COMM_RW_UUID, notification_handler)
@@ -119,19 +108,15 @@ async def connect_to_device(device):
                 try:
                     await asyncio.sleep(0.5)
                 except KeyboardInterrupt:
-                    print("shutting down central...")
                     log.info("Shutting down server...")
                     return
         except BleakError:
-            print(f"{client.address} does not contain necessary characteristic")
             log.info(f"{client.address} does not contain necessary characteristic")
 
 async def main():
-    print("Loading config.json...")
     log.info("Loading config.json...")
     
     if not load_config():
-        print("WARNING: Loading expected config.json failed, resorting to local configuration")
         log.warning("Loading expected config.json failed, resorting to local configuration")
         load_config("./config.json")
 
@@ -139,11 +124,9 @@ async def main():
     while not found_device:
         devices = await scan()
         if devices:
-            print("Found device(s).")
             log.info("Found device(s).")
             found_device = True
         else:
-            print("No devices found. Retrying in 10 seconds..")
             log.info("No devices found. Retrying in 10 seconds..")
             time.sleep(10)
 
