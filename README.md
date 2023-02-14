@@ -1,4 +1,4 @@
-[![linting: pylint](https://github.com/LESA-RPI/hfs.main/actions/workflows/pylint.yml/badge.svg)
+![linting: pylint](https://github.com/LESA-RPI/hfs.main/actions/workflows/pylint.yml/badge.svg)
 
 # Horticulture Fluorescence Sensor Project
 The Horticulture Fluorescence Sensor (HFS) is a remote chlorophyll-A flourescence sensor. If you are doing __***any***__ editing of this project, please do it on a branch and merge down after approval. Do __***not***__ edit directly onto the main branch.
