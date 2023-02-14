@@ -120,7 +120,7 @@ async def connect_to_device(device):
             pass
             
 async def main():
-    #log.info("Loading config.json...")
+    log.info("Loading config.json...")
     
     if not load_config():
         log.warning("Loading expected config.json failed, resorting to local configuration")
@@ -130,10 +130,10 @@ async def main():
     while not found_device:
         devices = await scan()
         if devices:
-            #log.info("Found device(s).")
+            log.info("Found device(s).")
             found_device = True
         else:
-            #log.info("No devices found. Retrying in 10 seconds..")
+            log.info("No devices found. Retrying in 10 seconds..")
             time.sleep(10)
 
     await asyncio.gather(*(connect_to_device(dev) for dev in devices))
