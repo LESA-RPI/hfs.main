@@ -19,7 +19,7 @@ Make sure to plug in your device and replace `ttyUSB0` with the actual serial po
 
 Uploading code to the microcontroller will either work the first time or be the most painful experience you've had for a while. Hopefully, the VS Code method simply works for you. However, there have been issues in the past. If it doesn't work for you, don't spend too much time on it and just use the second method. 
 
-### VS Code
+### 1) VS Code
 
 Before proceding, make sure you have the following installed:
 * [Node.js](https://nodejs.org/en/)
@@ -40,7 +40,7 @@ To start, plug the microcontroller in and open VScode. Type `ctrl + shift+ p` an
 
 On boot, the device will automatically load the `boot.py` then `main.py` files. On boot, `main.py` will begin scanning for peripherals and connect to them if everything works. Currently, programs are halted via `ctrl + c`.
 
-### Dev-Deploy
+### 2) Dev-Deploy
 If you have found yourself here, I am very sorry. However, things can still work (kinda)! Your first goal is to access the serial prompt of the device so that you can see your debug statements. This isn't required, but really really helps in debugging and making sure things are running properly. On Linux, this can be done via the command line tool picocom (`sudo apt-get install picocom`) or minicom (`sudo apt-get install minicom`). On Windows, [TeraTerm](http://www.teraterm.org/) is reccomended. 
 
 You can also try and access the webrepl, which is technically enabled upon boot by the device. However, [it refuses to connect over https](https://github.com/micropython/webrepl/issues/15), so that method doesn't work too well. Technically, the ESP32 is also supposed to advertise a Wi-Fi network when it doesn't connect to one, but I have found that it simply does not for whatever reason. You can find tutorials walking through these methods [here](https://www.techcoil.com/blog/how-to-setup-micropython-webrepl-on-your-esp32-development-board/) and [here](https://learn.adafruit.com/micropython-basics-esp8266-webrepl/access-webrepl), though don't have much hope for them.
