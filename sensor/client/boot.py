@@ -1,6 +1,5 @@
 print("[INFO] Booting device...")
 
-PRODUCTION = False
 CHECK_FOR_UPDATES = True
 LAN_SSID = "SLERC3"
 LAN_PASSWORD = "ganlightemittingdiode"
@@ -24,6 +23,7 @@ try:
         UPDATE_SUB_DIR = config["update-sub-dir"]
         GITHUB_SRC_DIR = config["github-src-dir"]
         DEV_VERSION_FILE = config["dev-version-file"]
+        GITHUB_BRANCH = config["github-branch"]
 except Exception as e:
     print("[WARNING] No valid config.json file found, using default options ({})".format(e))
 # check for updates
@@ -54,4 +54,3 @@ if (CHECK_FOR_UPDATES):
         machine.reset()
     #except Exception as e:
     #    print("WARNING: Update failed ({})".format(e))
-

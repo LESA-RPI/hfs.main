@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "pg": "^8.8.0",
-    "postgresql-js": "^0.0.7"
-  }
-}

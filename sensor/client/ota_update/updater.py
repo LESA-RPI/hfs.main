@@ -145,10 +145,13 @@ class OTAUpdater:
             versionfile.close()
 
     def get_version(self, directory, version_file_name='.version'):
-        if version_file_name in os.listdir(directory):
-            with open(directory + '/' + version_file_name) as f:
-                version = f.read()
-                return version
+        try:
+            if version_file_name in os.listdir(directory):
+                with open(directory + '/' + version_file_name) as f:
+                    version = f.read()
+                    return version
+        except:
+            print("[WARNING] Error in finding version file, defaulting to version 0.0")
         return '0.0'
 
     def get_latest_version(self):
@@ -199,7 +202,7 @@ class OTAUpdater:
         #self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, version, gitPath), saveToFile=path)
         self.remove(path)
         print('[INFO] Downloading: ', gitPath, 'to', path)
-        self.http_client.get('https://raw.githubusercontent.com/{}/main/{}'.format(self.github_repo, gitPath), saveToFile=path)
+        self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo,self.main_dir, gitPath), saveToFile=path)
 
     def _copy_secrets_file(self):
         if self.secrets_file:
