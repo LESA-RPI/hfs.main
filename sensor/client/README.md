@@ -1,5 +1,7 @@
 # Overview
-The peripheral device has been tested with an *ESP32 DevKitc V4*, is writeen in [MicroPython](https://micropython.org/download/), and is designed to run on [bare metal](https://www.techopedia.com/definition/2153/bare-metal). The code makes use of its `bluetooth` and `uasyncio` libraries. The code also relies on [aioble](https://github.com/micropython/micropython-lib/tree/master/micropython/bluetooth/aioble), an asynchronous wrapper for MicroPython's `ubluetooth` API.
+The peripheral device has been tested with an *ESP32 DevKitc V4*, is writen in [MicroPython](https://micropython.org/download/), and is designed to run on [bare metal](https://www.techopedia.com/definition/2153/bare-metal). The code makes use of its `bluetooth` and `uasyncio` libraries. The code also relies on 
+* [aioble](https://github.com/micropython/micropython-lib/tree/master/micropython/bluetooth/aioble), an asynchronous wrapper for MicroPython's `ubluetooth` API.
+* a modified version of [micropython-ota-updater](https://github.com/rdehuyss/micropython-ota-updater), which allows for automatic code updates from GitHub
 
 # Setup
 
