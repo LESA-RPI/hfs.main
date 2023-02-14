@@ -18,7 +18,7 @@ log.propagate = False
 handler = RotatingFileHandler(log_name, maxBytes=1024 * 5 * 1024, backupCount=0, encoding=None, delay=0) # 1024 * 5 * 1024
 log.addHandler(handler)
 
-log.info('HFS server starting...')
+#log.info('HFS server starting...')
 
 # load the configurations
 _CONFIG = None
@@ -51,11 +51,11 @@ def address_filter(x):
 # helper to print advertisement data
 def print_ad_data(data):
     if data.local_name:
-        log.info(f"\tName: {data.local_name}")
+        #log.info(f"\tName: {data.local_name}")
     if data.service_uuids:
-        log.info("\tServices:")
+        #log.info("\tServices:")
         for service in data.service_uuids:
-            log.info(f"\t- {service}")
+            #log.info(f"\t- {service}")
 
 # decode value from characteristic
 def decode(data):
@@ -63,13 +63,13 @@ def decode(data):
     return (decoded_data[0], decoded_data[1], decoded_data[2] / 100, decoded_data[3])
 
 def scan_handler(device, data):
-    log.info(f"Found '{device.address}'")
+    #log.info(f"Found '{device.address}'")
     print_ad_data(data)
 
 def notification_handler(sender, data):
     # decode the data and print to logs
     id, timestamp, distance_mm, chlf_raw  = decode(data)
-    log.info(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
+    #log.info(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
     # compute the datetime, sensor id, normal chlf, and chlf factor
     dt_timestamp = datetime.fromtimestamp(timestamp)
     f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
@@ -84,38 +84,38 @@ load_config()
 notification_handler('dummy', struct.pack('<iiii', 0, int(time.time()), int(15.30 * 100), 3207))
 
 def disconnect_handler(client):
-    log.info(f"Disconnected from {client.address}")
+    #log.info(f"Disconnected from {client.address}")
 
 async def scan(timeout=5.0):
     scanner = BleakScanner(detection_callback=scan_handler)
 
-    log.info('Starting scan...')
+    #log.info('Starting scan...')
     await scanner.start()
     await asyncio.sleep(timeout)
     await scanner.stop()
-    log.info('Scan finished.')
+    #log.info('Scan finished.')
 
     return list( filter(address_filter, scanner.discovered_devices) )
 
 async def connect_to_device(device):
-    log.info(f'Connecting to {device}.')
+    #log.info(f'Connecting to {device}.')
     async with BleakClient(
         device, timeout=5.0, disconnected_callback=disconnect_handler
     ) as client:
-        log.info(f"Connected to {client.address}")
+        #log.info(f"Connected to {client.address}")
         try:
             await client.start_notify(_COMM_RW_UUID, notification_handler)
             while True:
                 try:
                     await asyncio.sleep(0.5)
                 except KeyboardInterrupt:
-                    log.info("Shutting down server...")
+                    #log.info("Shutting down server...")
                     return
         except BleakError:
-            log.info(f"{client.address} does not contain necessary characteristic")
+            #log.info(f"{client.address} does not contain necessary characteristic")
 
 async def main():
-    log.info("Loading config.json...")
+    #log.info("Loading config.json...")
     
     if not load_config():
         log.warning("Loading expected config.json failed, resorting to local configuration")
@@ -125,10 +125,10 @@ async def main():
     while not found_device:
         devices = await scan()
         if devices:
-            log.info("Found device(s).")
+            #log.info("Found device(s).")
             found_device = True
         else:
-            log.info("No devices found. Retrying in 10 seconds..")
+            #log.info("No devices found. Retrying in 10 seconds..")
             time.sleep(10)
 
     await asyncio.gather(*(connect_to_device(dev) for dev in devices))
