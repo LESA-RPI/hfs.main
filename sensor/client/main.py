@@ -4,8 +4,8 @@ print("INFO: Starting device...")
 
 #import asyncio
 #import ble_service
-from noise import start
-#from frequency import startFrequencyTest
+from .noise import start
+#from .frequency import startFrequencyTest
 
 print(2)
 print(3)
