@@ -3,7 +3,7 @@
 from machine import Pin, ADCBlock
 import time
 block = ADCBlock(2, bits=12)
-RESULT = block.connect(4, Pin(14, Pin.IN))
+RESULT = block.connect(6, Pin(14, Pin.IN))
 RESET = Pin(16, Pin.IN)
 LED_POW_SUPPLY_PIN = Pin(13, Pin.IN)
 LED1 = Pin(26, Pin.OUT_PP)
