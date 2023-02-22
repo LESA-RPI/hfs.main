@@ -1,8 +1,8 @@
 # Pin
 
-from machine import Pin, ADC
+from machine import Pin, ADC2
 import time
-RESULT = ADC(Pin(14, Pin.IN))
+RESULT = ADC2(Pin(14, Pin.IN))
 RESET = Pin(16, Pin.IN)
 LED_POW_SUPPLY_PIN = Pin(13, Pin.IN)
 LED1 = Pin(26, Pin.OUT_PP)
