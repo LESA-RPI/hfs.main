@@ -131,8 +131,8 @@ class OTAUpdater:
         return (current_version, latest_version)
     
     def _check_for_new_dev_version(self):
-        current_version = self.get_version(self.modulepath("next"))
-        latest_version = self.http_client.get(self.dev_version_url).text.strip().strip('\n')
+        current_version = float(self.get_version(self.modulepath("next")))
+        latest_version = float(self.http_client.get(self.dev_version_url).text.strip().strip('\n'))
         
         print('[INFO] Current version:', current_version)
         print('[INFO] Latest version:', latest_version)
