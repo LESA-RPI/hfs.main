@@ -30,13 +30,14 @@ except Exception as e:
 import network
 sta_if = network.WLAN(network.STA_IF)
 if not sta_if.isconnected():
-    print('[INFO] Connecting to network...')
+    print('[INFO] Connecting to network...') 
     sta_if.active(True)
     sta_if.connect(LAN_SSID, LAN_PASSWORD)
     while not sta_if.isconnected():
         pass
 print('[INFO] Connected to', LAN_SSID)
 print('[INFO] Network config {}'.format(sta_if.ifconfig()))
+
 # check for updates
 if (CHECK_FOR_UPDATES):
     print("[INFO] Checking for updates...")
