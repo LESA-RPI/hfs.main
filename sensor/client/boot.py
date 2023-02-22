@@ -10,6 +10,7 @@ UPDATE_SUB_DIR = False
 GITHUB_BRANCH = "dev-deploy"
 
 from machine import Pin
+import esp
 
 # get the config file, if it exists
 try:
@@ -58,4 +59,4 @@ if (CHECK_FOR_UPDATES):
         print("WARNING: Update failed ({})".format(e))
 sta_if.disconnect()
 sta_if.active(False)
-del(sta_if)
+esp.esp_wifi_stop()
