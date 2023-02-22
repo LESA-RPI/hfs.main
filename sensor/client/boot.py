@@ -27,21 +27,11 @@ try:
 except Exception as e:
     print("[WARNING] No valid config.json file found, using default options ({})".format(e))
 # connect to interweb
-    sta_if = network.WLAN(network.STA_IF)
-    if not sta_if.isconnected():
-        print('[INFO] Connecting to network...')
-        sta_if.active(True)
-        sta_if.connect(LAN_SSID, LAN_PASSWORD)
-        while not sta_if.isconnected():
-            pass
-    print('[INFO] Connected to', LAN_SSID)
-    print('[INFO] Network config {}'.format(sta_if.ifconfig()))
 # check for updates
 if (CHECK_FOR_UPDATES):
     print("[INFO] Checking for updates...")
     #try: 
         # monitor memory
-    import time, machine, network, gc
     import ota_update.updater as ota #import ota_updater# ota# OTAUpdater
     time.sleep(1)
     print('[INFO] Memory free {}'.format(gc.mem_free()))
