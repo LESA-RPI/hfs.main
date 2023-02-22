@@ -34,6 +34,8 @@ _HANDLES = set()
 _COMM_UUID = "26c00001-ece0-4f7a-b663-223de05387cc"
 _COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
 
+_SERVICE_UUIDS = [_COMM_UUID]
+
 def load_config(path="/usr/local/src/hfs/config.json"):
     global _CONFIG, _AVERAGE_FLUX
     # load the config file
@@ -97,7 +99,7 @@ def disconnect_handler(client):
     pass
 
 async def scan(timeout=5.0):
-    scanner = BleakScanner(detection_callback=scan_handler)
+    scanner = BleakScanner(detection_callback=scan_handler, service_uuids=_SERVICE_UUIDS)
 
     log.info('Starting scan...')
     await scanner.start()
@@ -105,7 +107,8 @@ async def scan(timeout=5.0):
     await scanner.stop()
     log.info('Scan finished.')
 
-    return list( filter(address_filter, scanner.discovered_devices) )
+    return scanner.discovered_devices
+    # return list( filter(address_filter, scanner.discovered_devices) )
 
 async def connect_to_device(device):
     log.info(f'Connecting to {device}.')
