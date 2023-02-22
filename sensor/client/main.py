@@ -14,6 +14,7 @@ print(3)
 #tests.startFarfieldTest()
 #tests.startFrequencyTest()
 #tests.startNoiseTest()
-start()
+if __name__ == '__main__':
+    start()
 
 #asyncio.run(ble_service.main())
