@@ -57,3 +57,4 @@ if (CHECK_FOR_UPDATES):
     except Exception as e:
         print("WARNING: Update failed ({})".format(e))
 sta_if.disconnect()
+sta_if.active(False)
