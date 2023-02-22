@@ -4,7 +4,8 @@ print("INFO: Starting device...")
 
 #import asyncio
 #import ble_service
-#import tests
+from noise import start
+#from frequency import startFrequencyTest
 
 print(2)
 print(3)
@@ -13,5 +14,6 @@ print(3)
 #tests.startFarfieldTest()
 #tests.startFrequencyTest()
 #tests.startNoiseTest()
+start()
 
 #asyncio.run(ble_service.main())
