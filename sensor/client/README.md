@@ -13,6 +13,13 @@ If you ever get a new microcontroller, you will need to make sure that micropyth
 
 Make sure to plug in your device and replace `ttyUSB0` with the actual serial port that the controller is plugged into. The list of ports on Linux can be found by running `ls /dev`. If you are using WSL, open your Windows Device Manager and look under the Ports category. You should see the microntontroller connected to a COM port, such as COM4. In this case, the correct path to the device should be `/dev/ttyS4`.
 
+> #### Common Issues
+> So many things go wrong, and if they do, this is the place for you.
+> ###### [Errno 13] Permission denied
+> You have the serial connected with some other program. Since only one program can access the serial port at a time, you have to disconnect the other program.
+> ###### esptool: Stop Iteration
+> This could be so, so many things, but first try changing the baud rate to 115200. If that doesn't work, the device may not be in boot mode. To enable boot mode, hold both the BOOT and EN, then release EN. Check out [this](https://stackoverflow.com/questions/57596413/esp32-flashing-upload-starts-and-fails-with-timeout) thread for more information.
+
 [[Source]](https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html)
 
 ## Uploading Code
