@@ -141,7 +141,7 @@ class OTAUpdater:
     def _create_new_version_file(self, latest_version):
         self.mkdir(self.modulepath(self.new_version_dir))
         with open(self.modulepath(self.new_version_dir + '/.version'), 'w') as versionfile:
-            versionfile.write(latest_version)
+            versionfile.write(str(latest_version))
             versionfile.close()
 
     def get_version(self, directory, version_file_name='.version'):
