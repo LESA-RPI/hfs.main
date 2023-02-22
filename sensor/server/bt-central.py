@@ -49,18 +49,23 @@ def load_config(path="/usr/local/src/hfs/config.json"):
         return False
 
 def address_filter(x):
-    return x.address in _ADDRESSES
+    if not x.service_uuids:
+        return False
+    for service in data.service_uuids:
+        if service == _COMM_UUID:
+            return True
+    return False
 
 # helper to print advertisement data
 def print_ad_data(data):
-    if data.local_name:
-        log.info(f"\tName: {data.local_name}")
-        pass
+    count = 0
     if data.service_uuids:
-        log.info("\tServices:")
         for service in data.service_uuids:
-            log.info(f"\t- {service}")
-            pass
+            count += 1
+    if data.local_name:
+        log.info(f"Found '{data.local_name}' with {count} services")
+        return
+    log.info(f"Found '{device.address}' with {count} services")
 
 # decode value from characteristic
 def decode(data):
@@ -68,7 +73,6 @@ def decode(data):
     return (decoded_data[0], decoded_data[1], decoded_data[2] / 100, decoded_data[3])
 
 def scan_handler(device, data):
-    log.info(f"Found '{device.address}'")
     print_ad_data(data)
 
 def notification_handler(sender, data):
@@ -118,7 +122,6 @@ async def connect_to_device(device):
                     log.info("Shutting down server...")
                     return
         except BleakError:
-            
             log.info(f"{client.address} does not contain necessary characteristic")
             pass
             
@@ -129,17 +132,19 @@ async def main():
         log.warning("Loading expected config.json failed, resorting to local configuration")
         load_config("./config.json")
 
-    found_device = False
-    while not found_device:
+    run = True
+    while run:
         devices = await scan()
         if devices:
-            log.info("Found device(s).")
-            found_device = True
+            log.info("Found device(s) with valid service.")
+            await asyncio.gather(*(connect_to_device(dev) for dev in devices))
+            log.info("Searching for devices again in 5 minutes..")
+            time.sleep(60*5)
         else:
-            log.info("No devices found. Retrying in 10 seconds..")
+            log.info("No devices with valid services found. Retrying in 10 seconds..")
             time.sleep(10)
 
-    await asyncio.gather(*(connect_to_device(dev) for dev in devices))
+    
 
 if __name__ == "__main__":
     asyncio.run(main())
