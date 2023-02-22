@@ -1,8 +1,8 @@
 # Pin
 
-from machine import Pin, ADC 
+from machine import Pin, ADC2 
 import time
-RESULT = ADC(Pin(14, Pin.IN))
+RESULT = ADC2(Pin(14, Pin.IN))
 RESET = Pin(16, Pin.IN)
 LED_POW_SUPPLY_PIN = Pin(13, Pin.IN)
 LED1 = Pin(26, Pin.OUT_PP)
@@ -16,9 +16,9 @@ GPIO1 = Pin(18, Pin.IN)
 AVDD_PIN = Pin(17, Pin.IN)
 IOVDD_PIN = Pin(12,Pin.IN)
 
-def main():
+""" def main():
     result_pin = Pin(14, Pin.IN)
-    measured_result = ADC(result_pin)
+    measured_result = ADC2(result_pin)
     result = measured_result.read_u16()
 
     reset_pin = Pin(16, Pin.IN)
@@ -60,3 +60,4 @@ def main():
     #f = open('data.txt', 'w')
     #f.write(str(result))
     #f.close()
+ """
