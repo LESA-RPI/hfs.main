@@ -71,8 +71,8 @@ def print_ad_data(data):
 
 # decode value from characteristic
 def decode(data):
-    decoded_data = struct.unpack("<iiii", data)
-    return (decoded_data[0], decoded_data[1], decoded_data[2] / 100, decoded_data[3])
+    decoded_data = struct.unpack("<HIHH", data)
+    return (decoded_data[0], decoded_data[1], decoded_data[2], decoded_data[3])
 
 def scan_handler(device, data):
     print_ad_data(data)
