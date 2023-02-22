@@ -5,7 +5,6 @@ print("INFO: Starting device...")
 #import asyncio
 #import ble_service
 import noise
-from .noise import start
 #from .frequency import startFrequencyTest
 
 print(2)
@@ -16,6 +15,6 @@ print(3)
 #tests.startFrequencyTest()
 #tests.startNoiseTest()
 if __name__ == '__main__':
-    start()
+    noise.start()
 
 #asyncio.run(ble_service.main())
