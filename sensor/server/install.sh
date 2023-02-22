@@ -114,7 +114,7 @@ if ! type "node" > /dev/null; then
 	cp -Rv "/usr/local/node-v16.9.1-linux-armv6l/lib" "/usr/"
 	cp -Rv "/usr/local/node-v16.9.1-linux-armv6l/include" "/usr/"
 	cp -Rv "/usr/local/node-v16.9.1-linux-armv6l/share" "/usr/"
-	rm -rvf /usr/local/node-v16.9.1-linux-armv6l
+	rm -rvf "/usr/local/node-v16.9.1-linux-armv6l"
 fi
 
 echo "${BLUE}INFO: reinstalling project dependencies${NC}"
