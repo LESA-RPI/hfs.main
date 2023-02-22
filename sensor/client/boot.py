@@ -58,3 +58,4 @@ if (CHECK_FOR_UPDATES):
         print("WARNING: Update failed ({})".format(e))
 sta_if.disconnect()
 sta_if.active(False)
+del(sta_if)
