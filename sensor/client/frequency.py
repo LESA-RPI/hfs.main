@@ -32,7 +32,6 @@ async def cycle(led1, led2, led3, led4, freq):
 
 
 def sleep():
-    counter = 0
     while(counter >= led_off):
         pin.LED1.off()
         pin.LED2.off()
@@ -42,23 +41,24 @@ def sleep():
     machine.lightsleep(led_wait_measure)
     for i in range(samples):
         results[i] =  pin.RESULT
-        print(results[i])
+        print("Results ", results[i])
         #total_result = total_result + results[i]
         machine.lightsleep(led_between_measure)
     #average_result = total_result/samples
     #print("Average result: ",average_result)
     #total_result = 0
     machine.deepsleep(led_off)
+    counter = 0 #maybe before deep sleep?
 
 def start():
-    #machine.deepsleep(led_off)
-    for curFreq in frequency_list:
-        tim = Timer(1)
+    machine.deepsleep(led_off) #sleeps for 5 minutes
+    for curFreq in frequency_list: #all the frequencies in test
+        tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         timer = tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
         tim.callback(timerCallback)
-        cycle(pin.LED1, pin.LED2, pin.LED3, pin.LED4)
-        sleep()
+        cycle(pin.LED1, pin.LED2, pin.LED3, pin.LED4) #threads LEDs blinking
+        sleep() #sleeps for 10 minutes
 
 def timerCallback():
-    counter = counter + 1
+    counter = counter + 1 #increments counter used for determining when to stop measurements
     
