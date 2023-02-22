@@ -4,7 +4,12 @@
 		"total_canopy_flux": 582837.181,
 		"cutoff_diameter_mm": 120,
 		"max_raw_value": 4095
+	},
+	"postgres": {
+		"host": "127.0.0.1",
+		"port": 5432,
+		"user": "postgres",
+		"password": ""
 	}
-	
 }
 

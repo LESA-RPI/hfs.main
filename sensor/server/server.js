@@ -5,6 +5,10 @@ var fs = require('fs');
 var dir = path.join(__dirname, 'public');
 var os = require('os');
 
+const CONFIG = require('./config.json');
+
+const { Client } = require('pg')
+
 var mime = {
     html: 'text/html',
     txt: 'text/plain',
@@ -18,7 +22,7 @@ var mime = {
 
 async function dbAPI(id, limit) {
 	console.log('dbAPI: start');
-	const client = new Client(CLIENT_DATA);
+	const client = new Client(CONFIG["postgres"]);
 	
 	try {
 		await client.connect();
