@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 log.setFormatter(logging.Formatter('[%(asctime)s] %(message)s', '%d/%m/%Y %H:%M:%S'))
 log.setLevel(logging.DEBUG)
 
-log.addHandler(RotatingFileHandler(log_name, maxBytes=1024 * 5 * 1024, backupCount=0, encoding=None, delay=0))
+log.addHandler(RotatingFileHandler(log_name, maxBytes=5 * 5 * 1024, backupCount=0, encoding=None, delay=0))
 
 log.info('HFS server starting...')
 
