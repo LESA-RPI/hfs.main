@@ -1,4 +1,3 @@
-import pins
 import pyb
 import uasyncio
 import math
@@ -6,6 +5,7 @@ import machine
 from machine import Timer
 
 import device_sensor as sensor # sensor.readAndSend(server, pipe)
+import device_pins as pins
 
 frequency_list = [15, 50, 100, 200, 400, 800, 1000, 1200, 1400, 600, 700, 650]
 led_on = 1000 #1 sec
@@ -43,7 +43,7 @@ def sleep():
         counter = 0
     machine.lightsleep(led_wait_measure)
     for i in range(samples):
-        results[i] =  pins.RESULT
+        results[i] =  sensor.readPhotodiode()
         print("Results ", results[i])
         #total_result = total_result + results[i]
         machine.lightsleep(led_between_measure)

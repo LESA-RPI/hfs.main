@@ -4,6 +4,7 @@ import time
 import asyncio
 
 import device_sensor as sensor # sensor.readAndSend(server, pipe)
+import device_pins as pins
 
 fs = [15, 50, 100, 200, 400, 800, 1000, 1200, 1400, 1600, 1800, 2000]
 led_flash = PWM(Pin(33, Pin.OUT))

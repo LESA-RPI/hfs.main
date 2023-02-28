@@ -3,14 +3,8 @@
 import aioble
 import uasyncio as asyncio
 import bluetooth as bt
-
 from machine import Pin, ADC
 
-import pins
-import random
-import struct
-
-import device_sensor
 import bt_programs
 
 # UUID constants

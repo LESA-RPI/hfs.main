@@ -1,7 +1,8 @@
-import pins
 import struct
 import time
 from machine import unique_id
+
+import device_pins as pins
 
 ID = abs(hash(unique_id())) % 65534
 
@@ -9,7 +10,7 @@ def pack(distance, chlf):
     return struct.pack("<HIHH", ID, time.time(), distance, chlf)
 
 def readPhotodiode():
-    return pins.RESULT.read_u16()
+    return pins.PHOTODIODE_RESULT.read_u16()
 
 def readSonar():
     return 0
