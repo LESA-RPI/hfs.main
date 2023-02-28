@@ -17,7 +17,7 @@ print(3)
 #tests.startFrequencyTest()
 #tests.startNoiseTest()
 if __name__ == '__main__':
-    frequency.start()
+    #frequency.start()
     asyncio.run(ble.start())
 
 #asyncio.run(ble_service.main())

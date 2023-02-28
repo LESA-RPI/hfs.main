@@ -4,6 +4,9 @@ import uasyncio
 import math
 import machine
 from machine import Timer
+
+import device_sensor as sensor # sensor.readAndSend(server, pipe)
+
 frequency_list = [15, 50, 100, 200, 400, 800, 1000, 1200, 1400, 600, 700, 650]
 led_on = 1000 #1 sec
 led_off_start = 10*60*1000 #10 min
@@ -50,7 +53,13 @@ def sleep():
     machine.deepsleep(led_off)
     counter = 0 #maybe before deep sleep?
 
-def start():
+def timerCallback():
+    counter = counter + 1 #increments counter used for determining when to stop measurements
+
+# entry point for the program
+# run this program once and only once, server will decide how to loop
+def run(server, pipe, data: int):    
+    print("[prgm_frequency] start")
     machine.deepsleep(led_off) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
@@ -58,7 +67,6 @@ def start():
         tim.callback(timerCallback)
         cycle(pins.LED1, pins.LED2, pins.LED3, pins.LED4) #threads LEDs blinking
         sleep() #sleeps for 10 minutes
-
-def timerCallback():
-    counter = counter + 1 #increments counter used for determining when to stop measurements
+    pipe.notify(server)
+    print("[prgm_frequency] stop")
     

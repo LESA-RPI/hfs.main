@@ -12,10 +12,10 @@ def readPhotodiode():
     return pins.RESULT.read_u16()
 
 def readSonar():
-    return 100
+    return 0
 
-def sendValues(connection, characteristic):
+def readAndSend(server, pipe):
     distance, chlf = readSonar(), readPhotodiode()
     print(f"Writing '{distance}', {chlf} to peripheral...")
-    characteristic.write(pack(distance, chlf))
-    characteristic.notify(connection)
+    pipe.write(pack(distance, chlf))
+    pipe.notify(server)

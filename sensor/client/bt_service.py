@@ -10,7 +10,7 @@ import pins
 import random
 import struct
 
-import bt_sensor
+import device_sensor
 import bt_programs
 
 # UUID constants
@@ -69,7 +69,7 @@ async def start():
                 elif cmd == _GET:
                     bt_programs.get(connection, comm_characteristic)
                 elif cmd == _SET:
-                    bt_programs.setDefault(data)
+                    bt_programs.setDefault(connection, comm_characteristic, data)
                 
                 #comm_characteristic.write("periph1")
                 #comm_characteristic.notify(connection)
