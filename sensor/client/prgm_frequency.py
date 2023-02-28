@@ -1,4 +1,4 @@
-import pin
+import pins
 import pyb
 import uasyncio
 import math
@@ -33,14 +33,14 @@ async def cycle(led1, led2, led3, led4, freq):
 
 def sleep():
     while(counter >= led_off):
-        pin.LED1.off()
-        pin.LED2.off()
-        pin.LED3.off()
-        pin.LED4.off()
+        pins.LED1.off()
+        pins.LED2.off()
+        pins.LED3.off()
+        pins.LED4.off()
         counter = 0
     machine.lightsleep(led_wait_measure)
     for i in range(samples):
-        results[i] =  pin.RESULT
+        results[i] =  pins.RESULT
         print("Results ", results[i])
         #total_result = total_result + results[i]
         machine.lightsleep(led_between_measure)
@@ -56,7 +56,7 @@ def start():
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         timer = tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
         tim.callback(timerCallback)
-        cycle(pin.LED1, pin.LED2, pin.LED3, pin.LED4) #threads LEDs blinking
+        cycle(pins.LED1, pins.LED2, pins.LED3, pins.LED4) #threads LEDs blinking
         sleep() #sleeps for 10 minutes
 
 def timerCallback():
