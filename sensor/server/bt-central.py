@@ -13,8 +13,8 @@ from logging.handlers import RotatingFileHandler
 import sys
 
 # Load the logfile
-#log_name = "/usr/local/src/hfs/public/public.log"
-log_name = "./public/public.log"
+log_name = "/usr/local/src/hfs/public/public.log"
+#log_name = "./public/public.log"
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.DEBUG)
