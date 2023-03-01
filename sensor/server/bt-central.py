@@ -1,4 +1,4 @@
-#from bleak import BleakClient, BleakScanner, BleakError
+from bleak import BleakClient, BleakScanner, BleakError
 import json
 from math import pi
 import subprocess
@@ -113,8 +113,8 @@ async def scan(timeout=5.0):
     await scanner.stop()
     log.info('Scan finished.')
 
-    return scanner.discovered_devices
-    # return list( filter(address_filter, scanner.discovered_devices) )
+    #return scanner.discovered_devices
+    return list( filter(address_filter, scanner.discovered_devices) )
 
 async def connect_to_device(device):
     log.info(f'Connecting to {device}.')
@@ -176,10 +176,10 @@ async def main():
         log.warning("Loading expected config.json failed, resorting to local configuration")
         load_config("./config.json")
 
-    #task_ble = asyncio.create_task(bleLoop())
+    task_ble = asyncio.create_task(bleLoop())
     task_api = asyncio.create_task(inputLoop())
     
-    #await task_ble
+    await task_ble
     log.error("BLE task has ended prematurely!")
     await task_api
     log.error("API task has ended prematurely!")
