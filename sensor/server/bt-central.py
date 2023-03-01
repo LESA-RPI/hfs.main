@@ -107,7 +107,7 @@ def disconnect_handler(client):
     pass
 
 async def scan(timeout=5.0):
-    scanner = BleakScanner(detection_callback=scan_handler, service_uuids=_SERVICE_UUIDS)
+    scanner = BleakScanner(detection_callback=scan_handler)
 
     log.info('Starting scan...')
     await scanner.start()
@@ -118,7 +118,8 @@ async def scan(timeout=5.0):
     log.info('Scan finished.')
 
     #return scanner.discovered_devices
-    return list( filter(address_filter, scanner.discovered_devices) )
+    log.info(scanner.discovered_devices_and_advertisement_data)
+    return list( filter(address_filter, scanner.discovered_devices_and_advertisement_data.values()) )
 
 async def connect_to_device(device):
     log.info(f'Connecting to {device}.')
