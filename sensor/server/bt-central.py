@@ -119,12 +119,12 @@ async def scan(timeout=5.0):
     #return scanner.discovered_devices
     try:
         return await scanner.get_discovered_devices()
-        log.info(scanner)
-        log.info(dir(scanner))
-        log.info(scanner.get_discovered_devices())
-        log.info(dir(await scanner.get_discovered_devices()))
-        log.info(list(await scanner.get_discovered_devices()))
-        return list( filter(address_filter, await scanner.get_discovered_devices()) )
+        #log.info(scanner)
+        #log.info(dir(scanner))
+        #log.info(scanner.get_discovered_devices())
+        #log.info(dir(await scanner.get_discovered_devices()))
+        #log.info(list(await scanner.get_discovered_devices()))
+        #return list( filter(address_filter, await scanner.get_discovered_devices()) )
     except Exception as exception:
         log.error(exception)
         return []
@@ -199,4 +199,5 @@ async def main():
     log.error("API task has ended prematurely!")
 
 if __name__ == "__main__":
+    log.info("HFS server has started!")
     asyncio.run(main())
