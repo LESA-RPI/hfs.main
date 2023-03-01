@@ -57,10 +57,12 @@ def load_config(path="/usr/local/src/hfs/config.json"):
         return False
 
 def address_filter(x):
+    console.info(x)
+    console.info(x)
     if not x.service_uuids:
         return False
-    for service in data.service_uuids:
-        if service == _COMM_UUID:
+    for service in x.service_uuids:
+        if service in _SERVICE_UUIDS:
             return True
     return False
 
