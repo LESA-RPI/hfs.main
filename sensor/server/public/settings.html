@@ -31,9 +31,12 @@
 				.then((response) => response.json())
 				.then((data) => {
 					let dropdown = document.getElementById("option-sensors");
-					console.log(data);
+					data.devices.forEach(function (device) {
+						console.log(device);
+					})
 				})
 		}
+		getDevices();
 	</script>
 </head>
 <body style="margin:0; padding:0;">
