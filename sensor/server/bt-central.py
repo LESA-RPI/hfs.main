@@ -121,9 +121,9 @@ async def scan(timeout=5.0):
         log.info(scanner)
         log.info(dir(scanner))
         log.info(scanner.get_discovered_devices())
-        log.info(dir(scanner.get_discovered_devices()))
-        log.info(list(scanner.get_discovered_devices()))
-        return list( filter(address_filter, scanner.get_discovered_devices()) )
+        log.info(dir(await scanner.get_discovered_devices()))
+        log.info(list(await scanner.get_discovered_devices()))
+        return list( filter(address_filter, await scanner.get_discovered_devices()) )
     except Exception as exception:
         log.info(exception)
         return []
