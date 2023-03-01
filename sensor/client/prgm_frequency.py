@@ -9,7 +9,7 @@ import device_pins as pins
 frequency_list = [15, 50, 100, 200, 400, 800, 1000, 1200, 1400, 600, 700, 650]
 led_on_time = 1000 #1 sec
 led_off_start_time = 10*60*1000 #10 min
-led_off_time = 1000 #5 min
+led_off_time = 10000 #5 min
 #led_off_time = 5*60*1000 #5 min
 led_between_measure_time = 800/5 #TT
 led_wait_measure_time = 200
