@@ -33,11 +33,11 @@ _CONFIG = None
 _AVERAGE_FLUX = 1
 
 # global device list
-DEVICES = []
+DEVICES = set()
 
 # initialize the addresses and uuids
 _ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
-_HANDLES = set()
+_HANDLES = dict()
 
 _COMM_UUID = "26c00001-ece0-4f7a-b663-223de05387cc"
 _COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
@@ -177,12 +177,10 @@ async def bleLoop():
             log.info("Found device(s) with valid service.")
             asyncio.gather(*(connect_to_device(dev) for dev in devices))
             log.info(devices)
-            log.info(devices[0])
-            log.info(dir(devices[0]))
-            log.info(devices[0].__dict__)
-            log.info(json.dumps(devices[0].__dict__))
             devices = [json.dumps(dev.__dict__) for dev in devices]
-            DEVICES.update(tuple(devices))
+            log.info(devices)
+            for device in devices:
+                DEVICES[device["address"]] = device
             log.info(DEVICES)
             log.info("Searching for devices again in 5 minutes..")
             await asyncio.sleep(60*5)
