@@ -201,7 +201,7 @@ class OTAUpdater:
     def _install_file(self, version, gitPath, path):
         #self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, version, gitPath), saveToFile=path)
         self.remove(path)
-        print('[INFO] Downloading: ', gitPath, 'to', path)
+        print('[INFO] Downloading:', 'https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, self.main_dir, gitPath), 'to', path)
         self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, self.main_dir, gitPath), saveToFile=path)
 
     def _copy_secrets_file(self):
