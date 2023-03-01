@@ -170,7 +170,7 @@ async def bleLoop():
                 log.info(device)
                 log.info(device.__dict__)
                 log.info(device.address)
-                log.info(device.address.__dict__)
+                log.info(str(device.address))
                 DEVICES[str(device.address)] = json.dumps(device.__dict__)
             log.info(DEVICES.keys())
             log.info("Searching for devices again in 5 minutes..")
