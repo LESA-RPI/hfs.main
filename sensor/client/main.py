@@ -1,6 +1,6 @@
 #manually run import main or import boot in terminal in order to update cache
 # Bluetooth peripheral code for fluorescence sensor 
-print("INFO: Starting device...")
+print("[INFO] Starting device...")
 
 import uasyncio as asyncio
 
@@ -18,7 +18,9 @@ print(3)
 #tests.startFrequencyTest()
 #tests.startNoiseTest()
 if __name__ == '__main__':
-    prgm_frequency.start()
-    asyncio.run(ble.start())
+    print("[INFO] running!")
+    
+    asyncio.run(ble._start())
+    prgm_frequency.run()
 
 #asyncio.run(ble_service.main())

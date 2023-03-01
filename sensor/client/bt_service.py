@@ -40,7 +40,7 @@ async def isDisconnected(connection):
     except asyncio.TimeoutError:
         return False
 
-async def start():
+async def _start():
     # continuously advertise
     while True:
         # wait for the server to find us
@@ -74,5 +74,8 @@ async def start():
                 if not connected:
                     break
 
+def start():
+    asyncio.run(_start())
+
 if __name__ == "__main__":
-    asyncio.run(start())
+    start()
