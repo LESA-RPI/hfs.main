@@ -175,8 +175,8 @@ class OTAUpdater:
 
     def _install_all_files(self, version, sub_dir=''):
         #url = 'https://api.github.com/repos/{}/contents{}{}{}?ref=refs/tags/{}'.format(self.github_repo, self.github_src_dir, self.main_dir, sub_dir, version)       
-        url = 'https://api.github.com/repos/{}/contents/{}{}'.format(self.github_repo, self.github_src_dir, sub_dir)
-        gc.collect()
+        url = 'https://api.github.com/repos/{}/contents/{}{}?ref={}'.format(self.github_repo, self.github_src_dir, sub_dir, self.main_dir)
+        
         file_list = self.http_client.get(url)
         file_list_json = file_list.json()
         for file in file_list_json:
@@ -202,7 +202,7 @@ class OTAUpdater:
         #self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, version, gitPath), saveToFile=path)
         self.remove(path)
         print('[INFO] Downloading: ', gitPath, 'to', path)
-        self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo,self.main_dir, gitPath), saveToFile=path)
+        self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, self.main_dir, gitPath), saveToFile=path)
 
     def _copy_secrets_file(self):
         if self.secrets_file:
@@ -231,7 +231,7 @@ class OTAUpdater:
             os.remove(file)
             print("[INFO] Removed", file)
         except OSError:
-            pass
+            print("[WARNING] Failed to remove file", file)
 
 
     def _rmtree(self, directory):
