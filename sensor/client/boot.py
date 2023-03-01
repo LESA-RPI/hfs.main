@@ -60,4 +60,4 @@ if (CHECK_FOR_UPDATES):
         print("WARNING: Update failed ({})".format(e))
 sta_if.disconnect()
 sta_if.active(False)
-result = esp.esp_wifi_stop()
+#result = esp.esp_wifi_stop()
