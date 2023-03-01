@@ -111,13 +111,13 @@ async def scan(timeout=5.0):
 
     log.info('Starting scan...')
     await scanner.start()
-    log.info('1')
     await asyncio.sleep(timeout)
-    log.info('2')
     await scanner.stop()
     log.info('Scan finished.')
 
     #return scanner.discovered_devices
+    print(scanner)
+    print(scanner.discovered_devices)
     log.info(scanner.discovered_devices_and_advertisement_data)
     return list( filter(address_filter, scanner.discovered_devices_and_advertisement_data.values()) )
 
