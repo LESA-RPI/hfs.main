@@ -7,7 +7,6 @@ import uasyncio as asyncio
 #import ble_service
 import frequency
 import bt_service as ble
-#from .frequency import startFrequencyTest
 
 print(2)
 print(3)
@@ -17,7 +16,7 @@ print(3)
 #tests.startFrequencyTest()
 #tests.startNoiseTest()
 if __name__ == '__main__':
-    #frequency.start()
+    frequency.start()
     asyncio.run(ble.start())
 
 #asyncio.run(ble_service.main())

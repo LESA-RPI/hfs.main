@@ -1,4 +1,3 @@
-import pyb
 import uasyncio
 import math
 import machine
