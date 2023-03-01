@@ -179,7 +179,8 @@ async def bleLoop():
             log.info(devices)
             log.info(devices[0])
             log.info(dir(devices[0]))
-            log.info(json.dumps(dir(devices[0])))
+            log.info(devices[0].__dict__)
+            log.info(json.dumps(devices[0].__dict__))
             devices = [json.dumps(dev.__dict__) for dev in devices]
             DEVICES.update(tuple(devices))
             log.info(DEVICES)
