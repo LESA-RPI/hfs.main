@@ -176,7 +176,7 @@ class OTAUpdater:
 
     def _install_all_files(self, version, sub_dir=''):
         #url = 'https://api.github.com/repos/{}/contents{}{}{}?ref=refs/tags/{}'.format(self.github_repo, self.github_src_dir, self.main_dir, sub_dir, version)       
-        url = 'https://api.github.com/repos/{}/contents/{}{}?ref={}'.format(self.github_repo, self.github_src_dir, sub_dir, self.main_dir)
+        url = 'https://api.github.com/repos/{}/contents/{}{}?ref={}'.format(self.github_repo, self.github_src_dir[:-1], sub_dir, self.main_dir)
         print('[INFO] Getting version directory from {}'.format(url))
 
         file_list = self.http_client.get(url)
