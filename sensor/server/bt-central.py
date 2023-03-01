@@ -56,11 +56,11 @@ def load_config(path="/usr/local/src/hfs/config.json"):
         log.warning(f"{path} not found")
         return False
 
-def address_filter(x):
-    log.info(x)
-    log.info(dir(x))
-    log.info(x.service_uuids)
-    if not x.service_uuids:
+def address_filter(device: BLEDevice):
+    log.info(device)
+    log.info(dir(device))
+    log.info(device.service_uuids)
+    if not device.service_uuids:
         return False
     for service in x.service_uuids:
         if service in _SERVICE_UUIDS:
@@ -108,7 +108,7 @@ def disconnect_handler(client):
     pass
 
 async def scan(timeout=5.0):
-    scanner = BleakScanner(detection_callback=scan_handler)
+    scanner = BleakScanner(detection_callback=scan_handler, service_uuids=_SERVICE_UUIDS)
 
     log.info('Starting scan...')
     await scanner.start()
@@ -118,6 +118,7 @@ async def scan(timeout=5.0):
 
     #return scanner.discovered_devices
     try:
+        return await scanner.get_discovered_devices()
         log.info(scanner)
         log.info(dir(scanner))
         log.info(scanner.get_discovered_devices())
@@ -125,7 +126,7 @@ async def scan(timeout=5.0):
         log.info(list(await scanner.get_discovered_devices()))
         return list( filter(address_filter, await scanner.get_discovered_devices()) )
     except Exception as exception:
-        log.info(exception)
+        log.error(exception)
         return []
         
 
