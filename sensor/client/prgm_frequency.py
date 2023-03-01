@@ -7,18 +7,18 @@ import device_sensor as sensor # sensor.readAndSend(server, pipe)
 import device_pins as pins
 
 frequency_list = [15, 50, 100, 200, 400, 800, 1000, 1200, 1400, 600, 700, 650]
-led_on = 1000 #1 sec
-led_off_start = 10*60*1000 #10 min
-led_off = 5*60*1000 #5 min
-led_between_measure = 800/5 #TT
-led_wait_measure = 200
+led_on_time = 1000 #1 sec
+led_off_start_time = 10*60*1000 #10 min
+led_off_time = 5*60*1000 #5 min
+led_between_measure_time = 800/5 #TT
+led_wait_measure_time = 200
 samples = 5
 counter = 0
 results = []
 average_result = 0
 
 async def led_blinking(led, freq):
-    while counter < led_off:
+    while counter < led_off_time:
         led.on()
         await uasyncio.sleep_ms(round((1/freq)*10**3))
         print("LED ", led, " on")
@@ -34,18 +34,18 @@ async def cycle(led1, led2, led3, led4, freq):
 
 
 def sleep():
-    while(counter >= led_off):
+    while(counter >= led_off_time):
         pins.LED1.off()
         pins.LED2.off()
         pins.LED3.off()
         pins.LED4.off()
         counter = 0
-    machine.lightsleep(led_wait_measure)
+    machine.lightsleep(led_wait_measure_time)
     for i in range(samples):
         results[i] =  sensor.readPhotodiode()
         print("Results ", results[i])
         #total_result = total_result + results[i]
-        machine.lightsleep(led_between_measure)
+        machine.lightsleep(led_between_measure_time)
     #average_result = total_result/samples
     #print("Average result: ",average_result)
     #total_result = 0
