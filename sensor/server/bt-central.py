@@ -175,15 +175,15 @@ async def bleLoop():
         devices = await scan()
         if devices:
             log.info("Found device(s) with valid service.")
-            await asyncio.gather(*(connect_to_device(dev) for dev in devices))
+            asyncio.gather(*(connect_to_device(dev) for dev in devices))
             devices = [json.dumps(dev.__dict__) for dev in devices]
             DEVICES.update(tuple(devices))
             log.info(DEVICES)
             log.info("Searching for devices again in 5 minutes..")
-            time.sleep(60*5)
+            await asyncio.sleep(60*5)
         else:
             log.info("No devices with valid services found. Retrying in 10 seconds..")
-            time.sleep(10)
+            await asyncio.sleep(10)
 
 async def main():
     log.info("Loading config.json...")
@@ -201,5 +201,4 @@ async def main():
     log.error("API task has ended prematurely!")
 
 if __name__ == "__main__":
-    log.info("HFS server has started!")
     asyncio.run(main())
