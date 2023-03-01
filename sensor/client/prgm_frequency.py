@@ -49,7 +49,7 @@ def sleep():
     #average_result = total_result/samples
     #print("Average result: ",average_result)
     #total_result = 0
-    machine.deepsleep(led_off)
+    machine.deepsleep(led_off_time)
     counter = 0 #maybe before deep sleep?
 
 def timerCallback():
@@ -59,7 +59,7 @@ def timerCallback():
 # run this program once and only once, server will decide how to loop
 def run(server, pipe, data: int):    
     print("[prgm_frequency] start")
-    machine.deepsleep(led_off) #sleeps for 5 minutes
+    machine.deepsleep(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         timer = tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
