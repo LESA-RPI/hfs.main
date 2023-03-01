@@ -176,6 +176,10 @@ async def bleLoop():
         if devices:
             log.info("Found device(s) with valid service.")
             asyncio.gather(*(connect_to_device(dev) for dev in devices))
+            log.info(devices)
+            log.info(devices[0])
+            log.info(dir(devices[0]))
+            log.info(json.dumps(dir(devices[0])))
             devices = [json.dumps(dev.__dict__) for dev in devices]
             DEVICES.update(tuple(devices))
             log.info(DEVICES)
