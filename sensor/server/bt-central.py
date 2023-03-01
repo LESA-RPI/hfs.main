@@ -117,7 +117,7 @@ async def scan(timeout=5.0):
 
     #return scanner.discovered_devices
     log.info(scanner)
-    log.info(scanner.discovered_devices)
+    log.info(dir(scanner))
     return list( filter(address_filter, scanner.discovered_devices) )
 
 async def connect_to_device(device):
