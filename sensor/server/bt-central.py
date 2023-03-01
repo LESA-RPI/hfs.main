@@ -58,17 +58,6 @@ def load_config(path="/usr/local/src/hfs/config.json"):
         log.warning(f"{path} not found")
         return False
 
-def address_filter(device):
-    log.info(device)
-    log.info(dir(device))
-    log.info(device.service_uuids)
-    if not device.service_uuids:
-        return False
-    for service in x.service_uuids:
-        if service in _SERVICE_UUIDS:
-            return True
-    return False
-
 # helper to print advertisement data
 def print_ad_data(data):
     count = 0
@@ -177,11 +166,9 @@ async def bleLoop():
             log.info("Found device(s) with valid service.")
             asyncio.gather(*(connect_to_device(dev) for dev in devices))
             log.info(devices)
-            devices = [json.dumps(dev.__dict__) for dev in devices]
-            log.info(devices)
             for device in devices:
-                DEVICES[device["address"]] = device
-            log.info(DEVICES)
+                DEVICES[device.address] = json.dumps(device.__dict__)
+            log.info(DEVICES.keys())
             log.info("Searching for devices again in 5 minutes..")
             await asyncio.sleep(60*5)
         else:
