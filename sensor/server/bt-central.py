@@ -167,6 +167,9 @@ async def bleLoop():
             asyncio.gather(*(connect_to_device(dev) for dev in devices))
             log.info(devices)
             for device in devices:
+                log.info(device)
+                log.info(device.__dict__)
+                log.info(device.address)
                 DEVICES[device.address] = json.dumps(device.__dict__)
             log.info(DEVICES.keys())
             log.info("Searching for devices again in 5 minutes..")
