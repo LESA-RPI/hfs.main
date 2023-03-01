@@ -116,8 +116,8 @@ async def scan(timeout=5.0):
     log.info('Scan finished.')
 
     #return scanner.discovered_devices
-    print(scanner)
-    print(scanner.discovered_devices)
+    log.info(scanner)
+    log.info(scanner.discovered_devices)
     log.info(scanner.discovered_devices_and_advertisement_data)
     return list( filter(address_filter, scanner.discovered_devices_and_advertisement_data.values()) )
 
