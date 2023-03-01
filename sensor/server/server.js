@@ -98,8 +98,11 @@ var server = http.createServer(async function (req, res) {
 	if (req.method === 'POST') {
 		console.log('server: post API');
 		var req_body = '';
+		req.on('data', function(data) { req_body += data; });
+		await waitForEvent(req, 'end', function() {});
 		// todo: get request body
-		shell.send({cmd: 0, id: -1, data: 0});
+		console.log(JSON.parse(req_body))
+		shell.send(JSON.parse(req_body));
 		msg_json = await waitForEvent(shell, 'message', function(msg){return msg;});
 		res.setHeader('Content-Type', mime.json);
 		res.statusCode = 200;

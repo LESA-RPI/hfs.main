@@ -145,7 +145,7 @@ async def inputLoop():
             msg = json.loads(await ainput())
             log.info(msg)
             if msg['cmd'] == 3: # wants a list of returned devices
-                print(json.dumps({'devices': list(DEVICES)}))
+                print(json.dumps({'code': 1, 'devices': list(DEVICES)}))
             else:
                 print(json.dumps({'code': 1})) # tell the Node.js server we have finished properly
         except EOFError:
