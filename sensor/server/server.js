@@ -91,7 +91,7 @@ function waitForEvent( emitter, eventType, func ){
         emitter.once( eventType, resolve.bind(func) )
     })
 }
-const mime = { html: 'text/html', txt: 'text/plain', jpg: 'image/jpeg', json: 'application/json' };
+const mime = { html: 'text/html', txt: 'text/plain', jpg: 'image/jpeg', json: 'application/json', css: 'text/css' };
 var server = http.createServer(async function (req, res) {
 	console.log('server: request');
     var reqpath = req.url.toString().split('?')[0];
