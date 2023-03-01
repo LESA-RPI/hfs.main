@@ -24,7 +24,7 @@ To start, plug the microcontroller in and open VScode. Type `ctrl + shift+ p` an
 > ##### OSError: 16
 > This error is a generic `resource is busy` error. To resolve it, try hard resetting the device in VS Code. You will probably have to do this everytime you press `ctrl + c` to stop the program.
 
-On boot, the device will automatically load the `boot.py` then `main.py` files. On boot, `main.py` will begin scanning for peripherals and connect to them if everything works. Currently, programs are halted via `ctrl + c`.
+On boot, the device will automatically load the `boot.py` then `main.py` files. On boot, `main.py` will begin scanning for peripherals and connect to them if everything works. Sometimes if the py cache does nor recompile automatically, this will have to be done manually by calling import main or import boot using the terminal. Currently, programs are halted via `ctrl + c`.
 
 # To-do
 * Create an install script for the microcontroller code

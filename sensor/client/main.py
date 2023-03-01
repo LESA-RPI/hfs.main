@@ -1,3 +1,4 @@
+#manually run import main or import boot in terminal in order to update cache
 # Bluetooth peripheral code for fluorescence sensor 
 print("INFO: Starting device...")
 

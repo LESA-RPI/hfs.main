@@ -64,6 +64,7 @@ def run(server, pipe, data: int):
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         timer = tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
         tim.callback(timerCallback)
+        print(counter)
         cycle(pins.LED1, pins.LED2, pins.LED3, pins.LED4) #threads LEDs blinking
         sleep() #sleeps for 10 minutes
     pipe.notify(server)
