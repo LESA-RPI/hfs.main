@@ -10,6 +10,7 @@
 		"port": 5432,
 		"user": "postgres",
 		"password": "admin"
-	}
+	},
+	"bt-path": "./bt-central.py"
 }
 

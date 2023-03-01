@@ -150,10 +150,10 @@ if ! type "psql" > /dev/null; then
 fi
 
 # make the Bluetooth application
-echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
+#echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
 
-# make the local Webserver application
-echo "[Unit]\nDescription=The local site service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-local.service"
+# make the application
+echo "[Unit]\nDescription=The local site service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs.service"
 
 # cleanup
 sudo apt autoremove -y
@@ -174,8 +174,7 @@ npm -v
 sudo systemctl status postgresql
 su - postgres -c 'psql -c "TABLE data"'
 
-sudo systemctl start hfs-local.service
-sudo systemctl start hfs-bluetooth.service
+sudo systemctl start hfs.service
 
 # add the 'update' command
 u_cmd = 'alias update-hfs="wget -O hfs.zip https://github.com/LESA-RPI/hfs.main/archive/refs/heads/server-ui.zip\ && sudo unzip -o -j hfs.zip hfs.*/sensor/server/* -d /usr/local/src/hfs/ && rm hfs.zip && (cd /usr/local/src/hfs && sudo mkdir -p public && sudo mv -v *.html public/ && sudo mv -v *.css public/ && sudo touch public/public.log && sudo npm install)"'

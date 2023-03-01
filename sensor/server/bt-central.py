@@ -1,22 +1,25 @@
-from bleak import BleakClient, BleakScanner, BleakError
+#from bleak import BleakClient, BleakScanner, BleakError
 import json
 from math import pi
 import subprocess
 import time
 import struct
 import asyncio
+import json
 from datetime import datetime
 import dynamic_graphs as dgraphing
 import logging
 from logging.handlers import RotatingFileHandler
+import sys
 
 # Load the logfile
-log_name = "/usr/local/src/hfs/public/public.log"
+#log_name = "/usr/local/src/hfs/public/public.log"
+log_name = "./public/public.log"
 
 log = logging.getLogger(__name__)
 log.setLevel(logging.DEBUG)
 
-handler = RotatingFileHandler(log_name, maxBytes=5 * 5 * 1024, backupCount=0, encoding=None, delay=0)
+handler = RotatingFileHandler(log_name, maxBytes= 5 * 1024, backupCount=1, encoding=None, delay=0)
 handler.setFormatter(logging.Formatter('[%(asctime)s] %(message)s', '%d/%m/%Y %H:%M:%S'))
 
 log.addHandler(handler)
@@ -26,6 +29,9 @@ log.info('HFS server starting...')
 # load the configurations
 _CONFIG = None
 _AVERAGE_FLUX = 1
+
+# global device list
+DEVICES = []
 
 # initialize the addresses and uuids
 _ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
@@ -91,8 +97,8 @@ def notification_handler(sender, data):
     cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
     subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"])
     
-load_config()
-notification_handler('dummy', struct.pack('<iiii', 0, int(time.time()), int(15.30 * 100), 3207))
+#load_config()
+#notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
 
 def disconnect_handler(client):
     log.info(f"Disconnected from {client.address}")
@@ -127,7 +133,42 @@ async def connect_to_device(device):
         except BleakError:
             log.info(f"{client.address} does not contain necessary characteristic")
             pass
-            
+
+async def ainput():
+    return await asyncio.get_event_loop().run_in_executor(
+            None, sys.stdin.readline)
+
+async def inputLoop():
+    run = True
+    while run:
+        try:
+            msg = json.loads(await ainput())
+            log.info(msg)
+            if msg['cmd'] == 3: # wants a list of returned devices
+                print(json.dumps({'devices': list(DEVICES)}))
+            else:
+                print(json.dumps({'code': 1})) # tell the Node.js server we have finished properly
+        except EOFError:
+            log.warning("EOF Error")
+            print(json.dumps({'code': 0})) # tell the Node.js server we crashed
+            run = False
+
+async def bleLoop():
+    run = True
+    while run:
+        devices = await scan()
+        if devices:
+            log.info("Found device(s) with valid service.")
+            await asyncio.gather(*(connect_to_device(dev) for dev in devices))
+            devices = [json.dumps(dev.__dict__) for dev in devices]
+            DEVICES.update(tuple(devices))
+            log.info(DEVICES)
+            log.info("Searching for devices again in 5 minutes..")
+            time.sleep(60*5)
+        else:
+            log.info("No devices with valid services found. Retrying in 10 seconds..")
+            time.sleep(10)
+
 async def main():
     log.info("Loading config.json...")
     
@@ -135,19 +176,13 @@ async def main():
         log.warning("Loading expected config.json failed, resorting to local configuration")
         load_config("./config.json")
 
-    run = True
-    while run:
-        devices = await scan()
-        if devices:
-            log.info("Found device(s) with valid service.")
-            await asyncio.gather(*(connect_to_device(dev) for dev in devices))
-            log.info("Searching for devices again in 5 minutes..")
-            time.sleep(60*5)
-        else:
-            log.info("No devices with valid services found. Retrying in 10 seconds..")
-            time.sleep(10)
-
+    #task_ble = asyncio.create_task(bleLoop())
+    task_api = asyncio.create_task(inputLoop())
     
+    #await task_ble
+    log.error("BLE task has ended prematurely!")
+    await task_api
+    log.error("API task has ended prematurely!")
 
 if __name__ == "__main__":
     asyncio.run(main())

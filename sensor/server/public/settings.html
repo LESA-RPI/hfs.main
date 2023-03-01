@@ -6,13 +6,49 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<meta name="description" content="" />
+	<script>
+		function sendCmdOverBLE(device_id, cmd, data) {
+			fetch('http://' + location.host + '/api/ble', {
+				method: 'POST',
+				body: JSON.stringify({
+					id: parseInt(device_id),
+					cmd: parseInt(cmd),
+					data: parseInt(data)
+				}),
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				}
+			});
+		}
+		function getDevices() {
+			fetch('http://' + location.host + '/api/ble', {
+				method: 'POST',
+				body: JSON.stringify({ id: -1, cmd: 3, data: 0 }),
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				}
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					let dropdown = document.getElementById("option-sensors");
+					console.log(data);
+				})
+		}
+	</script>
 </head>
 <body style="margin:0; padding:0;">
 	<table style="padding-left:20%;padding-top:20px;width:80%;text-align:left">
 		<thead>
 			<tr>
 				<td>
-					<button type="button">Push Settings to Sensors</button>
+					<label for="option-sensors" style="padding-right:20px">Program</label>
+					<select name="option-sensors" id="option-sensors" onclick="getDevices()">
+					
+					</select>
+			</tr>
+			<tr>
+				<td>
+					<button type="button">Push to Sensor</button>
 				</td>
 			</tr>
 			<tr>
