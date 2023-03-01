@@ -132,6 +132,7 @@ class OTAUpdater:
     
     def _check_for_new_dev_version(self):
         current_version = float(self.get_version(self.modulepath("next")))
+        print('[INFO] Getting new version from {}'.format(self.dev_version_url))
         latest_version = float(self.http_client.get(self.dev_version_url).text.strip().strip('\n'))
         
         print('[INFO] Current version:', current_version)
@@ -176,7 +177,8 @@ class OTAUpdater:
     def _install_all_files(self, version, sub_dir=''):
         #url = 'https://api.github.com/repos/{}/contents{}{}{}?ref=refs/tags/{}'.format(self.github_repo, self.github_src_dir, self.main_dir, sub_dir, version)       
         url = 'https://api.github.com/repos/{}/contents/{}{}?ref={}'.format(self.github_repo, self.github_src_dir, sub_dir, self.main_dir)
-        
+        print('[INFO] Getting version directory from {}'.format(url))
+
         file_list = self.http_client.get(url)
         file_list_json = file_list.json()
         for file in file_list_json:
