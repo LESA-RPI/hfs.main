@@ -1,17 +1,5 @@
-from bleak import BleakClient, BleakScanner, BleakError
-import json
-from math import pi
-import subprocess
-import time
-import struct
-import asyncio
-import json
-from datetime import datetime
-import dynamic_graphs as dgraphing
 import logging
 from logging.handlers import RotatingFileHandler
-import sys
-
 # Load the logfile
 log_name = "/usr/local/src/hfs/public/public.log"
 #log_name = "./public/public.log"
@@ -25,6 +13,20 @@ handler.setFormatter(logging.Formatter('[%(asctime)s] %(message)s', '%d/%m/%Y %H
 log.addHandler(handler)
 
 log.info('HFS server starting...')
+
+from bleak import BleakClient, BleakScanner, BleakError
+import json
+from math import pi
+import subprocess
+import time
+import struct
+import asyncio
+import json
+from datetime import datetime
+import dynamic_graphs as dgraphing
+import sys
+
+
 
 # load the configurations
 _CONFIG = None
