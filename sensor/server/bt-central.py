@@ -58,7 +58,7 @@ def load_config(path="/usr/local/src/hfs/config.json"):
 
 def address_filter(x):
     console.info(x)
-    console.info(x)
+    console.info(x.service_uuids)
     if not x.service_uuids:
         return False
     for service in x.service_uuids:
@@ -118,8 +118,7 @@ async def scan(timeout=5.0):
     #return scanner.discovered_devices
     log.info(scanner)
     log.info(scanner.discovered_devices)
-    log.info(scanner.discovered_devices_and_advertisement_data)
-    return list( filter(address_filter, scanner.discovered_devices_and_advertisement_data.values()) )
+    return list( filter(address_filter, scanner.discovered_devices) )
 
 async def connect_to_device(device):
     log.info(f'Connecting to {device}.')
