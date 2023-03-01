@@ -9,7 +9,8 @@ import device_pins as pins
 frequency_list = [15, 50, 100, 200, 400, 800, 1000, 1200, 1400, 600, 700, 650]
 led_on_time = 1000 #1 sec
 led_off_start_time = 10*60*1000 #10 min
-led_off_time = 5*60*1000 #5 min
+led_off_time = 1000 #5 min
+#led_off_time = 5*60*1000 #5 min
 led_between_measure_time = 800/5 #TT
 led_wait_measure_time = 200
 samples = 5
@@ -59,7 +60,7 @@ def timerCallback():
 # run this program once and only once, server will decide how to loop
 def run(server, pipe, data: int):    
     print("[prgm_frequency] start")
-    machine.deepsleep(led_off_time) #sleeps for 5 minutes
+    machine.lightsleep(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         timer = tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
