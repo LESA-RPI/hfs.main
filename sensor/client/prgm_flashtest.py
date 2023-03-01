@@ -1,7 +1,7 @@
 from machine import Pin, ADC, PWM
 
 import time
-import asyncio
+import uasyncio as asyncio
 
 import device_sensor as sensor # sensor.readAndSend(server, pipe)
 import device_pins as pins
