@@ -8,6 +8,7 @@ import uasyncio as asyncio
 #import ble_service
 import prgm_frequency
 import bt_service as ble
+import uasyncio as asyncio
 
 print(2)
 print(3)
