@@ -117,12 +117,17 @@ async def scan(timeout=5.0):
     log.info('Scan finished.')
 
     #return scanner.discovered_devices
-    log.info(scanner)
-    log.info(dir(scanner))
-    log.info(scanner.get_discovered_devices())
-    log.info(dir(scanner.get_discovered_devices()))
-    log.info(list(scanner.get_discovered_devices()))
-    return list( filter(address_filter, scanner.get_discovered_devices()) )
+    try:
+        log.info(scanner)
+        log.info(dir(scanner))
+        log.info(scanner.get_discovered_devices())
+        log.info(dir(scanner.get_discovered_devices()))
+        log.info(list(scanner.get_discovered_devices()))
+        return list( filter(address_filter, scanner.get_discovered_devices()) )
+    except Exception as exception:
+        log.info(exception)
+        return []
+        
 
 async def connect_to_device(device):
     log.info(f'Connecting to {device}.')
