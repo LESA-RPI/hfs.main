@@ -58,6 +58,7 @@ def load_config(path="/usr/local/src/hfs/config.json"):
 
 def address_filter(x):
     log.info(x)
+    log.info(dir(x))
     log.info(x.service_uuids)
     if not x.service_uuids:
         return False
@@ -118,7 +119,8 @@ async def scan(timeout=5.0):
     #return scanner.discovered_devices
     log.info(scanner)
     log.info(dir(scanner))
-    return list( filter(address_filter, scanner.discovered_devices) )
+    log.info(scanner.get_discovered_devices())
+    return list( filter(address_filter, scanner.get_discovered_devices()) )
 
 async def connect_to_device(device):
     log.info(f'Connecting to {device}.')
