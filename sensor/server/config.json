@@ -11,6 +11,6 @@
 		"user": "postgres",
 		"password": "admin"
 	},
-	"bt-path": "/usr/local/src/hfs/bt-central.py"
+	"bt-path": "/usr/local/src/hfs/bt-central.py",
+	"py-path": "/usr/bin/python3"
 }
-

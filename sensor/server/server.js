@@ -14,7 +14,7 @@ const promisify = require('util').promisify;
 const pyshell = require('python-shell');
 const PY_OPTIONS  = {
 	pythonOptions: ['-u'], // get print results in real-time
-	//pythonPath: '/usr/bin/python3.11',
+	pythonPath: CONFIG['py-path'],
 	mode: 'json'
 }
 var shell = new pyshell.PythonShell(CONFIG['bt-path'], PY_OPTIONS)
