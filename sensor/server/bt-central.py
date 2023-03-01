@@ -111,7 +111,9 @@ async def scan(timeout=5.0):
 
     log.info('Starting scan...')
     await scanner.start()
+    log.info('1')
     await asyncio.sleep(timeout)
+    log.info('2')
     await scanner.stop()
     log.info('Scan finished.')
 
