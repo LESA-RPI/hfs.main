@@ -56,7 +56,7 @@ def load_config(path="/usr/local/src/hfs/config.json"):
         log.warning(f"{path} not found")
         return False
 
-def address_filter(device: BLEDevice):
+def address_filter(device):
     log.info(device)
     log.info(dir(device))
     log.info(device.service_uuids)
