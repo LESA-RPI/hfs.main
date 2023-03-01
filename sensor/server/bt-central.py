@@ -33,11 +33,11 @@ _CONFIG = None
 _AVERAGE_FLUX = 1
 
 # global device list
-DEVICES = set()
+DEVICES = dict()
 
 # initialize the addresses and uuids
 _ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
-_HANDLES = dict()
+_HANDLES = set()
 
 _COMM_UUID = "26c00001-ece0-4f7a-b663-223de05387cc"
 _COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
