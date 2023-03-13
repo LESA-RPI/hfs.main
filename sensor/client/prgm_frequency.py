@@ -41,26 +41,32 @@ def sleep():
         pins.LED3.off()
         pins.LED4.off()
         counter = 0
-    machine.lightsleep(led_wait_measure_time)
+    #machine.lightsleep(led_wait_measure_time)
+    sleep_between_measurements(led_wait_measure_time)
     for i in range(samples):
         results[i] =  sensor.readPhotodiode()
         print("Results ", results[i])
         #total_result = total_result + results[i]
-        machine.lightsleep(led_between_measure_time)
+        #machine.lightsleep(led_between_measure_time)
+        sleep_between_measurements(led_between_measure_time)
     #average_result = total_result/samples
     #print("Average result: ",average_result)
     #total_result = 0
-    machine.deepsleep(led_off_time)
+    #machine.deepsleep(led_off_time)
+    sleep_between_measurements(led_off_time)
     counter = 0 #maybe before deep sleep?
 
 def timerCallback():
     counter = counter + 1 #increments counter used for determining when to stop measurements
 
+async def sleep_between_measurements(led_time):
+    await uasyncio.sleep_ms(led_time)
+
 # entry point for the program
 # run this program once and only once, server will decide how to loop
 def run(server, pipe, data: int):    
     print("[prgm_frequency] start")
-    machine.lightsleep(led_off_time) #sleeps for 5 minutes
+    sleep_between_measurements(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         timer = tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
