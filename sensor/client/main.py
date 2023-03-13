@@ -21,6 +21,7 @@ if __name__ == '__main__':
     print("[INFO] running!")
     
     asyncio.run(ble._start())
+    print("fin")
     prgm_frequency.run()
 
 #asyncio.run(ble_service.main())
