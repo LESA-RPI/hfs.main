@@ -201,7 +201,7 @@ async def inputLoop():
             if msg['cmd'] == 3: # wants a list of returned devices
                 devices = []
                 log.info(DEVICES)
-                for device in DEVICES:
+                for device in DEVICES.values():
                     log.info(device.client)
                     devices.append(json.dumps(device.client.__dict__))
                 response = json.dumps({'code': 1, 'devices': devices})
