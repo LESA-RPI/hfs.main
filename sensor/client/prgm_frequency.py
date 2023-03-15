@@ -57,7 +57,7 @@ def sleep(curFreq):
     sleep_between_measurements(led_off_time)
     counter = 0 #maybe before deep sleep?
 
-def timerCallback(self, curFreq, event):
+def timerCallback(curFreq, event):
     global counter
     led_blinking()
     LEDON = not LEDON
@@ -75,6 +75,7 @@ async def run(server, pipe, data: int):
     print("[prgm_frequency] start")
     await sleep_between_measurements(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
+        curFreq = .1
         try:
             event = uasyncio.Event()
             tim = Timer(1) #timer used to count when LED sleeps and takes measurements
