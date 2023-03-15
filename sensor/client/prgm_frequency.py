@@ -2,7 +2,6 @@ import uasyncio
 import math
 import machine
 from machine import Timer
-from uasyncio import Event
 
 import device_sensor as sensor # sensor.readAndSend(server, pipe)
 import device_pins as pins
@@ -20,7 +19,7 @@ results = []
 average_result = 0
 LEDON = True   
 
-async def led_blinking():
+def led_blinking():
     if LEDON == True:
         pins.LED1.on()
         pins.LED2.on()
@@ -79,7 +78,7 @@ async def run(server, pipe, data: int):
         try:
             event = uasyncio.Event()
             tim = Timer(1) #timer used to count when LED sleeps and takes measurements
-            tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = timerCallback(curFreq, event))
+            tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t:timerCallback(curFreq, event))
             await event
             tim.deinit()
             event.clear()
