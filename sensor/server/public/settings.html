@@ -36,12 +36,21 @@
 					let option = document.createElement('option');
 					console.log(data);
 					data.devices.forEach(function (device) {
-						option.text = option.value = JSON.parse(device)['name'];
+						let device_json = JSON.parse(device)
+						option.text = device_json['name'];
+						option.value = device_json['address'];
 						options.push(option.outerHTML);
 					});
 					dropdown.insertAdjacentHTML('beforeEnd', options.join('\n'));
+					// todo: update the other dropdown values with what the device settings currently display
 				});
 			
+			
+		}
+		function updateDevice() {
+			let device = document.getElementById('option-sensors').value;
+			if (device == null) { return; }
+			sendCmdOverBLE();
 		}
 		getDevices();
 	</script>
@@ -51,26 +60,29 @@
 		<thead>
 			<tr>
 				<td>
-					<label for="option-sensors" style="padding-right:20px">Program</label>
+					<label for="option-sensors" style="padding-right:20px">Device</label>
 					<select name="option-sensors" id="option-sensors" onclick="getDevices()">
 					
 					</select>
 			</tr>
-			<tr>
-				<td>
-					<button type="button">Push to Sensor</button>
-				</td>
-			</tr>
+
 			<tr>
 				<td>
 					<label for="option-program" style="padding-right:20px">Program</label>
 					<select name="option-program" id="option-program">
-						<option value="default">default</option>
-						<option value="tests/distance">distance test</option>
-						<option value="tests/farfield">farfield test</option>
-						<option value="tests/frequency">frequency test</option>
-						<option value="tests/noise">noise test</option>
+						<option value=10>default (v1.0)</option>
+						<option value=11>distance testing</option>
+						<option value=12>farfield testing</option>
+						<option value=13>flash testing</option>
+						<option value=14>frequency testing</option>
+						<option value=15>noise testing</option>
 					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<button onclick="updateDevice()" type="button">Push Updates to Device</button>
 				</td>
 			</tr>
 		</thead>

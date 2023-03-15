@@ -26,7 +26,14 @@ from datetime import datetime
 import dynamic_graphs as dgraphing
 import sys
 
+class OnMessageEvent():
+  def __init__(self):
+    self.listeners = {}
 
+  def emit(self, msg_json):
+    for device_address in list(DEVICES.keys()):
+        if device_address != msg_json['addr']: continue
+        asyncio.create_task(device.onMessage(msg))
 
 # load the configurations
 _CONFIG = None
@@ -34,6 +41,37 @@ _AVERAGE_FLUX = 1
 
 # global device list
 DEVICES = dict()
+
+class Device():
+    def __init__(self, client):
+        self.client = client
+        self.address = self.client.address
+        self.event = asyncio.Event()
+        self.msg = None
+        
+    async def onMessage(self, msg):
+        self.msg = msg
+        self.event.set()
+    
+    async def keep_alive(self): 
+        async with BleakClient(
+            self.client, timeout=5.0, disconnected_callback=disconnect_handler
+        ) as client:
+            log.info(f"Connected to {client.address}")
+            try:
+                await client.start_notify(_COMM_RW_UUID, notification_handler)
+                while True:
+                    try:
+                        await self.event.wait() # wait for us to recieve a message
+                        client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", self.msg['cmd'], self.msg['data']))
+                        self.event.clear()
+                    except KeyboardInterrupt:
+                        log.info("Shutting down connection...")
+                        return
+            except BleakError:
+                log.info(f"{client.address} does not contain necessary characteristic")
+                pass
+    
 
 # initialize the addresses and uuids
 _ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
@@ -94,9 +132,7 @@ def notification_handler(sender, data):
 #load_config()
 #notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
 
-def disconnect_handler(client):
-    log.info(f"Disconnected from {client.address}")
-    pass
+
 
 async def scan(timeout=5.0):
     scanner = BleakScanner(detection_callback=scan_handler, service_uuids=_SERVICE_UUIDS)
@@ -110,34 +146,20 @@ async def scan(timeout=5.0):
     #return scanner.discovered_devices
     try:
         return await scanner.get_discovered_devices()
-        #log.info(scanner)
-        #log.info(dir(scanner))
-        #log.info(scanner.get_discovered_devices())
-        #log.info(dir(await scanner.get_discovered_devices()))
-        #log.info(list(await scanner.get_discovered_devices()))
-        #return list( filter(address_filter, await scanner.get_discovered_devices()) )
     except Exception as exception:
         log.error(exception)
         return []
         
+def disconnect_handler(device_properties):
+    log.info(f"Disconnected from {device_properties.address}")
+    device = DEVICES[device_properties.address]
+    DEVICES.pop(device_properties.address)
 
-async def connect_to_device(device):
-    log.info(f'Connecting to {device}.')
-    async with BleakClient(
-        device, timeout=5.0, disconnected_callback=disconnect_handler
-    ) as client:
-        log.info(f"Connected to {client.address}")
-        try:
-            await client.start_notify(_COMM_RW_UUID, notification_handler)
-            while True:
-                try:
-                    await asyncio.sleep(0.5)
-                except KeyboardInterrupt:
-                    log.info("Shutting down server...")
-                    return
-        except BleakError:
-            log.info(f"{client.address} does not contain necessary characteristic")
-            pass
+async def connect_to_device(device_properties):
+    log.info(f'Connecting to {device_properties}.')
+    device = Device(device_properties)
+    DEVICES[device.address] = device
+    await device.keep_alive()
 
 async def ainput():
     return await asyncio.get_event_loop().run_in_executor(
@@ -151,8 +173,13 @@ async def inputLoop():
             log.info(msg)
             if msg['cmd'] == 3: # wants a list of returned devices
                 print(json.dumps({'code': 1, 'devices': list(DEVICES.values())}))
-            else:
-                print(json.dumps({'code': 1})) # tell the Node.js server we have finished properly
+            else:                
+                try:
+                    on_msg_event.emit(msg)
+                    print(json.dumps({'code': 1}))
+                except Exception as error:
+                    print(json.dumps({'code': 1, 'error': error}))
+                
         except EOFError:
             log.warning("EOF Error")
             print(json.dumps({'code': 0})) # tell the Node.js server we crashed
@@ -166,21 +193,13 @@ async def bleLoop():
             log.info("Found device(s) with valid service.")
             asyncio.gather(*(connect_to_device(dev) for dev in devices))
             log.info(devices)
-            try:
-                for device in devices:
-                    log.info(device)
-                    log.info(device.__dict__)
-                    log.info(device.address)
-                    log.info(str(device.address))
-                    DEVICES[str(device.address)] = json.dumps(device.__dict__)
-                log.info(DEVICES.keys())
-                log.info("Searching for devices again in 5 minutes..")
-            except Exception as e:
-                log.warn(e)
+            log.info("Searching for devices again in 5 minutes..")
             await asyncio.sleep(60*5)
         else:
             log.info("No devices with valid services found. Retrying in 10 seconds..")
             await asyncio.sleep(10)
+
+on_msg_event = OnMessageEvent()
 
 async def main():
     log.info("Loading config.json...")

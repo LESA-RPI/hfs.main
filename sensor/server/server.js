@@ -131,7 +131,7 @@ var server = http.createServer(async function (req, res) {
 	}
 	if (reqpath.startsWith('/api/sensors/')) {
 		console.log('server: sensor API');
-		shell.send({cmd: CMD.GET_DEVICE_LIST, id: -1, data: 0});
+		shell.send({cmd: CMD.GET_DEVICE_LIST, addr: "", data: 0});
 		shell.once('message', function (message_json) {
 			res.setHeader('Content-Type', mime.json);
 			res.statusCode = 200;
