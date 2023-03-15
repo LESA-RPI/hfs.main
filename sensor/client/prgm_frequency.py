@@ -64,7 +64,7 @@ async def sleep_between_measurements(led_time):
 
 # entry point for the program
 # run this program once and only once, server will decide how to loop
-def run(server, pipe, data: int):    
+async def run(server, pipe, data: int):    
     print("[prgm_frequency] start")
     sleep_between_measurements(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
