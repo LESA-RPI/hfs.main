@@ -48,11 +48,33 @@ class Device():
         self.address = self.client.address
         self.event = asyncio.Event()
         self.msg = None
+        self.task = None
+        self.command = (0, 0)
         
+    async def run(self, client, delay_min):
+        while True:
+            await asyncio.sleep(delay_min * 60)
+            self.send(client, self.command)
+    
+    def send(client, command)
+        client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
+    
     async def onMessage(self, msg):
         self.msg = msg
         self.event.set()
     
+    def handler(self, client, cmd, data):
+        if cmd < 0: # send the command directly to the controller
+            self.send(client, (abs(cmd), data))
+        elif cmd == 2: # update the command we run
+            self.command = (abs(data), self.command[1])
+        elif cmd == 4: # update the delay in our run function
+            if (self.task != None) and (!self.task.cancelled()):
+                self.task.cancel()
+            self.task = asyncio.create_task(self.run(client, data))
+        else:
+            log.warning(f'Unknown command {self.msg["cmd"]}')
+                        
     async def keep_alive(self): 
         async with BleakClient(
             self.client, timeout=5.0, disconnected_callback=disconnect_handler
@@ -61,15 +83,12 @@ class Device():
             try:
                 await client.start_notify(_COMM_RW_UUID, notification_handler)
                 while True:
-                    try:
-                        await self.event.wait() # wait for us to recieve a message
-                        client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", self.msg['cmd'], self.msg['data']))
-                        self.event.clear()
-                    except KeyboardInterrupt:
-                        log.info("Shutting down connection...")
-                        return
-            except BleakError:
-                log.info(f"{client.address} does not contain necessary characteristic")
+                    await self.event.wait() # wait for us to recieve a message
+                    self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
+                    self.event.clear() # reset the message flag
+
+            except (BleakError, KeyboardInterrupt):
+                log.info(f"{client.address} disconnected")
                 pass
     
 

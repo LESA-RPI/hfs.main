@@ -7,11 +7,11 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<meta name="description" content="" />
 	<script>
-		function sendCmdOverBLE(device_id, cmd, data) {
+		function sendCmdOverBLE(device_addr, cmd, data) {
 			fetch('http://' + location.host + '/api/ble', {
 				method: 'POST',
 				body: JSON.stringify({
-					id: parseInt(device_id),
+					addr: device_addr,
 					cmd: parseInt(cmd),
 					data: parseInt(data)
 				}),
@@ -23,7 +23,7 @@
 		function getDevices() {
 			fetch('http://' + location.host + '/api/ble', {
 				method: 'POST',
-				body: JSON.stringify({ id: -1, cmd: 3, data: 0 }),
+				body: JSON.stringify({ addr: "", cmd: 3, data: 0 }),
 				headers: {
 					"Content-type": "application/json; charset=UTF-8"
 				}
@@ -48,14 +48,20 @@
 			
 		}
 		function updateDevice() {
-			let device = document.getElementById('option-sensors').value;
-			if (device == null) { return; }
-			sendCmdOverBLE();
+			let address = document.getElementById('option-sensors').value;
+			let program = document.getElementById('option-program').value;
+			if (address == null) { return; }
+			// update the program the device is running
+			sendCmdOverBLE(addr: address, cmd: 2, data: program);
 		}
 		getDevices();
 	</script>
 </head>
 <body style="margin:0; padding:0;">
+
+	
+	<hr class="rounded">
+	
 	<table style="padding-left:20%;padding-top:20px;width:80%;text-align:left">
 		<thead>
 			<tr>
