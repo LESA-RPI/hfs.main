@@ -33,7 +33,8 @@
 					let dropdown = document.getElementById("option-sensors");
 					console.log(data);
 					data.devices.forEach(function (device) {
-						console.log(device);
+						console.log(JSON.parse(device));
+						console.log(JSON.parse(device)['name']);
 					})
 				})
 		}
