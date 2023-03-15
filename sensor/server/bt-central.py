@@ -56,7 +56,7 @@ class Device():
             await asyncio.sleep(delay_min * 60)
             self.send(client, self.command)
     
-    def send(client, command)
+    def send(client, command):
         client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
     
     async def onMessage(self, msg):
