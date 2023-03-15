@@ -44,8 +44,8 @@ def sleep():
         counter = 0
     #machine.lightsleep(led_wait_measure_time)
     sleep_between_measurements(led_wait_measure_time)
-    for i in range(samples):
-        results[i] =  sensor.readPhotodiode()
+    for i in range(0, samples):
+        results.append(sensor.readPhotodiode())
         print("Results ", results[i])
         #total_result = total_result + results[i]
         #machine.lightsleep(led_between_measure_time)
