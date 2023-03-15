@@ -81,8 +81,8 @@ async def run(server, pipe, data: int):
             tim.init(freq = curFreq, mode = Timer.PERIODIC)
             #tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
             tim.callback(timerCallback)
-        except:
-            print("error")
+        except Exception as error:
+            print(error)
             pass
         print(counter)
         await cycle(pins.LED1, pins.LED2, pins.LED3, pins.LED4, curFreq) #threads LEDs blinking
