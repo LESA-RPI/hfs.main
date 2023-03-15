@@ -13,7 +13,8 @@ import uasyncio as asyncio
 print(2)
 print(3)
 async def main():
-    await asyncio.gather(ble._start(), prgm_frequency.run())
+    list = [ble._start(), prgm_frequency.run()]
+    await asyncio.gather(*list)
 #tests.startDistanceTest()
 #tests.startFarfieldTest()
 #tests.startFrequencyTest()
