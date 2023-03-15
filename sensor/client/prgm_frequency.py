@@ -68,6 +68,7 @@ def timerCallback(curFreq):
         print("hi")
         event.set()
     print(counter)
+    print(event.is_set())
 
 async def sleep_between_measurements(led_time):
     await uasyncio.sleep_ms(led_time)
@@ -79,15 +80,11 @@ async def run(server, pipe, data: int):
     await sleep_between_measurements(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
         curFreq = 1
-        try:
-            tim = Timer(1) #timer used to count when LED sleeps and takes measurements
-            tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t:timerCallback(curFreq))
-            await event.wait()
-            tim.deinit()
-            event.clear()
-        except Exception as error:
-            print(error)
-            pass
+        tim = Timer(1) #timer used to count when LED sleeps and takes measurements
+        tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t:timerCallback(curFreq))
+        await event.wait()
+        tim.deinit()
+        event.clear()
         print(counter)
         await sleep(curFreq) #sleeps for 10 minutes
     #pipe.notify(server)
