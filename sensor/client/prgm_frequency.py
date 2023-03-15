@@ -58,7 +58,7 @@ def sleep(curFreq):
     counter = 0 #maybe before deep sleep?
 
 def timerCallback(curFreq, event):
-    global counter
+    global counter, LEDON
     led_blinking()
     LEDON = not LEDON
     counter = counter + 1 #increments counter used for determining when to stop measurements
