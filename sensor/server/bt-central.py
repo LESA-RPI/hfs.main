@@ -169,14 +169,15 @@ async def scan(timeout=5.0):
         log.error(exception)
         return []
         
-def disconnect_handler(device_properties):
-    log.info(f"Disconnected from {device_properties.address}")
-    device = DEVICES[device_properties.address]
-    DEVICES.pop(device_properties.address)
+def disconnect_handler(client):
+    log.info(f"Disconnected from {client.address}")
+    device = DEVICES[client.address]
+    DEVICES.pop(client.address)
 
-async def connect_to_device(device_properties):
-    log.info(f'Connecting to {device_properties}.')
-    device = Device(device_properties)
+async def connect_to_device(client):
+    if device.address in DEVICES: return
+    log.info(f'Connecting to {client}.')
+    device = Device(client)
     DEVICES[device.address] = device
     await device.keep_alive()
 
@@ -189,18 +190,24 @@ async def inputLoop():
     while run:
         try:
             msg = json.loads(await ainput())
-            log.info(msg)
+            log.info(f'> {msg}')
             if msg['cmd'] == 3: # wants a list of returned devices
                 devices = []
                 for device in DEVICES:
+                    log.info(device.client.__dict__)
                     devices.append(json.dumps(device.client.__dict__))
-                print(json.dumps({'code': 1, 'devices': devices}))
+                response = json.dumps({'code': 1, 'devices': devices})
+                log.info(f'< {response}')
+                print(response)
             else:                
                 try:
                     on_msg_event.emit(msg)
+                    log.info("< {'code': 1}")
                     print(json.dumps({'code': 1}))
                 except Exception as error:
-                    print(json.dumps({'code': 1, 'error': error}))
+                    log.info(f"< \{'code': 0, 'error': {error}\}")
+                    print(json.dumps({'code': 0, 'error': error}))
+                    
                 
         except EOFError:
             log.warning("EOF Error")
