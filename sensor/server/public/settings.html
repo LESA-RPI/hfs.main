@@ -52,7 +52,7 @@
 			let program = document.getElementById('option-program').value;
 			if (address == null) { return; }
 			// update the program the device is running
-			sendCmdOverBLE(addr: address, cmd: 2, data: program);
+			sendCmdOverBLE({addr: address, cmd: 2, data: program});
 		}
 		getDevices();
 	</script>

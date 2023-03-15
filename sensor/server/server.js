@@ -26,7 +26,7 @@ var shell = new pyshell.PythonShell(CONFIG['bt-path'], PY_OPTIONS)
 	  console.log('The exit code was: ' + code);
 	  console.log('finished');	  
 	});
-const CMD = { RUN_CMD: 0, GET_CMD_LIST: 1, SET_RUNNABLE_CMD: 2, GET_DEVICE_LIST: 3, SET_RUN_FREQUENCY: 4 }
+const CMD = { SET_RUNNABLE_CMD: 2, GET_DEVICE_LIST: 3, SET_RUN_FREQUENCY: 4 }
 DEVICES = {}
 
 /////////////////////////

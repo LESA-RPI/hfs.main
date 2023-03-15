@@ -191,7 +191,10 @@ async def inputLoop():
             msg = json.loads(await ainput())
             log.info(msg)
             if msg['cmd'] == 3: # wants a list of returned devices
-                print(json.dumps({'code': 1, 'devices': list(DEVICES.values())}))
+                devices = []
+                for device in DEVICES:
+                    devices.append(json.dumps(device.client.__dict__))
+                print(json.dumps({'code': 1, 'devices': devices}))
             else:                
                 try:
                     on_msg_event.emit(msg)
