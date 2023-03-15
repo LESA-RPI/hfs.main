@@ -12,7 +12,8 @@ import uasyncio as asyncio
 
 print(2)
 print(3)
-
+async def main():
+    await asyncio.gather(ble._start(), prgm_frequency.run())
 #tests.startDistanceTest()
 #tests.startFarfieldTest()
 #tests.startFrequencyTest()
@@ -20,8 +21,6 @@ print(3)
 if __name__ == '__main__':
     print("[INFO] running!")
     
-    asyncio.run(ble._start())
-    print("fin")
-    prgm_frequency.run()
+    asyncio.run(main())
 
 #asyncio.run(ble_service.main())
