@@ -77,7 +77,7 @@ async def run(server, pipe, data: int):
             print("error")
             pass
         print(counter)
-        cycle(pins.LED1, pins.LED2, pins.LED3, pins.LED4) #threads LEDs blinking
+        cycle(pins.LED1, pins.LED2, pins.LED3, pins.LED4, curFreq) #threads LEDs blinking
         sleep() #sleeps for 10 minutes
     #pipe.notify(server)
     print("[prgm_frequency] stop")
