@@ -35,7 +35,7 @@ def led_blinking():
         print("off")
 
 
-def sleep(curFreq):
+async def sleep(curFreq):
     global counter, led_off_time, led_wait_measure_time, results, led_between_measure_time
     while(counter >= led_off_time*curFreq):
         pins.LED1.off()
@@ -45,18 +45,18 @@ def sleep(curFreq):
         print("OFF")
         counter = 0
     #machine.lightsleep(led_wait_measure_time)
-    sleep_between_measurements(led_wait_measure_time*curFreq)
+    await sleep_between_measurements(led_wait_measure_time*curFreq)
     for i in range(0, samples):
         results.append(sensor.readPhotodiode())
         print("Results ", results[i])
         #total_result = total_result + results[i]
         #machine.lightsleep(led_between_measure_time)
-        sleep_between_measurements(led_between_measure_time*curFreq)
+        await sleep_between_measurements(led_between_measure_time*curFreq)
     #average_result = total_result/samples
     #print("Average result: ",average_result)
     #total_result = 0
     #machine.deepsleep(led_off_time)
-    sleep_between_measurements(led_off_time)
+    await sleep_between_measurements(led_off_time)
     counter = 0 #maybe before deep sleep?
 
 def timerCallback(curFreq):
@@ -89,7 +89,7 @@ async def run(server, pipe, data: int):
             print(error)
             pass
         print(counter)
-        sleep(curFreq) #sleeps for 10 minutes
+        await sleep(curFreq) #sleeps for 10 minutes
     #pipe.notify(server)
     print("[prgm_frequency] stop")
     
