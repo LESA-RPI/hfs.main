@@ -68,10 +68,14 @@ async def run(server, pipe, data: int):
     print("[prgm_frequency] start")
     sleep_between_measurements(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
-        tim = Timer(1) #timer used to count when LED sleeps and takes measurements
-        tim.init(freq = curFreq, mode = Timer.PERIODIC)
-        #tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
-        tim.callback(timerCallback)
+        try:
+            tim = Timer(1) #timer used to count when LED sleeps and takes measurements
+            tim.init(freq = curFreq, mode = Timer.PERIODIC)
+            #tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
+            tim.callback(timerCallback)
+        except:
+            print("error")
+            pass
         print(counter)
         cycle(pins.LED1, pins.LED2, pins.LED3, pins.LED4) #threads LEDs blinking
         sleep() #sleeps for 10 minutes
