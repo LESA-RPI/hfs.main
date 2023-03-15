@@ -69,7 +69,7 @@ class Device():
         elif cmd == 2: # update the command we run
             self.command = (abs(data), self.command[1])
         elif cmd == 4: # update the delay in our run function
-            if (self.task != None) and (!self.task.cancelled()):
+            if (self.task != None) and (not self.task.cancelled()):
                 self.task.cancel()
             self.task = asyncio.create_task(self.run(client, data))
         else:
