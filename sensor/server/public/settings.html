@@ -30,13 +30,18 @@
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					let dropdown = document.getElementById("option-sensors");
+					let dropdown = document.getElementById('option-sensors');
+					dropdown.innerHTML = ''
+					let options = [];
+					let option = document.createElement('option');
 					console.log(data);
 					data.devices.forEach(function (device) {
-						console.log(JSON.parse(device));
-						console.log(JSON.parse(device)['name']);
-					})
-				})
+						option.text = option.value = JSON.parse(device)['name'];
+						options.push(option.outerHTML);
+					});
+					dropdown.insertAdjacentHTML('beforeEnd', options.join('\n'));
+				});
+			
 		}
 		getDevices();
 	</script>
