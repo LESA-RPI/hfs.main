@@ -49,6 +49,7 @@ class Device():
         self.event = asyncio.Event()
         self.msg = None
         self.task = None
+        self.main = None
         self.command = (0, 0)
         
     async def run(self, client, delay_min):
@@ -58,6 +59,11 @@ class Device():
     
     def send(client, command):
         client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
+    
+    def disconnect(self):
+        if (self.task != None) and (not self.task.cancelled()):
+            self.task.cancel()
+        self.main.cancel()
     
     async def onMessage(self, msg):
         self.msg = msg
@@ -173,13 +179,14 @@ def disconnect_handler(client):
     log.info(f"Disconnected from {client.address}")
     device = DEVICES[client.address]
     DEVICES.pop(client.address)
+    device.disconnect()
 
 async def connect_to_device(client):
     if client.address in DEVICES: return
     log.info(f'Connecting to {client}.')
     device = Device(client)
     DEVICES[client.address] = device
-    await device.keep_alive()
+    device.main = device.keep_alive()
 
 async def ainput():
     return await asyncio.get_event_loop().run_in_executor(
