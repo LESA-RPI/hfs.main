@@ -44,13 +44,13 @@ async def sleep(curFreq):
         print("OFF")
         counter = 0
     #machine.lightsleep(led_wait_measure_time)
-    await sleep_between_measurements(led_wait_measure_time*curFreq)
+    await sleep_between_measurements(led_wait_measure_time)
     for i in range(0, samples):
         results.append(sensor.readPhotodiode())
         print("Results ", results[i])
         #total_result = total_result + results[i]
         #machine.lightsleep(led_between_measure_time)
-        await sleep_between_measurements(led_between_measure_time*curFreq)
+        await sleep_between_measurements(led_between_measure_time)
     #average_result = total_result/samples
     #print("Average result: ",average_result)
     #total_result = 0
