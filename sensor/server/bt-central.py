@@ -175,10 +175,10 @@ def disconnect_handler(client):
     DEVICES.pop(client.address)
 
 async def connect_to_device(client):
-    if device.address in DEVICES: return
+    if client.address in DEVICES: return
     log.info(f'Connecting to {client}.')
     device = Device(client)
-    DEVICES[device.address] = device
+    DEVICES[client.address] = device
     await device.keep_alive()
 
 async def ainput():
