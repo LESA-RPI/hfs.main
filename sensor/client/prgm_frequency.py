@@ -78,9 +78,8 @@ async def run(server, pipe, data: int):
         curFreq = .1
         try:
             tim = Timer(1) #timer used to count when LED sleeps and takes measurements
-            tim.init(freq = curFreq, mode = Timer.PERIODIC)
+            tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = timerCallback)
             #tim.channel(channel = machine.TIMER.A, freq = curFreq, mode = Timer.PWM, pulse_width_percent=50)
-            tim.callback(timerCallback)
         except Exception as error:
             print(error)
             pass
