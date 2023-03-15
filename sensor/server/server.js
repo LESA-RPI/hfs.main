@@ -107,6 +107,7 @@ var server = http.createServer(async function (req, res) {
 		msg_json = await waitForEvent(shell, 'message', function(msg){return msg;});
 		res.setHeader('Content-Type', mime.json);
 		res.statusCode = 200;
+		console.log(JSON.stringify(msg_json));
 		return res.end(JSON.stringify(msg_json));
 	}
 	// Only accept GET requests from here onward
