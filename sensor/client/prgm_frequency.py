@@ -11,7 +11,7 @@ led_on_time = 1000 #1 sec
 led_off_start_time = 10*60*1000 #10 min
 led_off_time = 10000 #5 min
 #led_off_time = 5*60*1000 #5 min
-led_between_measure_time = 800/5 #TT
+led_between_measure_time = 800 #TT
 led_wait_measure_time = 200
 samples = 5
 counter = 0
@@ -28,10 +28,14 @@ async def led_blinking(led, freq):
         print("LED", led, " off")
 
 async def cycle(led1, led2, led3, led4, freq):
-    uasyncio.create_task(led_blinking(led1, freq))
-    uasyncio.create_task(led_blinking(led2, freq))
-    uasyncio.create_task(led_blinking(led3, freq))
-    uasyncio.create_task(led_blinking(led4, freq))
+    task1 = uasyncio.create_task(led_blinking(led1, freq))
+    task2 = uasyncio.create_task(led_blinking(led2, freq))
+    task3 = uasyncio.create_task(led_blinking(led3, freq))
+    task4 = uasyncio.create_task(led_blinking(led4, freq))
+    await task1
+    await task2
+    await task3
+    await task4
 
 
 def sleep():
@@ -58,6 +62,7 @@ def sleep():
     counter = 0 #maybe before deep sleep?
 
 def timerCallback():
+    global counter
     counter = counter + 1 #increments counter used for determining when to stop measurements
 
 async def sleep_between_measurements(led_time):
@@ -67,7 +72,7 @@ async def sleep_between_measurements(led_time):
 # run this program once and only once, server will decide how to loop
 async def run(server, pipe, data: int):    
     print("[prgm_frequency] start")
-    sleep_between_measurements(led_off_time) #sleeps for 5 minutes
+    await sleep_between_measurements(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
         try:
             tim = Timer(1) #timer used to count when LED sleeps and takes measurements
@@ -78,7 +83,7 @@ async def run(server, pipe, data: int):
             print("error")
             pass
         print(counter)
-        cycle(pins.LED1, pins.LED2, pins.LED3, pins.LED4, curFreq) #threads LEDs blinking
+        await cycle(pins.LED1, pins.LED2, pins.LED3, pins.LED4, curFreq) #threads LEDs blinking
         sleep() #sleeps for 10 minutes
     #pipe.notify(server)
     print("[prgm_frequency] stop")
