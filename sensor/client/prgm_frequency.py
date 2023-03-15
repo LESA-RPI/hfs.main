@@ -18,7 +18,7 @@ counter = 0
 results = []
 average_result = 0
 LEDON = True   
-event = uasyncio.Event()
+event = False
 
 def led_blinking():
     if LEDON == True:
@@ -66,9 +66,8 @@ def timerCallback(curFreq):
     counter = counter + 1 #increments counter used for determining when to stop measurements
     if counter == curFreq*led_off_time:
         print("hi")
-        event.set()
+        event = True
     print(counter)
-    print(event.is_set())
 
 async def sleep_between_measurements(led_time):
     await uasyncio.sleep_ms(led_time)
@@ -82,9 +81,10 @@ async def run(server, pipe, data: int):
         curFreq = 1
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t:timerCallback(curFreq))
-        await event.wait()
+        while(not event):
+           await uasyncio.sleep(0)
         tim.deinit()
-        event.clear()
+        event = False
         print(counter)
         await sleep(curFreq) #sleeps for 10 minutes
     #pipe.notify(server)
