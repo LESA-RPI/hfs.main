@@ -35,6 +35,7 @@ async def cycle(led1, led2, led3, led4, freq):
 
 
 def sleep():
+    global counter, led_off_time, led_wait_measure_time, results, led_between_measure_time
     while(counter >= led_off_time):
         pins.LED1.off()
         pins.LED2.off()
