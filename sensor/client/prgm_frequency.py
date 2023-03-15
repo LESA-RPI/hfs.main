@@ -42,6 +42,7 @@ def sleep(curFreq):
         pins.LED2.off()
         pins.LED3.off()
         pins.LED4.off()
+        print("OFF")
         counter = 0
     #machine.lightsleep(led_wait_measure_time)
     sleep_between_measurements(led_wait_measure_time*curFreq)
@@ -64,8 +65,8 @@ def timerCallback(curFreq):
     LEDON = not LEDON
     counter = counter + 1 #increments counter used for determining when to stop measurements
     if counter == curFreq*led_off_time:
+        print("hi")
         event.set()
-
     print(counter)
 
 async def sleep_between_measurements(led_time):
@@ -77,7 +78,7 @@ async def run(server, pipe, data: int):
     print("[prgm_frequency] start")
     await sleep_between_measurements(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
-        curFreq = .1
+        curFreq = 1
         try:
             tim = Timer(1) #timer used to count when LED sleeps and takes measurements
             tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t:timerCallback(curFreq))
