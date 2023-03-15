@@ -61,7 +61,7 @@ def sleep():
     sleep_between_measurements(led_off_time)
     counter = 0 #maybe before deep sleep?
 
-def timerCallback():
+def timerCallback(self):
     global counter
     counter = counter + 1 #increments counter used for determining when to stop measurements
     print(counter)
