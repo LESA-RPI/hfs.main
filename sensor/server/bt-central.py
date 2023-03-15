@@ -202,7 +202,7 @@ async def inputLoop():
                 devices = []
                 log.info(DEVICES)
                 for device in DEVICES:
-                    log.info(device.client.__dict__)
+                    log.info(device.client)
                     devices.append(json.dumps(device.client.__dict__))
                 response = json.dumps({'code': 1, 'devices': devices})
                 log.info(f'< {response}')
