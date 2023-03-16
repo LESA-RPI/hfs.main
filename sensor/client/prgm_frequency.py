@@ -11,7 +11,7 @@ led_on_time = 10 #10 sec
 led_off_start_time = 10*60*1000 #10 min
 led_off_time = 10 #10 sec
 #led_off_time = 5*60*1000 #5 min
-led_between_measure_time = 800 #TT
+led_between_measure_time = 8 #TT
 led_wait_measure_time = 200
 samples = 5
 counter = 0
@@ -77,6 +77,7 @@ async def run(server, pipe, data: int):
     print("[prgm_frequency] start")
     await sleep_between_measurements(led_off_time) #sleeps for 5 minutes
     for curFreq in frequency_list: #all the frequencies in test
+        curFreq = 1
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t:timerCallback(curFreq))
         await uasyncio.sleep(led_on_time)
