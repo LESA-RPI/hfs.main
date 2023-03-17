@@ -1,6 +1,6 @@
 print("[INFO] Booting device...")
 
-CHECK_FOR_UPDATES = True
+CHECK_FOR_UPDATES = False
 LAN_SSID = "SLERC3"
 LAN_PASSWORD = "ganlightemittingdiode"
 GITHUB_URL = "https://github.com/LESA-RPI/hfs.main"
@@ -58,6 +58,6 @@ if (CHECK_FOR_UPDATES):
             machine.reset()
     except Exception as e:
         print("WARNING: Update failed ({})".format(e))
-sta_if.disconnect()
-sta_if.active(False)
+    sta_if.disconnect()
+    sta_if.active(False)
 #result = esp.esp_wifi_stop()

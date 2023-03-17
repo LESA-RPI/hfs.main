@@ -36,14 +36,18 @@ aioble.register_services(comm_service)
 async def isDisconnected(connection):
     try:
         await connection.disconnected(timeout_ms=_TIMEOUT_MS)
+        print(connection)
+        print(connection.__dict__)
         return True
-    except asyncio.TimeoutError:
+    except (asyncio.TimeoutError, asyncio.CancelledError):
         return False
 
 async def _start():
     # continuously advertise
+    print("test1")
     while True:
         # wait for the server to find us
+        print("test2")
         connection = await aioble.advertise(
                 250000, # advertising interval (ms)
                 name="ESP32 - HFS",
@@ -54,7 +58,9 @@ async def _start():
         while True:
             try: 
                 # wait for the server to tell us to do something
-                await comm_characteristic.written()
+                print("test3")
+                
+                await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
                 cmd, data = struct.unpack("HH", comm_characteristic.read())
                 print("cmd: ", comm_characteristic.read())
                 # req will either a command to run the current function, change it, or request a list of valid functions
@@ -69,9 +75,9 @@ async def _start():
                 #comm_characteristic.notify(connection)
 
             except asyncio.TimeoutError:
+                print("test4")
                 # check to see if we have been disconnected
-                connected = await isDisconnected(connection)
-                if not connected:
+                if await isDisconnected(connection):
                     break
 
 def start():

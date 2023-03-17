@@ -14,8 +14,8 @@ print(2)
 print(3)
 async def main():
     #await asyncio.gather(ble._start(), prgm_frequency.run(1, 1, 1))
-    #await asyncio.gather(ble._start())
-    pass
+    await asyncio.gather(ble._start())
+    
 #tests.startDistanceTest()
 #tests.startFarfieldTest()
 #tests.startFrequencyTest()
