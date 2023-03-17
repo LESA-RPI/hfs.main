@@ -32,8 +32,8 @@ class OnMessageEvent():
 
   def emit(self, msg_json):
     
-    for device_address in DEVICES.keys():
-        if device_address != msg_json['addr']: continue
+    for address, device in DEVICES.keys():
+        if address != msg_json['addr']: continue
         log.info(0)
         device.onMessage(msg)
         log.info(1)
@@ -192,7 +192,7 @@ def disconnect_handler(client):
 
 async def connect_to_device(client):
     if client.address in DEVICES: return
-    log.info(f'Connecting to {client}.')
+    log.info(f'Connected to {client}.')
     device = Device(client)
     DEVICES[client.address] = device
     device.main = device.keep_alive()
