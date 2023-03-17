@@ -65,6 +65,7 @@ class Device():
         client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
     
     def disconnect(self):
+        send(self.client, 127)
         if (self.task != None) and (not self.task.cancelled()):
             self.task.cancel()
         self.main.cancel()
