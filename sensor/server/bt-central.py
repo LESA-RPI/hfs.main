@@ -55,6 +55,7 @@ class Device():
         self.command = (0, 0)
         
     async def run(self, client, delay_min):
+        log.info(f"{client.address} is running program {self.command[0]} with parameter {self.command[1]} every {delay_min} minutes")
         while True:
             await asyncio.sleep(delay_min * 60)
             log.info(f"Running command {self.commend} on {client.address}")
@@ -77,6 +78,7 @@ class Device():
             self.send(client, (abs(cmd), data))
         elif cmd == 2: # update the command we run
             self.command = (abs(data), self.command[1])
+            log.info(f"{client.address} will now run program {self.command[0]}")
         elif cmd == 4: # update the delay in our run function
             if (self.task != None) and (not self.task.cancelled()):
                 self.task.cancel()
