@@ -31,8 +31,11 @@ class OnMessageEvent():
     self.listeners = {}
 
   def emit(self, msg_json):
-    for device_address in list(DEVICES.keys()):
+    log.info(0)
+    for device_address in DEVICES.keys():
+        log.info(1)
         if device_address != msg_json['addr']: continue
+        log.info(2)
         asyncio.create_task(device.onMessage(msg))
 
 # load the configurations
@@ -193,6 +196,7 @@ async def ainput():
             None, sys.stdin.readline)
 
 async def inputLoop():
+    global on_msg_event
     run = True
     while run:
         try:
