@@ -7,7 +7,7 @@ log_name = "/usr/local/src/hfs/public/public.log"
 log = logging.getLogger(__name__)
 log.setLevel(logging.DEBUG)
 
-handler = RotatingFileHandler(log_name, maxBytes= 5 * 1024, backupCount=1, encoding=None, delay=0)
+handler = RotatingFileHandler(log_name, maxBytes= 3 * 1024, backupCount=1, encoding=None, delay=0)
 handler.setFormatter(logging.Formatter('[%(asctime)s] %(message)s', '%d/%m/%Y %H:%M:%S'))
 
 log.addHandler(handler)
@@ -112,7 +112,7 @@ class OnMessageEvent():
         try:
             log.info(Device.__dict__)
             log.info(device.__dict__)
-            device.onMessage(msg)
+            device.onMessage(msg_json)
         except Exception as err:
             log.error(err)
         log.info(1)
