@@ -33,15 +33,6 @@ comm_characteristic = aioble.Characteristic(
 aioble.register_services(comm_service)
 
 
-async def isDisconnected(connection):
-    try:
-        await connection.disconnected(timeout_ms=_TIMEOUT_MS)
-        print(connection)
-        print(connection.__dict__)
-        return True
-    except (asyncio.TimeoutError, asyncio.CancelledError):
-        return False
-
 async def _start():
     # continuously advertise
     print("test1")
@@ -77,7 +68,7 @@ async def _start():
             except asyncio.TimeoutError:
                 print("test4")
                 # check to see if we have been disconnected
-                if await isDisconnected(connection):
+                if not connection.is_connected():
                     break
 
 def start():
