@@ -183,9 +183,12 @@ async def scan(timeout=5.0):
         
 def disconnect_handler(client):
     log.info(f"Disconnected from {client.address}")
+    log.info(DEVICES)
     device = DEVICES[client.address]
     DEVICES.pop(client.address)
+    log.info(DEVICES)
     device.disconnect()
+    log.info('- finished disconnecting')
 
 async def connect_to_device(client):
     if client.address in DEVICES: return
