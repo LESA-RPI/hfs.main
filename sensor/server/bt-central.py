@@ -198,7 +198,7 @@ async def scan(timeout=5.0):
         log.error(exception)
         return []
         
-def disconnect_handler(client):
+async def disconnect_handler(client):
     log.info(f"Disconnected from {client.address}")
     log.info(DEVICES)
     device = DEVICES[client.address]
