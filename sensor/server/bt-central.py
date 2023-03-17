@@ -30,11 +30,13 @@ class OnMessageEvent():
   def __init__(self):
     self.listeners = {}
 
-  async def emit(self, msg_json):
-    log.info(0)
+  def emit(self, msg_json):
+    
     for device_address in DEVICES.keys():
         if device_address != msg_json['addr']: continue
-        await asyncio.create_task(device.onMessage(msg))
+        log.info(0)
+        device.onMessage(msg)
+        log.info(1)
 
 # load the configurations
 _CONFIG = None
@@ -66,9 +68,12 @@ class Device():
             self.task.cancel()
         self.main.cancel()
     
-    async def onMessage(self, msg):
+    def onMessage(self, msg):
+        console.log(10)
         self.msg = msg
+        console.log(11)
         self.event.set()
+        console.log(12)
     
     def handler(self, client, cmd, data):
         if cmd < 0: # send the command directly to the controller
@@ -90,8 +95,11 @@ class Device():
             try:
                 await client.start_notify(_COMM_RW_UUID, notification_handler)
                 while True:
+                    console.log(20)
                     await self.event.wait() # wait for us to recieve a message
+                    console.log(21)
                     self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
+                    console.log(22)
                     self.event.clear() # reset the message flag
 
             except (BleakError, KeyboardInterrupt):
@@ -211,7 +219,7 @@ async def inputLoop():
                 print(response)
             else:                
                 try:
-                    await on_msg_event.emit(msg)
+                    on_msg_event.emit(msg)
                     log.info("< {'code': 1}")
                     print(json.dumps({'code': 1}))
                 except Exception as error:
