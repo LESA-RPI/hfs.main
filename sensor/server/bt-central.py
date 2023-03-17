@@ -59,11 +59,8 @@ class Device():
         self.main.cancel()
     
     def onMessage(self, msg):
-        console.log(10)
         self.msg = msg
-        console.log(11)
         self.event.set()
-        console.log(12)
     
     def handler(self, client, cmd, data):
         if cmd < 0: # send the command directly to the controller
@@ -85,11 +82,11 @@ class Device():
             try:
                 await client.start_notify(_COMM_RW_UUID, notification_handler)
                 while True:
-                    console.log(20)
+                    log.info(20)
                     await self.event.wait() # wait for us to recieve a message
-                    console.log(21)
+                    log.info(21)
                     self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
-                    console.log(22)
+                    log.info(22)
                     self.event.clear() # reset the message flag
 
             except (BleakError, KeyboardInterrupt):
@@ -102,20 +99,9 @@ class OnMessageEvent():
     self.listeners = {}
 
   def emit(self, msg_json):
-    
     for address, device in DEVICES.items():
         if address != msg_json['addr']: continue
-        log.info(0)
-        log.info(address)
-        log.info(device)
-        
-        try:
-            log.info(Device.__dict__)
-            log.info(device.__dict__)
-            device.onMessage(msg_json)
-        except Exception as err:
-            log.error(err)
-        log.info(1)
+        device.onMessage(msg_json)
         
         
 # initialize the addresses and uuids
