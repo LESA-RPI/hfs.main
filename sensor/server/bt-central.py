@@ -38,7 +38,10 @@ class OnMessageEvent():
         log.info(address)
         log.info(device)
         log.info(device.__dict___)
-        device.onMessage(msg)
+        try:
+            device.onMessage(msg)
+        except Exception as err:
+            log.error(err)
         log.info(1)
 
 # load the configurations
