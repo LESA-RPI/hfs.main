@@ -35,25 +35,23 @@ aioble.register_services(comm_service)
 
 async def _start():
     # continuously advertise
-    print("test1")
     while True:
         # wait for the server to find us
-        print("test2")
+        print("[INFO] Waiting for incoming connection")
         connection = await aioble.advertise(
                 250000, # advertising interval (ms)
                 name="ESP32 - HFS",
                 services=[_COMM_UUID],
         )
-        print(f"Connection from {connection.device}")
+        print(f"[INFO] Connection from {connection.device}")
 
         while True:
             try: 
                 # wait for the server to tell us to do something
-                print("test3")
                 
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
                 cmd, data = struct.unpack("HH", comm_characteristic.read())
-                print("cmd: ", comm_characteristic.read())
+                print("[INFO] Recieved command ", cmd, "with parameter", data)
                 # req will either a command to run the current function, change it, or request a list of valid functions
                 if cmd == _RUN:
                     FUNCTION(connection, comm_characteristic, data)
@@ -66,7 +64,6 @@ async def _start():
                 #comm_characteristic.notify(connection)
 
             except asyncio.TimeoutError:
-                print("test4")
                 # check to see if we have been disconnected
                 if not connection.is_connected():
                     break
