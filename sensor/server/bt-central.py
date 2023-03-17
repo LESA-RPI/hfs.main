@@ -55,11 +55,15 @@ class Device():
         self.command = (0, 0)
         
     async def run(self, client, delay_min):
+        self.send(client, self.command)
         log.info(f"{client.address} is running program {self.command[0]} with parameter {self.command[1]} every {delay_min} minutes")
-        while True:
-            await asyncio.sleep(delay_min * 60)
-            log.info(f"Running command {self.commend} on {client.address}")
-            self.send(client, self.command)
+        try:
+            while True:
+                await asyncio.sleep(delay_min * 60)
+                log.info(f"Running command {self.commend} on {client.address}")
+                self.send(client, self.command)
+        except Exception as error:
+            log.warning(f"Current program execution for {client.address} has been cancelled due to the following error: '{error}'")
     
     def send(client, command):
         client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
