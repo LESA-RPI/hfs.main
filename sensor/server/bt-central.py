@@ -3,7 +3,7 @@ from logging.handlers import RotatingFileHandler
 # Load the logfile
 log_name = "/usr/local/src/hfs/public/public.log"
 #log_name = "./public/public.log"
-
+#use ArpaE (ArpaE2019)
 log = logging.getLogger(__name__)
 log.setLevel(logging.DEBUG)
 
@@ -26,7 +26,7 @@ from datetime import datetime
 import dynamic_graphs as dgraphing
 import sys
 
-
+import pickle
 
 # load the configurations
 _CONFIG = None
@@ -44,36 +44,59 @@ _COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
 
 _SERVICE_UUIDS = [_COMM_UUID]
 
+class DeviceConfig():
+    def __init__(self, address, name):
+        self.command = 0
+        self.parameter = 0
+        self.interval = 30 # min
+        self.name = name
+        self.address = address
+
 class Device():
-    def __init__(self, client):
-        self.client = client
-        self.address = self.client.address
+    def __init__(self, client_info):
+        self.client_info = client_info
+        self.address = self.client_info.address
         self.event = asyncio.Event()
         self.msg = None
         self.task = None
         self.main = None
-        self.command = (0, 0)
+        self.config = self.load_config(defaultname=self.client_info.name)
+    
+    def command(self):
+        return (self.config.command, self.config.parameter)
+    
+    def name(self):
+        return self.config.name + " (" + self.address + ")"
+    
+    def save_config(self):
+        with open(self.address.replace(':', '') + '.pickle', 'wb', protocol=pickle.HIGHEST_PROTOCOL) as config_file:
+            pickle.dump(self.config, config_file)
         
-    async def run(self, client, delay_min):
+    def load_config(self, defaultname=""):
+        try:
+            with open(self.address.replace(':', '') + '.pickle', 'rb') as config_file:
+                return pickle.load(config_file)
+        except (OSError, IOError):
+            return DeviceConfig(self.address, defaultname)
+        
+    async def run(self, client):
         log.info('runner')
         try:
-            await self.send(client, self.command)
-            log.info(f"{client.address} is running program {self.command[0]} with parameter {self.command[1]} every {delay_min} minutes")
+            log.info(f"{self.name()} is running program {self.config.command} with parameter {self.config.parameter} every {self.config.interval} minutes")
             while True:
-                await asyncio.sleep(delay_min * 60)
-                log.info(f"Running command {self.command} on {client.address}")
-                await self.send(client, self.command)
+                await asyncio.sleep(self.config.interval * 60)
+                log.info(f"Running command {self.config.command} on {self.name()}")
+                await self.send(client, self.command())
         except Exception as error:
-            log.warning(f"Current program execution for {client.address} has been cancelled due to the following error: '{error}'")
+            log.warning(f"Current program execution for {self.name()} has been cancelled due to the following error: '{error}'")
     
     async def send(self, client, command):
         try:
             await client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
         except Exception as error:
-            log.error(f"Sending command {command} to {client.address} failed due ot the following error: {error}")
+            log.error(f"Sending command {command} to {self.name()} failed due ot the following error: {error}")
         
     async def disconnect(self):
-        await send(self.client, 127)
         if (self.task != None) and (not self.task.cancelled()):
             self.task.cancel()
         self.main.cancel()
@@ -86,12 +109,20 @@ class Device():
         if cmd < 0: # send the command directly to the controller
             await self.send(client, (abs(cmd), data))
         elif cmd == 2: # update the command we run
-            self.command = (abs(data), self.command[1])
-            log.info(f"{client.address} will now run program {self.command[0]}")
+            #self.command = (abs(data), self.command[1])
+            self.config.command = abs(data)
+            self.save_config()
+            log.info(f"{self.name()} will now run program {self.config.command}")
         elif cmd == 4: # update the delay in our run function
             if (self.task != None) and (not self.task.cancelled()):
                 self.task.cancel()
-            self.task = asyncio.create_task(self.run(client, data))
+            self.config.interval = data
+            self.save_config()
+            self.task = asyncio.create_task(self.run(client))
+        elif cmd == 5: # update the name of the device
+            self.config.name = data
+            self.save_config()
+            log.info(f"{self.name()} will now run program {self.config.command}")
         else:
             log.warning(f'Unknown command {self.msg["cmd"]}')
                         
@@ -99,24 +130,16 @@ class Device():
         async with BleakClient(
             self.client, timeout=5.0, disconnected_callback=disconnect_handler
         ) as client:
-            log.info(f"Connected to {client.address}")
+            log.info(f"Connected to {self.name()}")
             try:
-                self.task = asyncio.create_task(self.run(client, 1))
-                #self.task = asyncio.create_task(self.run(client, 30))
+                self.task = asyncio.create_task(self.run(client))
                 await client.start_notify(_COMM_RW_UUID, notification_handler)
-                
                 while True:
-                    log.info(20)
                     await self.event.wait() # wait for us to recieve a message
-                    log.info(21)
                     await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
-                    log.info(22)
                     self.event.clear() # reset the message flag
-
             except (BleakError, KeyboardInterrupt):
-                log.info(f"{client.address} disconnected")
-                pass
-    
+                log.info(f"{self.name()} disconnected")    
 
 class OnMessageEvent():
   def __init__(self):
@@ -232,7 +255,7 @@ async def inputLoop():
                 log.info(DEVICES)
                 for device in DEVICES.values():
                     log.info(device.client)
-                    devices.append(json.dumps(device.client.__dict__))
+                    devices.append(json.dumps(device.config.__dict__))
                 response = json.dumps({'code': 1, 'devices': devices})
                 log.info(f'< {response}')
                 print(response)

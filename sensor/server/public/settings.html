@@ -47,12 +47,11 @@
 			
 			
 		}
-		function updateDevice() {
+		function updateDevice(cmd, value_id) {
 			let address = document.getElementById('option-sensors').value;
-			let program = document.getElementById('option-program').value;
+			let data = document.getElementById(value_id).value;
 			if (address == null) { return; }
-			// update the program the device is running
-			sendCmdOverBLE(address, 2, program);
+			sendCmdOverBLE(address, cmd, data);
 		}
 		getDevices();
 	</script>
@@ -67,15 +66,14 @@
 			<tr>
 				<td>
 					<label for="option-sensors" style="padding-right:20px">Device</label>
-					<select name="option-sensors" id="option-sensors" onclick="getDevices()">
-					
-					</select>
+					<select name="option-sensors" id="option-sensors" onclick="getDevices()"></select>
+				</td>
 			</tr>
 
 			<tr>
 				<td>
 					<label for="option-program" style="padding-right:20px">Program</label>
-					<select name="option-program" id="option-program">
+					<select name="option-program" id="option-program" onchange="updateDevice(2, 'option-program')">
 						<option value=10>default (v1.0)</option>
 						<option value=11>distance testing</option>
 						<option value=12>farfield testing</option>
@@ -85,10 +83,11 @@
 					</select>
 				</td>
 			</tr>
-
+			
 			<tr>
 				<td>
-					<button onclick="updateDevice()" type="button">Push Updates to Device</button>
+
+
 				</td>
 			</tr>
 		</thead>
