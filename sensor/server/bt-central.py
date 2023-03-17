@@ -189,10 +189,12 @@ def disconnect_handler(client):
 
 async def connect_to_device(client):
     if client.address in DEVICES: return
-    log.info(f'Connected to {client}.')
+    log.info(f'Connecting to {client}.')
     device = Device(client)
     DEVICES[client.address] = device
-    device.main = device.keep_alive()
+    device.main = asyncio.create_task(device.keep_alive())
+    await device.main
+    log.warning(f"{client.address} is unresponsive!")
 
 async def ainput():
     return await asyncio.get_event_loop().run_in_executor(
