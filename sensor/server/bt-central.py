@@ -32,7 +32,7 @@ class OnMessageEvent():
 
   def emit(self, msg_json):
     
-    for address, device in DEVICES.keys():
+    for address, device in DEVICES.items():
         if address != msg_json['addr']: continue
         log.info(0)
         device.onMessage(msg)
