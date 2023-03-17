@@ -110,8 +110,8 @@ class OnMessageEvent():
         log.info(device)
         
         try:
-            log.info(Device.__dict___)
-            log.info(device.__dict___)
+            log.info(Device.__dict__)
+            log.info(device.__dict__)
             device.onMessage(msg)
         except Exception as err:
             log.error(err)
