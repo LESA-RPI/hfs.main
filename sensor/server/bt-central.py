@@ -35,6 +35,15 @@ _AVERAGE_FLUX = 1
 # global device list
 DEVICES = dict()
 
+# initialize the addresses and uuids
+_ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
+_HANDLES = set()
+
+_COMM_UUID = "26c00001-ece0-4f7a-b663-223de05387cc"
+_COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
+
+_SERVICE_UUIDS = [_COMM_UUID]
+
 class Device():
     def __init__(self, client):
         self.client = client
@@ -48,6 +57,7 @@ class Device():
     async def run(self, client, delay_min):
         while True:
             await asyncio.sleep(delay_min * 60)
+            log.info(f"Running command {self.commend} on {client.address}")
             self.send(client, self.command)
     
     def send(client, command):
@@ -80,7 +90,10 @@ class Device():
         ) as client:
             log.info(f"Connected to {client.address}")
             try:
+                self.task = asyncio.create_task(self.run(client, 1))
+                #self.task = asyncio.create_task(self.run(client, 30))
                 await client.start_notify(_COMM_RW_UUID, notification_handler)
+                
                 while True:
                     log.info(20)
                     await self.event.wait() # wait for us to recieve a message
@@ -104,14 +117,7 @@ class OnMessageEvent():
         device.onMessage(msg_json)
         
         
-# initialize the addresses and uuids
-_ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
-_HANDLES = set()
 
-_COMM_UUID = "26c00001-ece0-4f7a-b663-223de05387cc"
-_COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
-
-_SERVICE_UUIDS = [_COMM_UUID]
 
 def load_config(path="/usr/local/src/hfs/config.json"):
     global _CONFIG, _AVERAGE_FLUX
