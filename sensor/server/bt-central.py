@@ -30,13 +30,11 @@ class OnMessageEvent():
   def __init__(self):
     self.listeners = {}
 
-  def emit(self, msg_json):
+  async def emit(self, msg_json):
     log.info(0)
     for device_address in DEVICES.keys():
-        log.info(1)
         if device_address != msg_json['addr']: continue
-        log.info(2)
-        asyncio.create_task(device.onMessage(msg))
+        await asyncio.create_task(device.onMessage(msg))
 
 # load the configurations
 _CONFIG = None
@@ -213,7 +211,7 @@ async def inputLoop():
                 print(response)
             else:                
                 try:
-                    on_msg_event.emit(msg)
+                    await on_msg_event.emit(msg)
                     log.info("< {'code': 1}")
                     print(json.dumps({'code': 1}))
                 except Exception as error:
