@@ -209,7 +209,7 @@ async def disconnect_handler(client):
 
 async def connect_to_device(client):
     if client.address in DEVICES: return
-    log.info(f'Connecting to {client}.')
+    log.info(f'Connecting to {client}')
     device = Device(client)
     DEVICES[client.address] = device
     device.main = asyncio.create_task(device.keep_alive())
