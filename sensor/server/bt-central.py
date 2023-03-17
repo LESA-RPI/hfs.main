@@ -35,6 +35,9 @@ class OnMessageEvent():
     for address, device in DEVICES.items():
         if address != msg_json['addr']: continue
         log.info(0)
+        log.info(address)
+        log.info(device)
+        log.info(device.__dict___)
         device.onMessage(msg)
         log.info(1)
 
