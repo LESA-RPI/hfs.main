@@ -243,7 +243,8 @@ async def bleLoop():
             asyncio.gather(*(connect_to_device(dev) for dev in devices))
             log.info(devices)
             log.info("Searching for devices again in 5 minutes..")
-            await asyncio.sleep(60*5)
+            # await asyncio.sleep(60*5)
+            await asyncio.sleep(10)
         else:
             log.info("No devices with valid services found. Retrying in 10 seconds..")
             await asyncio.sleep(10)
