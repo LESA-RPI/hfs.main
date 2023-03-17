@@ -66,7 +66,7 @@ class Device():
         except Exception as error:
             log.warning(f"Current program execution for {client.address} has been cancelled due to the following error: '{error}'")
     
-    def send(client, command):
+    def send(self, client, command):
         try:
             client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
         except Exception as error:
