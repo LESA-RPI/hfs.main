@@ -61,19 +61,19 @@ class Device():
             log.info(f"{client.address} is running program {self.command[0]} with parameter {self.command[1]} every {delay_min} minutes")
             while True:
                 await asyncio.sleep(delay_min * 60)
-                log.info(f"Running command {self.commend} on {client.address}")
-                self.send(client, self.command)
+                log.info(f"Running command {self.command} on {client.address}")
+                await self.send(client, self.command)
         except Exception as error:
             log.warning(f"Current program execution for {client.address} has been cancelled due to the following error: '{error}'")
     
-    def send(self, client, command):
+    async def send(self, client, command):
         try:
-            client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
+            await client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
         except Exception as error:
             log.error(f"Sending command {command} to {client.address} failed due ot the following error: {error}")
         
-    def disconnect(self):
-        send(self.client, 127)
+    async def disconnect(self):
+        await send(self.client, 127)
         if (self.task != None) and (not self.task.cancelled()):
             self.task.cancel()
         self.main.cancel()
@@ -82,9 +82,9 @@ class Device():
         self.msg = msg
         self.event.set()
     
-    def handler(self, client, cmd, data):
+    async def handler(self, client, cmd, data):
         if cmd < 0: # send the command directly to the controller
-            self.send(client, (abs(cmd), data))
+            await self.send(client, (abs(cmd), data))
         elif cmd == 2: # update the command we run
             self.command = (abs(data), self.command[1])
             log.info(f"{client.address} will now run program {self.command[0]}")
@@ -109,7 +109,7 @@ class Device():
                     log.info(20)
                     await self.event.wait() # wait for us to recieve a message
                     log.info(21)
-                    self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
+                    await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
                     log.info(22)
                     self.event.clear() # reset the message flag
 
@@ -204,7 +204,7 @@ def disconnect_handler(client):
     device = DEVICES[client.address]
     DEVICES.pop(client.address)
     log.info(DEVICES)
-    device.disconnect()
+    await device.disconnect()
     log.info('- finished disconnecting')
 
 async def connect_to_device(client):
