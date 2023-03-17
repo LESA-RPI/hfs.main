@@ -66,8 +66,11 @@ class Device():
             log.warning(f"Current program execution for {client.address} has been cancelled due to the following error: '{error}'")
     
     def send(client, command):
-        client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
-    
+        try:
+            client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
+        except Exception as error:
+            log.error(f"Sending command {command} to {client.address} failed due ot the following error: {error}")
+        
     def disconnect(self):
         send(self.client, 127)
         if (self.task != None) and (not self.task.cancelled()):
