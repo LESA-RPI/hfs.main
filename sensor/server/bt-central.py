@@ -55,9 +55,10 @@ class Device():
         self.command = (0, 0)
         
     async def run(self, client, delay_min):
-        self.send(client, self.command)
-        log.info(f"{client.address} is running program {self.command[0]} with parameter {self.command[1]} every {delay_min} minutes")
+        log.info('runner')
         try:
+            self.send(client, self.command)
+            log.info(f"{client.address} is running program {self.command[0]} with parameter {self.command[1]} every {delay_min} minutes")
             while True:
                 await asyncio.sleep(delay_min * 60)
                 log.info(f"Running command {self.commend} on {client.address}")
