@@ -26,23 +26,7 @@ from datetime import datetime
 import dynamic_graphs as dgraphing
 import sys
 
-class OnMessageEvent():
-  def __init__(self):
-    self.listeners = {}
 
-  def emit(self, msg_json):
-    
-    for address, device in DEVICES.items():
-        if address != msg_json['addr']: continue
-        log.info(0)
-        log.info(address)
-        log.info(device)
-        log.info(device.__dict___)
-        try:
-            device.onMessage(msg)
-        except Exception as err:
-            log.error(err)
-        log.info(1)
 
 # load the configurations
 _CONFIG = None
@@ -113,6 +97,27 @@ class Device():
                 pass
     
 
+class OnMessageEvent():
+  def __init__(self):
+    self.listeners = {}
+
+  def emit(self, msg_json):
+    
+    for address, device in DEVICES.items():
+        if address != msg_json['addr']: continue
+        log.info(0)
+        log.info(address)
+        log.info(device)
+        
+        try:
+            log.info(Device.__dict___)
+            log.info(device.__dict___)
+            device.onMessage(msg)
+        except Exception as err:
+            log.error(err)
+        log.info(1)
+        
+        
 # initialize the addresses and uuids
 _ADDRESSES = {"A8:03:2A:6A:36:E6", "B8:27:EB:F1:28:DD"}
 _HANDLES = set()
