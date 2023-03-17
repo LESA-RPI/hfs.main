@@ -26,10 +26,16 @@ def get(server, pipe):
     pipe.notify(server)
     print("[bt_get] stop")
     
-
 def setDefault(server, pipe, data):
     print("[bt_setdefault] start")
     DEFAULT = PROGRAMS[int(data)][0]
     pipe.notify(server)
     print("[bt_setdefault] stop")
-    
+
+def reset(server, pipe, data):
+    print("[bt_setdefault] start")
+    import machine
+    machine.reset()
+    pipe.notify(server)
+    print("[bt_setdefault] stop")
+

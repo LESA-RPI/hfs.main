@@ -54,7 +54,7 @@ async def _start():
         while True:
             try: 
                 # wait for the server to tell us to do something
-                await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
+                await comm_characteristic.written()
                 cmd, data = struct.unpack("HH", comm_characteristic.read())
                 print("cmd: ", comm_characteristic.read())
                 # req will either a command to run the current function, change it, or request a list of valid functions
