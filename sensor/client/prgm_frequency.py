@@ -34,7 +34,6 @@ def led_blinking():
         print("off")
 
 async def measurements():
-    await sleep_between_measurements(led_wait_measure_time)
     for i in range(0, samples):
         results.append(sensor.readPhotodiode())
         print("Results ", results[i])
