@@ -8,7 +8,7 @@
 	<meta name="description" content="" />
 	<script>
 		var DEVICES = [];
-		var CURRENT_DEVICE = 0;
+		var CURRENT_DEVICE = -1;
 		
 		function sendCmdOverBLE(device_addr, cmd, data) {
 			fetch('http://' + location.host + '/api/ble', {
@@ -25,19 +25,31 @@
 		}
 		
 		function updatePageSettings() {
-			if (CURRENT_DEVICE < 0) { return; }
 			let devices_dropdown = document.getElementById('option-sensors');
 			CURRENT_DEVICE = devices_dropdown.selectedIndex;
+			
+			let interval = document.getElementById('delay-min');
+			let command = document.getElementById('option-program');
+			let name = document.getElementById('sensor-name');
+			
+			if (CURRENT_DEVICE < 0) { 
+				command.disabled = true;
+				interval.disabled = true;
+				name.disabled = true;
+				return; 
+			} else {
+				command.disabled = false;
+				name.disabled = false;
+			}
+			
 			device = DEVICES[CURRENT_DEVICE];
 			console.log(DEVICES)
 			console.log(CURRENT_DEVICE)
 			// todo: button to immidiately run the program
 			
 			// update things
-			document.getElementById('option-program').value = device['command'];
-			let interval = document.getElementById('delay-min');
-			
-			document.getElementById('option-sensors').options[CURRENT_DEVICE].innerHTML = device['name'];
+			command.value = device['command'];
+			sensors.options[CURRENT_DEVICE].innerHTML = device['name'];
 			
 			// only the default program has an interval
 			if (device['command'] != 10) {
@@ -65,8 +77,10 @@
 					let option = document.createElement('option');
 					
 					DEVICES.forEach(function (device) {
-						let device_json = JSON.parse(device)
-						DEVICES.append(device_json)
+						let device_json = JSON.parse(device);
+						DEVICES.append(device_json);
+						console.log(device_json);
+						console.log(DEVICES);
 						option.text = device_json['name'];
 						option.value = device_json['address'];
 						options.push(option.outerHTML);
