@@ -206,7 +206,7 @@ def notification_handler(sender, data):
     dgraphing.save(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
     
 #load_config()
-notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
+#notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
 
 
 
