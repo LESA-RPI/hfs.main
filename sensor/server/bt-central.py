@@ -129,7 +129,7 @@ class Device():
     async def keep_alive(self): 
         log.info("uhhh")
         async with BleakClient(
-            self.client, timeout=5.0, disconnected_callback=disconnect_handler
+            self.client_info, timeout=5.0, disconnected_callback=disconnect_handler
         ) as client:
             log.info(f"Connected to {self.name()}")
             try:
