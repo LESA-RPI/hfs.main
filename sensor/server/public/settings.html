@@ -81,7 +81,7 @@
 					
 					data.devices.forEach(function (device) {
 						let device_json = JSON.parse(device);
-						DEVICES.append(device_json);
+						DEVICES.push(device_json);
 						console.log(device_json);
 						console.log(DEVICES);
 						option.text = device_json['name'];
