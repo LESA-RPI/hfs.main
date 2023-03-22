@@ -31,15 +31,18 @@
 			let interval = document.getElementById('delay-min');
 			let command = document.getElementById('option-program');
 			let name = document.getElementById('sensor-name');
+			let run_button = document.getElementById('run-btn');
 			
 			if (CURRENT_DEVICE < 0) { 
 				command.disabled = true;
 				interval.disabled = true;
 				name.disabled = true;
+				run_button.disabled = true;
 				return; 
 			} else {
 				command.disabled = false;
 				name.disabled = false;
+				run_button.disabled = false;
 			}
 			
 			device = DEVICES[CURRENT_DEVICE];
@@ -76,7 +79,7 @@
 					let options = [];
 					let option = document.createElement('option');
 					
-					DEVICES.forEach(function (device) {
+					data.devices.forEach(function (device) {
 						let device_json = JSON.parse(device);
 						DEVICES.append(device_json);
 						console.log(device_json);
@@ -148,7 +151,7 @@
 			
 			<tr>
 				<td>
-					<button onclick="updateDevice(-getElementById('option-program').value, 'option-program', 'Running selected program on device!')" type="button">Run Program</button>
+					<button id="run-btn" onclick="updateDevice(-getElementById('option-program').value, 'option-program', 'Running selected program on device!')" type="button">Run Program</button>
 				</td>
 			</tr>
 				
