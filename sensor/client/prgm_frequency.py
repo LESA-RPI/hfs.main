@@ -63,7 +63,7 @@ def timerCallback(curFreq):
     led_blinking()
     LEDON = not LEDON
     if counter == curFreq*0.6:
-        measurements()
+        uasyncio.create_task(measurements())
     counter = counter + 1 #increments counter used for determining when to stop measurements
     print(counter)
 
