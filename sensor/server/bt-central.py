@@ -195,11 +195,12 @@ def notification_handler(sender, data):
     dt_timestamp = datetime.fromtimestamp(timestamp)
     f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
     chlf_normal = chlf_raw / _CONFIG["constants"]["max_raw_value"]
-    # update the local visuals
-    dgraphing.update(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
     # update the database
     cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
     subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"])
+    # update the local visuals
+    dgraphing.update(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
+    dgraphing.save(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
     
 #load_config()
 notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))

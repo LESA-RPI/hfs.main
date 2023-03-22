@@ -51,7 +51,7 @@ class RTGraph:
         
         self._setupFig()
         
-        plt.show()
+        #plt.show()
 
         
     def _setupFig(self):
