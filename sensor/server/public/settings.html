@@ -25,6 +25,7 @@
 		}
 		
 		function updatePageSettings() {
+			if (CURRENT_DEVICE < 0) { return; }
 			let devices_dropdown = document.getElementById('option-sensors');
 			CURRENT_DEVICE = devices_dropdown.selectedIndex;
 			device = DEVICES[CURRENT_DEVICE];
@@ -62,7 +63,7 @@
 					devices_dropdown.innerHTML = ''
 					let options = [];
 					let option = document.createElement('option');
-					console.log(data);
+					
 					DEVICES.forEach(function (device) {
 						let device_json = JSON.parse(device)
 						DEVICES.append(device_json)
@@ -70,6 +71,7 @@
 						option.value = device_json['address'];
 						options.push(option.outerHTML);
 					});
+					console.log(data);
 					devices_dropdown.insertAdjacentHTML('beforeEnd', options.join('\n'));
 					// update the other dropdown values with what the device settings currently display
 					updatePageSettings();
