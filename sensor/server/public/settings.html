@@ -79,6 +79,7 @@
 			if (address == null) { return; }
 			sendCmdOverBLE(address, cmd, data);
 			window.alert(msg);
+			updatePageSettings();
 		}
 		getDevices();
 	</script>
@@ -115,6 +116,12 @@
 						<option value=14>frequency testing</option>
 						<option value=15>noise testing</option>
 					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<button onclick="updateDevice(-getElementById('option-program').value, 'option-program', 'Running selected program on device!')" type="button">Run Program</button>
 				</td>
 			</tr>
 				
