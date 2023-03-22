@@ -18,11 +18,13 @@ const PY_OPTIONS  = {
 	mode: 'json'
 }
 var shell = new pyshell.PythonShell(CONFIG['bt-path'], PY_OPTIONS)
+	.on('stderr', function (stderr) {console.log('ERROR! ${stderr}')})
+	.on('error', function (error) {console.log('ERROR! ${error}')})
 	.on('message', function (message) {
 	  // received a message sent from the Python script (a simple "print" statement)
 	  console.log(message);
 	})
-	.on('exit', function (code) {
+	.on('close', function (code) {
 	  console.log('The exit code was: ' + code);
 	  console.log('finished');	  
 	});
