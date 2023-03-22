@@ -18,5 +18,8 @@ def readSonar():
 def readAndSend(server, pipe):
     distance, chlf = readSonar(), readPhotodiode()
     print(f"Writing '{distance}', {chlf} to peripheral...")
-    pipe.write(pack(distance, chlf))
-    pipe.notify(server)
+    try:
+        pipe.write(pack(distance, chlf))
+        pipe.notify(server)
+    except Exception as error:
+        print(f"[ERROR] Write to pipe failed because of {error}") 

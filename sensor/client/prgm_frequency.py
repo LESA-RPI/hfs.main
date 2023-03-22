@@ -15,7 +15,6 @@ led_between_measure_time = 8 #TT
 led_wait_measure_time = 200
 samples = 5
 counter = 0
-results = []
 average_result = 0
 LEDON = True
 
@@ -33,10 +32,9 @@ def led_blinking():
         pins.LED4.off()
         print("off")
 
-async def measurements():
+async def measurements(server, pipe):
     for i in range(0, samples):
-        results.append(sensor.readPhotodiode())
-        print("Results ", results[i])
+        sensor.readAndSend(server, pipe)
         #total_result = total_result + results[i]
         #machine.lightsleep(led_between_measure_time)
         await sleep_between_measurements(led_between_measure_time)
@@ -58,12 +56,12 @@ async def sleep(curFreq):
     await sleep_between_measurements(led_off_time)
     counter = 0 #maybe before deep sleep?
 
-def timerCallback(curFreq):
+def timerCallback(curFreq, server, pipe):
     global counter, LEDON
     led_blinking()
     LEDON = not LEDON
     if counter == round(curFreq*0.6):
-        uasyncio.create_task(measurements())
+        uasyncio.create_task(measurements(server, pipe))
     counter = counter + 1 #increments counter used for determining when to stop measurements
     print(counter)
 
@@ -78,7 +76,7 @@ async def run(server, pipe, data: int):
     for curFreq in frequency_list: #all the frequencies in test
         curFreq = 1
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
-        tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t:timerCallback(curFreq))
+        tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t:timerCallback(curFreq, server, pipe))
         await uasyncio.sleep(led_on_time)
         tim.deinit()
         print(counter)
