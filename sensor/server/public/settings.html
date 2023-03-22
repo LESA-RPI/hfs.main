@@ -57,7 +57,7 @@
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					DEVICES = data.devices;
+					DEVICES = [];
 					let devices_dropdown = document.getElementById('option-sensors');
 					devices_dropdown.innerHTML = ''
 					let options = [];
@@ -65,6 +65,7 @@
 					console.log(data);
 					DEVICES.forEach(function (device) {
 						let device_json = JSON.parse(device)
+						DEVICES.append(device_json)
 						option.text = device_json['name'];
 						option.value = device_json['address'];
 						options.push(option.outerHTML);
