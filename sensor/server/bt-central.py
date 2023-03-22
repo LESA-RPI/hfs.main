@@ -255,6 +255,7 @@ async def inputLoop():
                 log.info(DEVICES)
                 for device in DEVICES.values():
                     log.info(device.client)
+                    log.info(device.__dict__)
                     log.info(device.config)
                     log.info(device.config.__dict__)
                     devices.append(json.dumps(device.config.__dict__))
