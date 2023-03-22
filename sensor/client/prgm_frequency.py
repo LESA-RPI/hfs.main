@@ -66,7 +66,7 @@ async def timerCallback(curFreq, server, pipe):
     print(counter)
     if counter-1 == round(curFreq*0.6):
         print("calling measurements")
-        await uasyncio.create_task(measurements(server, pipe))
+        await measurements(server, pipe)
     
 
 async def sleep_between_measurements(led_time):
@@ -80,13 +80,12 @@ async def run(server, pipe, data: int):
     loops = 0
     for curFreq in frequency_list: #all the frequencies in test
         print("LOOPS: ", loops)
-        loops = loops +1
+        loops = loops+1
         curFreq = 1
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t:timerCallback(curFreq, server, pipe))
         await uasyncio.sleep(led_on_time)
         tim.deinit()
-        print(counter)
         await sleep(curFreq) #sleeps for 10 minutes
     #pipe.notify(server)
     print("[prgm_frequency] stop")
