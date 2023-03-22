@@ -219,7 +219,7 @@ def notification_handler(sender, data):
     except Exception as error:
         log.log.error(f"Failed to update visuals because of {error}")
     
-#load_config()
+load_config()
 notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
 
 
