@@ -46,7 +46,7 @@ _SERVICE_UUIDS = [_COMM_UUID]
 
 class DeviceConfig():
     def __init__(self, address, name):
-        self.command = 0
+        self.command = 10
         self.parameter = 0
         self.interval = 30 # min
         self.name = name
@@ -252,14 +252,7 @@ async def inputLoop():
             log.info(f'> {msg}')
             if msg['cmd'] == 3: # wants a list of returned devices
                 devices = []
-                log.info(DEVICES)
                 for device in DEVICES.values():
-                    log.info('test???')
-                    log.info(device)
-                    log.info('test?')
-                    log.info(device.__dict__)
-                    log.info(device.config)
-                    log.info(device.config.__dict__)
                     devices.append(json.dumps(device.config.__dict__))
                 response = json.dumps({'code': 1, 'devices': devices})
                 log.info(f'< {response}')
