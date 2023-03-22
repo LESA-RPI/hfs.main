@@ -51,16 +51,17 @@
 			// todo: button to immidiately run the program
 			
 			// update things
-			command.value = device['command'];
+			device['command'] = command.value;
+			device['name'] = name.value;
 			devices_dropdown.options[CURRENT_DEVICE].innerHTML = device['name'];
-			name.value = device['name'];
+			
 			
 			// only the default program has an interval
 			if (device['command'] != 10) {
 				interval.disabled = true;
 			} else {
 				interval.disabled = false;
-				interval.value = device['interval'];
+				device['interval'] = interval.value;
 			}
 		}
 		
