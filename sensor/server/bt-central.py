@@ -218,7 +218,7 @@ def notification_handler(sender, data):
         dgraphing.save(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
         log.info("Updated visuals!")
     except Exception as error:
-        log.log.error(f"Failed to update visuals because {error}")
+        log.error(f"Failed to update visuals because {error}")
     
 load_config()
 notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time(), int(15.30 * 100), 3207))
