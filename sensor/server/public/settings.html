@@ -16,7 +16,7 @@
 				body: JSON.stringify({
 					addr: device_addr,
 					cmd: parseInt(cmd),
-					data: parseInt(data)
+					data: data
 				}),
 				headers: {
 					"Content-type": "application/json; charset=UTF-8"
@@ -104,11 +104,11 @@
 			sendCmdOverBLE(address, cmd, data);
 			
 			if (cmd == 2) { // update cmd
-				
+				DEVICE[CURRENT_DEVICE]['command'] = data
 			} else if (cmd == 4) { // update delay
-			
+				DEVICE[CURRENT_DEVICE]['interval'] = data
 			} else if (cmd == 5) { // update name
-			
+				DEVICE[CURRENT_DEVICE]['name'] = data
 			}
 			
 			window.alert(msg);
@@ -134,7 +134,7 @@
 			<tr>
 				<td>
 					<label for="sensor-name">Name</label>
-					<input type="text" id="sensor-name" name="sensor-name">
+					<input type="text" id="sensor-name" name="sensor-name" onchange="updateDevice(5, 'sensor-name', 'Device name has been updated!')">
 				</td>
 			</tr>
 
