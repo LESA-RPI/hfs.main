@@ -104,11 +104,11 @@
 			sendCmdOverBLE(address, cmd, data);
 			
 			if (cmd == 2) { // update cmd
-				DEVICE[CURRENT_DEVICE]['command'] = data
+				DEVICES[CURRENT_DEVICE]['command'] = data
 			} else if (cmd == 4) { // update delay
-				DEVICE[CURRENT_DEVICE]['interval'] = data
+				DEVICES[CURRENT_DEVICE]['interval'] = data
 			} else if (cmd == 5) { // update name
-				DEVICE[CURRENT_DEVICE]['name'] = data
+				DEVICES[CURRENT_DEVICE]['name'] = data
 			}
 			
 			window.alert(msg);
