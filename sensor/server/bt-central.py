@@ -69,8 +69,11 @@ class Device():
         return self.config.name + " (" + self.address + ")"
     
     def save_config(self):
-        with open(self.address.replace(':', '') + '.pickle', 'wb', protocol=pickle.HIGHEST_PROTOCOL) as config_file:
+        path = 'devices/' + self.address.replace(':', '') + '.pickle'
+        log.info(f"Saving {self.name()} to {path}...")
+        with open(path, 'wb+', protocol=pickle.HIGHEST_PROTOCOL) as config_file:
             pickle.dump(self.config, config_file)
+        log.info(f"Saved {self.name()} to {path}")
         
     def load_config(self, defaultname=""):
         try:

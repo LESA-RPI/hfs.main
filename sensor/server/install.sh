@@ -26,8 +26,9 @@ done
 # Increase the number of retries
 echo 'Acquire::Retries "50";' > "/etc/apt/apt.conf.d/80-retries"
 
-# Make the app directory
+# Make the app and config directories
 mkdir -v "/usr/local/src/hfs/public"
+mkdir -v "/usr/local/src/hfs/devices"
 
 # install the required apt packages
 sudo apt update
@@ -177,7 +178,7 @@ su - postgres -c 'psql -c "TABLE data"'
 sudo systemctl start hfs.service
 
 # add the 'update' command
-u_cmd = 'alias update-hfs="wget -O hfs.zip https://github.com/LESA-RPI/hfs.main/archive/refs/heads/server-ui.zip && sudo unzip -o -j hfs.zip hfs.*/sensor/server/* -d /usr/local/src/hfs/ && rm hfs.zip && (cd /usr/local/src/hfs && sudo mkdir -p public && sudo mv -v *.html public/ && sudo mv -v *.css public/ && sudo touch public/public.log && sudo npm install)"'
+u_cmd = 'alias update-hfs="wget -O hfs.zip https://github.com/LESA-RPI/hfs.main/archive/refs/heads/server-ui.zip && sudo unzip -o -j hfs.zip hfs.*/sensor/server/* -d /usr/local/src/hfs/ && rm hfs.zip && (cd /usr/local/src/hfs && sudo mkdir -p devices && sudo mkdir -p public && sudo mv -v *.html public/ && sudo mv -v *.css public/ && sudo touch public/public.log && sudo npm install)"'
 sudo sh -c "echo ${u_cmd} >> /etc/bash.bashrc"
 source /etc/bash.bashrc
 
