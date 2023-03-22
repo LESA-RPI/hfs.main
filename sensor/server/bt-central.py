@@ -202,7 +202,7 @@ def notification_handler(sender, data):
     subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"])
     
 #load_config()
-#notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
+notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
 
 
 
