@@ -196,8 +196,11 @@ def notification_handler(sender, data):
     log.info(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
     # compute the datetime, sensor id, normal chlf, and chlf factor
     dt_timestamp = datetime.fromtimestamp(timestamp)
-    f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
-    chlf_normal = chlf_raw / _CONFIG["constants"]["max_raw_value"]
+    try:
+        f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
+        chlf_normal = chlf_raw / _CONFIG["constants"]["max_raw_value"]
+    except Exception as error:
+        log.error(f"Calculating flourescence factor and normalized chlf failed because of {error}")
     # update the database
     try:
         cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
