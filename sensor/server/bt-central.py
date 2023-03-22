@@ -215,7 +215,7 @@ def notification_handler(sender, data):
     # update the local visuals
     try:
         dgraphing.update(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
-        dgraphing.save(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
+        dgraphing.save()
         log.info("Updated visuals!")
     except Exception as error:
         log.error(f"Failed to update visuals because {error}")
