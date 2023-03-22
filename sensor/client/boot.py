@@ -1,6 +1,6 @@
 print("[INFO] Booting device...")
 
-CHECK_FOR_UPDATES = False
+CHECK_FOR_UPDATES = True
 LAN_SSID = "SLERC3"
 LAN_PASSWORD = "ganlightemittingdiode"
 GITHUB_URL = "https://github.com/LESA-RPI/hfs.main"
