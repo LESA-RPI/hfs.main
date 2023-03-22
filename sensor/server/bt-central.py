@@ -166,9 +166,10 @@ def load_config(path="/usr/local/src/hfs/config.json"):
         # compute the average flux
         sensing_area = ((_CONFIG["constants"]["cutoff_diameter_mm"] / 2) ** 2) * pi
         _AVERAGE_FLUX = _CONFIG["constants"]["total_canopy_flux"] / sensing_area
+        log.info(f"Loaded config file {_CONFIG}")
         return True
     except:
-        log.warning(f"{path} not found")
+        log.warning(f"Config file does not exist at {path}")
         return False
 
 # helper to print advertisement data
@@ -196,6 +197,8 @@ def notification_handler(sender, data):
     log.info(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
     # compute the datetime, sensor id, normal chlf, and chlf factor
     dt_timestamp = datetime.fromtimestamp(timestamp)
+    f_factor = 0
+    chlf_normal = 0
     try:
         f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
         chlf_normal = chlf_raw / _CONFIG["constants"]["max_raw_value"]
