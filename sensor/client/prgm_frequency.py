@@ -62,12 +62,12 @@ async def timerCallback(curFreq, server, pipe):
     global counter, LEDON
     led_blinking()
     LEDON = not LEDON
-    if counter == round(curFreq*0.6):
-        print("calling measurements")
-        task1 = uasyncio.create_task(measurements(server, pipe))
     counter = counter + 1 #increments counter used for determining when to stop measurements
     print(counter)
-    await task1
+    if counter-1 == round(curFreq*0.6):
+        print("calling measurements")
+        await uasyncio.create_task(measurements(server, pipe))
+    
 
 async def sleep_between_measurements(led_time):
     await uasyncio.sleep_ms(led_time)
