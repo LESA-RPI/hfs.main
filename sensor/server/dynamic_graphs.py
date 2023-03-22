@@ -73,13 +73,13 @@ class RTGraph:
             
     def save(self):
         self.fig.savefig('public/' + self.path + '.jpg')
-        file = open(self.path, 'wb') 
-        pickle.dump(self, file)
+        with open(self.path, 'wb+') as file:
+            pickle.dump(self, file)
         
         
     def load(self):
-        file = open(self.path, 'rb') 
-        obj = pickle.load(file)
+        with open(self.path, 'rb+'):
+            obj = pickle.load(file)
         
         self.ydata = copy.deepcopy(obj.ydata)
         self.xdata = copy.deepcopy(obj.xdata)
