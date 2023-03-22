@@ -199,6 +199,7 @@ def notification_handler(sender, data):
     dt_timestamp = datetime.fromtimestamp(timestamp)
     f_factor = 0
     chlf_normal = 0
+    
     try:
         f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
         chlf_normal = chlf_raw / _CONFIG["constants"]["max_raw_value"]
@@ -206,9 +207,9 @@ def notification_handler(sender, data):
         log.error(f"Calculating flourescence factor and normalized chlf failed because {error}")
     # update the database
     try:
-        cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
-        subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"])
-        log.info("Updated database!")
+        cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp(\'{timestamp}\', \'YYYY-MM-DD HH24:MI:SS.FF\'), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
+        result = subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"], stdout=subprocess.DEVNULL)
+        log.info(f"Updated database with {result}")
     except Exception as error:
         log.error(f"Failed to update database because {error}")
     # update the local visuals
@@ -220,7 +221,7 @@ def notification_handler(sender, data):
         log.log.error(f"Failed to update visuals because {error}")
     
 load_config()
-notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
+notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time(), int(15.30 * 100), 3207))
 
 
 
