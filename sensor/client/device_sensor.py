@@ -16,7 +16,6 @@ def readSonar():
     return 0
 
 def readAndSend(server, pipe):
-    print(f"Start taking measurement")
     distance, chlf = readSonar(), readPhotodiode()
     print(f"Writing '{distance}', {chlf} to peripheral...")
     try:
