@@ -51,17 +51,16 @@
 			// todo: button to immidiately run the program
 			
 			// update things
-			device['command'] = command.value;
-			device['name'] = name.value;
+			command.value = device['command'];
 			devices_dropdown.options[CURRENT_DEVICE].innerHTML = device['name'];
-			
+			name.value = device['name'];
 			
 			// only the default program has an interval
 			if (device['command'] != 10) {
 				interval.disabled = true;
 			} else {
 				interval.disabled = false;
-				device['interval'] = interval.value;
+				interval.value = device['interval'];
 			}
 		}
 		
@@ -103,6 +102,15 @@
 			let data = document.getElementById(value_id).value;
 			if (address == null) { return; }
 			sendCmdOverBLE(address, cmd, data);
+			
+			if (cmd == 2) { // update cmd
+				
+			} else if (cmd == 4) { // update delay
+			
+			} else if (cmd == 5) { // update name
+			
+			}
+			
 			window.alert(msg);
 			updatePageSettings();
 		}

@@ -122,7 +122,7 @@ class Device():
         elif cmd == 5: # update the name of the device
             self.config.name = data
             self.save_config()
-            log.info(f"{self.name()} will now run program {self.config.command}")
+            log.info(f"{self.name()} has been renamed to {data}")
         else:
             log.warning(f'Unknown command {self.msg["cmd"]}')
                         
