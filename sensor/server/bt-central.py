@@ -199,14 +199,22 @@ def notification_handler(sender, data):
     f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
     chlf_normal = chlf_raw / _CONFIG["constants"]["max_raw_value"]
     # update the database
-    cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
-    subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"])
+    try:
+        cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
+        subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"])
+        log.info("Updated database!")
+    except Exception as error:
+        log.error(f"Failed to update database because of {error}")
     # update the local visuals
-    dgraphing.update(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
-    dgraphing.save(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
+    try:
+        dgraphing.update(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
+        dgraphing.save(dt_timestamp, id, chlf_raw, chlf_normal, f_factor)
+        log.info("Updated visuals!")
+    except Exception as error:
+        log.log.error(f"Failed to update visuals because of {error}")
     
 #load_config()
-#notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
+notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
 
 
 
