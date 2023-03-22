@@ -127,6 +127,7 @@ class Device():
             log.warning(f'Unknown command {self.msg["cmd"]}')
                         
     async def keep_alive(self): 
+        log.info("uhhh")
         async with BleakClient(
             self.client, timeout=5.0, disconnected_callback=disconnect_handler
         ) as client:
@@ -236,7 +237,6 @@ async def connect_to_device(client):
     device = Device(client)
     DEVICES[client.address] = device
     device.main = asyncio.create_task(device.keep_alive())
-    log.info(f'Connected to {client}!')
     await device.main
     log.warning(f"{client.address} is unresponsive!")
 
