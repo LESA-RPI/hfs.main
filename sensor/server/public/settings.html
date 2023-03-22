@@ -28,12 +28,14 @@
 			let devices_dropdown = document.getElementById('option-sensors');
 			CURRENT_DEVICE = devices_dropdown.selectedIndex;
 			device = DEVICES[CURRENT_DEVICE];
+			console.log(DEVICES)
+			console.log(CURRENT_DEVICE)
 			// todo: button to immidiately run the program
 			
 			// update things
 			document.getElementById('option-program').value = device['command'];
 			let interval = document.getElementById('delay-min');
-			interval.value = device['interval'];
+			
 			document.getElementById('option-sensors').options[CURRENT_DEVICE].innerHTML = device['name'];
 			
 			// only the default program has an interval
@@ -41,6 +43,7 @@
 				interval.disabled = true;
 			} else {
 				interval.disabled = false;
+				interval.value = device['interval'];
 			}
 		}
 		
@@ -107,6 +110,13 @@
 
 			<tr>
 				<td>
+					<label for="delay-min">Delay Between Measurements (minutes)</label>
+					<input type="number" id="delay-min" name="delay-min" min="1" max="1440" onchange="updateDevice(4, 'delay-min', 'Run interval has been updated')">
+				</td>
+			</tr>
+
+			<tr>
+				<td>
 					<label for="option-program" style="padding-right:20px">Program</label>
 					<select name="option-program" id="option-program" onchange="updateDevice(2, 'option-program', 'Default program has been updated!')">
 						<option value=10>default (v1.0)</option>
@@ -125,12 +135,7 @@
 				</td>
 			</tr>
 				
-			<tr>
-				<td>
-					<label for="delay-min">Delay Between Measurements (minutes)</label>
-					<input type="number" id="delay-min" name="delay-min" min="1" max="1440" onchange="updateDevice(4, 'delay-min', 'Run interval has been updated')">
-				</td>
-			</tr>
+			
 		</thead>
 	<tbody id="settings-table"></tbody>
 	</table>
