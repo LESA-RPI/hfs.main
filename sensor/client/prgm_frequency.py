@@ -63,9 +63,7 @@ async def timerCallback(curFreq, server, pipe):
     led_blinking()
     LEDON = not LEDON
     counter = counter + 1 #increments counter used for determining when to stop measurements
-    print(counter)
     if counter-1 == round(curFreq*0.6):
-        print("calling measurements")
         await measurements(server, pipe)
     
 
@@ -85,6 +83,7 @@ async def run(server, pipe, data: int):
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: await timerCallback(curFreq, server, pipe))
         await uasyncio.sleep(led_on_time)
+        print(counter)
         tim.deinit()
         await sleep(curFreq) #sleeps for 10 minutes
     #pipe.notify(server)
