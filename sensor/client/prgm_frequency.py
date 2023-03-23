@@ -64,7 +64,7 @@ async def timerCallback(curFreq, server, pipe):
     LEDON = not LEDON
     counter = counter + 1 #increments counter used for determining when to stop measurements
     if counter-1 == round(curFreq*0.6):
-        await measurements(server, pipe)
+        measurements(server, pipe)
     
 
 async def sleep_between_measurements(led_time):
