@@ -63,9 +63,8 @@ def timerCallback(curFreq, server, pipe):
     led_blinking()
     LEDON = not LEDON
     counter = counter + 1 #increments counter used for determining when to stop measurements
-    print(counter-1)
-    print(round(curFreq*0.6))
-    if counter-1 == round(curFreq*0.6):
+    if (counter-1) == round(curFreq*0.6):
+        print("hi")
         measurements(server, pipe)
     
 
