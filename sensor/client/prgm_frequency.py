@@ -58,7 +58,7 @@ async def sleep(curFreq):
     await sleep_between_measurements(led_off_time)
     counter = 0 #maybe before deep sleep?
 
-async def timerCallback(curFreq, server, pipe):
+def timerCallback(curFreq, server, pipe):
     global counter, LEDON
     print("help")
     led_blinking()
