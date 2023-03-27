@@ -81,8 +81,8 @@ async def run(server, pipe, data: int):
         loops = loops+1
         curFreq = 1
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
-        tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: await timerCallback(curFreq, server, pipe))
-        await uasyncio.sleep(led_on_time)
+        tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: timerCallback(curFreq, server, pipe))
+        #await uasyncio.sleep(led_on_time)
         print(counter)
         tim.deinit()
         await sleep(curFreq) #sleeps for 10 minutes
