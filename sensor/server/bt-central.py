@@ -152,7 +152,9 @@ class Device():
     async def check_for_disconnect(self, client):
         if not client.is_connected:
             await disconnect_handler(client)
-            raise BleakError("Client is no longer connected")
+            return True
+        return False
+            
                             
     async def keep_alive(self): 
         async with BleakClient(
@@ -171,11 +173,14 @@ class Device():
                 while True:
                     try:
                         await asyncio.wait_for(self.event.wait(), timeout=2) # wait for us to recieve a message
-                        await self.check_for_disconnect()
+                        if(await self.check_for_disconnect()): 
+                            raise BleakError("Client is no longer connected")
                         await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
                         self.event.clear() # reset the message flag
                     except asyncio.TimeoutError:
-                        await self.check_for_disconnect()
+                        if(await self.check_for_disconnect()): 
+                            raise BleakError("Client is no longer connected")
+                        
             except (BleakError, KeyboardInterrupt):
                 log.info(f"{self.name()} disconnected")    
 
