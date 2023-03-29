@@ -73,6 +73,7 @@ def timerCallback(curFreq, server, pipe):
 
 async def sleep_between_measurements(led_time):
     await uasyncio.sleep_ms(led_time)
+    print("why hello there")
 
 # entry point for the program
 # run this program once and only once, server will decide how to loop
