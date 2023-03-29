@@ -64,7 +64,11 @@ async def timerCallback(curFreq, server, pipe):
     LEDON = not LEDON
     counter = counter + 1 #increments counter used for determining when to stop measurements
     if (counter-1) == round(curFreq*0.6):
-        await measurements(server, pipe)
+        print("starting measurements")
+        for i in range(0, samples):
+            sensor.readAndSend(server, pipe)
+            await sleep_between_measurements(led_between_measure_time)
+            #await measurements(server, pipe)
     
 
 async def sleep_between_measurements(led_time):
@@ -80,7 +84,7 @@ async def run(server, pipe, data: int):
         print("Actual frequency: ", curFreq)
         curFreq = 1
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
-        tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: timerCallback(curFreq, server, pipe))
+        tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: await timerCallback(curFreq, server, pipe))
         await uasyncio.sleep(led_on_time)
         tim.deinit()
         await sleep(led_off_time) #sleeps for 10 minutes
