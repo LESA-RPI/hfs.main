@@ -170,7 +170,7 @@ class Device():
                 # start the device loop
                 while True:
                     try:
-                        await asyncio.wait_for(self.event.wait(), timeout=10) # wait for us to recieve a message
+                        await asyncio.wait_for(self.event.wait(), timeout=2) # wait for us to recieve a message
                         self.check_for_disconnect()
                         await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
                         self.event.clear() # reset the message flag
