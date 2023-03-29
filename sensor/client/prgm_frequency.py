@@ -58,13 +58,13 @@ async def sleep(curFreq):
     await sleep_between_measurements(led_off_time)
     counter = 0 #maybe before deep sleep?
 
-def timerCallback(curFreq, server, pipe):
+async def timerCallback(curFreq, server, pipe):
     global counter, LEDON
     led_blinking()
     LEDON = not LEDON
     counter = counter + 1 #increments counter used for determining when to stop measurements
     if (counter-1) == round(curFreq*0.6):
-        uasyncio.Task(measurements(server, pipe))
+        await measurements(server, pipe)
     
 
 async def sleep_between_measurements(led_time):
