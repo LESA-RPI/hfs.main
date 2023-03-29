@@ -40,13 +40,14 @@ async def measurements(server, pipe):
 
 async def sleep(curFreq):
     global counter, led_off_start_time, led_wait_measure_time, results, led_between_measure_time
-    while(counter >= led_off_start_time*curFreq):
-        pins.LED1.off()
-        pins.LED2.off()
-        pins.LED3.off()
-        pins.LED4.off()
-        print("OFF")
-        counter = 0
+    while(counter < led_off_start_time*curFreq):
+        pass
+    pins.LED1.off()
+    pins.LED2.off()
+    pins.LED3.off()
+    pins.LED4.off()
+    print("OFF")
+    counter = 0
     await sleep_between_measurements(led_off_start_time)
     counter = 0 #maybe before deep sleep?
 
