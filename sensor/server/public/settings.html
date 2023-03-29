@@ -32,17 +32,20 @@
 			let command = document.getElementById('option-program');
 			let name = document.getElementById('sensor-name');
 			let run_button = document.getElementById('run-btn');
+			let update_button = document.getElementById('update-btn');
 			
 			if (CURRENT_DEVICE < 0) { 
 				command.disabled = true;
 				interval.disabled = true;
 				name.disabled = true;
 				run_button.disabled = true;
+				update_button.disabled = true;
 				return; 
 			} else {
 				command.disabled = false;
 				name.disabled = false;
 				run_button.disabled = false;
+				update_button.disabled = false;
 			}
 			
 			device = DEVICES[CURRENT_DEVICE];

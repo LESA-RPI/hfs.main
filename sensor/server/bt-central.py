@@ -122,13 +122,24 @@ class Device():
                 self.config.command = abs(int(data))
                 self.save_config()
                 log.info(f"{self.name()} will now run program {self.config.command}")
+                if (self.config.command != 10):
+                    if (self.task != None) and (not self.task.cancelled()):
+                        self.task.cancel()
+                    self.task = None
+                elif (self.task == None) or self.task.cancelled(): 
+                    self.task = asyncio.create_task(self.run(client))
             except Exception as err:
                 log.info(err)
         elif cmd == 4: # update the delay in our run function
+            if int(data) < 0: return
+            
             if (self.task != None) and (not self.task.cancelled()):
                 self.task.cancel()
+            
             self.config.interval = int(data)
             self.save_config()
+            
+            if (self.config.command != 10): return
             self.task = asyncio.create_task(self.run(client))
         elif cmd == 5: # update the name of the device
             old_name = self.name()
