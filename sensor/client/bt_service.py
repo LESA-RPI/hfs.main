@@ -46,15 +46,15 @@ async def _start():
                 name="ESP32_HFS",
                 services=[_COMM_UUID],
         )
-        device.log(f"[INFO] Connected to {connection.device}")
-        device.log(f"[INFO] This device is running v{device.CURRENT_VERSION}")
+        device.log(connection, comm_characteristic, f"[INFO] Connected to {connection.device}")
+        device.log(connection, comm_characteristic, f"[INFO] This device is running v{device.CURRENT_VERSION}")
         while True:
             try: 
                 # wait for the server to tell us to do something
-                device.log("[INFO] Waiting for command...")
+                device.log(connection, comm_characteristic, "[INFO] Waiting for command...")
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
                 cmd, data = struct.unpack("HI", comm_characteristic.read())
-                device.log("[INFO] Recieved command", cmd, "with parameter", data)
+                device.log(connection, comm_characteristic, "[INFO] Recieved command", cmd, "with parameter", data)
                 # req will either a command to run the current function, change it, or request a list of valid functions
                 if cmd == _RUN_DEFAULT:
                     await FUNCTION(connection, comm_characteristic, data)
@@ -66,13 +66,13 @@ async def _start():
                     func = bt_programs.lookup(data)
                     await func(connection, comm_characteristic, 1)
                 elif cmd == _UPDATE:
-                    device.log("Disconnecting to update device, see you soon!")
+                    device.log(connection, comm_characteristic, "Disconnecting to update device, see you soon!")
                     await aioble.disconnect()
                     import git_update
                     git_update.update()
                 elif cmd == _SETTIME:
                     import time
-                    device.log("[INFO] Changing internal time to", time.gmtime(int(data)))
+                    device.log(connection, comm_characteristic, "[INFO] Changing internal time to", time.gmtime(int(data)))
                     RTC().datetime(time.gmtime(int(data)))
                     
                 #comm_characteristic.write("periph1")
