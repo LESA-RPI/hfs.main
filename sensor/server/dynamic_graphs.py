@@ -167,30 +167,25 @@ class RTGraph:
 samples = 100
 
 # make the graphs
-graph_raw = RTGraph(samples, 4095, 'Raw Flourescence Data', 'mcu')
+graph_raw = RTGraph(samples, 65536, 'Raw Flourescence Data', 'mcu')
 graph_norm = RTGraph(samples, 100, 'Normalized Flourescence Data', 'Chlf (%)')
 graph_chlf = RTGraph(samples, 100, 'Flourescence Factor Data', 'Flourescence Factor (%)')
 
 # update all graphs at once for convinience
 def update(timestamp, sid, val_raw, val_norm, val_chlf):
-    try:
-        graph_raw.update(timestamp, sid, val_raw)
-        graph_norm.update(timestamp, sid, val_norm)
-        graph_chlf.update(timestamp, sid, val_chlf)
-    except: 
-        pass
+    graph_raw.update(timestamp, sid, val_raw)
+    graph_norm.update(timestamp, sid, val_norm)
+    graph_chlf.update(timestamp, sid, val_chlf)
 
 # save all graphs at once for convinience
 def save():
-    try:
-        # give the graphs some time to update
-        plt.pause(1)
-        # save locally
-        graph_raw.save()
-        graph_norm.save()
-        graph_chlf.save()
-    except:
-        pass
+
+    # give the graphs some time to update
+    plt.pause(1)
+    # save locally
+    graph_raw.save()
+    graph_norm.save()
+    graph_chlf.save()
 
 # feed in some dummy data
 #sensors = 10
