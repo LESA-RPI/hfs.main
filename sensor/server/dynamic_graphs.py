@@ -59,7 +59,7 @@ class RTGraph:
         # Setup this figure
         self.fig, self.fig_axis = plt.subplots(1, 1, figsize = (12, 8), num = self.title, dpi = 200)
         self.fig_axis.set_ylim(0, self.max_height)
-        self.fig.set_dpi(600.0)
+        self.fig.set_dpi(200)
 
 
         # https://matplotlib.org/devdocs/gallery/ticks/date_formatters_locators.html
