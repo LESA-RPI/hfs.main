@@ -160,8 +160,8 @@ class Device():
                 if self.config.command == 10: self.task = asyncio.create_task(self.run(client))
                 # ??? no idea what this does, but is probably very important
                 await client.start_notify(_COMM_RW_UUID, notification_handler)
-                # update the device's interal clock
-                await self.send(client, (6, int(time.time())))
+                # update the device's interal clock (python uses an EPOCH in 1970, micropython uses 2000, must correct!)
+                await self.send(client, (6, int(time.time()) - (31536000 * 30)))
                 # start the device loop
                 while True:
                     await self.event.wait() # wait for us to recieve a message
