@@ -7,7 +7,7 @@ PHOTODIODE_RESULT = block.connect(6, Pin(14, Pin.IN))
 
 RESET = Pin(16, Pin.IN)
 
-LED_POW_SUPPLY_PIN = Pin(13, Pin.IN)
+LED_POWER_SWITCH = Pin(13, Pin.OUT)
 
 LED1 = Pin(26, Pin.OUT)
 LED2 = Pin(27, Pin.OUT)

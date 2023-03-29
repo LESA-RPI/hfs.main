@@ -39,6 +39,7 @@ async def measurements1(tim, server, pipe):
     for i in range(0, samples):
         sensor.readAndSend(server, pipe)
         await sleep_between_measurements(led_between_measure_time)
+    pins.LED_POWER_SWITCH.off()
     tim.deinit() 
 
 async def sleep_between_measurements(led_time):
@@ -51,6 +52,7 @@ async def run(server, pipe, data: int):
     print("[prgm_main] start")
     tim = Timer(1) #timer used to count when LED sleeps and takes measurements
     tim.init(freq = frequency, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe))
+    pins.LED_POWER_SWITCH.on()
     await measurements1(tim, server, pipe)
     # pipe.write("data")
     print("hello world")

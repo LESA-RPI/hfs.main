@@ -48,6 +48,7 @@ async def sleep(curFreq, tim):
     pins.LED2.off()
     pins.LED3.off()
     pins.LED4.off()
+    pins.LED_POWER_SWITCH.off()
     tim.deinit()
     print("OFF")
     counter = 0
@@ -74,6 +75,7 @@ async def run(server, pipe, data: int):
         print("Actual frequency: ", curFreq)
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: timerCallback(curFreq, server, pipe))
+        pins.LED_POWER_SWITCH.on()
         await measurements1(curFreq, server, pipe)
         await sleep(curFreq, tim) #sleeps for 10 minutes
     pipe.notify(server)
