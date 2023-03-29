@@ -48,7 +48,7 @@ async def measurements1(curFreq, server, pipe):
         await sleep_between_measurements(led_between_measure_time)  
 
 
-async def sleep(curFreq):
+async def sleep(curFreq, tim):
     global counter, led_off_start_time, led_wait_measure_time, results, led_between_measure_time
     while(counter < led_off_start_time*curFreq):
         pass
@@ -56,6 +56,7 @@ async def sleep(curFreq):
     pins.LED2.off()
     pins.LED3.off()
     pins.LED4.off()
+    tim.deinit()
     print("OFF")
     counter = 0
     await sleep_between_measurements(led_off_start_time)
@@ -82,8 +83,7 @@ async def run(server, pipe, data: int):
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: timerCallback(curFreq, server, pipe))
         await measurements1(curFreq, server, pipe)
-        await sleep(curFreq) #sleeps for 10 minutes
-        tim.deinit()
+        await sleep(curFreq, tim) #sleeps for 10 minutes
     pipe.notify(server)
     print("[prgm_frequency] stop")
     
