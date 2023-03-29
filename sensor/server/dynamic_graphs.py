@@ -82,31 +82,34 @@ class RTGraph:
         
         
     def load(self):
-        path = '/usr/local/src/hfs/public/' + self.path
-        with open(path + '.pickle', 'rb+'):
-            obj = pickle.load(file)
-        
-        self.ydata = copy.deepcopy(obj.ydata)
-        self.xdata = copy.deepcopy(obj.xdata)
-        self.sensors = copy.deepcopy(obj.sensors)
-        self.min_time = copy.deepcopy(obj.min_time)
-        self.max_time = copy.deepcopy(obj.max_time)
-        
-        self._setupFig()
-        
-        for sid in range(len(obj.sensors)):
-            if obj.sensors[sid] is None:
-                continue
-            self.sensors[sid],  = self.fig_axis.plot(self.xdata[sid], self.ydata[sid], lw = 3, color = colors[sid])
-        sensor_count = sum(x is not None for x in self.sensors)
-        
-        self.fig_axis.legend(self.sensors[:sensor_count], [('Sensor #' + str(i)) for i in range(sensor_count)], fontsize = 'small', bbox_to_anchor = (1, 1), loc = 'upper left')
-        plt.table(cellText = list(filter(lambda item: item is not None, self.ydata)),
-                        rowLabels=[('Sensor #' + str(i)) for i in range(sensor_count)],
-                        colLabels=self.xdata,
-                        loc='bottom')
-        
-        plt.show()
+        try:
+            path = '/usr/local/src/hfs/public/' + self.path
+            with open(path + '.pickle', 'rb+') as file:
+                obj = pickle.load(file)
+            
+            self.ydata = copy.deepcopy(obj.ydata)
+            self.xdata = copy.deepcopy(obj.xdata)
+            self.sensors = copy.deepcopy(obj.sensors)
+            self.min_time = copy.deepcopy(obj.min_time)
+            self.max_time = copy.deepcopy(obj.max_time)
+            
+            self._setupFig()
+            
+            for sid in range(len(obj.sensors)):
+                if obj.sensors[sid] is None:
+                    continue
+                self.sensors[sid],  = self.fig_axis.plot(self.xdata[sid], self.ydata[sid], lw = 3, color = colors[sid])
+            sensor_count = sum(x is not None for x in self.sensors)
+            
+            self.fig_axis.legend(self.sensors[:sensor_count], [('Sensor #' + str(i)) for i in range(sensor_count)], fontsize = 'small', bbox_to_anchor = (1, 1), loc = 'upper left')
+            plt.table(cellText = list(filter(lambda item: item is not None, self.ydata)),
+                            rowLabels=[('Sensor #' + str(i)) for i in range(sensor_count)],
+                            colLabels=self.xdata,
+                            loc='bottom')
+            
+            plt.show()
+        except:
+            pass
         
     def _updateMinTime(self):
         self.min_time = self.xdata[0][0]
