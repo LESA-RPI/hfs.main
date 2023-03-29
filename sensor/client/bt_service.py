@@ -4,7 +4,7 @@ import aioble
 import uasyncio as asyncio
 import bluetooth as bt
 import struct
-from machine import Pin, ADC
+from machine import Pin, ADC, RTC
 
 import bt_programs
 
@@ -17,6 +17,7 @@ _GET = 1
 _SET = 2
 _RUN_DEFAULT = 4
 _UPDATE = 5
+_SETTIME = 6
 
 _TIMEOUT_MS = 5000
 
@@ -46,13 +47,13 @@ async def _start():
                 services=[_COMM_UUID],
         )
         print(f"[INFO] Connection from {connection.device}")
-
+    
         while True:
             try: 
                 # wait for the server to tell us to do something
                 print("[INFO] Waiting for command...")
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
-                cmd, data = struct.unpack("HH", comm_characteristic.read())
+                cmd, data = struct.unpack("HI", comm_characteristic.read())
                 print("[INFO] Recieved command", cmd, "with parameter", data)
                 # req will either a command to run the current function, change it, or request a list of valid functions
                 if cmd == _RUN_DEFAULT:
@@ -69,7 +70,10 @@ async def _start():
                     await aioble.disconnect()
                     import git_update
                     git_update.update()
-
+                elif cmd == _SETTIME:
+                    import time
+                    RTC().datetime(time.gmtime(int(data)))
+                    
                 #comm_characteristic.write("periph1")
                 #comm_characteristic.notify(connection)
 
