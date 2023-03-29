@@ -72,8 +72,8 @@ class Device():
         path = 'devices/' + self.address.replace(':', '') + '.pickle'
         log.info(f"Saving {self.name()} to {path}...")
         try:
-            with open(path, 'wb+', protocol=pickle.HIGHEST_PROTOCOL) as config_file:
-                pickle.dump(self.config, config_file)
+            with open(path, 'wb+') as config_file:
+                pickle.dump(self.config, config_file, protocol=pickle.HIGHEST_PROTOCOL)
         except Exception as err:
             log.info(f'BAD {err}')
         log.info(f"Saved {self.name()} to {path}")
