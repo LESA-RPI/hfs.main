@@ -37,7 +37,7 @@ class RTGraph:
         self.title = title
         self.width = width
         self.path = title.lower().replace(' ', '_')
-        if exists(self.path):
+        if exists("/usr/local/src/hfs/public/" + self.path + ".pickle"):
             self.load()
             return
 
@@ -73,9 +73,12 @@ class RTGraph:
             
     def save(self):
         path = '/usr/local/src/hfs/public/' + self.path
-        self.fig.savefig(path + '.jpg')
-        with open(path + '.pickle', 'wb+') as file:
-            pickle.dump(self, file)
+        try:
+            self.fig.savefig(path + '.jpg')
+            with open(path + '.pickle', 'wb+') as file:
+                pickle.dump(self, file)
+        except Exception as err:
+            pass
         
         
     def load(self):
