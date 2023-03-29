@@ -161,7 +161,7 @@ class Device():
                 # ??? no idea what this does, but is probably very important
                 await client.start_notify(_COMM_RW_UUID, notification_handler)
                 # update the device's interal clock
-                await self.send(client, (abs(cmd), int(data)))
+                await self.send(client, (6, time.time()))
                 # start the device loop
                 while True:
                     await self.event.wait() # wait for us to recieve a message
