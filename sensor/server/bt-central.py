@@ -69,7 +69,7 @@ class Device():
         return self.config.name + " (" + self.address + ")"
     
     def save_config(self):
-        path = 'devices/' + self.address.replace(':', '') + '.pickle'
+        path = '/usr/local/src/hfs/devices/' + self.address.replace(':', '') + '.pickle'
         log.info(f"Saving {self.name()} to {path}...")
         try:
             with open(path, 'wb+') as config_file:
@@ -79,8 +79,9 @@ class Device():
         log.info(f"Saved {self.name()} to {path}")
         
     def load_config(self, defaultname=""):
+        path = '/usr/local/src/hfs/devices/' + self.address.replace(':', '') + '.pickle'
         try:
-            with open(self.address.replace(':', '') + '.pickle', 'rb') as config_file:
+            with open(path, 'rb') as config_file:
                 return pickle.load(config_file)
         except (OSError, IOError):
             return DeviceConfig(self.address, defaultname)
@@ -126,9 +127,10 @@ class Device():
             self.save_config()
             self.task = asyncio.create_task(self.run(client))
         elif cmd == 5: # update the name of the device
+            old_name = self.name()
             self.config.name = data
             self.save_config()
-            log.info(f"{self.name()} has been renamed to {data}")
+            log.info(f"{old_name} has been renamed to {self.name()}")
         else:
             log.warning(f'Unknown command {self.msg["cmd"]}')
                         
