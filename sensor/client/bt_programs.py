@@ -18,6 +18,9 @@ PROGRAMS = {
 
 DEFAULT = PROGRAMS[10][0]
 
+def lookup(prgm):
+    return PROGRAMS[int(prgm)][0]
+
 def get(server, pipe):
     print("[bt_get] start")
     global PROGRAM
@@ -28,7 +31,7 @@ def get(server, pipe):
     
 def setDefault(server, pipe, data):
     print("[bt_setdefault] start")
-    DEFAULT = PROGRAMS[int(data)][0]
+    DEFAULT = lookup(data)
     pipe.notify(server)
     print("[bt_setdefault] stop")
 

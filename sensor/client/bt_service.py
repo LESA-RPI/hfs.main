@@ -15,6 +15,7 @@ _COMM_RW_UUID = bt.UUID("26c00002-ece0-4f7a-b663-223de05387cc")
 _RUN = 0
 _GET = 1
 _SET = 2
+_RUN_DEFAULT = 4
 
 _TIMEOUT_MS = 5000
 
@@ -51,15 +52,17 @@ async def _start():
                 
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
                 cmd, data = struct.unpack("HH", comm_characteristic.read())
-                print("[INFO] Recieved command ", cmd, "with parameter", data)
+                print("[INFO] Recieved command", cmd, "with parameter", data)
                 # req will either a command to run the current function, change it, or request a list of valid functions
-                if cmd == _RUN:
+                if cmd == _RUN_DEFAULT:
                     FUNCTION(connection, comm_characteristic, data)
                 elif cmd == _GET:
                     bt_programs.get(connection, comm_characteristic)
                 elif cmd == _SET:
                     bt_programs.setDefault(connection, comm_characteristic, data)
-                
+                elif cmd == _RUN:
+                    func = bt_programs.lookup(data)
+                    func(connection, comm_characteristic, 1)
                 #comm_characteristic.write("periph1")
                 #comm_characteristic.notify(connection)
 
