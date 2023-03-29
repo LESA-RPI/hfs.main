@@ -29,7 +29,7 @@
 					id.innerHTML = row_data['id'];
 					d.innerHTML = row_data['distance'];
 					chlf_r.innerHTML = row_data['chlf_raw'];
-					chlf_n.innerHTML = round(row_data['chlf_normal'] * 10000) / 100;
+					chlf_n.innerHTML = Math.round(row_data['chlf_normal'] * 10000) / 100;
 					f.innerHTML = row_data['f_factor'];
 					row.appendChild(id);
 					row.appendChild(d);
