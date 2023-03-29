@@ -49,8 +49,8 @@ async def measurements1(curFreq, server, pipe):
 
 
 async def sleep(curFreq, tim):
-    global counter, led_off_start_time, led_wait_measure_time, results, led_between_measure_time
-    while(counter < led_off_start_time/1000*curFreq):
+    global counter, led_on_time, led_off_start_time
+    while(counter < led_on_time*curFreq):
         print("hi hi hi")
         pass
     pins.LED1.off()
