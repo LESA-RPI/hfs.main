@@ -123,7 +123,7 @@ var server = http.createServer(async function (req, res) {
 		console.log('server: file API');
 		return fileAPI(res, path.join(DIR, reqpath.replace('/api/file', '')));
 	}
-	if (reqpath.startsWith('/dev/restart/')) {
+	if (reqpath.startsWith('/dev/restart')) {
 		console.log('server: restarting');
 		const { child } = require("child_process");
 		const process = child.spawn("sh", ["-c", "sudo systemctl restart hfs-local.service"]);
