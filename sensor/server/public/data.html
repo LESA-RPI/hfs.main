@@ -10,17 +10,21 @@
 			var table = document.getElementById('data-table');
 			
 			let ip = location.host;
+			let count = 0;
 			$.getJSON('http://' + ip + '/api/db?id=*&limit=100', function(data) {
 				table.innerHTML='';
 				data.forEach(function(row_data) {
 					let row = document.createElement('tr');
+					if (count % 5 == 0) {
+						row.css("border-top", "1px solid black")
+					}
 					let time = document.createElement('td');
 					let id = document.createElement('td');
 					let d = document.createElement('td');
 					let chlf_r = document.createElement('td');
 					let chlf_n = document.createElement('td');
 					let f = document.createElement('td');
-					time.innerHTML = row_data['timestamp'];
+					time.innerHTML = new Date(row_data['timestamp']);
 					id.innerHTML = row_data['id'];
 					d.innerHTML = row_data['distance'];
 					chlf_r.innerHTML = row_data['chlf_raw'];
@@ -47,6 +51,7 @@
 	<meta name="description" content="" />
 </head>
 <body style="margin:0; padding:0;">
+<hr class="rounded">
   <table style="margin-left:auto;margin-right:auto;width:90%;">
 	<thead>
 		<tr>
