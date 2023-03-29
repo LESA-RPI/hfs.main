@@ -2,6 +2,9 @@ img {
 	height: 100vh;
 	width: auto;
 }
+table {
+  border-collapse: collapse;
+}
 hr.rounded {
   border-top: 8px solid #bbb;
   border-radius: 5px;
