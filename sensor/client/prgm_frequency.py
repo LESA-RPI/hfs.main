@@ -24,21 +24,13 @@ def led_blinking():
         pins.LED2.on()
         pins.LED3.on()
         pins.LED4.on()
-        print("on")
     else:
         pins.LED1.off()
         pins.LED2.off()
         pins.LED3.off()
         pins.LED4.off()
-        print("off")
 
-async def measurements(curFreq, server, pipe):
-   if (counter-1) == round(curFreq*led_wait_measure_time):
-        print("starting measurements")
-        for i in range(0, samples):
-            sensor.readAndSend(server, pipe)
-            sleep_between_measurements(led_between_measure_time)
-    
+   
 async def measurements1(curFreq, server, pipe):
     while (counter-1) < round(curFreq*led_wait_measure_time):
         pass
@@ -51,8 +43,7 @@ async def measurements1(curFreq, server, pipe):
 async def sleep(curFreq, tim):
     global counter, led_on_time, led_off_start_time
     while(counter < led_on_time*curFreq):
-        print("hi hi hi")
-        pass
+        await uasyncio.sleep(0)
     pins.LED1.off()
     pins.LED2.off()
     pins.LED3.off()
