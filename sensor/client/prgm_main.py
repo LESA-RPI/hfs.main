@@ -19,17 +19,20 @@ def led_blinking():
         pins.LED2.on()
         pins.LED3.on()
         pins.LED4.on()
+        print("on")
     else:
         pins.LED1.off()
         pins.LED2.off()
         pins.LED3.off()
         pins.LED4.off()
+        print("off")
 
 def timerCallback(curFreq, server, pipe):
     global counter, LEDON
     LEDON = not LEDON
     led_blinking()
     counter = counter + 1 #increments counter used for determining when to stop measurements
+    print("counter")
 
 async def measurements1(curFreq, server, pipe):
     while (counter-1) < round(curFreq*led_wait_measure_time):
@@ -51,5 +54,6 @@ async def run(server, pipe, data: int):
     tim.init(freq = frequency, mode = Timer.PERIODIC, callback = lambda t: timerCallback(frequency, server, pipe))
     await measurements1(frequency, server, pipe)
     # pipe.write("data")
+    print("hello world")
     pipe.notify(server)
     print("[prgm_main] stop")
