@@ -72,8 +72,9 @@ class RTGraph:
         plt.title(self.title)
             
     def save(self):
-        self.fig.savefig('public/' + self.path + '.jpg')
-        with open(self.path, 'wb+') as file:
+        path = '/usr/local/src/hfs/public/' + self.path + '.jpg'
+        self.fig.savefig(path)
+        with open(path, 'wb+') as file:
             pickle.dump(self, file)
         
         
