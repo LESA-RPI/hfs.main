@@ -164,9 +164,15 @@ class Device():
                 await self.send(client, (6, int(time.time())))
                 # start the device loop
                 while True:
-                    await self.event.wait() # wait for us to recieve a message
-                    await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
-                    self.event.clear() # reset the message flag
+                    try:
+                        await asyncio.wait_for(self.event.wait(), timeout=10) # wait for us to recieve a message
+                        await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
+                        self.event.clear() # reset the message flag
+                    except asyncio.TimeoutError:
+                        # we might still be waiting, or we might have been disconnected
+                        if !client.is_connected:
+                            disconnect_handler(client)
+                            raise BleakError("Client is no longer connected")
             except (BleakError, KeyboardInterrupt):
                 log.info(f"{self.name()} disconnected")    
 
