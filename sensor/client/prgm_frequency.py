@@ -58,7 +58,7 @@ async def sleep(curFreq):
     await sleep_between_measurements(led_off_time)
     counter = 0 #maybe before deep sleep?
 
-async def timerCallback(curFreq, server, pipe):
+def timerCallback(curFreq, server, pipe):
     global counter, LEDON
     led_blinking()
     LEDON = not LEDON
@@ -67,7 +67,7 @@ async def timerCallback(curFreq, server, pipe):
         print("starting measurements")
         for i in range(0, samples):
             sensor.readAndSend(server, pipe)
-            await sleep_between_measurements(led_between_measure_time)
+            sleep_between_measurements(led_between_measure_time)
             #await measurements(server, pipe)
     
 
@@ -84,7 +84,7 @@ async def run(server, pipe, data: int):
         print("Actual frequency: ", curFreq)
         curFreq = 1
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
-        tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: await timerCallback(curFreq, server, pipe))
+        tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: timerCallback(curFreq, server, pipe))
         await uasyncio.sleep(led_on_time)
         tim.deinit()
         await sleep(led_off_time) #sleeps for 10 minutes
