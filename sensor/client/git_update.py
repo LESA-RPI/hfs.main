@@ -3,7 +3,7 @@ import config
 import device_sensor as device
 
 version = ota.OTAUpdater(config.GITHUB_URL, github_src_dir=config.GITHUB_SRC_DIR, dev_version_url=config.DEV_VERSION_FILE, update_sub_dir=config.UPDATE_SUB_DIR, main_dir=config.GITHUB_BRANCH)
-device.CURRENT_VERSION = int(version.get_version(version.modulepath(version.main_dir)))
+device.CURRENT_VERSION = int(float(version.get_version(version.modulepath(version.main_dir))))
 del(version)
         
 def update():
