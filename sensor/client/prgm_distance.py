@@ -3,7 +3,7 @@ import device_pins as pins
 
 # entry point for the program
 # run this program once and only once, server will decide how to loop
-def run(server, pipe, data: int):    
+async def run(server, pipe, data: int):    
     print("[prgm_distance] start")
     # pipe.write("data")
     pipe.notify(server)

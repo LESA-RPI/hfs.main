@@ -16,6 +16,7 @@ _RUN = 0
 _GET = 1
 _SET = 2
 _RUN_DEFAULT = 4
+_UPDATE = 5
 
 _TIMEOUT_MS = 5000
 
@@ -41,7 +42,7 @@ async def _start():
         print("[INFO] Waiting for incoming connection")
         connection = await aioble.advertise(
                 250000, # advertising interval (ms)
-                name="ESP32 - HFS",
+                name="ESP32_HFS",
                 services=[_COMM_UUID],
         )
         print(f"[INFO] Connection from {connection.device}")
@@ -49,20 +50,26 @@ async def _start():
         while True:
             try: 
                 # wait for the server to tell us to do something
-                
+                print("[INFO] Waiting for command...")
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
                 cmd, data = struct.unpack("HH", comm_characteristic.read())
                 print("[INFO] Recieved command", cmd, "with parameter", data)
                 # req will either a command to run the current function, change it, or request a list of valid functions
                 if cmd == _RUN_DEFAULT:
-                    FUNCTION(connection, comm_characteristic, data)
+                    await FUNCTION(connection, comm_characteristic, data)
                 elif cmd == _GET:
                     bt_programs.get(connection, comm_characteristic)
                 elif cmd == _SET:
                     bt_programs.setDefault(connection, comm_characteristic, data)
                 elif cmd == _RUN:
                     func = bt_programs.lookup(data)
-                    func(connection, comm_characteristic, 1)
+                    await func(connection, comm_characteristic, 1)
+                elif cmd == _UPDATE:
+                    print("Disconnecting to update device, see you soon!")
+                    await aioble.disconnect()
+                    import git_update
+                    git_update.update()
+
                 #comm_characteristic.write("periph1")
                 #comm_characteristic.notify(connection)
 
