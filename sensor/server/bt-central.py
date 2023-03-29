@@ -114,12 +114,12 @@ class Device():
     
     async def handler(self, client, cmd, data):
         if cmd < 0: # send the command directly to the controller
-            await self.send(client, (abs(cmd), data))
+            await self.send(client, (abs(cmd), int(data)))
         elif cmd == 2: # update the command we run
             #self.command = (abs(data), self.command[1])
             
             try:
-                self.config.command = abs(data)
+                self.config.command = abs(int(data))
                 self.save_config()
                 log.info(f"{self.name()} will now run program {self.config.command}")
             except Exception as err:
@@ -127,7 +127,7 @@ class Device():
         elif cmd == 4: # update the delay in our run function
             if (self.task != None) and (not self.task.cancelled()):
                 self.task.cancel()
-            self.config.interval = data
+            self.config.interval = int(data)
             self.save_config()
             self.task = asyncio.create_task(self.run(client))
         elif cmd == 5: # update the name of the device
