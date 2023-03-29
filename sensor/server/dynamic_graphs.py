@@ -72,14 +72,15 @@ class RTGraph:
         plt.title(self.title)
             
     def save(self):
-        path = '/usr/local/src/hfs/public/' + self.path + '.jpg'
-        self.fig.savefig(path)
-        with open(path, 'wb+') as file:
+        path = '/usr/local/src/hfs/public/' + self.path
+        self.fig.savefig(path + '.jpg')
+        with open(path + '.pickle', 'wb+') as file:
             pickle.dump(self, file)
         
         
     def load(self):
-        with open(self.path, 'rb+'):
+        path = '/usr/local/src/hfs/public/' + self.path
+        with open(path + '.pickle', 'rb+'):
             obj = pickle.load(file)
         
         self.ydata = copy.deepcopy(obj.ydata)

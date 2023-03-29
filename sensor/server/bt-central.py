@@ -113,7 +113,7 @@ class Device():
         self.event.set()
     
     async def handler(self, client, cmd, data):
-        if cmd < 0: # send the command directly to the controller
+        if cmd <= 0: # send the command directly to the controller
             await self.send(client, (abs(cmd), int(data)))
         elif cmd == 2: # update the command we run
             #self.command = (abs(data), self.command[1])
