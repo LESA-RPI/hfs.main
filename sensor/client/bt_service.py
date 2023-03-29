@@ -72,6 +72,7 @@ async def _start():
                     git_update.update()
                 elif cmd == _SETTIME:
                     import time
+                    print("[INFO] Changing internal time to", time.gmtime(int(data)))
                     RTC().datetime(time.gmtime(int(data)))
                     
                 #comm_characteristic.write("periph1")
