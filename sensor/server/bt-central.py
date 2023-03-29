@@ -171,7 +171,7 @@ class Device():
                     except asyncio.TimeoutError:
                         # we might still be waiting, or we might have been disconnected
                         if not client.is_connected:
-                            disconnect_handler(client)
+                            await disconnect_handler(client)
                             raise BleakError("Client is no longer connected")
             except (BleakError, KeyboardInterrupt):
                 log.info(f"{self.name()} disconnected")    
