@@ -148,7 +148,12 @@ class Device():
             log.info(f"'{old_name}' has been renamed to '{self.name()}'")
         else:
             log.warning(f'Unknown command {self.msg["cmd"]}')
-                        
+
+    def check_for_disconnect(self, client):
+        if not client.is_connected:
+            await disconnect_handler(client)
+            raise BleakError("Client is no longer connected")
+                            
     async def keep_alive(self): 
         async with BleakClient(
             self.client_info, timeout=5.0, disconnected_callback=disconnect_handler
@@ -166,13 +171,11 @@ class Device():
                 while True:
                     try:
                         await asyncio.wait_for(self.event.wait(), timeout=10) # wait for us to recieve a message
+                        self.check_for_disconnect()
                         await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
                         self.event.clear() # reset the message flag
                     except asyncio.TimeoutError:
-                        # we might still be waiting, or we might have been disconnected
-                        if not client.is_connected:
-                            await disconnect_handler(client)
-                            raise BleakError("Client is no longer connected")
+                        self.check_for_disconnect()
             except (BleakError, KeyboardInterrupt):
                 log.info(f"{self.name()} disconnected")    
 
