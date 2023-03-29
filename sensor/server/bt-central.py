@@ -117,9 +117,13 @@ class Device():
             await self.send(client, (abs(cmd), data))
         elif cmd == 2: # update the command we run
             #self.command = (abs(data), self.command[1])
-            self.config.command = abs(data)
-            self.save_config()
-            log.info(f"{self.name()} will now run program {self.config.command}")
+            
+            try:
+                self.config.command = abs(data)
+                self.save_config()
+                log.info(f"{self.name()} will now run program {self.config.command}")
+            except Exception as err:
+                log.info(err)
         elif cmd == 4: # update the delay in our run function
             if (self.task != None) and (not self.task.cancelled()):
                 self.task.cancel()
