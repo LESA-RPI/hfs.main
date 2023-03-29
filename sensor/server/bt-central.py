@@ -71,8 +71,11 @@ class Device():
     def save_config(self):
         path = 'devices/' + self.address.replace(':', '') + '.pickle'
         log.info(f"Saving {self.name()} to {path}...")
-        with open(path, 'wb+', protocol=pickle.HIGHEST_PROTOCOL) as config_file:
-            pickle.dump(self.config, config_file)
+        try:
+            with open(path, 'wb+', protocol=pickle.HIGHEST_PROTOCOL) as config_file:
+                pickle.dump(self.config, config_file)
+        except Exception as err:
+            log.info(f'BAD {err}')
         log.info(f"Saved {self.name()} to {path}")
         
     def load_config(self, defaultname=""):
