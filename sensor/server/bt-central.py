@@ -229,7 +229,7 @@ def notification_handler(sender, data):
     # decode the data and print to logs
     try:
         id, timestamp, distance_mm, chlf_raw, msg = decode(data)
-    except Exception as err
+    except Exception as err:
         log.error(f"Could not decode message because {err}")
         return
     if msg != "":
