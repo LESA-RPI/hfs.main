@@ -125,8 +125,8 @@ var server = http.createServer(async function (req, res) {
 	}
 	if (reqpath.startsWith('/dev/restart/')) {
 		console.log('server: restarting');
-		import { spawn } from "child_process";
-		const process = spawn("sh", ["-c", "sudo systemctl restart hfs-local.service"]);
+		const { child } = require("child_process");
+		const process = child.spawn("sh", ["-c", "sudo systemctl restart hfs-local.service"]);
 	}
 	if (reqpath.startsWith('/api/db')) {
 		console.log('server: database API ');
