@@ -1,6 +1,12 @@
+import ota_update.updater as ota #import ota_updater# ota# OTAUpdater
+import config
+import device_sensor as device
 
+version = ota.OTAUpdater(config.GITHUB_URL, github_src_dir=config.GITHUB_SRC_DIR, dev_version_url=config.DEV_VERSION_FILE, update_sub_dir=config.UPDATE_SUB_DIR, main_dir=config.GITHUB_BRANCH)
+device.CURRENT_VERSION = int(version.get_version(version.modulepath(version.main_dir)))
+del(version)
+        
 def update():
-    import config
     # connect to interweb
     import network
     sta_if = network.WLAN(network.STA_IF)
@@ -17,12 +23,12 @@ def update():
     try: 
         # monitor memory
         import time, machine, gc
-        import ota_update.updater as ota #import ota_updater# ota# OTAUpdater
         time.sleep(1)
         print('[INFO] Memory free {}'.format(gc.mem_free()))
         # download and install an update if availible
         ota_updater = ota.OTAUpdater(config.GITHUB_URL, github_src_dir=config.GITHUB_SRC_DIR, dev_version_url=config.DEV_VERSION_FILE, update_sub_dir=config.UPDATE_SUB_DIR, main_dir=config.GITHUB_BRANCH)
         update = ota_updater.dev_install_update_if_available()
+        CURRENT_VERSION = ota_updater.get_version(ota_updater.modulepath(ota_updater.main_dir))
         del(ota_updater)
         if (update):
             print("[INFO] Upgrade complete, reseting...")
