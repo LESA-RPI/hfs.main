@@ -149,7 +149,7 @@ class Device():
         else:
             log.warning(f'Unknown command {self.msg["cmd"]}')
 
-    def check_for_disconnect(self, client):
+    async def check_for_disconnect(self, client):
         if not client.is_connected:
             await disconnect_handler(client)
             raise BleakError("Client is no longer connected")
@@ -171,11 +171,11 @@ class Device():
                 while True:
                     try:
                         await asyncio.wait_for(self.event.wait(), timeout=2) # wait for us to recieve a message
-                        self.check_for_disconnect()
+                        await self.check_for_disconnect()
                         await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
                         self.event.clear() # reset the message flag
                     except asyncio.TimeoutError:
-                        self.check_for_disconnect()
+                        await self.check_for_disconnect()
             except (BleakError, KeyboardInterrupt):
                 log.info(f"{self.name()} disconnected")    
 
