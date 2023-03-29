@@ -130,7 +130,7 @@ class Device():
             old_name = self.name()
             self.config.name = data
             self.save_config()
-            log.info(f"{old_name} has been renamed to {self.name()}")
+            log.info(f"'{old_name}' has been renamed to '{self.name()}'")
         else:
             log.warning(f'Unknown command {self.msg["cmd"]}')
                         
