@@ -54,7 +54,7 @@ async def _start():
                 device.log(connection, comm_characteristic, "[INFO] Waiting for command...")
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
                 cmd, data = struct.unpack("HI", comm_characteristic.read())
-                device.log(connection, comm_characteristic, "[INFO] Recieved command", cmd, "with parameter", data)
+                device.log(connection, comm_characteristic, "[INFO] Recieved command " + str(cmd) + " with parameter " + str(data))
                 # req will either a command to run the current function, change it, or request a list of valid functions
                 if cmd == _RUN_DEFAULT:
                     await FUNCTION(connection, comm_characteristic, data)
@@ -72,7 +72,7 @@ async def _start():
                     git_update.update()
                 elif cmd == _SETTIME:
                     import time
-                    device.log(connection, comm_characteristic, "[INFO] Changing internal time to", time.gmtime(int(data)))
+                    device.log(connection, comm_characteristic, "[INFO] Changing internal time to " + str(time.gmtime(int(data))))
                     RTC().datetime(time.gmtime(int(data)))
                     
                 #comm_characteristic.write("periph1")
