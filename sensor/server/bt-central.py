@@ -219,15 +219,19 @@ def print_ad_data(data):
 
 # decode value from characteristic
 def decode(data):
-    decoded_data = struct.unpack("<HIHH", data)
-    return (decoded_data[0], decoded_data[1], decoded_data[2], decoded_data[3])
+    decoded_data = struct.unpack("<HIHHp", data)
+    return (decoded_data[0], decoded_data[1], decoded_data[2], decoded_data[3], decoded_data[4])
 
 def scan_handler(device, data):
     print_ad_data(data)
 
 def notification_handler(sender, data):
     # decode the data and print to logs
-    id, timestamp, distance_mm, chlf_raw  = decode(data)
+    id, timestamp, distance_mm, chlf_raw, msg = decode(data)
+    if msg != "":
+        log.info(f"[id] {msg}")
+        return
+    
     log.info(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
     # compute the datetime, sensor id, normal chlf, and chlf factor
     dt_timestamp = datetime.fromtimestamp(timestamp)
