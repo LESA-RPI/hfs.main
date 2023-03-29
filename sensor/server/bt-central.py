@@ -170,7 +170,7 @@ class Device():
                         self.event.clear() # reset the message flag
                     except asyncio.TimeoutError:
                         # we might still be waiting, or we might have been disconnected
-                        if !client.is_connected:
+                        if not client.is_connected:
                             disconnect_handler(client)
                             raise BleakError("Client is no longer connected")
             except (BleakError, KeyboardInterrupt):
