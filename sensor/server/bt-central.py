@@ -99,7 +99,7 @@ class Device():
     
     async def send(self, client, command):
         try:
-            await client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HH", *command))
+            await client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HI", *command))
         except Exception as error:
             log.error(f"Sending command {command} to {self.name()} failed due ot the following error: {error}")
         
@@ -150,14 +150,19 @@ class Device():
             log.warning(f'Unknown command {self.msg["cmd"]}')
                         
     async def keep_alive(self): 
-        log.info("uhhh")
         async with BleakClient(
             self.client_info, timeout=5.0, disconnected_callback=disconnect_handler
         ) as client:
             log.info(f"Connected to {self.name()}")
             try:
-                self.task = asyncio.create_task(self.run(client))
+                
+                # start the task if running default
+                if self.config.command == 10: self.task = asyncio.create_task(self.run(client))
+                # ??? no idea what this does, but is probably very important
                 await client.start_notify(_COMM_RW_UUID, notification_handler)
+                # update the device's interal clock
+                await self.send(client, (abs(cmd), int(data)))
+                # start the device loop
                 while True:
                     await self.event.wait() # wait for us to recieve a message
                     await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
@@ -227,7 +232,7 @@ def notification_handler(sender, data):
         log.error(f"Calculating flourescence factor and normalized chlf failed because {error}")
     # update the database
     try:
-        cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp(\'{timestamp}\', \'YYYY-MM-DD HH24:MI:SS.FF\'), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
+        cmd = f'psql -c  "INSERT INTO data (id, timestamp, chlf_raw, chlf_normal, f_factor, distance) VALUES ({id}, to_timestamp({timestamp}), {chlf_raw}, {chlf_normal}, {f_factor}, {distance_mm});"'
         result = subprocess.run(["su", "-", "postgres", "-c", f"{cmd}"], stdout=subprocess.DEVNULL)
         log.info(f"Updated database with {result}")
     except Exception as error:
@@ -240,8 +245,8 @@ def notification_handler(sender, data):
     except Exception as error:
         log.error(f"Failed to update visuals because {error}")
     
-#load_config()
-#notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
+load_config()
+notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
 
 
 
