@@ -173,18 +173,24 @@ graph_chlf = RTGraph(samples, 100, 'Flourescence Factor Data', 'Flourescence Fac
 
 # update all graphs at once for convinience
 def update(timestamp, sid, val_raw, val_norm, val_chlf):
-    graph_raw.update(timestamp, sid, val_raw)
-    graph_norm.update(timestamp, sid, val_norm)
-    graph_chlf.update(timestamp, sid, val_chlf)
+    try:
+        graph_raw.update(timestamp, sid, val_raw)
+        graph_norm.update(timestamp, sid, val_norm)
+        graph_chlf.update(timestamp, sid, val_chlf)
+    except: 
+        pass
 
 # save all graphs at once for convinience
 def save():
-    # give the graphs some time to update
-    plt.pause(1)
-    # save locally
-    graph_raw.save()
-    graph_norm.save()
-    graph_chlf.save()
+    try:
+        # give the graphs some time to update
+        plt.pause(1)
+        # save locally
+        graph_raw.save()
+        graph_norm.save()
+        graph_chlf.save()
+    except:
+        pass
 
 # feed in some dummy data
 #sensors = 10
