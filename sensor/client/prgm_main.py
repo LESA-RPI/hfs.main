@@ -54,6 +54,5 @@ async def run(server, pipe, data: int):
     await measurements1(tim, server, pipe)
     # pipe.write("data")
     print("hello world")
-
-    pipe.notify(server)
+    #pipe.notify(server)
     print("[prgm_main] stop")
