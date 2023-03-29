@@ -82,8 +82,8 @@ async def run(server, pipe, data: int):
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: timerCallback(curFreq, server, pipe))
         await measurements1(curFreq, server, pipe)
-        tim.deinit()
         await sleep(led_off_start_time) #sleeps for 10 minutes
+        tim.deinit()
     pipe.notify(server)
     print("[prgm_frequency] stop")
     
