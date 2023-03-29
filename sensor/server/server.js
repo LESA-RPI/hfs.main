@@ -50,7 +50,7 @@ async function dbAPI(id, limit) {
 	var res = null;
 	if (id === '*') {
 		console.log('dbAPI: id = *');
-		res = await client.query(`SELECT * FROM data ORDER BY timestamp LIMIT ${limit}`);
+		res = await client.query(`SELECT * FROM data ORDER BY timestamp DESC LIMIT ${limit}`);
 	} else {
 		console.log('dbAPI: id != *');
 		res = await client.query(`SELECT * FROM data WHERE id=${id} ORDER BY timestamp DESC LIMIT ${limit}`);
