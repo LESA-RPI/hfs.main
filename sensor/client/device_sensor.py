@@ -8,7 +8,7 @@ CURRENT_VERSION = 0
 ID = abs(hash(unique_id())) % 65534
 
 def pack(distance, chlf):
-    return struct.pack("<HIHHp", ID, time.time(), distance, chlf, "")
+    return struct.pack("<HIHHH0s", ID, time.time(), distance, chlf, 0, "")
 
 def readPhotodiode():
     return pins.PHOTODIODE_RESULT.read_u16()
@@ -28,7 +28,7 @@ def readAndSend(server, pipe):
 def log(server, pipe, msg):
     print(msg)
     try:
-        packed_msg = struct.pack("<HIHHp", ID, 0, 0, 0, msg)
+        packed_msg = struct.pack(f"<HIHHH{len(msg)}s", ID, 0, 0, 0, len(msg), msg.encode())
         try:
             pipe.write(packed_msg)
             try: 
