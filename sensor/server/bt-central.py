@@ -157,32 +157,36 @@ class Device():
             
                             
     async def keep_alive(self): 
-        async with BleakClient(
-            self.client_info, timeout=5.0, disconnected_callback=disconnect_handler
-        ) as client:
-            log.info(f"Connected to {self.name()}")
-            try:
-                
-                # start the task if running default
-                if self.config.command == 10: self.task = asyncio.create_task(self.run(client))
-                # ??? no idea what this does, but is probably very important
-                await client.start_notify(_COMM_RW_UUID, notification_handler)
-                # update the device's interal clock
-                await self.send(client, (6, int(time.time())))
-                # start the device loop
-                while True:
-                    try:
-                        await asyncio.wait_for(self.event.wait(), timeout=2) # wait for us to recieve a message
-                        if(await self.check_for_disconnect()): 
-                            raise BleakError("Client is no longer connected")
-                        await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
-                        self.event.clear() # reset the message flag
-                    except asyncio.TimeoutError:
-                        if(await self.check_for_disconnect()):
-                            raise BleakError("Client is no longer connected")
-            except (BleakError, KeyboardInterrupt):
-                log.info(f"{self.name()} disconnected")    
-
+        try:
+            async with BleakClient(
+                self.client_info, timeout=5.0, disconnected_callback=disconnect_handler
+            ) as client:
+                log.info(f"Connected to {self.name()}")
+                try:
+                    
+                    # start the task if running default
+                    if self.config.command == 10: self.task = asyncio.create_task(self.run(client))
+                    # ??? no idea what this does, but is probably very important
+                    await client.start_notify(_COMM_RW_UUID, notification_handler)
+                    # update the device's interal clock
+                    await self.send(client, (6, int(time.time())))
+                    # start the device loop
+                    while True:
+                        try:
+                            await asyncio.wait_for(self.event.wait(), timeout=2) # wait for us to recieve a message
+                            if(await self.check_for_disconnect(client)): 
+                                raise BleakError("Client is no longer connected")
+                            await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
+                            self.event.clear() # reset the message flag
+                        except asyncio.TimeoutError:
+                            if(await self.check_for_disconnect(client)):
+                                raise BleakError("Client is no longer connected")
+                except (BleakError, KeyboardInterrupt):
+                    log.info(f"{self.name()} disconnected")    
+    except Exception as error:
+        log.error(f"Something went wrong... {error}")
+        await disconnect_handler(self.client_info)
+        
 class OnMessageEvent():
   def __init__(self):
     self.listeners = {}
@@ -300,10 +304,9 @@ async def disconnect_handler(client):
 async def connect_to_device(client):
     try:
         if client.address in DEVICES:
-            if not await DEVICES[client.address].check_for_disconnect(client):
-                # something is wrong, forcibly disconnect and remove
-                DEVICES[client.address].disconnect()
-                DEVICES.pop(client.address)
+            # something is wrong, forcibly disconnect and remove
+            DEVICES[client.address].disconnect()
+            DEVICES.pop(client.address)
     except Exception as error:
         log.info(error)
     log.info(f'Connecting to {client}...')
