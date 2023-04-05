@@ -37,8 +37,9 @@ async def measurements1(tim, server, pipe):
         pass
     print("starting measurements")
     for i in range(0, samples):
-        if(LEDON == True):
-            sensor.readAndSend(server, pipe)
+        while(LEDON == False):
+            await uasyncio.sleep_ms(0)
+        sensor.readAndSend(server, pipe)
         await sleep_between_measurements(led_between_measure_time)
     pins.LED_POWER_SWITCH.off()
     tim.deinit() 

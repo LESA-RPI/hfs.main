@@ -36,8 +36,9 @@ async def measurements1(curFreq, server, pipe):
         pass
     sensor.log(server, pipe, "[INFO] starting measurements")
     for i in range(0, samples):
-        if(LEDON == True):
-            sensor.readAndSend(server, pipe)
+        while(LEDON == False):
+            await uasyncio.sleep_ms(0)
+        sensor.readAndSend(server, pipe)
         await sleep_between_measurements(led_between_measure_time)  
 
 
