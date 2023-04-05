@@ -53,7 +53,11 @@ async def _start():
                 # wait for the server to tell us to do something
                 device.log(connection, comm_characteristic, "[INFO] Waiting for command...")
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
-                cmd, data = struct.unpack("HI", comm_characteristic.read())
+                cmd, data = 0, None
+                try:
+                    cmd, data = struct.unpack("HI", comm_characteristic.read())
+                except Exception as error:
+                    device.log(connection, comm_characteristic, f"[ERROR] Could not parse command")
                 device.log(connection, comm_characteristic, f"[INFO] Recieved command {str(cmd)} with parameter {str(data)}")
                 # req will either a command to run the current function, change it, or request a list of valid functions
                 if cmd == _RUN_DEFAULT:
@@ -81,6 +85,7 @@ async def _start():
             except asyncio.TimeoutError:
                 # check to see if we have been disconnected
                 if not connection.is_connected():
+                    print("[WARNING] Disconnected!")
                     break
 
 def start():
