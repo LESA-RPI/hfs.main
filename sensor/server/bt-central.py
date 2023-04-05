@@ -299,8 +299,11 @@ async def disconnect_handler(client):
 
 async def connect_to_device(client):
     if client.address in DEVICES:
-        if not await DEVICES[client.address].check_for_disconnect():
-            return
+        if not await DEVICES[client.address].check_for_disconnect(client):
+            # something is wrong, forcibly disconnect and remove
+            DEVICES[client.address].disconnect()
+            DEVICES.pop(client.address)
+            
     log.info(f'Connecting to {client}...')
     device = Device(client)
     DEVICES[client.address] = device
