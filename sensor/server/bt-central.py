@@ -231,7 +231,7 @@ def notification_handler(sender, data):
     try:
         id, timestamp, distance_mm, chlf_raw, msg_len = decode(data)
         if msg_len != 0:
-            msg = struct.unpack_from(f"{msg_size}s", data, struct.calcsize("<HIHHH"))[0].decode()
+            msg = struct.unpack_from(f"{msg_len}s", data, struct.calcsize("<HIHHH"))[0].decode()
             log.info(f"[{id}] {msg}")
             return
     except Exception as err:
