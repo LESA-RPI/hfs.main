@@ -3,6 +3,20 @@ import time
 from machine import unique_id
 
 import device_pins as pins
+import pycom
+from machine import Pin
+from machine import I2C
+import VL53L0X
+
+i2c = I2C(0)
+i2c = I2C(0, I2C.MASTER)
+i2c = I2C(0, pins=('P10','P9'))
+i2c.init(I2C.MASTER, baudrate=9600)
+
+# Create a VL53L0X object
+tof = VL53L0X.VL53L0X(i2c)
+tof.set_Vcsel_pulse_period(tof.vcsel_period_type[0], 18)
+tof.set_Vcsel_pulse_period(tof.vcsel_period_type[1], 14)
 
 CURRENT_VERSION = 0
 ID = abs(hash(unique_id())) % 65534
@@ -14,6 +28,14 @@ def readPhotodiode():
     return pins.PHOTODIODE_RESULT.read_u16()
 
 def readSonar():
+    try:
+        tof.start()
+        distValue = tof.read()
+        print(distValue)
+        tof.stop()
+        return distValue
+    except Exception as error:
+        pass
     return 0
 
 def readAndSend(server, pipe):
