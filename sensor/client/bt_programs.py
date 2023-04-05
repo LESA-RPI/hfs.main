@@ -6,6 +6,7 @@ import prgm_flashtest
 import prgm_frequency
 import prgm_noise
 import prgm_main
+import prgm_photodiode
 
 PROGRAMS = {
     10: (prgm_main.run, 'Main'),
@@ -13,7 +14,8 @@ PROGRAMS = {
     12: (prgm_farfield.run, 'Farfield Test'),
     13: (prgm_flashtest.run, 'Flash Test'),
     14: (prgm_frequency.run, 'Frequency Test'),
-    15: (prgm_noise.run, 'Noise Test')
+    15: (prgm_noise.run, 'Noise Test'),
+    16: (prgm_photodiode.run, 'Photodiode Test')
 }
 
 DEFAULT = PROGRAMS[10][0]
