@@ -183,9 +183,9 @@ class Device():
                                 raise BleakError("Client is no longer connected")
                 except (BleakError, KeyboardInterrupt):
                     log.info(f"{self.name()} disconnected")    
-    except Exception as error:
-        log.error(f"Something went wrong... {error}")
-        await disconnect_handler(self.client_info)
+        except Exception as error:
+            log.error(f"Something went wrong... {error}")
+            await disconnect_handler(self.client_info)
         
 class OnMessageEvent():
   def __init__(self):
