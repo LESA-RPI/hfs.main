@@ -220,7 +220,7 @@ def print_ad_data(data):
 
 # decode value from characteristic
 def decode(data):
-    decoded_data = struct.unpack("<HIHHp", data)
+    decoded_data = struct.unpack_from("<HIHHH", data)
     return (decoded_data[0], decoded_data[1], decoded_data[2], decoded_data[3], decoded_data[4])
 
 def scan_handler(device, data):
@@ -229,12 +229,13 @@ def scan_handler(device, data):
 def notification_handler(sender, data):
     # decode the data and print to logs
     try:
-        id, timestamp, distance_mm, chlf_raw, msg = decode(data)
+        id, timestamp, distance_mm, chlf_raw, msg_len = decode(data)
     except Exception as err:
         log.error(f"Could not decode message because {err}")
         return
-    if msg != "":
-        log.info(f"[id] {msg}")
+    if msg_len != 0:
+        msg = struct.unpack_from(f"{msg_size}s", data, struct.calcsize("<HIHHH"))[0].decode()
+        log.info(f"[{id}] {msg}")
         return
     
     log.info(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
