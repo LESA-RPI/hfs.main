@@ -10,9 +10,12 @@ import VL53L0X
 i2c = I2C(0, scl = pins.SCL, sda = pins.SDA)
 
 # Create a VL53L0X object
-tof = VL53L0X.VL53L0X(i2c, address= 0x52)
-tof.set_Vcsel_pulse_period(tof.vcsel_period_type[0], 18)
-tof.set_Vcsel_pulse_period(tof.vcsel_period_type[1], 14)
+try:
+    tof = VL53L0X.VL53L0X(i2c, address= 0x52)
+    tof.set_Vcsel_pulse_period(tof.vcsel_period_type[0], 18)
+    tof.set_Vcsel_pulse_period(tof.vcsel_period_type[1], 14)
+except Exception as error:
+    print(f"[ERROR] Could not create VL53L0X object beacause {error}")
 
 CURRENT_VERSION = 0
 CURRENT_DISTANCE = 0
