@@ -28,8 +28,15 @@ def readAndSend(server, pipe):
 def log(server, pipe, msg):
     print(msg)
     try:
-        pipe.write(struct.pack("<HIHHp", ID, 0, 0, 0, msg))
-        pipe.notify(server)
+        packed_msg = struct.pack("<HIHHp", ID, 0, 0, 0, msg)
+        try:
+            pipe.write(packed_msg)
+            try: 
+                pipe.notify(server)
+            except Exception as error:
+                print(f"[ERROR] Notifying server failed because of {error}") 
+        except Exception as error:
+            print(f"[ERROR] Write to pipe failed because of {error}") 
     except Exception as error:
-        print(f"[ERROR] Write to pipe failed because of {error}") 
+        print(f"[ERROR] Packing message to pipe failed because of {error}") 
     
