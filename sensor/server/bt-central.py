@@ -178,9 +178,8 @@ class Device():
                         await self.handler(client, self.msg['cmd'], self.msg['data']) # handle the message
                         self.event.clear() # reset the message flag
                     except asyncio.TimeoutError:
-                        if(await self.check_for_disconnect()): 
+                        if(await self.check_for_disconnect()):
                             raise BleakError("Client is no longer connected")
-                        
             except (BleakError, KeyboardInterrupt):
                 log.info(f"{self.name()} disconnected")    
 
@@ -192,9 +191,6 @@ class OnMessageEvent():
     for address, device in DEVICES.items():
         if address != msg_json['addr']: continue
         device.onMessage(msg_json)
-        
-        
-
 
 def load_config(path="/usr/local/src/hfs/config.json"):
     global _CONFIG, _AVERAGE_FLUX
@@ -274,8 +270,6 @@ def notification_handler(sender, data):
 #load_config()
 #notification_handler('dummy', struct.pack('<HIHH', 0, int(time.time()), int(15.30 * 100), 3207))
 
-
-
 async def scan(timeout=5.0):
     scanner = BleakScanner(detection_callback=scan_handler, service_uuids=_SERVICE_UUIDS)
 
@@ -302,7 +296,9 @@ async def disconnect_handler(client):
     log.info('- finished disconnecting')
 
 async def connect_to_device(client):
-    if client.address in DEVICES: return
+    if client.address in DEVICES:
+        if not await DEVICES[client.address].check_for_disconnect():
+            return
     log.info(f'Connecting to {client}...')
     device = Device(client)
     DEVICES[client.address] = device
