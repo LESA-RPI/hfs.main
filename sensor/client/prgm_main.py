@@ -4,7 +4,7 @@ from machine import Timer
 import uasyncio
 import math
 
-frequency = 15
+frequency = 400
 counter = 0
 LEDON = True
 led_on_time = 1.5
