@@ -52,6 +52,7 @@ async def run(server, pipe, data: int):
     print("[prgm_main] start")
     tim = Timer(1) #timer used to count when LED sleeps and takes measurements
     tim.init(freq = frequency, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe))
+    sensor.readSonar()
     pins.LED_POWER_SWITCH.on()
     await measurements1(tim, server, pipe)
     # pipe.write("data")

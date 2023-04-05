@@ -75,6 +75,7 @@ async def run(server, pipe, data: int):
         sensor.log(server, pipe, f"[INFO] Actual frequency: {curFreq}")
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: timerCallback(curFreq, server, pipe))
+        sensor.readSonar()
         pins.LED_POWER_SWITCH.on()
         await measurements1(curFreq, server, pipe)
         await sleep(curFreq, tim, server, pipe) #sleeps for 10 minutes

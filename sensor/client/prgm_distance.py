@@ -6,5 +6,6 @@ import device_pins as pins
 async def run(server, pipe, data: int):    
     print("[prgm_distance] start")
     # pipe.write("data")
+    sensor.readSonar
     pipe.notify(server)
     print("[prgm_distance] stop")
