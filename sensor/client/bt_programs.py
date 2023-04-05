@@ -15,7 +15,8 @@ PROGRAMS = {
     13: (prgm_flashtest.run, 'Flash Test'),
     14: (prgm_frequency.run, 'Frequency Test'),
     15: (prgm_noise.run, 'Noise Test'),
-    16: (prgm_photodiode.run, 'Photodiode Test')
+    16: (prgm_photodiode.run, 'Photodiode Test'),
+    17: (prgm_main.run, 'Main')
 }
 
 DEFAULT = PROGRAMS[10][0]
