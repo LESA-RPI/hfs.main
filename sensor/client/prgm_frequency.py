@@ -34,13 +34,13 @@ def led_blinking():
 async def measurements1(curFreq, server, pipe):
     while (counter-1) < round(curFreq*led_wait_measure_time):
         pass
-    print("starting measurements")
+    sensor.log(server, pipe, "[INFO] starting measurements")
     for i in range(0, samples):
         sensor.readAndSend(server, pipe)
         await sleep_between_measurements(led_between_measure_time)  
 
 
-async def sleep(curFreq, tim):
+async def sleep(curFreq, tim, server, pipe):
     global counter, led_on_time, led_off_start_time
     while(counter < led_on_time*curFreq):
         await uasyncio.sleep(0)
@@ -50,7 +50,7 @@ async def sleep(curFreq, tim):
     pins.LED4.off()
     pins.LED_POWER_SWITCH.off()
     tim.deinit()
-    print("OFF")
+    sensor.log(server, pipe, "[INFO] LEDs off")
     counter = 0
     await sleep_between_measurements(led_off_start_time)
     counter = 0 #maybe before deep sleep?
@@ -69,15 +69,15 @@ async def sleep_between_measurements(led_time):
 # entry point for the program
 # run this program once and only once, server will decide how to loop
 async def run(server, pipe, data: int):    
-    print("[prgm_frequency] start")
+    sensor.log(server, pipe, "[INFO] starting prgm_frequency")
     await sleep_between_measurements(led_off_start_time) #sleeps for 10 minutes
     for curFreq in frequency_list: #all the frequencies in test
-        print("Actual frequency: ", curFreq)
+        sensor.log(server, pipe, f"[INFO] Actual frequency: {curFreq}")
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: timerCallback(curFreq, server, pipe))
         pins.LED_POWER_SWITCH.on()
         await measurements1(curFreq, server, pipe)
-        await sleep(curFreq, tim) #sleeps for 10 minutes
+        await sleep(curFreq, tim, server, pipe) #sleeps for 10 minutes
     pipe.notify(server)
-    print("[prgm_frequency] stop")
+    sensor.log(server, pipe, "[INFO] ending prgm_frequency")
     

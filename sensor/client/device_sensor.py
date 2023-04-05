@@ -18,12 +18,12 @@ def readSonar():
 
 def readAndSend(server, pipe):
     distance, chlf = readSonar(), readPhotodiode()
-    log(f"Writing '{distance}', {chlf} to peripheral...")
+    log(server, pipe, f"Writing '{distance}', {chlf} to peripheral...")
     try:
         pipe.write(pack(distance, chlf))
         pipe.notify(server)
     except Exception as error:
-        log(f"[ERROR] Write to pipe failed because of {error}") 
+        log(server, pipe, f"[ERROR] Write to pipe failed because of {error}") 
 
 def log(server, pipe, msg):
     print(msg)
