@@ -37,7 +37,8 @@ async def measurements1(tim, server, pipe):
         pass
     print("starting measurements")
     for i in range(0, samples):
-        sensor.readAndSend(server, pipe)
+        if(LEDON == True):
+            sensor.readAndSend(server, pipe)
         await sleep_between_measurements(led_between_measure_time)
     pins.LED_POWER_SWITCH.off()
     tim.deinit() 
