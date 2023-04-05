@@ -255,7 +255,8 @@ def notification_handler(sender, data):
         log.error(f"Calculating flourescence factor and normalized chlf failed because {error}")
         
     try:
-        f_factor = (chlf_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
+        chlf_scaled_raw = chlf_normal * 4095 
+        f_factor = (chlf_scaled_raw * _CONFIG["constants"]["k"]) / (_AVERAGE_FLUX * _AVERAGE_FLUX * distance_mm * distance_mm)
     except Exception as error:
         log.error(f"Calculating flourescence factor and normalized chlf failed because {error}")
     # update the database
