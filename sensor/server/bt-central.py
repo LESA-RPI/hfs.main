@@ -230,13 +230,14 @@ def notification_handler(sender, data):
     # decode the data and print to logs
     try:
         id, timestamp, distance_mm, chlf_raw, msg_len = decode(data)
+        if msg_len != 0:
+            msg = struct.unpack_from(f"{msg_size}s", data, struct.calcsize("<HIHHH"))[0].decode()
+            log.info(f"[{id}] {msg}")
+            return
     except Exception as err:
         log.error(f"Could not decode message because {err}")
         return
-    if msg_len != 0:
-        msg = struct.unpack_from(f"{msg_size}s", data, struct.calcsize("<HIHHH"))[0].decode()
-        log.info(f"[{id}] {msg}")
-        return
+    
     
     log.info(f"Recieved data from {sender} (id={id}) at {timestamp}: chlf={chlf_raw} d={distance_mm}mm")
     # compute the datetime, sensor id, normal chlf, and chlf factor
