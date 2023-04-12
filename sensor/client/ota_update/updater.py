@@ -131,8 +131,9 @@ class OTAUpdater:
         return (current_version, latest_version)
     
     def _check_for_new_dev_version(self):
-        current_version = self.get_version(self.modulepath("next"))
-        latest_version = self.http_client.get(self.dev_version_url).text.strip().strip('\n')
+        current_version = float(self.get_version(self.modulepath("next")))
+        print('[INFO] Getting new version from {}'.format(self.dev_version_url))
+        latest_version = float(self.http_client.get(self.dev_version_url).text.strip().strip('\n'))
         
         print('[INFO] Current version:', current_version)
         print('[INFO] Latest version:', latest_version)
@@ -141,14 +142,17 @@ class OTAUpdater:
     def _create_new_version_file(self, latest_version):
         self.mkdir(self.modulepath(self.new_version_dir))
         with open(self.modulepath(self.new_version_dir + '/.version'), 'w') as versionfile:
-            versionfile.write(latest_version)
+            versionfile.write(str(latest_version))
             versionfile.close()
 
     def get_version(self, directory, version_file_name='.version'):
-        if version_file_name in os.listdir(directory):
-            with open(directory + '/' + version_file_name) as f:
-                version = f.read()
-                return version
+        try:
+            if version_file_name in os.listdir(directory):
+                with open(directory + '/' + version_file_name) as f:
+                    version = f.read()
+                    return version
+        except:
+            print("[WARNING] Error in finding version file, defaulting to version 0.0")
         return '0.0'
 
     def get_latest_version(self):
@@ -172,8 +176,9 @@ class OTAUpdater:
 
     def _install_all_files(self, version, sub_dir=''):
         #url = 'https://api.github.com/repos/{}/contents{}{}{}?ref=refs/tags/{}'.format(self.github_repo, self.github_src_dir, self.main_dir, sub_dir, version)       
-        url = 'https://api.github.com/repos/{}/contents/{}{}'.format(self.github_repo, self.github_src_dir, sub_dir)
-        gc.collect()
+        url = 'https://api.github.com/repos/{}/contents/{}{}?ref={}'.format(self.github_repo, self.github_src_dir[:-1], sub_dir, self.main_dir)
+        print('[INFO] Getting version directory from {}'.format(url))
+
         file_list = self.http_client.get(url)
         file_list_json = file_list.json()
         for file in file_list_json:
@@ -198,8 +203,8 @@ class OTAUpdater:
     def _install_file(self, version, gitPath, path):
         #self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, version, gitPath), saveToFile=path)
         self.remove(path)
-        print('[INFO] Downloading: ', gitPath, 'to', path)
-        self.http_client.get('https://raw.githubusercontent.com/{}/main/{}'.format(self.github_repo, gitPath), saveToFile=path)
+        print('[INFO] Downloading:', 'https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, self.main_dir, gitPath), 'to', path)
+        self.http_client.get('https://raw.githubusercontent.com/{}/{}/{}'.format(self.github_repo, self.main_dir, gitPath), saveToFile=path)
 
     def _copy_secrets_file(self):
         if self.secrets_file:
@@ -228,7 +233,7 @@ class OTAUpdater:
             os.remove(file)
             print("[INFO] Removed", file)
         except OSError:
-            pass
+            print("[WARNING] Failed to remove file", file)
 
 
     def _rmtree(self, directory):
