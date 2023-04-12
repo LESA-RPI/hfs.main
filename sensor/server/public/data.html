@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HFS Data Report</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+	<script>
+		function updateData() {
+			console.log('updateData');
+			var table = document.getElementById('data-table');
+			
+			let ip = location.host;
+			let count = 0;
+			$.getJSON('http://' + ip + '/api/db?id=*&limit=100', function(data) {
+				table.innerHTML='';
+				data.forEach(function(row_data) {
+					let row = document.createElement('tr');
+					if (count % 5 == 0) {
+						row.style.setProperty("border-top", "1px solid black");
+					}
+					count += 1;
+					let time = document.createElement('td');
+					let id = document.createElement('td');
+					let d = document.createElement('td');
+					let chlf_r = document.createElement('td');
+					let chlf_n = document.createElement('td');
+					let f = document.createElement('td');
+					time.innerHTML = new Date(row_data['timestamp']);
+					id.innerHTML = row_data['id'];
+					d.innerHTML = row_data['distance'];
+					chlf_r.innerHTML = row_data['chlf_raw'];
+					chlf_n.innerHTML = Math.round(row_data['chlf_normal'] * 10000) / 100;
+					f.innerHTML = row_data['f_factor'];
+					row.appendChild(id);
+					row.appendChild(d);
+					row.appendChild(chlf_r);
+					row.appendChild(chlf_n);
+					row.appendChild(f);
+					row.appendChild(time);
+					table.appendChild(row);   
+				})
+			});
+			
+		}
+		setInterval(function() {
+			console.log("interval");
+			updateData();
+		}, 10000);
+	</script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="description" content="" />
+</head>
+<body style="margin:0; padding:0;">
+<hr class="rounded">
+  <table style="margin-left:auto;margin-right:auto;width:90%;">
+	<thead>
+		<tr>
+			<th>Sensor ID</th>
+			<th>Distance (m)</th>
+			<th>Raw Flourescence (FU)</th>
+			<th>Normalized Flourescence (%)</th>
+			<th>Flourescence Factor</th>
+			<th>Timestamp</th>
+		</tr>
+	</thead>
+	<tbody id="data-table"></tbody>
+	<script> updateData(); </script>
+	</table>
+</body>
+</html>

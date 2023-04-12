@@ -1,97 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>HFS Sensor Dashboard</title>
-	<style>
-        img {
-            height: 100vh;
-            width: auto;
-        }
-		th, td {
-			padding: 10px;
-			text-align: center;
-			vertical-align: middle;
-		}
-      </style>
-	<script>
-		function updateImage() {
-			var images = document.getElementsByTagName('img');
-			for (var i = 0; i < images.length; i++) {
-				var dt = new Date();
-				var img = images[i];
-			  const url = new URL(img.src);
-			  url.search = 'time=' + dt.getTime();
-			  img.src = url.href;
-			}
-		}
-		function updateData() {
-			var table = document.getElementById('data-table');
-			table.innerHTML='';
-			$.getJSON('http://localhost:3000/api/db?id=0&limit=20', function(data) {
-				data.forEach(function(row_data) {
-					let row = document.createElement('tr');
-					let time = document.createElement('td');
-					let id = document.createElement('td');
-					let d = document.createElement('td');
-					let chlf_r = document.createElement('td');
-					let chlf_n = document.createElement('td');
-					let f = document.createElement('td');
-					time.innerHTML = row_data['timestamp'];
-					id.innerHTML = row_data['id'];
-					d.innerHTML = row_data['distance'];
-					chlf_r.innerHTML = row_data['chlf_raw'];
-					chlf_n.innerHTML = row_data['chlf_normal'];
-					f.innerHTML = row_data['f_factor'];
-					row.appendChild(time);
-					row.appendChild(id);
-					row.appendChild(d);
-					row.appendChild(chlf_r);
-					row.appendChild(chlf_n);
-					row.appendChild(f);
-					table.appendChild(row);   
-				})
-			});
-			
-		}
-		setInterval(function() {
-			updateImage();
-			updateData();
-		}, 10000);
-	</script>
+	<title>HFS Dashboard</title>
+	<link rel="stylesheet" href="main.css">
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<meta name="description" content="" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
 </head>
 <body style="margin:0; padding:0;">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-  <div class="container" style="text-align:center;"> 
-	<img src = "http://127.0.0.1:3000/api/file/flourescence_factor_data.jpg" id="cycle">
+	<div id="mySidenav" class="sidenav">
+		<a href="settings.html" id="settings" style="top:50px" onclick="$('#content').attr('data', 'settings.html'); return false;">Dashboard</a>
+		<a href="data.html" id="data" style="top:110px" onclick="$('#content').attr('data', 'data.html'); return false;">Data</a>
+		<a href="ffgraph.html" id="graph1" style="top:170px" onclick="$('#content').attr('data', 'ffgraph.html'); return false;">Flourescence Factor Graph</a>
+		<a href="nfgraph.html" id="graph2" style="top:255px" onclick="$('#content').attr('data', 'nfgraph.html'); return false;">Normalized Flourescence Graph</a>
+		<a href="rfgraph.html" id="graph3" style="top:340px" onclick="$('#content').attr('data', 'rfgraph.html'); return false;">Raw Flourescence Graph</a>
+		<a href="logs.html" id="log" style="top:425px" onclick="$('#content').attr('data', 'logs.html'); return false;">Logs</a>
+	</div>
 	<script>
-		var image = document.getElementById('cycle');
-		var clicks = 0;
-		image.addEventListener('click', function(){
-			clicks = clicks + 1;
-			console.log('test')
-			if (clicks > 2) clicks = 0;
-			if (clicks === 0) image.src = 'http://127.0.0.1:3000/api/file/flourescence_factor_data.jpg';
-			if (clicks === 1) image.src = 'http://127.0.0.1:3000/api/file/normalized_flourescence_data.jpg';
-			if (clicks === 2) image.src = 'http://127.0.0.1:3000/api/file/raw_flourescence_data.jpg';
-		});
+		var ip = location.host;
+		var url = 'http://' + ip + '/api/file/';
+		document.getElementById('settings').setAttribute("data", url + "settings.html");
+		document.getElementById('data').setAttribute("data", url + "data.html");
+		document.getElementById('graph1').setAttribute("data", url + "ffgraph.html");
+		document.getElementById('graph2').setAttribute("data", url + "nfgraph.html");
+		document.getElementById('graph3').setAttribute("data", url + "rfgraph.html");
+		document.getElementById('log').setAttribute("data", url + "logs.html");
 	</script>
-  </div>
-  <table style="margin-left:auto; margin-right:auto;">
-	<thead>
-		<tr>
-			<th style="padding-right:70px; padding-left:70px;">Timestamp</th>
-			<th>Sensor ID</th>
-			<th>Distance (m)</th>
-			<th>Raw Flourescence (FU)</th>
-			<th>Normalized Flourescence (%)</th>
-			<th>Flourescence Factor</th>
-		</tr>
-	</thead>
-	<tbody id="data-table"></tbody>
-	<script>updateData();</script>
-	</table>
-</body>
+	<object id="content" type="text/html" data="settings.html" style="z-index:-1;height:100%;width:100%;position:fixed"></object>
 </html>

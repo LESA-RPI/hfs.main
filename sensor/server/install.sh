@@ -26,8 +26,9 @@ done
 # Increase the number of retries
 echo 'Acquire::Retries "50";' > "/etc/apt/apt.conf.d/80-retries"
 
-# Make the app directory
+# Make the app and config directories
 mkdir -v "/usr/local/src/hfs/public"
+mkdir -v "/usr/local/src/hfs/devices"
 
 # install the required apt packages
 sudo apt update
@@ -95,11 +96,14 @@ fi
 #	# pip install -r packageName/requrirements.txt
 #fi
 
-# Move the index file to public
-mv -v "/usr/local/src/hfs/index.html" "/usr/local/src/hfs/public/index.html" 
+# Move the required files to public
+(cd /usr/local/src/hfs; mv -v *.html "/usr/local/src/hfs/public/")
+(cd /usr/local/src/hfs; mv -v *.css "/usr/local/src/hfs/public/")
+
+# make the log file
+touch "/usr/local/src/hfs/public/public.log"
 
 # install node
-
 if ! type "node" > /dev/null; then
 	echo "${BLUE}INFO: installing Node.js${NC}"
 
@@ -111,7 +115,7 @@ if ! type "node" > /dev/null; then
 	cp -Rv "/usr/local/node-v16.9.1-linux-armv6l/lib" "/usr/"
 	cp -Rv "/usr/local/node-v16.9.1-linux-armv6l/include" "/usr/"
 	cp -Rv "/usr/local/node-v16.9.1-linux-armv6l/share" "/usr/"
-	rm -rvf /usr/local/node-v16.9.1-linux-armv6l
+	rm -rvf "/usr/local/node-v16.9.1-linux-armv6l"
 fi
 
 echo "${BLUE}INFO: reinstalling project dependencies${NC}"
@@ -147,10 +151,10 @@ if ! type "psql" > /dev/null; then
 fi
 
 # make the Bluetooth application
-echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
+#echo "[Unit]\nDescription=The Bluetooth service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/python3 /usr/local/src/hfs/bt-central.py\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-bluetooth.service"
 
-# make the local Webserver application
-echo "[Unit]\nDescription=The local site service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs-local.service"
+# make the application
+echo "[Unit]\nDescription=The local site service for HFS sensor\n\n[Service]\nExecStart=/usr/bin/node /usr/local/src/hfs/server.js\n\n[Install]\nWantedBy=multi-user.target" > "/lib/systemd/system/hfs.service"
 
 # cleanup
 sudo apt autoremove -y
@@ -171,7 +175,11 @@ npm -v
 sudo systemctl status postgresql
 su - postgres -c 'psql -c "TABLE data"'
 
-sudo systemctl start hfs-local.service
-sudo systemctl start hfs-bluetooth.service
+sudo systemctl start hfs.service
+
+# add the 'update' command
+u_cmd = 'alias update-hfs="wget -O hfs.zip https://github.com/LESA-RPI/hfs.main/archive/refs/heads/server-ui.zip && sudo unzip -o -j hfs.zip hfs.*/sensor/server/* -d /usr/local/src/hfs/ && rm hfs.zip && (cd /usr/local/src/hfs && sudo mkdir -p devices && sudo mkdir -p public && sudo mv -v *.html public/ && sudo mv -v *.css public/ && sudo touch public/public.log && sudo npm install)"'
+sudo sh -c "echo ${u_cmd} >> /etc/bash.bashrc"
+source /etc/bash.bashrc
 
 echo "${BLUE}install completed${NC}"

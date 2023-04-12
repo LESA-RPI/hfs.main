@@ -6,3 +6,6 @@
 
 # Old files
 *.old
+
+# log files
+.log

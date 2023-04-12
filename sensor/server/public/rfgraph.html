@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HFS Raw ChlF Report</title>
+	<link rel="stylesheet" href="main.css">
+	<script>
+		function updateImage() {
+			console.log("updateImage");
+			var images = document.getElementsByTagName('img');
+			for (var i = 0; i < images.length; i++) {
+				var dt = new Date();
+				var img = images[i];
+			  const url = new URL(img.src);
+			  url.search = 'time=' + dt.getTime();
+			  img.src = url.href;
+			}
+		}
+		setInterval(function() {
+			console.log("interval");
+			updateImage();
+		}, 10000);
+	</script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="description" content="" />
+</head>
+<body style="margin:0; padding:0;">
+<hr class="rounded">
+  <div class="container" style="text-align:center;"> 
+	<img src = "" id="cycle">
+	<script>
+		var image = document.getElementById('cycle');
+		let ip = location.host;
+		image.src = 'http://' + ip + '/api/file/raw_flourescence_data.jpg';
+		console.log(image.src);
+	</script>
+  </div>
+</body>
+</html>

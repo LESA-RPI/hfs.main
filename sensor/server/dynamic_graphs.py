@@ -37,7 +37,7 @@ class RTGraph:
         self.title = title
         self.width = width
         self.path = title.lower().replace(' ', '_')
-        if exists(self.path):
+        if exists("/usr/local/src/hfs/public/" + self.path + ".pickle"):
             self.load()
             return
 
@@ -51,7 +51,7 @@ class RTGraph:
         
         self._setupFig()
         
-        plt.show()
+        #plt.show()
 
         
     def _setupFig(self):
@@ -59,7 +59,7 @@ class RTGraph:
         # Setup this figure
         self.fig, self.fig_axis = plt.subplots(1, 1, figsize = (12, 8), num = self.title, dpi = 200)
         self.fig_axis.set_ylim(0, self.max_height)
-        self.fig.set_dpi(600.0)
+        self.fig.set_dpi(200)
 
 
         # https://matplotlib.org/devdocs/gallery/ticks/date_formatters_locators.html
@@ -72,36 +72,44 @@ class RTGraph:
         plt.title(self.title)
             
     def save(self):
-        self.fig.savefig('public/' + self.path + '.jpg')
-        file = open(self.path, 'wb') 
-        pickle.dump(self, file)
+        path = '/usr/local/src/hfs/public/' + self.path
+        try:
+            self.fig.savefig(path + '.jpg')
+            with open(path + '.pickle', 'wb+') as file:
+                pickle.dump(self, file)
+        except Exception as err:
+            pass
         
         
     def load(self):
-        file = open(self.path, 'rb') 
-        obj = pickle.load(file)
-        
-        self.ydata = copy.deepcopy(obj.ydata)
-        self.xdata = copy.deepcopy(obj.xdata)
-        self.sensors = copy.deepcopy(obj.sensors)
-        self.min_time = copy.deepcopy(obj.min_time)
-        self.max_time = copy.deepcopy(obj.max_time)
-        
-        self._setupFig()
-        
-        for sid in range(len(obj.sensors)):
-            if obj.sensors[sid] is None:
-                continue
-            self.sensors[sid],  = self.fig_axis.plot(self.xdata[sid], self.ydata[sid], lw = 3, color = colors[sid])
-        sensor_count = sum(x is not None for x in self.sensors)
-        
-        self.fig_axis.legend(self.sensors[:sensor_count], [('Sensor #' + str(i)) for i in range(sensor_count)], fontsize = 'small', bbox_to_anchor = (1, 1), loc = 'upper left')
-        plt.table(cellText = list(filter(lambda item: item is not None, self.ydata)),
-                        rowLabels=[('Sensor #' + str(i)) for i in range(sensor_count)],
-                        colLabels=self.xdata,
-                        loc='bottom')
-        
-        plt.show()
+        try:
+            path = '/usr/local/src/hfs/public/' + self.path
+            with open(path + '.pickle', 'rb+') as file:
+                obj = pickle.load(file)
+            
+            self.ydata = copy.deepcopy(obj.ydata)
+            self.xdata = copy.deepcopy(obj.xdata)
+            self.sensors = copy.deepcopy(obj.sensors)
+            self.min_time = copy.deepcopy(obj.min_time)
+            self.max_time = copy.deepcopy(obj.max_time)
+            
+            self._setupFig()
+            
+            for sid in range(len(obj.sensors)):
+                if obj.sensors[sid] is None:
+                    continue
+                self.sensors[sid],  = self.fig_axis.plot(self.xdata[sid], self.ydata[sid], lw = 3, color = colors[sid])
+            sensor_count = sum(x is not None for x in self.sensors)
+            
+            self.fig_axis.legend(self.sensors[:sensor_count], [('Sensor #' + str(i)) for i in range(sensor_count)], fontsize = 'small', bbox_to_anchor = (1, 1), loc = 'upper left')
+            plt.table(cellText = list(filter(lambda item: item is not None, self.ydata)),
+                            rowLabels=[('Sensor #' + str(i)) for i in range(sensor_count)],
+                            colLabels=self.xdata,
+                            loc='bottom')
+            
+            plt.show()
+        except:
+            pass
         
     def _updateMinTime(self):
         self.min_time = self.xdata[0][0]
@@ -159,7 +167,7 @@ class RTGraph:
 samples = 100
 
 # make the graphs
-graph_raw = RTGraph(samples, 4095, 'Raw Flourescence Data', 'mcu')
+graph_raw = RTGraph(samples, 65536, 'Raw Flourescence Data', 'mcu')
 graph_norm = RTGraph(samples, 100, 'Normalized Flourescence Data', 'Chlf (%)')
 graph_chlf = RTGraph(samples, 100, 'Flourescence Factor Data', 'Flourescence Factor (%)')
 
@@ -171,6 +179,7 @@ def update(timestamp, sid, val_raw, val_norm, val_chlf):
 
 # save all graphs at once for convinience
 def save():
+
     # give the graphs some time to update
     plt.pause(1)
     # save locally

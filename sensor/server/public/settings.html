@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HFS Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="description" content="" />
+	<script>
+		var DEVICES = [];
+		var CURRENT_DEVICE = -1;
+		
+		function sendCmdOverBLE(device_addr, cmd, data) {
+			fetch('http://' + location.host + '/api/ble', {
+				method: 'POST',
+				body: JSON.stringify({
+					addr: device_addr,
+					cmd: parseInt(cmd),
+					data: data
+				}),
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				}
+			});
+		}
+		
+		function updatePageSettings() {
+			let devices_dropdown = document.getElementById('option-sensors');
+			CURRENT_DEVICE = devices_dropdown.selectedIndex;
+			
+			let interval = document.getElementById('delay-min');
+			let command = document.getElementById('option-program');
+			let name = document.getElementById('sensor-name');
+			let run_button = document.getElementById('run-btn');
+			let update_button = document.getElementById('update-btn');
+			
+			if (CURRENT_DEVICE < 0) { 
+				command.disabled = true;
+				interval.disabled = true;
+				name.disabled = true;
+				run_button.disabled = true;
+				update_button.disabled = true;
+				return; 
+			} else {
+				command.disabled = false;
+				name.disabled = false;
+				run_button.disabled = false;
+				update_button.disabled = false;
+			}
+			
+			device = DEVICES[CURRENT_DEVICE];
+			console.log(DEVICES)
+			console.log(CURRENT_DEVICE)
+			// todo: button to immidiately run the program
+			
+			// update things
+			command.value = device['command'];
+			devices_dropdown.options[CURRENT_DEVICE].innerHTML = device['name'];
+			name.value = device['name'];
+			
+			// only the default program has an interval
+			if (device['command'] != 10) {
+				interval.disabled = true;
+			} else {
+				interval.disabled = false;
+				interval.value = device['interval'];
+			}
+		}
+		
+		function getDevices() {
+			fetch('http://' + location.host + '/api/ble', {
+				method: 'POST',
+				body: JSON.stringify({ addr: "", cmd: 3, data: 0 }),
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				}
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					DEVICES = [];
+					let devices_dropdown = document.getElementById('option-sensors');
+					devices_dropdown.innerHTML = ''
+					let options = [];
+					let option = document.createElement('option');
+					
+					data.devices.forEach(function (device) {
+						let device_json = JSON.parse(device);
+						DEVICES.push(device_json);
+						console.log(device_json);
+						console.log(DEVICES);
+						option.text = device_json['name'];
+						option.value = device_json['address'];
+						options.push(option.outerHTML);
+					});
+					console.log(data);
+					devices_dropdown.insertAdjacentHTML('beforeEnd', options.join('\n'));
+					// update the other dropdown values with what the device settings currently display
+					updatePageSettings();
+				});
+			
+			
+		}
+		function updateDevice(cmd, value_id, msg) {
+			let address = document.getElementById('option-sensors').value;
+			let data = document.getElementById(value_id).value;
+			if (address == null) { return; }
+			sendCmdOverBLE(address, cmd, data);
+			
+			if (cmd == 2) { // update cmd
+				DEVICES[CURRENT_DEVICE]['command'] = data
+			} else if (cmd == 4) { // update delay
+				DEVICES[CURRENT_DEVICE]['interval'] = data
+			} else if (cmd == 5) { // update name
+				DEVICES[CURRENT_DEVICE]['name'] = data
+			}
+			
+			window.alert(msg);
+			updatePageSettings();
+		}
+		getDevices();
+	</script>
+</head>
+<body style="margin:0; padding:0;">
+
+	
+	<hr class="rounded">
+	
+	<table style="padding-left:20%;padding-top:20px;width:80%;text-align:left">
+		<thead>
+			<tr>
+				<td>
+					<label for="option-sensors" style="padding-right:20px">Device</label>
+					<select name="option-sensors" id="option-sensors" onclick="getDevices()"></select>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="sensor-name">Name</label>
+					<input type="text" id="sensor-name" name="sensor-name" onchange="updateDevice(5, 'sensor-name', 'Device name has been updated!')">
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="delay-min">Delay Between Measurements (minutes)</label>
+					<input type="number" id="delay-min" name="delay-min" min="1" max="1440" onchange="updateDevice(4, 'delay-min', 'Run interval has been updated')">
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="option-program" style="padding-right:20px">Program</label>
+					<select name="option-program" id="option-program" onchange="updateDevice(2, 'option-program', 'Default program has been updated!')">
+						<option value=10>default (v1.0)</option>
+						<!-- <option value=11>distance testing</option> -->
+						<!-- <option value=12>farfield testing</option> -->
+						<!-- <option value=13>flash testing</option> -->
+						<option value=14>frequency testing</option>
+						<!-- <option value=15>noise testing</option> -->
+						<option value=16>no-light testing</option>
+						<option value=17>light testing</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<button id="run-btn" onclick="updateDevice(-0, 'option-program', 'Running selected program on device!')" type="button">Run Program</button>
+					<button id="update-btn" onclick="updateDevice(-5, 0, 'Attempting to update device to a newer version!')" type="button">Check For Updates</button>
+				</td>
+			</tr>
+				
+			
+		</thead>
+	<tbody id="settings-table"></tbody>
+	</table>
+</body>
+</html>
