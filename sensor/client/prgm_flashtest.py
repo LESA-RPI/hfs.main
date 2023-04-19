@@ -11,7 +11,7 @@ led_flash = PWM(Pin(33, Pin.OUT))
 
 # entry point for the program
 # run this program once and only once, server will decide how to loop
-async def run(server, pipe, data: int):    
+async def run(server, pipe, frequency, sampleSize):    
     print("[prgm_flashtest] start")
     # set up pins
     #measured_result = ADC(Pin(14, Pin.IN))

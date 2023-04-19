@@ -4,7 +4,6 @@ from machine import Timer
 import uasyncio
 import math
 
-frequency = 15
 counter = 0
 LEDON = True
 led_on_time = 1.5
@@ -19,7 +18,7 @@ def timerCallback(server, pipe):
     LEDON = not LEDON
     counter = counter + 1 #increments counter used for determining when to stop measurements
 
-async def measurements1(tim, server, pipe):
+async def measurements1(frequency, tim, server, pipe):
     while (counter-1) < round(frequency*led_wait_measure_time):
         pass
     print("starting measurements")
@@ -33,12 +32,16 @@ async def sleep_between_measurements(led_time):
 
 # entry point for the program
 # run this program once and only once, server will decide how to loop
-async def run(server, pipe, data: int):    
+async def run(server, pipe, frequency, sampleSize):    
     sensor.log(server, pipe, "[INFO] starting prgm_photodiode")
+    if sampleSize != 0:
+        samples = sampleSize
+    if frequency == 0:
+        frequency = 400
     tim = Timer(1) #timer used to count when LED sleeps and takes measurements
     tim.init(freq = frequency, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe))
     sensor.readSonar()
-    await measurements1(tim, server, pipe)
+    await measurements1(frequency, tim, server, pipe)
     # pipe.write("data")
     #pipe.notify(server)
     sensor.log(server, pipe, "[INFO] ending prgm_photodiode")

@@ -70,9 +70,12 @@ async def sleep_between_measurements(led_time):
 
 # entry point for the program
 # run this program once and only once, server will decide how to loop
-async def run(server, pipe, data: int):    
+async def run(server, pipe, frequency, sampleSize):   
+    global samples 
     sensor.log(server, pipe, "[INFO] starting prgm_frequency")
     await sleep_between_measurements(led_off_start_time) #sleeps for 10 minutes
+    if sampleSize:
+        samples = sampleSize
     for curFreq in frequency_list: #all the frequencies in test
         sensor.log(server, pipe, f"[INFO] Actual frequency: {curFreq}")
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements

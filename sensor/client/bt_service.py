@@ -53,22 +53,22 @@ async def _start():
                 # wait for the server to tell us to do something
                 device.log(connection, comm_characteristic, "[INFO] Waiting for command...")
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
-                cmd, data = 0, None
+                cmd, data, sampleSize, frequency = 0, None, 0, 0
                 try:
-                    cmd, data = struct.unpack("HI", comm_characteristic.read())
+                    cmd, data, sampleSize, frequency = struct.unpack("HILL", comm_characteristic.read())
                 except Exception as error:
                     device.log(connection, comm_characteristic, f"[ERROR] Could not parse command")
                 device.log(connection, comm_characteristic, f"[INFO] Recieved command {str(cmd)} with parameter {str(data)}")
                 # req will either a command to run the current function, change it, or request a list of valid functions
                 if cmd == _RUN_DEFAULT:
-                    await FUNCTION(connection, comm_characteristic, data)
+                    await FUNCTION(connection, comm_characteristic, frequency, sampleSize)
                 elif cmd == _GET:
                     bt_programs.get(connection, comm_characteristic)
                 elif cmd == _SET:
-                    bt_programs.setDefault(connection, comm_characteristic, data)
+                    bt_programs.setDefault(connection, comm_characteristic, frequency, sampleSize)
                 elif cmd == _RUN:
                     func = bt_programs.lookup(data)
-                    await func(connection, comm_characteristic, 1)
+                    await func(connection, comm_characteristic, frequency, sampleSize)
                 elif cmd == _UPDATE:
                     device.log(connection, comm_characteristic, "Disconnecting to update device, see you soon!")
                     await aioble.disconnect()
