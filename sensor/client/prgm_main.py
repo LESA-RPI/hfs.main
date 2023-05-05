@@ -73,10 +73,10 @@ async def sleep_between_measurements(led_time):
 # entry point for the program
 # run this program once and only once, server will decide how to loop
 async def run(server, pipe, frequency, sampleSize):
-    global samples
+    global samples, counter
     samples = []
     counter = 0
-    sampleCount = round(pow(2, 13) / 16) # max length of a u16 list
+    sampleCount = round(pow(2, 13) / 16) # max length of a u16 list (this isn't actually the max, but anything higher risks memory allocation errors)
 
     print("[prgm_main] start")
     if frequency == 0:
