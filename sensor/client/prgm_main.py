@@ -27,13 +27,12 @@ def led_blinking():
         pins.LED3.off()
         pins.LED4.off()
 
-def timerCallback(server, pipe):
+def timerCallback(server, pipe, frequency):
     global counter
     counter = counter + 1 #increments counter used for determining when to stop measurements
     if counter % 2:
         led_blinking()
-    else:
-        
+    elif counter > led_wait_measure_time * frequency * 2:
         measurements()
         
 
@@ -41,6 +40,7 @@ def timerCallback(server, pipe):
 # max might be 2^13 bytes len list
 def measurements():
     global samples
+    print(len(samples))
     # APPEND IS ATOMIC IN PYTHON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     value = sensor.readPhotodiode()
     
@@ -79,13 +79,10 @@ async def run(server, pipe, frequency, sampleSize):
     if frequency == 0:
         frequency = 1000
     tim = Timer(1) #timer used to count when LED sleeps and takes measurements
-    tim.init(freq = frequency * 2, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe))
+    tim.init(freq = frequency * 2, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe, frequency))
     sensor.readSonar()
     pins.LED_POWER_SWITCH.on()
-    while counter < led_wait_measure_time * frequency * 2:
-        pass
-    counter = 0
-    while counter < sampleCount * 2:
+    while counter < (sampleCount * 2) + led_wait_measure_time * frequency * 2:
         pass
     num_samples = len(samples * 2)
     tim.deinit()
