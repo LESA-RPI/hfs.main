@@ -30,22 +30,20 @@ def led_blinking():
 def timerCallback(server, pipe):
     global counter
     if counter % 2:
-        counter = counter + 1 #increments counter used for determining when to stop measurements
         led_blinking()
     else:
+        counter = counter + 1 #increments counter used for determining when to stop measurements
         measurements()
+        
+
 
 # max might be 2^13 bytes len list
 def measurements():
     global samples
     # APPEND IS ATOMIC IN PYTHON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     value = sensor.readPhotodiode()
-    num_samples = len(samples)
-    try:
-        old_value = samples.pop()
-        samples.append(value + old_value)
-    except IndexError:
-         samples.append(value)
+    
+    samples.append(value)
     # todo: uncomment this line to enable 'study' mode, not reccomended!
     # sensor.send(server, pipe, sensor.CURRENT_DISTANCE, avg)
     print(value)
@@ -74,10 +72,9 @@ async def sleep_between_measurements(led_time):
 async def run(server, pipe, frequency, sampleSize):
     global samples
     samples = []
-    global sampleCount
+    sampleCount = round(pow(2, 13) / 16) # max length of a u16 list
+
     print("[prgm_main] start")
-    if sampleSize != 0:
-        sampleCount = sampleSize
     if frequency == 0:
         frequency = 1000
     tim = Timer(1) #timer used to count when LED sleeps and takes measurements
@@ -85,12 +82,12 @@ async def run(server, pipe, frequency, sampleSize):
     sensor.readSonar()
     pins.LED_POWER_SWITCH.on()
 
-    while (counter-1) < round(frequency * led_wait_measure_time):
+    while counter < sampleCount:
         pass
     num_samples = len(samples)
     tim.deinit()
     pins.LED_POWER_SWITCH.off()
-    sensor.log(server, pipe, f"Read {num_samples}/{round(frequency * led_wait_measure_time)} samples")
+    sensor.log(server, pipe, f"Read {num_samples}/{sampleCount} samples")
 
     # get the average
     # todo: get std.dev, median, all that other jazz!
