@@ -55,7 +55,9 @@ async def _start():
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
                 cmd, data, sampleSize, frequency = 0, None, 0, 0
                 try:
-                    cmd, data, sampleSize, frequency = struct.unpack("HILL", comm_characteristic.read())
+                    # todo: comment this back in when communication with the server is updated!
+                    #cmd, data, sampleSize, frequency = struct.unpack("HILL", comm_characteristic.read())
+                    cmd, data = struct.unpack("HI", comm_characteristic.read())
                 except Exception as error:
                     device.log(connection, comm_characteristic, f"[ERROR] Could not parse command")
                     continue
