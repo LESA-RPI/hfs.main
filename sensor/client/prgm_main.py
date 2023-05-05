@@ -75,6 +75,7 @@ async def sleep_between_measurements(led_time):
 async def run(server, pipe, frequency, sampleSize):
     global samples
     samples = []
+    counter = 0
     sampleCount = round(pow(2, 13) / 16) # max length of a u16 list
 
     print("[prgm_main] start")
@@ -108,6 +109,7 @@ async def run(server, pipe, frequency, sampleSize):
     # div by 0 is bad!
     try: 
         avg /= num_samples - null_samples
+        # avg /= num_samples
     except ZeroDivisionError:
         sensor.log(server, pipe, "Wow this is really bad, good luck mate!")
     
