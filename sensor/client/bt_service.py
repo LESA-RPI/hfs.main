@@ -53,7 +53,7 @@ async def _start():
                 # wait for the server to tell us to do something
                 device.log(connection, comm_characteristic, "[INFO] Waiting for command...")
                 await comm_characteristic.written(timeout_ms=_TIMEOUT_MS)
-                cmd, data, sampleSize, frequency = 0, None, 0, 0
+                cmd, data, frequency = 0, None, 0
                 try:
                     # todo: comment this back in when communication with the server is updated!
                     #cmd, data, sampleSize, frequency = struct.unpack("HILL", comm_characteristic.read())
@@ -64,14 +64,14 @@ async def _start():
                 device.log(connection, comm_characteristic, f"[INFO] Recieved command {str(cmd)} with parameter {str(data)}")
                 # req will either a command to run the current function, change it, or request a list of valid functions
                 if cmd == _RUN_DEFAULT:
-                    await FUNCTION(connection, comm_characteristic, frequency, sampleSize)
+                    await FUNCTION(connection, comm_characteristic, frequency)
                 elif cmd == _GET:
                     bt_programs.get(connection, comm_characteristic)
                 elif cmd == _SET:
-                    bt_programs.setDefault(connection, comm_characteristic, frequency, sampleSize)
+                    bt_programs.setDefault(connection, comm_characteristic, frequency)
                 elif cmd == _RUN:
                     func = bt_programs.lookup(data)
-                    await func(connection, comm_characteristic, frequency, sampleSize)
+                    await func(connection, comm_characteristic, frequency)
                 elif cmd == _UPDATE:
                     device.log(connection, comm_characteristic, "Disconnecting to update device, see you soon!")
                     await aioble.disconnect()
