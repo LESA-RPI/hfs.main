@@ -127,7 +127,8 @@ async def run(server, pipe, frequency, sampleSize):
         sensor.log(server, pipe, "Can not find value of sample")
     
     # send it off!!
-    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg), std_deviation)
+    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg))
+    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, std_deviation)
 
     # pipe.write("data")
     print("hello world")
