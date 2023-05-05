@@ -32,6 +32,8 @@ def timerCallback(server, pipe, frequency):
     counter = counter + 1 #increments counter used for determining when to stop measurements
     if counter % 2:
         led_blinking()
+        global LEDON
+        LEDON = not LEDON
     elif counter > led_wait_measure_time * frequency * 2:
         measurements()
         
@@ -99,6 +101,7 @@ async def run(server, pipe, frequency, sampleSize):
             null_samples += 1
         elif samples[i] == 65535:
             overflow_samples += 1
+            avg = 65535
         else:
             avg += samples[i]
     
