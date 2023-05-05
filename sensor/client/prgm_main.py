@@ -102,7 +102,7 @@ async def run(server, pipe, frequency, sampleSize):
             null_samples += 1
         elif samples[i] == 65535:
             overflow_samples += 1
-            avg = 65535
+            #avg = 65535
         else:
             avg += samples[i]
     
@@ -115,6 +115,7 @@ async def run(server, pipe, frequency, sampleSize):
     
     if num_samples - null_samples == overflow_samples:
         sensor.log(server, pipe, "Oops, we overflowed! Try again!")
+        avg = 65535
 
     # send it off!!
     sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg))
