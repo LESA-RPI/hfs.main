@@ -95,6 +95,8 @@ async def run(server, pipe, frequency, sampleSize):
     # get the average
     # todo: get std.dev, median, all that other jazz!
     avg = 0
+    val_mean = 0
+    std_deviation = 0
     null_samples = 0
     overflow_samples = 0
     for i in range(num_samples):
@@ -117,8 +119,15 @@ async def run(server, pipe, frequency, sampleSize):
         sensor.log(server, pipe, "Oops, we overflowed! Try again!")
         avg = 65535
 
+    try:
+        for i in samples:
+            val_mean += pow(i-avg, 2)
+        std_deviation = math.sqrt(val_mean/(num_samples - null_samples))
+    except ZeroDivisionError:
+        sensor.log(server, pipe, "Can not find value of sample")
+    
     # send it off!!
-    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg))
+    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg), std_deviation)
 
     # pipe.write("data")
     print("hello world")
