@@ -45,12 +45,13 @@ _COMM_RW_UUID = "26c00002-ece0-4f7a-b663-223de05387cc"
 _SERVICE_UUIDS = [_COMM_UUID]
 
 class DeviceConfig():
-    def __init__(self, address, name):
+    def __init__(self, address, name, frequency):
         self.command = 10
         self.parameter = 0
         self.interval = 30 # min
         self.name = name
         self.address = address
+        self.frequency = frequency
 
 class Device():
     def __init__(self, client_info):
@@ -99,7 +100,7 @@ class Device():
     
     async def send(self, client, command):
         try:
-            await client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HI", *command))
+            await client.write_gatt_char(_COMM_RW_UUID, data=struct.pack("HIL", *command, self.config.frequency))
         except Exception as error:
             log.error(f"Sending command {command} to {self.name()} failed due ot the following error: {error}")
         
@@ -146,6 +147,10 @@ class Device():
             self.config.name = data
             self.save_config()
             log.info(f"'{old_name}' has been renamed to '{self.name()}'")
+        elif cmd == 6: # update the frequency of blinking LEDs
+            self.config.frequency = data
+            self.save_config()
+            log.info(f"'Frequency' has been updated to '{self.config.frequency}'")
         else:
             log.warning(f'Unknown command {self.msg["cmd"]}')
 

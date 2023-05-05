@@ -112,6 +112,8 @@
 				DEVICES[CURRENT_DEVICE]['interval'] = data
 			} else if (cmd == 5) { // update name
 				DEVICES[CURRENT_DEVICE]['name'] = data
+			} else if (cmd == 6) { // update frequency
+				DEVICES[CURRENT_DEVICE]['frequency'] = data
 			}
 			
 			window.alert(msg);
@@ -138,6 +140,13 @@
 				<td>
 					<label for="sensor-name">Name</label>
 					<input type="text" id="sensor-name" name="sensor-name" onchange="updateDevice(5, 'sensor-name', 'Device name has been updated!')">
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="frequency">Frequency</label>
+					<input type="text" id="frequency" name="frequency" onchange="updateDevice(6, 'frequency', 'Device name has been updated!')">
 				</td>
 			</tr>
 
