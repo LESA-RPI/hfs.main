@@ -35,15 +35,22 @@ def timerCallback(server, pipe):
     else:
         measurements()
 
-
+# max might be 2^13 bytes len list
 def measurements():
     global samples
     # APPEND IS ATOMIC IN PYTHON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     value = sensor.readPhotodiode()
-    samples.append(value)
+    num_samples = len(samples)
+    try:
+        old_value = samples.pop()
+        samples.append(value + old_value)
+    except IndexError:
+         samples.append(value)
     # todo: uncomment this line to enable 'study' mode, not reccomended!
     # sensor.send(server, pipe, sensor.CURRENT_DISTANCE, avg)
     print(value)
+
+
 
 async def measurements1(frequency, tim, server, pipe):
     while (counter-1) < round(frequency * led_wait_measure_time):
