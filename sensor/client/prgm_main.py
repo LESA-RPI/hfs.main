@@ -29,8 +29,8 @@ def led_blinking():
 
 def timerCallback(server, pipe):
     global counter
-    counter = counter + 1 #increments counter used for determining when to stop measurements
     if counter % 2:
+        counter = counter + 1 #increments counter used for determining when to stop measurements
         led_blinking()
     else:
         measurements()
@@ -89,9 +89,12 @@ async def run(server, pipe, frequency, sampleSize):
     # todo: get std.dev, median, all that other jazz!
     avg = 0
     null_samples = 0
+    overflow_samples = 0
     for i in range(num_samples):
         if samples[i] == 0:
             null_samples += 1
+        elif samples[i] == 65535:
+            overflow_samples += 1
         else:
             avg += samples[i]
     
@@ -101,6 +104,9 @@ async def run(server, pipe, frequency, sampleSize):
     except ZeroDivisionError:
         sensor.log(server, pipe, "Wow this is really bad, good luck mate!")
     
+    if num_samples - null_samples == overflow_samples:
+        sensor.log(server, pipe, "Oops, we overflowed! Try again!")
+
     # send it off!!
     sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg))
 
