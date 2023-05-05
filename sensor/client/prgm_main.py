@@ -102,7 +102,7 @@ async def run(server, pipe, frequency, sampleSize):
         sensor.log(server, pipe, "Wow this is really bad, good luck mate!")
     
     # send it off!!
-    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, avg)
+    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg))
 
     # pipe.write("data")
     print("hello world")
