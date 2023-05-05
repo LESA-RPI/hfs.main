@@ -29,10 +29,11 @@ def led_blinking():
 
 def timerCallback(server, pipe):
     global counter
+    counter = counter + 1 #increments counter used for determining when to stop measurements
     if counter % 2:
         led_blinking()
     else:
-        counter = counter + 1 #increments counter used for determining when to stop measurements
+        
         measurements()
         
 
@@ -81,10 +82,12 @@ async def run(server, pipe, frequency, sampleSize):
     tim.init(freq = frequency * 2, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe))
     sensor.readSonar()
     pins.LED_POWER_SWITCH.on()
-
-    while counter < sampleCount:
+    while counter < led_wait_measure_time * frequency * 2:
         pass
-    num_samples = len(samples)
+    counter = 0
+    while counter < sampleCount * 2:
+        pass
+    num_samples = len(samples * 2)
     tim.deinit()
     pins.LED_POWER_SWITCH.off()
     sensor.log(server, pipe, f"Read {num_samples}/{sampleCount} samples")
