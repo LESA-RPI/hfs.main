@@ -84,7 +84,7 @@ async def run(server, pipe, frequency, sampleSize):
     pins.LED_POWER_SWITCH.on()
     while counter < (sampleCount * 2) + led_wait_measure_time * frequency * 2:
         pass
-    num_samples = len(samples * 2)
+    num_samples = len(samples)
     tim.deinit()
     pins.LED_POWER_SWITCH.off()
     sensor.log(server, pipe, f"Read {num_samples}/{sampleCount} samples")
