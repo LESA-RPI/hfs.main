@@ -128,7 +128,7 @@ async def run(server, pipe, frequency, sampleSize):
     
     # send it off!!
     sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg))
-    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, std_deviation)
+    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(std_deviation))
 
     # pipe.write("data")
     print("hello world")
