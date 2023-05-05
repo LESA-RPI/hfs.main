@@ -58,6 +58,7 @@ async def _start():
                     cmd, data, sampleSize, frequency = struct.unpack("HILL", comm_characteristic.read())
                 except Exception as error:
                     device.log(connection, comm_characteristic, f"[ERROR] Could not parse command")
+                    continue
                 device.log(connection, comm_characteristic, f"[INFO] Recieved command {str(cmd)} with parameter {str(data)}")
                 # req will either a command to run the current function, change it, or request a list of valid functions
                 if cmd == _RUN_DEFAULT:
