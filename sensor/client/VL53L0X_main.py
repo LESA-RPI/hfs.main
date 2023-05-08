@@ -1,7 +1,6 @@
 #taken from https://github.com/uceeatz/VL53L0X/blob/master/main.py
 import device_sensor as sensor # sensor.readAndSend(server, pipe)
 import device_pins as pins
-import pycom
 import time
 from machine import Pin
 from machine import I2C

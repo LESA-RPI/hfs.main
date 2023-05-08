@@ -1,14 +1,21 @@
 #taken from https://github.com/uceeatz/VL53L0X/blob/master/main.py
 import device_sensor as sensor # sensor.readAndSend(server, pipe)
 import device_pins as pins
-import pycom
 import time
 from machine import Pin
 from machine import I2C
 import VL53L0X
 
+delt_t = 0
+count = 0
+sumCount = 0;  # used to control display output rate
+deltat = 0.0
+sum = 0.0         # integration interval for both filter schemes
+lastUpdate = 0
+firstUpdate = 0 # used to calculate integration interval
+Now = 0                         # used to calculate integration interval
 
-i2c = I2C.init(pins.SCL, pins.SDA, freq=9600)
+i2c = I2C.init(pins.SCL, pins.SDA, freq=400000)
 
 # Create a VL53L0X object
 tof = VL53L0X.VL53L0X(i2c)
