@@ -10,12 +10,13 @@ frequency_list = [15, 50, 100, 200, 400, 800, 1000, 1200, 1400, 600, 700, 650]
 led_on_time = 1.5 #10 sec
 led_off_start_time = 10*60*1000 #10 min
 #led_off_start_time = 60*1000 #1 min for testing purposes
-samples = 5
 led_wait_measure_time = 0.6
 led_measurement_time = led_on_time-led_wait_measure_time
 led_between_measure_time = round((led_measurement_time*1000)/samples) #TT
 counter = 0
 average_result = 0
+samples = []
+sampleSize = round(pow(2, 13) / 16) # max length of a u16 list (this isn't actually the max, but anything higher risks memory allocation errors)
 LEDON = True
 
 def led_blinking():
@@ -35,7 +36,7 @@ async def measurements(curFreq, server, pipe):
     while (counter-1) < round(curFreq*led_wait_measure_time):
         pass
     sensor.log(server, pipe, "[INFO] starting measurements")
-    for i in range(0, samples):
+    for i in range(0, sampleSize):
         while(LEDON == False):
             await uasyncio.sleep_ms(0)
         value = sensor.readPhotodiode()
@@ -66,7 +67,7 @@ def timerCallback(curFreq, server, pipe):
         global LEDON
         LEDON = not LEDON
     elif counter > led_wait_measure_time * curFreq * 2:
-        measurements()
+        measurements(curFreq)
     
 
 async def sleep_between_measurements(led_time):
@@ -75,12 +76,10 @@ async def sleep_between_measurements(led_time):
 
 # entry point for the program
 # run this program once and only once, server will decide how to loop
-async def run(server, pipe, frequency, sampleSize):   
+async def run(server, pipe, frequency):   
     global samples 
     sensor.log(server, pipe, "[INFO] starting prgm_frequency")
     await sleep_between_measurements(led_off_start_time) #sleeps for 10 minutes
-    if sampleSize:
-        samples = sampleSize
     for curFreq in frequency_list: #all the frequencies in test
         sensor.log(server, pipe, f"[INFO] Actual frequency: {curFreq}")
         tim = Timer(1) #timer used to count when LED sleeps and takes measurements

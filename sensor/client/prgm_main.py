@@ -9,6 +9,7 @@ counter = 0
 LEDON = True
 led_on_time = 1.5
 sampleCount = 5
+samples = []
 led_wait_measure_time = 0.6
 led_measurement_time = led_on_time-led_wait_measure_time
 led_between_measure_time = round((led_measurement_time*1000)/sampleCount)
@@ -41,8 +42,8 @@ def timerCallback(server, pipe, frequency):
 
 # max might be 2^13 bytes len list
 def measurements():
-    global samples
-    print(len(samples))
+    global sampleCount
+    print(len(sampleCount))
     # APPEND IS ATOMIC IN PYTHON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     value = sensor.readPhotodiode()
     
@@ -73,8 +74,7 @@ async def sleep_between_measurements(led_time):
 # entry point for the program
 # run this program once and only once, server will decide how to loop
 async def run(server, pipe, frequency):
-    global sampleCount, counter
-    samples = []
+    global sampleCount, samples, counter
     counter = 0
     sampleCount = round(pow(2, 13) / 16) # max length of a u16 list (this isn't actually the max, but anything higher risks memory allocation errors)
 
