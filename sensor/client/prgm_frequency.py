@@ -12,11 +12,11 @@ led_off_start_time = 10*60*1000 #10 min
 #led_off_start_time = 60*1000 #1 min for testing purposes
 led_wait_measure_time = 0.6
 led_measurement_time = led_on_time-led_wait_measure_time
-led_between_measure_time = round((led_measurement_time*1000)/samples) #TT
+sampleSize = round(pow(2, 13) / 16) # max length of a u16 list (this isn't actually the max, but anything higher risks memory allocation errors)
+led_between_measure_time = round((led_measurement_time*1000)/sampleSize) #TT
 counter = 0
 average_result = 0
 samples = []
-sampleSize = round(pow(2, 13) / 16) # max length of a u16 list (this isn't actually the max, but anything higher risks memory allocation errors)
 LEDON = True
 
 def led_blinking():
