@@ -31,14 +31,15 @@ def led_blinking():
         pins.LED4.off()
 
    
-async def measurements1(curFreq, server, pipe):
+async def measurements(curFreq, server, pipe):
     while (counter-1) < round(curFreq*led_wait_measure_time):
         pass
     sensor.log(server, pipe, "[INFO] starting measurements")
     for i in range(0, samples):
         while(LEDON == False):
             await uasyncio.sleep_ms(0)
-        sensor.readAndSend(server, pipe)
+        value = sensor.readPhotodiode()
+        samples.append(value)
         await sleep_between_measurements(led_between_measure_time)  
 
 
@@ -50,18 +51,22 @@ async def sleep(curFreq, tim, server, pipe):
     pins.LED2.off()
     pins.LED3.off()
     pins.LED4.off()
-    pins.LED_POWER_SWITCH.off()
     tim.deinit()
+    pins.LED_POWER_SWITCH.off()
     sensor.log(server, pipe, "[INFO] LEDs off")
     counter = 0
     await sleep_between_measurements(led_off_start_time)
     counter = 0 #maybe before deep sleep?
 
 def timerCallback(curFreq, server, pipe):
-    global counter, LEDON
-    led_blinking()
-    LEDON = not LEDON
+    global counter
     counter = counter + 1 #increments counter used for determining when to stop measurements
+    if counter % 2:
+        led_blinking()
+        global LEDON
+        LEDON = not LEDON
+    elif counter > led_wait_measure_time * curFreq * 2:
+        measurements()
     
 
 async def sleep_between_measurements(led_time):
@@ -82,7 +87,7 @@ async def run(server, pipe, frequency, sampleSize):
         tim.init(freq = curFreq, mode = Timer.PERIODIC, callback = lambda t: timerCallback(curFreq, server, pipe))
         sensor.readSonar()
         pins.LED_POWER_SWITCH.on()
-        await measurements1(curFreq, server, pipe)
+        await measurements(curFreq, server, pipe)
         await sleep(curFreq, tim, server, pipe) #sleeps for 10 minutes
     pipe.notify(server)
     sensor.log(server, pipe, "[INFO] ending prgm_frequency")

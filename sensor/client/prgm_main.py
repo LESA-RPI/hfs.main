@@ -124,11 +124,11 @@ async def run(server, pipe, frequency, sampleSize):
             val_mean += pow(i-avg, 2)
         std_deviation = math.sqrt(val_mean/(num_samples - null_samples))
     except ZeroDivisionError:
-        sensor.log(server, pipe, "Can not find value of sample")
+        sensor.log(server, pipe, "Can not find standard deviation of sample")
     
     # send it off!!
-    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg))
-    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(std_deviation))
+    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(avg,2))
+    sensor.send(server, pipe, sensor.CURRENT_DISTANCE, round(std_deviation,2))
 
     # pipe.write("data")
     print("hello world")
