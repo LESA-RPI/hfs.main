@@ -15,7 +15,7 @@ lastUpdate = 0
 firstUpdate = 0 # used to calculate integration interval
 Now = 0                         # used to calculate integration interval
 
-i2c = I2C.init(scl = pins.SCL, sda = pins.SDA, freq=400000)
+i2c = I2C.init(0, scl = pins.SCL, sda = pins.SDA, freq=400000)
 
 # Create a VL53L0X object
 tof = VL53L0X.VL53L0X(i2c)
