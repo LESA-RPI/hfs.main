@@ -1,15 +1,14 @@
 #taken from https://github.com/uceeatz/VL53L0X/blob/master/main.py
-
+import device_sensor as sensor # sensor.readAndSend(server, pipe)
+import device_pins as pins
 import pycom
 import time
 from machine import Pin
 from machine import I2C
 import VL53L0X
 
-i2c = I2C(0)
-i2c = I2C(0, I2C.MASTER)
-i2c = I2C(0, pins=('P10','P9'))
-i2c.init(I2C.MASTER, baudrate=9600)
+
+i2c = I2C.init(pins.SCL, pins.SDA, baudrate=9600)
 
 # Create a VL53L0X object
 tof = VL53L0X.VL53L0X(i2c)
