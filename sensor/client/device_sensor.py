@@ -60,4 +60,7 @@ def log(server, pipe, msg):
             print(f"[ERROR] Write to pipe failed because of {error}") 
     except Exception as error:
         print(f"[ERROR] Packing message to pipe failed because of {error}") 
+
+
+print("[info] Device_sensor.py imported")
     

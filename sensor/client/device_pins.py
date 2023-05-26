@@ -20,3 +20,5 @@ XSHUT_PIN = Pin(19, Pin.IN)
 GPIO1 = Pin(18, Pin.IN)
 AVDD_PIN = Pin(17, Pin.IN)
 IOVDD_PIN = Pin(12,Pin.IN)
+
+print("[INFO] Device_pins.py imported")
