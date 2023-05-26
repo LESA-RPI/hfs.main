@@ -28,6 +28,7 @@ Finally, one might want to simply update the code on the server. To do so, run:
 wget -O hfs.zip "https://github.com/LESA-RPI/hfs.main/archive/refs/heads/server-ui.zip" && sudo unzip -o -j hfs.zip 'hfs.*/sensor/server/*' -d /usr/local/src/hfs/ && rm hfs.zip && (cd /usr/local/src/hfs && sudo mkdir -p public && sudo mv -v *.html public/ && sudo mv -v *.css public/ && sudo touch public/public.log && sudo npm install)
 ```
 
+The user name and password for *Raspberry Pi Zero W*
 ```
 hfsserver-password
 ```
