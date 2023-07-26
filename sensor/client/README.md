@@ -60,3 +60,4 @@ There also should be some way to copy files directly over the REPL, but I haven'
 
 # To-do
 * Create an install script for the microcontroller code
+* Integrate L0 ToF into the program
