@@ -71,6 +71,8 @@ The new PCB was designed in KiCad. Needs to import all libs located in `\KiCad\E
 
 - `KiCad\External Lib\KiCADv6\footprints.pretty` & `KiCad\External Lib\Library.pretty` are where hte footprints located
 
+The new casing design is located in `Casing\Ver2\assembly2.prt`
+
 ## Program
 
 It's python...... It would run boot.py upon booting before entering main.py, from which it will be running.
