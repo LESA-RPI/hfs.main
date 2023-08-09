@@ -1,3 +1,4 @@
+# boot.py -- run on boot-up
 print("[INFO] Booting device...")
 
 from machine import Pin

@@ -1,0 +1,25 @@
+Circuit: * C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\LTspice\LTC3265.asc
+
+WARNING: Node NC_01 is floating.
+
+WARNING: Less than two connections to node NC_01.  This node is used by C9.
+Direct Newton iteration for .op point succeeded.
+
+Date: Fri Jun 09 09:06:01 2023
+Total elapsed time: 0.090 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2119
+traniter = 2098
+tranpoints = 1049
+accept = 1049
+rejected = 0
+matrix size = 72
+fillins = 12
+solver = Normal
+Thread vector: 6.3/4.4[3] 3.9/2.9[3] 0.8/0.8[1] 0.2/0.5[1]  2592/500
+Matrix Compiler1: 2.89 KB object code size  0.7/0.4/[0.2]
+Matrix Compiler2: 4.69 KB object code size  0.4/0.5/[0.2]
+

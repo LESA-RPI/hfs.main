@@ -182,4 +182,6 @@ u_cmd = 'alias update-hfs="wget -O hfs.zip https://github.com/LESA-RPI/hfs.main/
 sudo sh -c "echo ${u_cmd} >> /etc/bash.bashrc"
 source /etc/bash.bashrc
 
+sudo systemctl enable hfs.service
+
 echo "${BLUE}install completed${NC}"

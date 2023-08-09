@@ -71,7 +71,7 @@ def writeToSpreadsheet(_min, _max, skip):
             filewriter.writerow(data)
             print('height: ' + str(height) + 'mm')
             
-#writeToSpreadsheet(0, 5000, skip = 1)
+writeToSpreadsheet(0, 5000, skip = 5)
 
 
 

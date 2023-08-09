@@ -1,5 +1,5 @@
 
-CHECK_FOR_UPDATES = True
+CHECK_FOR_UPDATES = False
 LAN_SSID = "SLERC3"
 LAN_PASSWORD = "ganlightemittingdiode"
 GITHUB_URL = "https://github.com/LESA-RPI/hfs.main"

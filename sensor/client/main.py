@@ -6,12 +6,14 @@ print("[INFO] Starting device...")
 #import asyncio
 #import ble_service
 import prgm_frequency
+
 import bt_service as ble
 import uasyncio as asyncio
 
 
-print(2)
-print(3)
+print("[INFO] Main.py import done")
+
+
 async def main():
     #await asyncio.gather(ble._start(), prgm_frequency.run(1, 1, 1))
     await asyncio.gather(ble._start())
@@ -21,7 +23,8 @@ async def main():
 #tests.startFrequencyTest()
 #tests.startNoiseTest()
 if __name__ == '__main__':
-    print("[INFO] running!")
+    print("[INFO] RUNNING!")
+
     
     asyncio.run(main())
 

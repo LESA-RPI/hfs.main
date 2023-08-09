@@ -1,0 +1,22 @@
+### Footprint positions - created on Thu Jun 22 15:08:58 2023 ###
+### Printed by KiCad version 7.0.5
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val                   Package                 PosX       PosY       Rot  Side
+C9        100nF                 C_0402_1005Metric    -3.3910   -15.2400   90.0000  top
+C10       4700nF                C_0402_1005Metric    -4.4070   -15.2120   90.0000  top
+LED1      XPEBRY-L1-R250-00P01  HFS_LED               5.8882    22.3542  -15.0000  top
+LED2      XPEBRY-L1-R250-00P01  HFS_LED              16.1989    16.4014  -45.0000  top
+LED3      XPEBRY-L1-R250-00P01  HFS_LED              22.1517     6.0908  -75.0000  top
+LED4      XPEBRY-L1-R250-00P01  HFS_LED              22.1517    -5.8149   75.0000  top
+LED5      XPEBRY-L1-R250-00P01  HFS_LED              16.1989   -16.1255   45.0000  top
+LED6      XPEBRY-L1-R250-00P01  HFS_LED               5.8882   -22.0784   15.0000  top
+LED7      XPEBRY-L1-R250-00P01  HFS_LED              -6.0174    22.3542  -165.0000  top
+LED8      XPEBRY-L1-R250-00P01  HFS_LED             -16.3281    16.4014  -135.0000  top
+LED9      XPEBRY-L1-R250-00P01  HFS_LED             -22.2809     6.0908  -105.0000  top
+LED10     XPEBRY-L1-R250-00P01  HFS_LED             -22.2809    -5.8149  105.0000  top
+LED11     XPEBRY-L1-R250-00P01  HFS_LED             -16.3280   -16.1255  135.0000  top
+LED12     XPEBRY-L1-R250-00P01  HFS_LED              -6.0174   -22.0784  165.0000  top
+R13       1k                    R_0402_1005Metric     3.4290   -14.7320   90.0000  top
+U5        VL53L0CXV0DH/1        LGA12_STM             0.0000   -15.2400    0.0000  top
+## End

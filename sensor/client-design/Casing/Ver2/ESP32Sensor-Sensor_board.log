@@ -1,0 +1,624 @@
+﻿STEP to UG
+! INFO-     NX STEP AP203 - V1926
+! INFO-      
+! INFO-     Start of Translation: 21-JUN-2023  11:52:58 AM
+! INFO-      
+! STATUS-   Converting Part: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\KiCad\ESP32Sensor-Sensor_board\ESP32Sensor-Sensor_board.step
+! SUMMARY-   
+! SUMMARY-    STEP Header Information
+! SUMMARY-   
+! SUMMARY-  Description      KiCad electronic assembly
+! SUMMARY-  Imp_Level        2;1
+! SUMMARY-  File_Name        ESP32Sensor-Sensor_board.step
+! SUMMARY-  Date             2023-06-15T21:28:18
+! SUMMARY-  Author           Pcbnew
+! SUMMARY-  Organization     Kicad
+! SUMMARY-  Pre_Version      Open CASCADE STEP processor 7.6
+! SUMMARY-  Orig_System      KiCad to STEP converter
+! SUMMARY-  Authorization    Unknown
+! SUMMARY-  Schema_ID        automotive_design
+! SUMMARY-   
+! SUMMARY-    Summary of STEP Entities
+! SUMMARY-   
+! SUMMARY-  Entity Type                                                   Count
+! SUMMARY-  -----------                                                   ------
+! SUMMARY-  advanced_brep_shape_representation .........................:     11
+! SUMMARY-  advanced_face ..............................................:   6030
+! SUMMARY-  application_context ........................................:      1
+! SUMMARY-  axis2_placement_2d .........................................:   1053
+! SUMMARY-  axis2_placement_3d .........................................:   8068
+! SUMMARY-  b_spline_curve_with_knots ..................................:   3065
+! SUMMARY-  b_spline_curve_with_knots_and_rational_b_spline_curve ......:    978
+! SUMMARY-  b_spline_surface_with_knots ................................:    305
+! SUMMARY-  b_spline_surface_with_knots_and_rational_b_spline_surface ..:      8
+! SUMMARY-  brep_with_voids ............................................:      2
+! SUMMARY-  cartesian_point ............................................:  99144
+! SUMMARY-  circle .....................................................:   3336
+! SUMMARY-  closed_shell ...............................................:    176
+! SUMMARY-  conical_surface ............................................:    187
+! SUMMARY-  context_dependent_shape_representation .....................:     67
+! SUMMARY-  cylindrical_surface ........................................:    956
+! SUMMARY-  definitional_representation ................................:  32014
+! SUMMARY-  direction ..................................................:  57831
+! SUMMARY-  edge_curve .................................................:  16007
+! SUMMARY-  edge_loop ..................................................:   6318
+! SUMMARY-  face_bound .................................................:   6318
+! SUMMARY-  geometric_representation_context_and_global_uncertainty_a ..:     30
+! SUMMARY-  item_defined_transformation ................................:     67
+! SUMMARY-  length_unit_and_si_unit ....................................:     30
+! SUMMARY-  line .......................................................:  40642
+! SUMMARY-  manifold_solid_brep ........................................:     81
+! SUMMARY-  next_assembly_usage_occurrence .............................:     67
+! SUMMARY-  oriented_closed_shell ......................................:     93
+! SUMMARY-  oriented_edge ..............................................:  32014
+! SUMMARY-  pcurve .....................................................:  32014
+! SUMMARY-  plane ......................................................:   4454
+! SUMMARY-  plane_angle_unit_and_si_unit ...............................:     30
+! SUMMARY-  product ....................................................:     30
+! SUMMARY-  product_context ............................................:     30
+! SUMMARY-  product_definition .........................................:     30
+! SUMMARY-  product_definition_context .................................:     30
+! SUMMARY-  product_definition_formation ...............................:     30
+! SUMMARY-  product_definition_shape ...................................:     97
+! SUMMARY-  product_related_product_category ...........................:     30
+! SUMMARY-  representation_relationship_with_transformation_and_shape ..:     67
+! SUMMARY-  seam_curve .................................................:     24
+! SUMMARY-  shape_representation .......................................:     19
+! SUMMARY-  si_unit_and_solid_angle_unit ...............................:     30
+! SUMMARY-  spherical_surface ..........................................:     19
+! SUMMARY-  surface_curve ..............................................:  15983
+! SUMMARY-  toroidal_surface ...........................................:    101
+! SUMMARY-  uncertainty_measure_with_unit ..............................:     30
+! SUMMARY-  vector .....................................................:  40642
+! SUMMARY-  vertex_point ...............................................:  10457
+! SUMMARY-                                                               -------
+! SUMMARY-  Total                                                         419046
+! STATUS-    
+! STATUS-   Converting to Output Form (Phase 2 of 3): 21-JUN-2023 11:53:00 AM
+! STATUS-    
+! STATUS-    
+! STATUS-   Generating UG geometry and placing them in parts
+! STATUS-    
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:10 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\ESP32Sensor-Sensor_board PCB
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:10 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID409203
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:11 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID385121
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:11 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID382997
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:11 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID323559
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:11 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\COMPOUND311886
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     8
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              8
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:12 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\COMPOUND303180
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     4
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              4
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:12 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID294024
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:12 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID279774
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:12 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID272346
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:12 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\COMPOUND260181
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     3
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              3
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:13 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID256502
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:13 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\COMPOUND4171
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:    57
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             57
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID2287
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOLID263
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOIC-16W_7.5x10.3mm_P1.27mm
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOIC-20W_7.5x12.8mm_P1.27mm
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\L_0402_1005Metric
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\ESP32-C3-WROOM-02
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\219-2MSTR
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\CUI_DEVICES_PJ-036AH-SMT-TR
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\PinSocket_1x04_P2.54mm_Vertical
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\QFN-28-1EP_5x5mm_P0.5mm_EP3.35x3.35mm
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\WQFN-14-1EP_2.5x2.5mm_P0.5mm_EP1.45x1.45mm
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\FTSH-103-01-L-DH-C-TR
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\12401598E4#2A--3DModel-STEP-1
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:16 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\R_0402_1005Metric2264
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:17 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\C_0402_1005Metric240
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  11:53:17 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\ESP32Sensor-Sensor_board.prt
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:    53
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             53
+! INFO-      
+! INFO-     Total number of solids input for this translation       :        83
+! INFO-      
+! INFO-     Number of solids created without body validation faults :        83
+! INFO-      
+! INFO-     Number of solids created with body validation fault(s)  :         0
+! INFO-      
+! INFO-     Number of solids ending up as sheet bodies              :         0
+! INFO-      
+! INFO-     End of Translation: 21-JUN-2023  11:53:17 AM
+! INFO-      
+STEP to UG
+! INFO-     NX STEP AP203 - V1926
+! INFO-      
+! INFO-     Start of Translation: 21-JUN-2023  1:13:01 PM
+! INFO-      
+! STATUS-   Converting Part: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\KiCad\ESP32Sensor-Sensor_board\ESP32Sensor-Sensor_board.step
+! SUMMARY-   
+! SUMMARY-    STEP Header Information
+! SUMMARY-   
+! SUMMARY-  Description      KiCad electronic assembly
+! SUMMARY-  Imp_Level        2;1
+! SUMMARY-  File_Name        ESP32Sensor-Sensor_board.step
+! SUMMARY-  Date             2023-06-21T12:25:25
+! SUMMARY-  Author           Pcbnew
+! SUMMARY-  Organization     Kicad
+! SUMMARY-  Pre_Version      Open CASCADE STEP processor 7.6
+! SUMMARY-  Orig_System      KiCad to STEP converter
+! SUMMARY-  Authorization    Unknown
+! SUMMARY-  Schema_ID        automotive_design
+! SUMMARY-   
+! SUMMARY-    Summary of STEP Entities
+! SUMMARY-   
+! SUMMARY-  Entity Type                                                   Count
+! SUMMARY-  -----------                                                   ------
+! SUMMARY-  advanced_brep_shape_representation .........................:     11
+! SUMMARY-  advanced_face ..............................................:   6030
+! SUMMARY-  application_context ........................................:      1
+! SUMMARY-  axis2_placement_2d .........................................:   1053
+! SUMMARY-  axis2_placement_3d .........................................:   8068
+! SUMMARY-  b_spline_curve_with_knots ..................................:   3065
+! SUMMARY-  b_spline_curve_with_knots_and_rational_b_spline_curve ......:    978
+! SUMMARY-  b_spline_surface_with_knots ................................:    305
+! SUMMARY-  b_spline_surface_with_knots_and_rational_b_spline_surface ..:      8
+! SUMMARY-  brep_with_voids ............................................:      2
+! SUMMARY-  cartesian_point ............................................:  99144
+! SUMMARY-  circle .....................................................:   3336
+! SUMMARY-  closed_shell ...............................................:    176
+! SUMMARY-  conical_surface ............................................:    187
+! SUMMARY-  context_dependent_shape_representation .....................:     67
+! SUMMARY-  cylindrical_surface ........................................:    956
+! SUMMARY-  definitional_representation ................................:  32014
+! SUMMARY-  direction ..................................................:  57831
+! SUMMARY-  edge_curve .................................................:  16007
+! SUMMARY-  edge_loop ..................................................:   6318
+! SUMMARY-  face_bound .................................................:   6318
+! SUMMARY-  geometric_representation_context_and_global_uncertainty_a ..:     30
+! SUMMARY-  item_defined_transformation ................................:     67
+! SUMMARY-  length_unit_and_si_unit ....................................:     30
+! SUMMARY-  line .......................................................:  40642
+! SUMMARY-  manifold_solid_brep ........................................:     81
+! SUMMARY-  next_assembly_usage_occurrence .............................:     67
+! SUMMARY-  oriented_closed_shell ......................................:     93
+! SUMMARY-  oriented_edge ..............................................:  32014
+! SUMMARY-  pcurve .....................................................:  32014
+! SUMMARY-  plane ......................................................:   4454
+! SUMMARY-  plane_angle_unit_and_si_unit ...............................:     30
+! SUMMARY-  product ....................................................:     30
+! SUMMARY-  product_context ............................................:     30
+! SUMMARY-  product_definition .........................................:     30
+! SUMMARY-  product_definition_context .................................:     30
+! SUMMARY-  product_definition_formation ...............................:     30
+! SUMMARY-  product_definition_shape ...................................:     97
+! SUMMARY-  product_related_product_category ...........................:     30
+! SUMMARY-  representation_relationship_with_transformation_and_shape ..:     67
+! SUMMARY-  seam_curve .................................................:     24
+! SUMMARY-  shape_representation .......................................:     19
+! SUMMARY-  si_unit_and_solid_angle_unit ...............................:     30
+! SUMMARY-  spherical_surface ..........................................:     19
+! SUMMARY-  surface_curve ..............................................:  15983
+! SUMMARY-  toroidal_surface ...........................................:    101
+! SUMMARY-  uncertainty_measure_with_unit ..............................:     30
+! SUMMARY-  vector .....................................................:  40642
+! SUMMARY-  vertex_point ...............................................:  10457
+! SUMMARY-                                                               -------
+! SUMMARY-  Total                                                         419046
+! STATUS-    
+! STATUS-   Converting to Output Form (Phase 2 of 3): 21-JUN-2023 1:13:03 PM
+! STATUS-    
+! STATUS-    
+! STATUS-   Generating UG geometry and placing them in parts
+! STATUS-    
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:04 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\ESP32Sensor-Sensor_board PCB428872
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:05 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOIC-16W_7.5x10.3mm_P1.27mm409180
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:05 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\SOIC-20W_7.5x12.8mm_P1.27mm385098
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\L_0402_1005Metric382974
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\ESP32-C3-WROOM-02323536
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\219-2MSTR311863
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\CUI_DEVICES_PJ-036AH-SMT-TR303157
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\PinSocket_1x04_P2.54mm_Vertical294001
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\QFN-28-1EP_5x5mm_P0.5mm_EP3.35x3.35mm279751
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\WQFN-14-1EP_2.5x2.5mm_P0.5mm_EP1.45x1.45mm272323
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\FTSH-103-01-L-DH-C-TR260158
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm256479
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:06 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\12401598E4#2A--3DModel-STEP-14148
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 21-JUN-2023  1:13:07 PM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\ESP32Sensor-Sensor_board.prt
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:    53
+! SUMMARY-                                 -----
+! SUMMARY-  Total                             53
+! INFO-      
+! INFO-     Total number of solids input for this translation       :         1
+! INFO-      
+! INFO-     Number of solids created without body validation faults :         1
+! INFO-      
+! INFO-     Number of solids created with body validation fault(s)  :         0
+! INFO-      
+! INFO-     Number of solids ending up as sheet bodies              :         0
+! INFO-      
+! INFO-     End of Translation: 21-JUN-2023  1:13:07 PM
+! INFO-      

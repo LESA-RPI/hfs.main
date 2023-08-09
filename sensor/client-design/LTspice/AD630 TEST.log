@@ -1,0 +1,58 @@
+Circuit: * C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\LTspice\AD630 TEST.asc
+
+WARNING: Less than two connections to node N004.  This node is used by Q:U1:7.
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+Gmin = 1.07374
+vernier = 0.5
+vernier = 0.25
+vernier = 0.125
+vernier = 0.0625
+Gmin = 1.08884
+vernier = 0.03125
+vernier = 0.015625
+Gmin = 1.03122
+vernier = 0.0078125
+vernier = 0.00390625
+Gmin = 1.01823
+vernier = 0.00520833
+vernier = 0.00260417
+Gmin = 1.01162
+vernier = 0.00347222
+vernier = 0.00173611
+vernier = 0.000868055
+Gmin = 1.00899
+vernier = 0.00115741
+vernier = 0.000578703
+Gmin = 1.00724
+vernier = 0.000771604
+vernier = 0.000578703
+Gmin = 1.00588
+vernier = 0.000771604
+vernier = 0.000578703
+vernier = 0.000434027
+Gmin = 1.00508
+vernier = 0.000578703
+vernier = 0.000434027
+Gmin = 0
+Gmin stepping succeeded in finding the operating point.
+
+
+Date: Mon Jun 05 12:08:42 2023
+Total elapsed time: 1.740 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 89225
+traniter = 82898
+tranpoints = 20910
+accept = 15728
+rejected = 5182
+matrix size = 66
+fillins = 146
+solver = Alternate
+Matrix Compiler1: 12.31 KB object code size  3.2/2.3/[0.9]
+Matrix Compiler2: 9.79 KB object code size  1.0/1.2/[0.6]
+

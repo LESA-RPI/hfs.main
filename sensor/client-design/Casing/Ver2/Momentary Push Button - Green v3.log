@@ -1,0 +1,151 @@
+﻿STEP to UG
+! INFO-     NX STEP AP203 - V1926
+! INFO-      
+! INFO-     Start of Translation: 7-JUL-2023  11:13:39 AM
+! INFO-      
+! STATUS-   Converting Part: C:\Users\LinKaihong\Downloads\Momentary Push Button - Green v3.step
+! SUMMARY-   
+! SUMMARY-    STEP Header Information
+! SUMMARY-   
+! SUMMARY-  Description      Unknown
+! SUMMARY-  Imp_Level        2;1
+! SUMMARY-  File_Name        D:/Documents/Fusion 360 3d Models/16mm Momentary Push Buttons/Momentary Push Button - Green v3.step
+! SUMMARY-  Date             2022-02-20T16:37:29-05:00
+! SUMMARY-  Author           Unknown
+! SUMMARY-  Organization     Unknown
+! SUMMARY-  Pre_Version      ST-DEVELOPER v18.1
+! SUMMARY-  Orig_System      Autodesk Translation Framework v10.13.0.1454
+! SUMMARY-  Authorization    Unknown
+! SUMMARY-  Schema_ID        automotive_design
+! SUMMARY-   
+! SUMMARY-    Summary of STEP Entities
+! SUMMARY-   
+! SUMMARY-  Entity Type                                                   Count
+! SUMMARY-  -----------                                                   ------
+! SUMMARY-  advanced_face ..............................................:    180
+! SUMMARY-  application_context ........................................:      1
+! SUMMARY-  axis2_placement_3d .........................................:    455
+! SUMMARY-  b_spline_surface_with_knots_and_rational_b_spline_surface ..:      4
+! SUMMARY-  cartesian_point ............................................:   1020
+! SUMMARY-  circle .....................................................:    265
+! SUMMARY-  closed_shell ...............................................:      9
+! SUMMARY-  context_dependent_shape_representation .....................:      6
+! SUMMARY-  cylindrical_surface ........................................:    129
+! SUMMARY-  direction ..................................................:   1123
+! SUMMARY-  edge_curve .................................................:    478
+! SUMMARY-  edge_loop ..................................................:    184
+! SUMMARY-  face_bound .................................................:      4
+! SUMMARY-  face_outer_bound ...........................................:    180
+! SUMMARY-  geometric_representation_context_and_global_uncertainty_a ..:      8
+! SUMMARY-  item_defined_transformation ................................:      6
+! SUMMARY-  length_unit_and_si_unit ....................................:      1
+! SUMMARY-  line .......................................................:    213
+! SUMMARY-  manifold_solid_brep ........................................:      9
+! SUMMARY-  next_assembly_usage_occurrence .............................:      6
+! SUMMARY-  oriented_edge ..............................................:    956
+! SUMMARY-  plane ......................................................:     46
+! SUMMARY-  plane_angle_unit_and_si_unit ...............................:      1
+! SUMMARY-  product ....................................................:      7
+! SUMMARY-  product_context ............................................:      1
+! SUMMARY-  product_definition .........................................:      7
+! SUMMARY-  product_definition_context .................................:      1
+! SUMMARY-  product_definition_formation ...............................:      7
+! SUMMARY-  product_definition_shape ...................................:     13
+! SUMMARY-  product_related_product_category ...........................:      7
+! SUMMARY-  representation_relationship_with_transformation_and_shape ..:      6
+! SUMMARY-  shape_representation .......................................:      7
+! SUMMARY-  si_unit_and_solid_angle_unit ...............................:      1
+! SUMMARY-  toroidal_surface ...........................................:      1
+! SUMMARY-  uncertainty_measure_with_unit ..............................:      8
+! SUMMARY-  vector .....................................................:    213
+! SUMMARY-  vertex_point ...............................................:    316
+! SUMMARY-                                                               -------
+! SUMMARY-  Total                                                           5879
+! STATUS-    
+! STATUS-   Converting to Output Form (Phase 2 of 3): 7-JUL-2023 11:13:39 AM
+! STATUS-    
+! STATUS-    
+! STATUS-   Generating UG geometry and placing them in parts
+! STATUS-    
+! STATUS-   Creating the UG part (Phase 3 of 3): 7-JUL-2023  11:13:40 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\Top
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 7-JUL-2023  11:13:40 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\Connections
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     4
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              4
+! STATUS-   Creating the UG part (Phase 3 of 3): 7-JUL-2023  11:13:40 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\Retaining Ring
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 7-JUL-2023  11:13:40 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\Shaft Spacer
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 7-JUL-2023  11:13:40 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\Button
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! STATUS-   Creating the UG part (Phase 3 of 3): 7-JUL-2023  11:13:40 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\Shaft
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     1
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              2
+! STATUS-   Creating the UG part (Phase 3 of 3): 7-JUL-2023  11:13:40 AM
+! INFO-     Filing Part ..: C:\Users\LinKaihong\Dropbox\ILE\Summer\Summer 2023 production file\Casing\Ver2\Momentary Push Button - Green v3.prt
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Component ...................:     5
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              5
+! INFO-      
+! INFO-     Total number of solids input for this translation       :         9
+! INFO-      
+! INFO-     Number of solids created without body validation faults :         9
+! INFO-      
+! INFO-     Number of solids created with body validation fault(s)  :         0
+! INFO-      
+! INFO-     Number of solids ending up as sheet bodies              :         0
+! INFO-      
+! INFO-     End of Translation: 7-JUL-2023  11:13:41 AM
+! INFO-      

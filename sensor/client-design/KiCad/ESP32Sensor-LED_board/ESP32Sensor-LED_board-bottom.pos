@@ -1,0 +1,38 @@
+### Footprint positions - created on Thu Jun 22 15:08:58 2023 ###
+### Printed by KiCad version 7.0.5
+## Unit = mm, Angle = deg.
+## Side : bottom
+# Ref     Val                Package                          PosX       PosY       Rot  Side
+C1        4.7uF              C_0402_1005Metric            -15.8659    19.1770  -60.0000  bottom
+C2        0.1uF              C_0402_1005Metric            -14.9860    19.6850  -60.0000  bottom
+C3        4.7uF              C_0402_1005Metric             14.4689    16.6370   60.0000  bottom
+C4        0.1uF              C_0402_1005Metric             13.5890    17.1450   60.0000  bottom
+C5        4.7uF              C_0402_1005Metric             15.9621   -19.2632  120.0000  bottom
+C6        0.1uF              C_0402_1005Metric             15.0822   -19.7712  120.0000  bottom
+C7        0.1uF              C_0402_1005Metric            -14.3510   -16.5100  -120.0000  bottom
+C8        4.7uF              C_0402_1005Metric            -13.4711   -17.0180  -120.0000  bottom
+J1        CLP-103-02-F-D-BE  CONN_CLP-103-02-X-D-BE_SAI    16.0000     0.0000  180.0000  bottom
+J2        CLP-103-02-F-D-BE  CONN_CLP-103-02-X-D-BE_SAI   -16.0000     0.0000  180.0000  bottom
+K1        IRLHS6376TRPBF     PQFN6_IRLHS6376TRPBF_INF      22.9354     0.1379  180.0000  bottom
+K2        IRLHS6376TRPBF     PQFN6_IRLHS6376TRPBF_INF     -23.0646     0.1379  180.0000  bottom
+R1        CRM1206-JW-1R0ELF  BO_CR1206                      3.4290    22.8600  -105.0000  bottom
+R2        CRM1206-JW-1R0ELF  BO_CR1206                      5.9528    22.2163  -105.0000  bottom
+R3        354010RFT          RES_3540_TEC                  19.9186    11.5000  120.0000  bottom
+R4        CRM1206-JW-1R0ELF  BO_CR1206                      3.3241   -22.8600  -75.0000  bottom
+R5        CRM1206-JW-1R0ELF  BO_CR1206                      5.9528   -22.2163  -75.0000  bottom
+R6        354010RFT          RES_3540_TEC                  19.9186   -11.5000  -120.0000  bottom
+R7        CRM1206-JW-1R0ELF  BO_CR1206                     -3.5560    22.8600  105.0000  bottom
+R8        CRM1206-JW-1R0ELF  BO_CR1206                     -5.9528    22.2163  105.0000  bottom
+R9        354010RFT          RES_3540_TEC                 -19.9186    11.5000   60.0000  bottom
+R10       CRM1206-JW-1R0ELF  BO_CR1206                     -3.5560   -22.8600   75.0000  bottom
+R11       CRM1206-JW-1R0ELF  BO_CR1206                     -5.9528   -22.2163   75.0000  bottom
+R12       354010RFT          RES_3540_TEC                 -19.9186   -11.5000  120.0000  bottom
+R14       1                  R_0402_1005Metric             25.6540     0.0000  180.0000  bottom
+R15       1                  R_0402_1005Metric             19.9390     0.6350  180.0000  bottom
+R16       1                  R_0402_1005Metric            -20.0660    -0.6350  180.0000  bottom
+R17       1                  R_0402_1005Metric            -25.7810     0.0000  180.0000  bottom
+U1        TL4242TDRJRQ1      DRJ8_3X2P2                    11.5000    19.9186  -30.0000  bottom
+U2        TL4242TDRJRQ1      DRJ8_3X2P2                    11.5000   -19.9186   30.0000  bottom
+U3        TL4242TDRJRQ1      DRJ8_3X2P2                   -11.5000    19.9186  -150.0000  bottom
+U4        TL4242TDRJRQ1      DRJ8_3X2P2                   -11.5000   -19.9186  150.0000  bottom
+## End
