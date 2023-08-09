@@ -19,7 +19,7 @@
 
 
 
-The PCB was designed in KiCad. Needs to import all libs located in `\KiCad\External Lib` before opening and editing
+The PCB was designed in KiCad. Needs to import all libs located in `\KiCad\External Lib` before opening and editing. For each components, if you want to see them in 3D viewer, you would needs to reassign 3D Models in Footprints Properties.
 
 Delete the exisitng project specific libs and re-import them
 
@@ -27,5 +27,7 @@ Delete the exisitng project specific libs and re-import them
 - `KiCad\External Lib\KiCADv6` are where the symbols located. Delete the legacy one if multiple libs are sharing the same name
 
 - `KiCad\External Lib\KiCADv6\footprints.pretty` & `KiCad\External Lib\Library.pretty` are where hte footprints located
+  
+- `KiCad\External Lib\3D` are where the 3D models located at
 
 The new casing design is located in `Casing\Ver2\assembly2.prt`
