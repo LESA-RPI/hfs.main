@@ -1,6 +1,6 @@
 # Physical Design
 
-
+Note: This design relies on an exteranl 12V power supply, either thruough the barrel or USB-PD
 ## File structures
 
 `/Casing`     	The case of the new design. Open file located at `.../ver2/assembly2.prt`
