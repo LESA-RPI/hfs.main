@@ -59,22 +59,6 @@ There also should be some way to copy files directly over the REPL, but I haven'
 [Source](https://docs.micropython.org/en/latest/esp8266/tutorial/repl.html)
 
 
-## NEW design
-
-Everything is located in [`hfs.main/sensor/client-design` ]([sensor/client-design](https://github.com/LESA-RPI/hfs.main/tree/b66ff5a4c38e83662d195a9eb69a576f52453406/sensor/client-design))
-![flowchart drawio](https://github.com/LESA-RPI/hfs.main/assets/28797384/69c74000-fc72-4a3c-9aa4-87a0a1a7c524)
-![assemblyver2](https://github.com/LESA-RPI/hfs.main/assets/28797384/67aaf320-4399-4c72-831c-aa4d6f5ddcf8)
-
-
-The new PCB was designed in KiCad. Needs to import all libs located in `\KiCad\External Lib` before opening and editing
-
-
-- `KiCad\External Lib\KiCADv6` are where the symbols located
-
-- `KiCad\External Lib\KiCADv6\footprints.pretty` & `KiCad\External Lib\Library.pretty` are where hte footprints located
-
-The new casing design is located in `Casing\Ver2\assembly2.prt`
-
 ## Program
 
 It's python...... It would run boot.py upon booting before entering main.py, from which it will be running.
