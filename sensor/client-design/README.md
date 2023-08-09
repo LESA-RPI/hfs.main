@@ -24,7 +24,7 @@ The PCB was designed in KiCad. Needs to import all libs located in `\KiCad\Exter
 Delete the exisitng project specific libs and re-import them
 
 
-- `KiCad\External Lib\KiCADv6` are where the symbols located
+- `KiCad\External Lib\KiCADv6` are where the symbols located. Delete the legacy one if multiple libs are sharing the same name
 
 - `KiCad\External Lib\KiCADv6\footprints.pretty` & `KiCad\External Lib\Library.pretty` are where hte footprints located
 
