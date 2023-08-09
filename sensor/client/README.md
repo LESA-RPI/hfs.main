@@ -1,5 +1,5 @@
 # Overview
-The peripheral device has been tested with an *ESP32 DevKitc V4*, is writen in [MicroPython](https://micropython.org/download/), and is designed to run on [bare metal](https://www.techopedia.com/definition/2153/bare-metal). The code makes use of its `bluetooth` and `uasyncio` libraries. The code also relies on 
+The peripheral device has been tested with an *ESP32 DevKitc V4* (The new design uses *ESP32C3-WROOM-02* module), is writen in [MicroPython](https://micropython.org/download/), and is designed to run on [bare metal](https://www.techopedia.com/definition/2153/bare-metal). The code makes use of its `bluetooth` and `uasyncio` libraries. The code also relies on 
 * [aioble](https://github.com/micropython/micropython-lib/tree/master/micropython/bluetooth/aioble), an asynchronous wrapper for MicroPython's `ubluetooth` API.
 * a modified version of [micropython-ota-updater](https://github.com/rdehuyss/micropython-ota-updater), which allows for automatic code updates from GitHub
 
@@ -58,5 +58,28 @@ There also should be some way to copy files directly over the REPL, but I haven'
 
 [Source](https://docs.micropython.org/en/latest/esp8266/tutorial/repl.html)
 
+
+## NEW PCB design
+
+The new PCB was designed in KiCad. Needs to import all libs located in `\KiCad\External Lib` before opening and editing
+
+
+- `KiCad\External Lib\KiCADv6` are where the symbols located
+
+- `KiCad\External Lib\KiCADv6\footprints.pretty` & `KiCad\External Lib\Library.pretty` are where hte footprints located
+
+## Program
+
+It's python...... It would run boot.py upon booting before entering main.py, from which it will be running.
+
+
 # To-do
+* Set up pin-config in `device_pin.py`
 * Create an install script for the microcontroller code
+* Integrate L0 ToF into the program
+
+
+
+
+##### contact link10@rpi.edu for any questions
+  
