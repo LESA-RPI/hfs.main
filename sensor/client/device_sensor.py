@@ -11,7 +11,12 @@ i2c = I2C(0, scl = pins.SCL, sda = pins.SDA)
 
 # Create a VL53L0X object
 try:
-    tof = VL53L0X.VL53L0X(i2c, address= 0x52)
+    #pins.POWER_GPIO1.on()
+    print("scan  I2C")
+    address = i2c.scan()[0]
+    print("ToF address")
+    print(address)
+    tof = VL53L0X.VL53L0X(i2c, address)
     tof.set_Vcsel_pulse_period(tof.vcsel_period_type[0], 18)
     tof.set_Vcsel_pulse_period(tof.vcsel_period_type[1], 14)
 except Exception as error:
@@ -25,7 +30,7 @@ def pack(distance, chlf):
     return struct.pack("<HIHHH0s", ID, time.time(), distance, chlf, 0, "")
 
 def readPhotodiode():
-    return pins.PHOTODIODE_RESULT.read_u16()
+    return pins.PHOTODIODE_RESULT.read()
 
 def readSonar():
     global CURRENT_DISTANCE
@@ -63,4 +68,3 @@ def log(server, pipe, msg):
 
 
 print("[info] Device_sensor.py imported")
-    

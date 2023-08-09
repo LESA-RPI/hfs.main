@@ -1,3 +1,4 @@
+# boot.py -- run on boot-up
 print("[INFO] Booting device...")
 
 from machine import Pin
@@ -10,7 +11,5 @@ import config
 if (config.CHECK_FOR_UPDATES):
     import git_update
     git_update.update()
-else:
-    print("[INFO] Skipped check for update")
 
 #result = esp.esp_wifi_stop()

@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"name": "client",
+			"path": "."
+		},
+		{
+			"name": "serial:/COM4",
+			"uri": "serial://com4/"
+		},
+		{
+			"name": "temp",
+			"path": "../../../../../../../Desktop/temp doc/temp"
+		},
+		{
+			"name": "serial:/COM5",
+			"uri": "serial://com5/"
+		}
+	]
+}

@@ -1,0 +1,27 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#(c) SnapEDA 2016 (snapeda.com)
+#This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA) with Design Exception 1.0
+#
+# IN-PI42TASPRPGPB
+#
+DEF IN-PI42TASPRPGPB D 0 40 Y Y 1 L N
+F0 "D" -400 350 50 H V L BNN
+F1 "IN-PI42TASPRPGPB" -400 -350 50 H V L BNN
+F2 "LED_IN-PI42TASPRPGPB" 0 0 50 H I L BNN
+F3 "" 0 0 50 H I L BNN
+F4 "Oct. 10, 2021" 0 0 50 H I L BNN "PARTREV"
+F5 "Manufacturer Recommendations" 0 0 50 H I L BNN "STANDARD"
+F6 "IN-PI42TASPRPGPB" 0 0 50 H I L BNN "SNAPEDA_PN"
+F7 "2.05 mm" 0 0 50 H I L BNN "MAXIMUM_PACKAGE_HEIGHT"
+F8 "Inolux" 0 0 50 H I L BNN "MANUFACTURER"
+DRAW
+S -400 -300 400 300 0 0 10 f
+X DIN 1 -600 0 200 R 40 40 0 0 I 
+X VDD 2 600 200 200 L 40 40 0 0 W 
+X GND 4 600 -200 200 L 40 40 0 0 W 
+X DOUT 3 600 0 200 L 40 40 0 0 O 
+ENDDRAW
+ENDDEF
+#
+# End Library

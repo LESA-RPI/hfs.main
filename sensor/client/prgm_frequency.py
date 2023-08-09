@@ -80,6 +80,7 @@ async def run(server, pipe, data: int):
         sensor.readSonar()
         pins.LED_POWER_SWITCH.on()
         await measurements1(curFreq, server, pipe)
+        pins.LED_POWER_SWITCH.off()
         await sleep(curFreq, tim, server, pipe) #sleeps for 10 minutes
     pipe.notify(server)
     sensor.log(server, pipe, "[INFO] ending prgm_frequency")

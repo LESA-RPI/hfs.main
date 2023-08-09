@@ -7,12 +7,13 @@ import device_sensor as sensor # sensor.readAndSend(server, pipe)
 import device_pins as pins
 
 fs = [15, 50, 100, 200, 400, 800, 1000, 1200, 1400, 1600, 1800, 2000]
-led_flash = PWM(Pin(33, Pin.OUT))
 
 # entry point for the program
 # run this program once and only once, server will decide how to loop
 async def run(server, pipe, data: int):    
     print("[prgm_flashtest] start")
+    led_flash = PWM(Pin(33, Pin.OUT))
+
     # set up pins
     #measured_result = ADC(Pin(14, Pin.IN))
     for f in fs:

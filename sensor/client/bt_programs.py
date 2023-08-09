@@ -8,6 +8,7 @@ import prgm_noise
 import prgm_main
 import prgm_photodiode
 
+
 PROGRAMS = {
     10: (prgm_main.run, 'Main'),
     11: (prgm_distance.run, 'Distance Test'),
