@@ -59,7 +59,10 @@ There also should be some way to copy files directly over the REPL, but I haven'
 [Source](https://docs.micropython.org/en/latest/esp8266/tutorial/repl.html)
 
 
-## NEW PCB design
+## NEW design
+![flowchart drawio](https://github.com/LESA-RPI/hfs.main/assets/28797384/69c74000-fc72-4a3c-9aa4-87a0a1a7c524)
+![assemblyver2](https://github.com/LESA-RPI/hfs.main/assets/28797384/67aaf320-4399-4c72-831c-aa4d6f5ddcf8)
+
 
 The new PCB was designed in KiCad. Needs to import all libs located in `\KiCad\External Lib` before opening and editing
 
