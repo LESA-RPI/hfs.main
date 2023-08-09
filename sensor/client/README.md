@@ -60,6 +60,8 @@ There also should be some way to copy files directly over the REPL, but I haven'
 
 
 ## NEW design
+
+Everything is located in [`hfs.main/sensor/client-design` ]([sensor/client-design](https://github.com/LESA-RPI/hfs.main/tree/b66ff5a4c38e83662d195a9eb69a576f52453406/sensor/client-design))
 ![flowchart drawio](https://github.com/LESA-RPI/hfs.main/assets/28797384/69c74000-fc72-4a3c-9aa4-87a0a1a7c524)
 ![assemblyver2](https://github.com/LESA-RPI/hfs.main/assets/28797384/67aaf320-4399-4c72-831c-aa4d6f5ddcf8)
 
