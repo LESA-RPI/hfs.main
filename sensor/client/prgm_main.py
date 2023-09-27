@@ -27,6 +27,7 @@ def timerCallback(server, pipe):
     counter = counter + 1 #increments counter used for determining when to stop measurements
 
 async def measurements1(tim, server, pipe):
+    PWM(Pin(7), freq=10000, duty=10000)
     while (counter-1) < round(frequency*led_wait_measure_time):
         pass
     print("starting measurements")
@@ -35,7 +36,7 @@ async def measurements1(tim, server, pipe):
             await uasyncio.sleep_ms(0)
         sensor.readAndSend(server, pipe)
         await sleep_between_measurements(led_between_measure_time)
-    pins.ESP_PWM_DIM.off()
+    PWM(Pin(7), freq=10000, duty=0)
     tim.deinit() 
 
 async def sleep_between_measurements(led_time):

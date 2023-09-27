@@ -31,7 +31,7 @@ pwm.init(freq=500, duty=256)
 '''
 
 #ESP32C3
-block = ADCBlock(1, bits=12)
+block = ADCBlock(0, bits=12)
 PHOTODIODE_RESULT = block.connect(0, Pin(0, Pin.IN))
 ''' sensor test code
 from machine import Pin, ADCBlock
@@ -52,18 +52,33 @@ while(1):
     for i in range(1, 10000):
         pass
 '''
+'''
+LED test code
 
+from machine import PWM
+pwm = PWM(Pin(7), freq=1000, duty=512)
+pwm.init(freq=500, duty=256)
+pwm = PWM(Pin(6), freq=1000, duty=512)
+pwm.init(freq=500, duty=256)
+
+or 
+
+io6 = Pin(6, Pin.OUT)
+io7 = Pin(7, Pin.OUT)
+io6.value(1)
+io7.value(1)
+'''
 #RESET = Pin(3, Pin.IN)
 
 
 LED_REF = Pin(6, Pin.OUT)
-ESP_PWM_DIM = Pin(7, Pin.OUT)
+ESP_PWM_DIM = PWM(Pin(7), freq=1000, duty=0)
 NeopixelLED = Pin(8, Pin.OUT)
 
 SCL = Pin(4, Pin.IN)
 SDA = Pin(5, Pin.OUT)
 
-INT = Pin(19, Pin.IN)
+INT = Pin(10, Pin.IN)
 
 #XSHUT_PIN = Pin(7, Pin.IN)
 #GPIO1 = Pin(18, Pin.IN)

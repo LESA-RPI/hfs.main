@@ -15,6 +15,10 @@
 		{
 			"name": "serial:/COM5",
 			"uri": "serial://com5/"
+		},
+		{
+			"name": "serial:/COM23",
+			"uri": "serial://com23"
 		}
 	]
 }
