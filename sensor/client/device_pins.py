@@ -15,19 +15,12 @@ SDA = Pin(5, Pin.OUT)
 #main interrupt pin
 INT = Pin(10, Pin.IN)
 
-#XSHUT_PIN = Pin(7, Pin.IN)
-#GPIO1 = Pin(18, Pin.IN)
-#POWER_GPIO1 = Pin(18, Pin.OUT)
-#AVDD_PIN = Pin(9, Pin.IN)
-#IOVDD_PIN = Pin(10,Pin.IN)
-
-#'''
 
 ''' ToF sensor test code
 from machine import Pin, ADCBlock
 from machine import I2C
 import VL53L0X
-block = ADCBlock(1, bits=12)
+block = ADCBlock(0, bits=12)
 PHOTODIODE_RESULT = block.connect(0, Pin(0, Pin.IN))
 i2c = I2C(0, sda=Pin(5), scl=Pin(4))
 tof = VL53L0X.VL53L0X(i2c)

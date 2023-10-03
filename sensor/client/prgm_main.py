@@ -27,7 +27,7 @@ def timerCallback(server, pipe):
     counter = counter + 1 #increments counter used for determining when to stop measurements
 
 async def measurements1(tim, server, pipe):
-    PWM(Pin(7), freq=10000, duty=75000)
+    PWM(Pin(7), freq=10000, duty=1023) #duty between 0 and 1023
     while (counter-1) < round(frequency*led_wait_measure_time):
         pass
     print("starting measurements")
@@ -37,7 +37,7 @@ async def measurements1(tim, server, pipe):
         sensor.readAndSend(server, pipe)
         await sleep_between_measurements(led_between_measure_time)
     PWM(Pin(7), freq=10000, duty=0)
-    tim.deinit() 
+
 
 async def sleep_between_measurements(led_time):
     await uasyncio.sleep_ms(led_time)
@@ -48,9 +48,10 @@ async def sleep_between_measurements(led_time):
 async def run(server, pipe, data: int):    
     print("[prgm_main] start")
     tim = Timer(0) #timer used to count when LED sleeps and takes measurements
-    tim.init(freq = frequency, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe))
+    tim.init(freq = frequency*2, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe))#Produce a 400Hz pulse, interesting implementation
     sensor.readSonar()
     await measurements1(tim, server, pipe)
     print("hello world")
     #pipe.notify(server)
+    tim.deinit() 
     print("[prgm_main] stop")

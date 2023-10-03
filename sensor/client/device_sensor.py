@@ -12,13 +12,14 @@ i2c = I2C(0, scl = pins.SCL, sda = pins.SDA)
 # Create a VL53L0X object
 try:
     #pins.POWER_GPIO1.on()
-    print("scan  I2C")
-    address = i2c.scan()[1]
-    print("ToF address")
-    print(address)
+    print("[device_sensor.py]scan  I2C")
+    alli2c = i2c.scan()
+    address = alli2c[1]
+    print("ALL i2c address: ",alli2c)
+    print("ToF address ",address)
     tof = VL53L0X.VL53L0X(i2c, address)
     tof.set_Vcsel_pulse_period(tof.vcsel_period_type[0], 18)
-    #tof.set_Vcsel_pulse_period(tof.vcsel_period_type[1], 14)
+    tof.set_Vcsel_pulse_period(tof.vcsel_period_type[1], 14)
 except Exception as error:
     print(f"[ERROR] Could not create VL53L0X object beacause {error}")
 
