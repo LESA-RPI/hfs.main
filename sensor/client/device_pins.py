@@ -6,8 +6,8 @@ import time
 block = ADCBlock(0, bits=12)
 PHOTODIODE_RESULT = block.connect(0, Pin(0, Pin.IN))
 #LED_REF
-LED_REF = Pin(6, Pin.OUT)
-ESP_PWM_DIM = PWM(Pin(7), freq=1000, duty=0)
+LED_REF = PWM(Pin(6), freq=400, duty=500)
+ESP_PWM_DIM = PWM(Pin(7), freq=10000, duty=0)
 NeopixelLED = Pin(8, Pin.OUT)
 #I2C
 SCL = Pin(4, Pin.IN)
