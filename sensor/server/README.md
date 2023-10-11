@@ -32,3 +32,5 @@ The user name and password for *Raspberry Pi Zero W*
 ```
 hfsserver-password
 ```
+
+Raspberry Pi System has been upgraded to the Raspberry Pi 4, and the username and password are the same. 
