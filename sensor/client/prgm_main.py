@@ -15,28 +15,32 @@ led_between_measure_time = round((led_measurement_time*1000)/samples)
 
 def led_blinking():
     if LEDON == True:
-        pins.LED_REF.on()
+        pins.ESP_PWM_DIM.on()
 
     else:
-        pins.LED_REF.off()
+        pins.ESP_PWM_DIM.off()
 
 def timerCallback(server, pipe):
     global counter, LEDON
     LEDON = not LEDON
-    led_blinking()
+    #led_blinking()
     counter = counter + 1 #increments counter used for determining when to stop measurements
 
 async def measurements1(tim, server, pipe):
+    pins.ESP_PWM_DIM.duty(750)
     while (counter-1) < round(frequency*led_wait_measure_time):
         pass
     print("starting measurements")
     for i in range(0, samples):
-        while(LEDON == False):
-            await uasyncio.sleep_ms(0)
+#        while( pins.ESP_PWM_DIM.value == 0):
+#            pins.ESP_PWM_DIM.duty(0)
+#            await uasyncio.sleep_ms(0)
         sensor.readAndSend(server, pipe)
         await sleep_between_measurements(led_between_measure_time)
-    pins.ESP_PWM_DIM.off()
-    tim.deinit() 
+    PWM(Pin(7), freq=10000, duty=0)
+    pins.ESP_PWM_DIM.duty(0)
+
+
 
 async def sleep_between_measurements(led_time):
     await uasyncio.sleep_ms(led_time)
@@ -46,15 +50,19 @@ async def sleep_between_measurements(led_time):
 # run this program once and only once, server will decide how to loop
 async def run(server, pipe, data: int):    
     print("[prgm_main] start")
-    #pins.AVDD_PIN.on()
     tim = Timer(0) #timer used to count when LED sleeps and takes measurements
-    #led_flash = PWM(Pin(33, Pin.OUT))
-    #led_flash.init(freq=frequency)
-    tim.init(freq = frequency, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe))
     sensor.readSonar()
+    tim.init(freq = frequency*2, mode = Timer.PERIODIC, callback = lambda t: timerCallback(server, pipe))#Produce a 400Hz pulse, interesting implementation
     await measurements1(tim, server, pipe)
-    # pipe.write("data")
-    #led_flash.deinit()
     print("hello world")
     #pipe.notify(server)
+    tim.deinit() 
     print("[prgm_main] stop")
+
+
+
+
+
+
+
+

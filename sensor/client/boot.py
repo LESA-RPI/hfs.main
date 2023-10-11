@@ -7,6 +7,8 @@ import esp
 # get the config file
 import config
 
+
+
 # check for updates
 if (config.CHECK_FOR_UPDATES):
     import git_update
