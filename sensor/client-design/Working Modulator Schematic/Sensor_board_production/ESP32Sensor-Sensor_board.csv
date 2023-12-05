@@ -1,0 +1,43 @@
+null,Sourced,Placed,References,Value,Footprint,Quantity,Manufactor num,Digitkey
+1,,,"C4, C8, C13",1uF,C_0402_1005Metric,3,CL05A105KP5NNNC,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05A105KP5NNNC/3886734
+2,,,"C6, C7, C9",100nF,C_0402_1005Metric,3,CL05A104KA5NNNC,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05A104KA5NNNC/3886701
+3,,,"C1, C11",10uF,C_0402_1005Metric,2,CL05X106MR5NUNC,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05X106MR5NUNC/5961263
+4,,,"C2, C3",200pF,C_0402_1005Metric,2,C0402C201J5GAC7867,https://www.digikey.com/en/products/detail/kemet/C0402C201J5GAC7867/2196422
+5,,,"C5, C10, C14",2.2uF,C_0402_1005Metric,2,CL05A225KP5NSNC,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05A225KP5NSNC/3886766
+6,,,C12,0.002uF,C_0402_1005Metric,1,04025C202JAT2A,https://www.digikey.com/en/products/detail/kyocera-avx/04025C202JAT2A/1597583
+7,,,C15,100uF,C_0402_1005Metric,1,CL05A104KA5NNNC,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05A104KA5NNNC/3886701
+8,,,"R2, R3, R7, R19, R20",10k,R_0402_1005Metric,5,RC1005F103CS,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/RC1005F103CS/3903439
+9,,,"R9, R13, R14",1M,R_0402_1005Metric,3,CRGCQ0402J1M0,https://www.digikey.com/en/products/detail/te-connectivity-passive-product/CRGCQ0402J1M0/8576668
+10,,,"R1, R8",1k,R_0402_1005Metric,2,RC0402FR-071KL,https://www.digikey.com/en/products/detail/yageo/RC0402FR-071KL/726513
+11,,,"R15, R18",20k,R_0402_1005Metric,2,RC0402FR-0720KL,https://www.digikey.com/en/products/detail/yageo/RC0402FR-0720KL/726557
+12,,,R4,9880,R_0805_2012Metric,1,TNPW08059K88BEEN,https://www.digikey.com/en/products/detail/vishay-dale/TNPW08059K88BEEN/4271757
+13,,,R5,16466.666,R_0805_2012Metric,1,TNPW080516K5BEEA,https://www.digikey.com/en/products/detail/vishay-dale/TNPW080516K5BEEA/1607419
+14,,,R6,49400,R_0805_2012Metric,1,TNPW080549K3BEEN,https://www.digikey.com/en/products/detail/vishay-dale/TNPW080549K3BEEN/7656968
+15,,,R10,100k,R_0402_1005Metric,1,RC0402FR-07100KL,https://www.digikey.com/en/products/detail/yageo/RC0402FR-07100KL/726526
+16,,,R11,6.66K,R_0402_1005Metric,1,RC0402FR-076K65L,https://www.digikey.com/en/products/detail/yageo/RC0402FR-076K65L/5281079
+17,,,R12,7K,R_0402_1005Metric,1,RC0402FR-076K98L,https://www.digikey.com/en/products/detail/yageo/RC0402FR-076K98L/5281080
+18,,,R16,220k,R_0402_1005Metric,1,RC0402FR-07220KL,https://www.digikey.com/en/products/detail/yageo/RC0402FR-07220KL/726564
+19,,,R17,0,R_0805_2012Metric,1,RMCF0805ZT0R00,https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RMCF0805ZT0R00/1756901
+20,,,U1,ESP32-C3-WROOM-02-N4,IC18_ESP32-C3-WROOM-02-N4_EXP,1,ESP32-C3-WROOM-02-N4,https://www.mouser.com/ProductDetail/Espressif-Systems/ESP32-C3-WROOM-02-N4?qs=stqOd1AaK7%2FqjTZKEOgfUg%3D%3D
+21,,,U2,CP2102N-Axx-xQFN28,QFN-28-1EP_5x5mm_P0.5mm_EP3.35x3.35mm,1,CP2102N-A02-GQFN28R,https://www.digikey.com/en/products/detail/silicon-labs/CP2102N-A02-GQFN28R/9863480
+22,,,U3,FUSB302B11MPX,WQFN-14-1EP_2.5x2.5mm_P0.5mm_EP1.45x1.45mm,1,FUSB302B11MPX,https://www.digikey.com/en/products/detail/onsemi/fusb302b11mpx/7356100
+23,,,U4,BC846AS-7,SOT6_BC846AS-7_DIO,1,BC846AS-7,https://www.digikey.com/en/products/detail/diodes-incorporated/BC846AS-7/1629534?s=N4IgTCBcDaIEIGEAcAWAbAQQMoFoDsIAugL5A
+24,,,U5,TLV76733DRVx,WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias,1,TLV76733DRVR,https://www.digikey.com/en/products/detail/texas-instruments/TLV76733DRVR/10434657
+25,,,U6,SN74LVC1G58DRYR,DRY6,1,SN74LVC1G58DRYR,https://www.digikey.com/en/products/detail/texas-instruments/SN74LVC1G58DRYR/2776595?s=N4IgTCBcDaIMoDkDsAWAMgNQMIEYDiArABwAiASgJpkgC6AvkA
+26,,,U7,AD620ARZ-REEL7,R_8_ADI,1,AD620ARZ-REEL7,https://www.digikey.com/en/products/detail/analog-devices-inc/AD620ARZ-REEL7/617757?s=N4IgTCBcDaIIIBEBsYAMcBKAtAtBgovgDIDsIAugL5A
+27,,,U8,AD630ARZ,SOIC-20W_7.5x12.8mm_P1.27mm,1,AD630ARZ,https://www.digikey.com/en/products/detail/analog-devices-inc/AD630ARZ/750987
+28,,,U9,OP27GSZ-REEL7,R_8_ADI,1,OP27GSZ-REEL7,https://www.digikey.com/en/products/detail/analog-devices-inc/OP27GSZ-REEL7/652931?s=N4IgTCBcDaIPIAUwHYDiBlAWgWgEoFF8AZZEAXQF8g
+29,,,U10,LTC2453IDDB-TRMPBF,Delta 8-DFN 3x2 mm,1,LTC2453IDDB#TRMPBF,https://www.digikey.com/en/products/detail/analog-devices-inc/LTC2453IDDB-TRMPBF/1767937
+30,,,U11,LT1054IDWR,DW16,1,LT1054IDWR,https://www.digikey.com/en/products/detail/texas-instruments/LT1054IDWR/705719
+31,,,U12,TLV76750DRVx,WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias,1,TLV76750DRVR,https://www.digikey.com/en/products/detail/texas-instruments/TLV76750DRVR/10820367
+32,,,U13,4492,4492_ADA,1,1528-4492-ND,https://www.digikey.com/en/products/detail/adafruit-industries-llc/4492/11569136
+33,,,"FB1, FB2, FB3, FB4",1k @ 100MHz,L_0402_1005Metric,4,HZ0402B102R-10,https://www.digikey.com/en/products/detail/laird-signal-integrity-products/HZ0402B102R-10/1236411
+34,,,"S1, S2, S3",219-2MSTR,SW_219-2MSTR,3,219-2MSTR,https://www.digikey.com/en/products/detail/cts-electrocomponents/219-2MSTR/5223989
+35,,,CR1,MMSZ5231B,SOD123_FAS,1,MMSZ5231B,https://www.digikey.com/en/products/detail/smc-diode-solutions/MMSZ5231B/9556560
+36,,,CR2,MMSZ5226B-7-F,SOD123_DIO,1,MMSZ5226B-7-F,https://www.digikey.com/en/products/detail/diodes-incorporated/MMSZ5226B-7-F/717786?s=N4IgTCBcDaILJwMoC0CsYwDYBCBaA7LgGIgC6AvkA
+37,,,CR3,SRV05-4L-TP,SOT23-6L_MCC,1,SRV05-4L-TP,https://www.digikey.com/en/products/detail/micro-commercial-co/SRV05-4L-TP/2233919?s=N4IgTCBcDaIMoCUBqAGArAWgCwBkMBUAFEAXQF8g
+38,,DNP,PD1,~,ODD-42W-Side,1,,
+39,,,"J3, J4",FTSH-103-01-L-DH-C-TR,SAMTEC_FTSH-103-01-L-DH-C-TR,2,FTSH-103-01-L-DH-C-TR,https://www.digikey.com/en/products/detail/samtec-inc/FTSH-103-01-L-DH-C-TR/6692643?s=N4IgTCBcDaIGIBUDKAJAtARgAwGY1YzQBk0ARdAYTQQCUQBdAXyA
+40,,,"J5, J6",PPTC041LFBN-RC,CONN_PPTC041LFBN-RC_SUL,2,PPTC041LFBN-RC,https://www.digikey.com/en/products/detail/sullins-connector-solutions/PPTC041LFBN-RC/810144?s=N4IgTCBcDaIApwCoGEAMAWAjAGQGICEA5AWgCVkQBdAXyA
+41,,,J1,PJ-036AH-SMT-TR,CUI_PJ-036AH-SMT-TR,1,PJ-036AH-SMT-TR,https://www.digikey.com/en/products/detail/cui-devices/PJ-036AH-SMT-TR/1530971?s=N4IgTCBcDaIAoCkC0AGAzANgIIAkkGUBZAFSWICUQBdAXyA
+42,,,J2,12401598E4-2A,AMPHENOL_12401598E4#2A,1,12401598E4#2A,https://www.digikey.com/en/products/detail/amphenol-cs-commercial-products/12401598E4-2A/6051823?s=N4IgTCBcDaIIxgCwAY4FYCcAOAookAugL5A
