@@ -48,4 +48,7 @@
   (lib (name "TPS61161DRVR")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/TPS61161DRVR.kicad_sym")(options "")(descr ""))
   (lib (name "VL53L0CXV0DH_1")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/VL53L0CXV0DH_1.kicad_sym")(options "")(descr ""))
   (lib (name "VL53L0CXV0DH-1")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/VL53L0CXV0DH-1.kicad_sym")(options "")(descr ""))
+  (lib (name "PI3CH281QEX")(type "Legacy")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/PI3CH281QEX/PI3CH281QEX.lib")(options "")(descr ""))
+  (lib (name "CAT5171")(type "Legacy")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/LIB_CAT5171/CAT5171.lib")(options "")(descr ""))
+  (lib (name "AD5274BRMZ-100")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/AD5274BRMZ-100/AD5274BRMZ-100.kicad_sym")(options "")(descr ""))
 )
