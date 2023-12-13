@@ -4935,7 +4935,7 @@
     (stroke (width 0) (type default))
     (uuid 4b5d407c-b987-447f-9556-1242a1f5b5c9)
   )
-  (wire (pts (xy 295.91 63.5) (xy 300.99 63.5))
+  (wire (pts (xy 285.75 63.5) (xy 300.99 63.5))
     (stroke (width 0) (type default))
     (uuid 4bc1139c-01c3-41a5-b4f8-bd8cdc75ccd9)
   )
@@ -4966,10 +4966,6 @@
   (wire (pts (xy 253.365 238.76) (xy 259.08 238.76))
     (stroke (width 0) (type default))
     (uuid 5193b548-ffb9-4501-bfc3-13da3f8f300b)
-  )
-  (wire (pts (xy 285.75 63.5) (xy 288.29 63.5))
-    (stroke (width 0) (type default))
-    (uuid 567fe7f7-3ccf-4226-9c6e-98418c2ec8a1)
   )
   (wire (pts (xy 355.6 41.91) (xy 355.6 39.37))
     (stroke (width 0) (type default))
@@ -7807,37 +7803,6 @@
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
           (reference "J4") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Device:R") (at 292.1 63.5 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 2b5544ac-a737-44e3-8b48-0dd27e9068f4)
-    (property "Reference" "R8" (at 292.1 59.69 90)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Value" "1k" (at 292.1 61.595 90)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 292.1 65.278 90)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 292.1 63.5 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 077cbecd-103d-4527-b9e5-511de7b873af))
-    (pin "2" (uuid 0938ef6b-8cfa-4278-bc83-e5db0bc7079a))
-    (instances
-      (project "ESP32Sensor-Sensor_board"
-        (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R8") (unit 1)
-        )
-      )
-      (project "ESP32Sensor"
-        (path "/9c413b8e-6557-4076-98bc-5e50cc60e6ad"
-          (reference "R26") (unit 1)
         )
       )
     )
