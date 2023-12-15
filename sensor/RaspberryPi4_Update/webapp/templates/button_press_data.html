@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Press History</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Button Press History</h1>
+    <table>
+        <tr>
+            <th>Timestamp</th>
+        </tr>
+        {% for timestamp in timestamps %}
+        <tr>
+            <td>{{ timestamp[0] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>
