@@ -28,6 +28,9 @@ def timerCallback(server, pipe):
 
 async def measurements1(tim, server, pipe):
     pins.ESP_PWM_DIM.duty(750)
+    #pins.ESP_PWM_DIM.value(1)
+
+
     while (counter-1) < round(frequency*led_wait_measure_time):
         pass
     print("starting measurements")
@@ -39,6 +42,7 @@ async def measurements1(tim, server, pipe):
         await sleep_between_measurements(led_between_measure_time)
     PWM(Pin(7), freq=10000, duty=0)
     pins.ESP_PWM_DIM.duty(0)
+    #pins.ESP_PWM_DIM.value(0) #TODO: REMOVE THIS AFTER TESTING
 
 
 
