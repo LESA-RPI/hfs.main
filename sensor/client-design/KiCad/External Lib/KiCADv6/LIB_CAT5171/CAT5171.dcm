@@ -1,9 +1,0 @@
-EESchema-DOCLIB  Version 2.0
-#
-$CMP CAT5171
-D onsemi DPP VOL SGL 256 TAP I2C
-K
-F https://www.onsemi.cn/download/data-sheet/pdf/cat5171-d.pdf
-$ENDCMP
-#
-#End Doc Library

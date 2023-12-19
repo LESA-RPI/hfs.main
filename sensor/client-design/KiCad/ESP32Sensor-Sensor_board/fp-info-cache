@@ -1,4 +1,4 @@
-21895578199600602
+21899472970733314
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -90866,6 +90866,20 @@ MMSZ5231B
 0
 2
 2
+footprints
+SOP50P490X110-10N
+
+
+0
+10
+10
+footprints
+SOP64P599X175-16N
+16-Pin, 150mil-Wide ( QSOP)_2023
+Integrated Circuit
+0
+16
+16
 footprints
 SOT6_BC846AS-7_DIO
 

@@ -1,9 +1,0 @@
-EESchema-DOCLIB  Version 2.0
-#
-$CMP PI3CH281QEX
-D Digital Bus Switch ICs Lo Vltg Hi Bandwidth
-K
-F https://www.diodes.com/assets/Datasheets/PI3CH281.pdf
-$ENDCMP
-#
-#End Doc Library

@@ -5160,6 +5160,10 @@
     (stroke (width 0) (type default))
     (uuid a142dc95-7c1b-4428-a4d3-8c005a41a38d)
   )
+  (wire (pts (xy 64.135 123.825) (xy 64.135 128.905))
+    (stroke (width 0) (type default))
+    (uuid a194eca7-e8e7-419c-a957-3c049ba2a73e)
+  )
   (wire (pts (xy 376.555 84.455) (xy 376.555 60.325))
     (stroke (width 0) (type default))
     (uuid a22926ad-d957-4897-8e6e-5b10960de4af)
@@ -5350,6 +5354,10 @@
   (wire (pts (xy 306.07 123.19) (xy 306.07 118.11))
     (stroke (width 0) (type default))
     (uuid d522452d-d8d0-474a-a08f-6be2b8209afb)
+  )
+  (wire (pts (xy 48.895 128.905) (xy 48.895 123.825))
+    (stroke (width 0) (type default))
+    (uuid d5b415dd-fc3b-4034-9d2d-fcbb9ee09637)
   )
   (wire (pts (xy 370.205 161.925) (xy 379.73 161.925))
     (stroke (width 0) (type default))
@@ -5932,6 +5940,13 @@
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
+  (global_label "VBUS" (shape input) (at 64.135 123.825 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid 1cf3df58-03cb-4a6d-bc01-b4470c519ce2)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 71.9394 123.825 0)
+      (effects (font (size 1.27 1.27)) (justify left) hide)
+    )
+  )
   (global_label "VBUS" (shape input) (at 287.02 179.705 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 1d0f990e-bd06-4574-b3a1-c450853b0fd1)
@@ -6072,13 +6087,6 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "GPIO3" (shape input) (at 51.435 273.05 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left))
-    (uuid 416f03e4-e9a1-4435-809c-48f43928551e)
-    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 60.0256 273.05 0)
-      (effects (font (size 1.27 1.27)) (justify left) hide)
-    )
-  )
   (global_label "CC2" (shape input) (at 55.88 151.13 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 42b0036a-d1d8-4f49-9c02-a6bcc5b32e57)
@@ -6170,6 +6178,13 @@
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
+  (global_label "USBC_VBUS" (shape input) (at 48.895 123.825 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid 55d02504-e886-493d-b951-06c24c49b7a6)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 35.043 123.825 0)
+      (effects (font (size 1.27 1.27)) (justify right) hide)
+    )
+  )
   (global_label "ESP_RXD" (shape input) (at 116.84 26.035 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 569235d4-af69-4b97-ab79-16c9a13fe27f)
@@ -6254,6 +6269,13 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
+  (global_label "Mux_Sel_B" (shape input) (at 51.435 273.05 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid 663d0451-4e45-4ff2-b27f-14fe4be88a48)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 64.1378 273.05 0)
+      (effects (font (size 1.27 1.27)) (justify left) hide)
+    )
+  )
   (global_label "Mux_Sel_B" (shape input) (at 260.35 40.005 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid 67760b23-1a4e-4688-a372-f5a733371fee)
@@ -6335,13 +6357,6 @@
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 749b9244-c570-46b7-8e70-a24369895621)
     (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 399.7805 52.705 0)
-      (effects (font (size 1.27 1.27)) (justify left) hide)
-    )
-  )
-  (global_label "GPIO2" (shape input) (at 51.435 270.51 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left))
-    (uuid 758d3744-3b7a-4b1e-9fb9-abb1a5d8c066)
-    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 60.0256 270.51 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -6548,10 +6563,10 @@
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
-  (global_label "VBUS" (shape input) (at 24.13 128.27 0) (fields_autoplaced)
+  (global_label "USBC_VBUS" (shape input) (at 24.13 128.27 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 94834ca7-90e8-4c74-90dc-d0e074256441)
-    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 31.4417 128.1906 0)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 37.982 128.27 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -6954,6 +6969,13 @@
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
+  (global_label "Mux_Sel_A" (shape input) (at 51.435 270.51 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid e4d54a2e-433a-409b-bd2e-7aaf38e2cba8)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 63.9564 270.51 0)
+      (effects (font (size 1.27 1.27)) (justify left) hide)
+    )
+  )
   (global_label "Sensor_GND" (shape input) (at 252.095 184.785 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right))
     (uuid e4fea3e9-ab5a-443b-a46d-7924cf2b2b3f)
@@ -7063,7 +7085,7 @@
   (symbol (lib_id "Interface_USB:FUSB302B11MPX") (at 37.465 148.59 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 01d64bbd-126a-4126-8cf7-b88f37b100bc)
-    (property "Reference" "U3" (at 24.13 156.845 0)
+    (property "Reference" "U8" (at 24.13 156.845 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "FUSB302B11MPX" (at 13.97 159.385 0)
@@ -7093,7 +7115,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U3") (unit 1)
+          (reference "U8") (unit 1)
         )
       )
     )
@@ -7164,7 +7186,7 @@
   (symbol (lib_id "Device:R") (at 320.04 67.945 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0961164f-bbfa-47dd-9943-64b7ca0e0b72)
-    (property "Reference" "R9" (at 322.58 66.675 0)
+    (property "Reference" "R5" (at 322.58 66.675 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "15k" (at 322.58 69.215 0)
@@ -7181,7 +7203,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R9") (unit 1)
+          (reference "R5") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -7195,7 +7217,7 @@
   (symbol (lib_id "AD620ARZ_REEL7:AD620ARZ-REEL7") (at 240.03 80.01 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 09cfb124-9470-437c-815f-2c5b21f3777a)
-    (property "Reference" "U7" (at 240.03 71.12 0)
+    (property "Reference" "U4" (at 240.03 71.12 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "AD620ARZ-REEL7" (at 240.03 90.17 0)
@@ -7218,7 +7240,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U7") (unit 1)
+          (reference "U4") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -7264,7 +7286,7 @@
   (symbol (lib_id "Device:C") (at 284.48 175.895 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 127f791a-1164-46ec-a9c2-4e8374af09b8)
-    (property "Reference" "C10" (at 288.29 174.625 0)
+    (property "Reference" "C23" (at 288.29 174.625 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "2.2uF" (at 288.29 177.165 0)
@@ -7281,7 +7303,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C10") (unit 1)
+          (reference "C23") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -7295,13 +7317,13 @@
   (symbol (lib_id "Device:R") (at 386.08 180.975 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1531f271-3987-4449-9f1a-28e89daa7f5d)
-    (property "Reference" "R5" (at 383.54 180.975 0)
+    (property "Reference" "R21" (at 383.54 180.975 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "500" (at 386.08 180.975 90)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 387.858 180.975 90)
+    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 387.858 180.975 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 386.08 180.975 0)
@@ -7312,7 +7334,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R5") (unit 1)
+          (reference "R21") (unit 1)
         )
       )
     )
@@ -7321,7 +7343,7 @@
   (symbol (lib_id "Device:C") (at 313.69 177.8 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1d452a1e-7688-4f87-8806-6d9ee32d507b)
-    (property "Reference" "C13" (at 308.61 175.26 0)
+    (property "Reference" "C24" (at 308.61 175.26 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1uF" (at 308.61 177.8 0)
@@ -7338,7 +7360,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C13") (unit 1)
+          (reference "C24") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -7352,7 +7374,7 @@
   (symbol (lib_id "Device:R") (at 287.02 118.11 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2027df1c-5999-4a1d-bce7-9c95ca192275)
-    (property "Reference" "R18" (at 287.02 120.65 90)
+    (property "Reference" "R14" (at 287.02 120.65 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "20k" (at 287.02 118.11 90)
@@ -7369,7 +7391,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R18") (unit 1)
+          (reference "R14") (unit 1)
         )
       )
     )
@@ -7378,7 +7400,7 @@
   (symbol (lib_id "Device:C") (at 208.915 113.03 0) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2234e251-05bb-439d-b3d6-76a856e4af88)
-    (property "Reference" "C25" (at 204.47 114.935 0)
+    (property "Reference" "C13" (at 204.47 114.935 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100nF" (at 202.565 111.125 0)
@@ -7395,7 +7417,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C25") (unit 1)
+          (reference "C13") (unit 1)
         )
       )
     )
@@ -7404,7 +7426,7 @@
   (symbol (lib_id "Device:C") (at 204.47 78.74 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 288ae052-1ab2-459f-9215-0197462ae5b6)
-    (property "Reference" "C19" (at 204.47 73.66 90)
+    (property "Reference" "C7" (at 204.47 73.66 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100nF" (at 204.47 75.565 90)
@@ -7421,7 +7443,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C19") (unit 1)
+          (reference "C7") (unit 1)
         )
       )
     )
@@ -7430,7 +7452,7 @@
   (symbol (lib_id "Regulator_Linear:TLV76750DRVx") (at 321.31 175.26 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 29b0bd2e-df6d-4f23-8539-4217dd237367)
-    (property "Reference" "U12" (at 321.31 165.1 0)
+    (property "Reference" "U11" (at 321.31 165.1 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "TLV76750DRVx" (at 321.31 167.64 0)
@@ -7452,7 +7474,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U12") (unit 1)
+          (reference "U11") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -7505,7 +7527,7 @@
   (symbol (lib_id "Device:R") (at 247.015 108.585 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2c0a7d91-dfb1-471e-b717-5db89bfd0ab8)
-    (property "Reference" "R13" (at 247.015 102.235 90)
+    (property "Reference" "R11" (at 247.015 102.235 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "6.3k" (at 247.015 104.775 90)
@@ -7522,7 +7544,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R13") (unit 1)
+          (reference "R11") (unit 1)
         )
       )
     )
@@ -7531,7 +7553,7 @@
   (symbol (lib_id "219-2MSTR:219-2MSTR") (at 279.4 128.27 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2ca46301-30d5-47f8-bb20-7b04abbeed99)
-    (property "Reference" "S3" (at 271.145 128.905 90)
+    (property "Reference" "S2" (at 271.145 128.905 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "219-2MSTR" (at 264.795 132.715 90)
@@ -7562,7 +7584,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "S3") (unit 1)
+          (reference "S2") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -7576,7 +7598,7 @@
   (symbol (lib_id "Device:C") (at 281.94 111.76 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2d8a39ec-b90c-4834-946e-27e78b454915)
-    (property "Reference" "C6" (at 285.75 110.49 0)
+    (property "Reference" "C11" (at 285.75 110.49 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100nF" (at 285.75 113.03 0)
@@ -7593,7 +7615,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C6") (unit 1)
+          (reference "C11") (unit 1)
         )
       )
     )
@@ -7602,7 +7624,7 @@
   (symbol (lib_id "FTSH-103-01-L-DH-C-TR:FTSH-103-01-L-DH-C-TR") (at 107.315 269.875 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2e73de23-71f8-4e01-8731-51e200c67617)
-    (property "Reference" "J3" (at 107.315 259.715 0)
+    (property "Reference" "J6" (at 107.315 259.715 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "FTSH-103-01-L-DH-C-TR" (at 107.315 262.255 0)
@@ -7632,7 +7654,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "J3") (unit 1)
+          (reference "J6") (unit 1)
         )
       )
     )
@@ -7641,7 +7663,7 @@
   (symbol (lib_id "MMSZ5226B:MMSZ5226B-7-F") (at 266.7 138.43 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 310d76cd-a140-4cb6-b1e8-f5dde2bc152e)
-    (property "Reference" "CR2" (at 265.43 138.43 0)
+    (property "Reference" "CR3" (at 265.43 138.43 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "MMSZ5226B-7-F" (at 267.335 141.605 0)
@@ -7658,7 +7680,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "CR2") (unit 1)
+          (reference "CR3") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -7723,7 +7745,7 @@
   (symbol (lib_id "Device:C") (at 186.69 50.8 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3855e20d-db93-444d-ace3-751e2a4b9094)
-    (property "Reference" "C26" (at 181.61 48.26 0)
+    (property "Reference" "C6" (at 181.61 48.26 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "1uF" (at 181.61 53.34 0)
@@ -7740,7 +7762,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C26") (unit 1)
+          (reference "C6") (unit 1)
         )
       )
     )
@@ -7749,7 +7771,7 @@
   (symbol (lib_id "Device:R") (at 256.54 50.165 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 395891fc-302b-4454-91ad-a90992c81922)
-    (property "Reference" "R14" (at 256.54 50.165 90)
+    (property "Reference" "R4" (at 256.54 50.165 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "5490" (at 250.19 50.165 90)
@@ -7766,7 +7788,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R14") (unit 1)
+          (reference "R4") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -7828,7 +7850,7 @@
   (symbol (lib_id "SRV05_4L_TP:SRV05-4L-TP") (at 40.005 53.975 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3f30fe61-c49c-4825-97c4-86fbbfc3bc84)
-    (property "Reference" "CR3" (at 41.275 44.45 0)
+    (property "Reference" "CR1" (at 41.275 44.45 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "SRV05-4L-TP" (at 41.275 46.99 0)
@@ -7849,7 +7871,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "CR3") (unit 1)
+          (reference "CR1") (unit 1)
         )
       )
     )
@@ -7858,7 +7880,7 @@
   (symbol (lib_id "Device:C") (at 50.165 203.835 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4119723a-4728-425d-9d3f-564b6e647186)
-    (property "Reference" "C5" (at 52.705 201.295 0)
+    (property "Reference" "C30" (at 52.705 201.295 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "2.2uF" (at 52.705 203.835 0)
@@ -7875,7 +7897,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C5") (unit 1)
+          (reference "C30") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -7889,13 +7911,13 @@
   (symbol (lib_id "Device:R") (at 256.54 45.085 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4218a7f5-1f70-4b9f-9f97-2e027a27c9a0)
-    (property "Reference" "R28" (at 256.54 45.085 90)
+    (property "Reference" "R2" (at 256.54 45.085 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "590" (at 250.825 45.085 90)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 256.54 46.863 90)
+    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 256.54 46.863 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 256.54 45.085 0)
@@ -7906,7 +7928,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R28") (unit 1)
+          (reference "R2") (unit 1)
         )
       )
     )
@@ -7915,13 +7937,13 @@
   (symbol (lib_id "LTC2453IDDB_TRMPBF:LTC2453IDDB-TRMPBF") (at 363.22 116.84 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 48309e33-4d15-4ca1-8896-d2c4361bf832)
-    (property "Reference" "U10" (at 363.22 103.505 0)
+    (property "Reference" "U7" (at 363.22 103.505 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "LTC2453IDDB-TRMPBF" (at 362.585 107.315 0)
       (effects (font (size 1.524 1.524)))
     )
-    (property "Footprint" "" (at 348.615 111.76 0)
+    (property "Footprint" "footprints:DFN-8_DDB_LIT" (at 348.615 111.76 0)
       (effects (font (size 1.27 1.27) italic) hide)
     )
     (property "Datasheet" "LTC2453IDDB-TRMPBF" (at 348.615 111.76 0)
@@ -7939,7 +7961,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U10") (unit 1)
+          (reference "U7") (unit 1)
         )
       )
     )
@@ -7948,7 +7970,7 @@
   (symbol (lib_id "Device:R") (at 203.835 118.11 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 49252ff4-4b6b-47f4-8d8b-7425b87fdfb7)
-    (property "Reference" "R26" (at 203.835 118.11 90)
+    (property "Reference" "R13" (at 203.835 118.11 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1Meg" (at 203.835 120.65 90)
@@ -7965,7 +7987,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R26") (unit 1)
+          (reference "R13") (unit 1)
         )
       )
     )
@@ -8005,7 +8027,7 @@
   (symbol (lib_id "Device:C") (at 50.8 154.94 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4d4d6f09-55d1-4b84-93f2-4c90dad66b15)
-    (property "Reference" "C3" (at 46.99 156.21 0)
+    (property "Reference" "C20" (at 46.99 156.21 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "200pF" (at 46.99 158.115 0)
@@ -8022,7 +8044,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C3") (unit 1)
+          (reference "C20") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8036,7 +8058,7 @@
   (symbol (lib_id "Device:C") (at 98.425 151.13 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4f637c12-f5ac-456e-a830-b2bc92a16f6b)
-    (property "Reference" "C17" (at 102.235 149.86 0)
+    (property "Reference" "C18" (at 102.235 149.86 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10uF" (at 102.235 152.4 0)
@@ -8053,7 +8075,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C17") (unit 1)
+          (reference "C18") (unit 1)
         )
       )
     )
@@ -8062,7 +8084,7 @@
   (symbol (lib_id "MMSZ5231B:MMSZ5231B") (at 304.165 135.89 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 513ec6dd-cec0-4fd7-bceb-e13a74a6829d)
-    (property "Reference" "CR1" (at 299.085 129.54 0)
+    (property "Reference" "CR2" (at 299.085 129.54 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "MMSZ5231B" (at 299.085 132.08 0)
@@ -8079,7 +8101,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "CR1") (unit 1)
+          (reference "CR2") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8093,7 +8115,7 @@
   (symbol (lib_id "Device:C") (at 229.235 116.84 0) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 55d6adbd-08a3-4da0-9da2-d7df0ab57552)
-    (property "Reference" "C7" (at 230.505 119.38 0)
+    (property "Reference" "C14" (at 230.505 119.38 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100nF" (at 230.505 114.935 0)
@@ -8110,7 +8132,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C7") (unit 1)
+          (reference "C14") (unit 1)
         )
       )
     )
@@ -8119,7 +8141,7 @@
   (symbol (lib_id "Device:R") (at 306.07 127 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 55d6ce0d-e7e3-4e29-9bc1-92d149a14f01)
-    (property "Reference" "R19" (at 304.8 125.73 0)
+    (property "Reference" "R15" (at 304.8 125.73 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "10k" (at 304.165 128.27 0)
@@ -8136,7 +8158,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R19") (unit 1)
+          (reference "R15") (unit 1)
         )
       )
     )
@@ -8203,7 +8225,7 @@
   (symbol (lib_id "Device:C") (at 198.755 113.03 0) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 55f009fb-3b3f-4509-a884-38211f99452b)
-    (property "Reference" "C24" (at 194.31 114.935 0)
+    (property "Reference" "C12" (at 194.31 114.935 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100nF" (at 192.405 111.125 0)
@@ -8220,7 +8242,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C24") (unit 1)
+          (reference "C12") (unit 1)
         )
       )
     )
@@ -8229,7 +8251,7 @@
   (symbol (lib_id "Interface:PCA9306D") (at 367.665 182.245 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5d2c144e-99c8-4151-9bf8-05f03c15d4d1)
-    (property "Reference" "U6" (at 369.6209 194.945 0)
+    (property "Reference" "U12" (at 369.6209 194.945 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "PCA9306D" (at 369.6209 197.485 0)
@@ -8252,7 +8274,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U6") (unit 1)
+          (reference "U12") (unit 1)
         )
       )
     )
@@ -8261,7 +8283,7 @@
   (symbol (lib_id "Device:R") (at 288.29 187.325 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5fcd549e-0ae4-4372-b12f-11fecc0ff8c5)
-    (property "Reference" "R16" (at 283.845 187.325 90)
+    (property "Reference" "R23" (at 283.845 187.325 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "220k" (at 288.29 187.325 90)
@@ -8278,7 +8300,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R16") (unit 1)
+          (reference "R23") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8292,7 +8314,7 @@
   (symbol (lib_id "Device:C") (at 288.29 33.655 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 638ab2ab-3cb8-4499-9472-fe1660ed3e9b)
-    (property "Reference" "C28" (at 288.29 31.115 0)
+    (property "Reference" "C2" (at 288.29 31.115 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0.1uF" (at 287.655 35.56 0)
@@ -8309,7 +8331,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C28") (unit 1)
+          (reference "C2") (unit 1)
         )
       )
     )
@@ -8318,7 +8340,7 @@
   (symbol (lib_id "Device:C") (at 172.72 45.72 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6558807c-6331-48d2-9781-15897b7864c6)
-    (property "Reference" "C29" (at 172.72 43.18 0)
+    (property "Reference" "C4" (at 172.72 43.18 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0.1uF" (at 172.085 47.625 0)
@@ -8335,7 +8357,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C29") (unit 1)
+          (reference "C4") (unit 1)
         )
       )
     )
@@ -8439,7 +8461,7 @@
   (symbol (lib_id "OP27:OP27GSZ-REEL7") (at 258.445 116.84 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 705b8ed0-ddc8-441f-81a6-c2a8faf32e15)
-    (property "Reference" "U9" (at 248.285 111.76 0)
+    (property "Reference" "U6" (at 248.285 111.76 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "OP27GSZ-REEL7" (at 258.445 124.46 0)
@@ -8462,7 +8484,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U9") (unit 1)
+          (reference "U6") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8476,7 +8498,7 @@
   (symbol (lib_id "Device:C") (at 177.8 45.72 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7066e2cb-b221-4a93-b38d-e039184bd8ea)
-    (property "Reference" "C27" (at 177.165 43.18 0)
+    (property "Reference" "C5" (at 177.165 43.18 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10uF" (at 177.8 47.625 0)
@@ -8493,7 +8515,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C27") (unit 1)
+          (reference "C5") (unit 1)
         )
       )
     )
@@ -8502,7 +8524,7 @@
   (symbol (lib_id "Device:C") (at 209.55 91.44 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 738bc2cd-97d8-4e64-abb4-2042ac5352ed)
-    (property "Reference" "C20" (at 213.995 90.805 0)
+    (property "Reference" "C10" (at 213.995 90.805 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100nF" (at 213.995 93.345 0)
@@ -8519,7 +8541,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C20") (unit 1)
+          (reference "C10") (unit 1)
         )
       )
     )
@@ -8528,7 +8550,7 @@
   (symbol (lib_id "Device:R") (at 193.675 118.11 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 73d4cf53-44a2-49bd-9dee-f2843e01f2cd)
-    (property "Reference" "R23" (at 193.675 118.11 90)
+    (property "Reference" "R12" (at 193.675 118.11 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1Meg" (at 193.675 120.65 90)
@@ -8545,7 +8567,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R23") (unit 1)
+          (reference "R12") (unit 1)
         )
       )
     )
@@ -8554,7 +8576,7 @@
   (symbol (lib_id "Device:R") (at 209.55 82.55 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 75dbe97b-073a-4a96-be78-9bceabc5e3fe)
-    (property "Reference" "R22" (at 212.09 81.28 0)
+    (property "Reference" "R7" (at 212.09 81.28 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10k" (at 212.09 83.82 0)
@@ -8571,7 +8593,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R22") (unit 1)
+          (reference "R7") (unit 1)
         )
       )
     )
@@ -8580,7 +8602,7 @@
   (symbol (lib_id "Device:R") (at 256.54 47.625 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7f168eb6-1c16-4df2-bd54-bd992fc78f0c)
-    (property "Reference" "R27" (at 256.54 47.625 90)
+    (property "Reference" "R3" (at 256.54 47.625 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1670" (at 250.19 47.625 90)
@@ -8597,7 +8619,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R27") (unit 1)
+          (reference "R3") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8611,7 +8633,7 @@
   (symbol (lib_id "Device:C") (at 54.61 152.4 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 85611214-e324-44d0-9378-101cae25a66a)
-    (property "Reference" "C2" (at 57.15 154.305 0)
+    (property "Reference" "C19" (at 57.15 154.305 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "200pF" (at 57.785 156.21 0)
@@ -8628,7 +8650,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C2") (unit 1)
+          (reference "C19") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8642,7 +8664,7 @@
   (symbol (lib_id "Regulator_Linear:TLV76733DRVx") (at 42.545 201.295 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 86aa6e7f-c976-4559-b61e-82e7136a9ded)
-    (property "Reference" "U5" (at 42.545 191.135 0)
+    (property "Reference" "U14" (at 42.545 191.135 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "TLV76733DRVx" (at 42.545 193.675 0)
@@ -8664,7 +8686,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U5") (unit 1)
+          (reference "U14") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8678,7 +8700,7 @@
   (symbol (lib_id "Device:C") (at 91.44 151.13 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8c8e7cde-6c99-4832-ba96-dd9d69bcc998)
-    (property "Reference" "C16" (at 94.615 149.86 0)
+    (property "Reference" "C17" (at 94.615 149.86 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "0.1uF" (at 94.615 152.4 0)
@@ -8695,7 +8717,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C16") (unit 1)
+          (reference "C17") (unit 1)
         )
       )
     )
@@ -8704,7 +8726,7 @@
   (symbol (lib_id "Analog:AD630ARZ") (at 356.235 57.785 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8f64804e-2c54-49ca-b329-83c8df08bbfa)
-    (property "Reference" "U8" (at 343.535 38.735 0)
+    (property "Reference" "U3" (at 343.535 38.735 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "AD630ARZ" (at 358.775 38.735 0)
@@ -8739,7 +8761,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U8") (unit 1)
+          (reference "U3") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8753,7 +8775,7 @@
   (symbol (lib_id "Device:C") (at 277.495 80.01 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9d0d2e53-00bd-4c14-87af-7295d6dc5192)
-    (property "Reference" "C21" (at 281.94 78.74 0)
+    (property "Reference" "C8" (at 281.94 78.74 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100nF" (at 283.21 81.28 0)
@@ -8770,7 +8792,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C21") (unit 1)
+          (reference "C8") (unit 1)
         )
       )
     )
@@ -8779,7 +8801,7 @@
   (symbol (lib_id "Device:R") (at 160.655 225.425 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9de2e409-23ae-4b51-82f2-b38c154bf2cf)
-    (property "Reference" "R17" (at 160.655 219.075 90)
+    (property "Reference" "R24" (at 160.655 219.075 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0" (at 160.655 221.615 90)
@@ -8796,7 +8818,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R17") (unit 1)
+          (reference "R24") (unit 1)
         )
       )
     )
@@ -8805,7 +8827,7 @@
   (symbol (lib_id "Device:C") (at 342.9 123.19 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9e20d0d6-a929-48d5-81b2-12929ac9e2f0)
-    (property "Reference" "C8" (at 346.71 121.92 0)
+    (property "Reference" "C15" (at 346.71 121.92 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "1uF" (at 346.71 124.46 0)
@@ -8822,7 +8844,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C8") (unit 1)
+          (reference "C15") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8867,7 +8889,7 @@
   (symbol (lib_id "Device:R") (at 233.045 108.585 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a3fd46b3-f344-4f76-8550-8e963ff324b2)
-    (property "Reference" "R11" (at 233.045 102.235 90)
+    (property "Reference" "R10" (at 233.045 102.235 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "5.6k" (at 233.045 104.775 90)
@@ -8884,7 +8906,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R11") (unit 1)
+          (reference "R10") (unit 1)
         )
       )
     )
@@ -8893,13 +8915,13 @@
   (symbol (lib_id "Device:R") (at 381.635 169.545 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a94958b4-3f00-4c29-ab0c-704bcd64bb0f)
-    (property "Reference" "R4" (at 381.635 167.005 90)
+    (property "Reference" "R17" (at 381.635 167.005 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "200k" (at 381.635 169.545 90)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 381.635 171.323 90)
+    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 381.635 171.323 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 381.635 169.545 0)
@@ -8910,7 +8932,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R4") (unit 1)
+          (reference "R17") (unit 1)
         )
       )
     )
@@ -8919,7 +8941,7 @@
   (symbol (lib_id "Device:C") (at 283.21 200.66 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid adf8848f-a21b-45cf-acf0-2291877fb6a0)
-    (property "Reference" "C15" (at 281.305 199.39 0)
+    (property "Reference" "C28" (at 281.305 199.39 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100uF" (at 280.67 202.565 0)
@@ -8936,7 +8958,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C15") (unit 1)
+          (reference "C28") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8950,7 +8972,7 @@
   (symbol (lib_id "Device:C") (at 347.98 123.19 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ae525827-b236-43a5-a8d8-c6fa3da407c5)
-    (property "Reference" "C9" (at 351.79 121.92 0)
+    (property "Reference" "C16" (at 351.79 121.92 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "0.1uF" (at 351.79 124.46 0)
@@ -8967,7 +8989,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C9") (unit 1)
+          (reference "C16") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -8981,7 +9003,7 @@
   (symbol (lib_id "Device:C") (at 360.045 34.925 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b09acc53-8f52-413f-b9be-ccc37e4d17c1)
-    (property "Reference" "C22" (at 360.045 27.305 90)
+    (property "Reference" "C3" (at 360.045 27.305 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100nF" (at 360.045 29.845 90)
@@ -8998,7 +9020,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C22") (unit 1)
+          (reference "C3") (unit 1)
         )
       )
     )
@@ -9007,7 +9029,7 @@
   (symbol (lib_id "Device:C") (at 234.95 184.785 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b573f853-1a76-4847-a3cd-65220e0f7721)
-    (property "Reference" "C11" (at 235.585 182.88 0)
+    (property "Reference" "C26" (at 235.585 182.88 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "10uF" (at 234.95 187.325 0)
@@ -9024,7 +9046,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C11") (unit 1)
+          (reference "C26") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9035,10 +9057,55 @@
     )
   )
 
+  (symbol (lib_id "219-2MSTR:219-2MSTR") (at 56.515 126.365 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid c581e439-0696-4b73-966b-5de85f8cbada)
+    (property "Reference" "S1" (at 52.07 118.11 0)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Value" "219-2MSTR" (at 60.325 120.65 0)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Footprint" "footprints:SW_219-2MSTR" (at 56.515 126.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom) hide)
+    )
+    (property "Datasheet" "" (at 56.515 126.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom) hide)
+    )
+    (property "PARTREV" "B" (at 56.515 126.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom) hide)
+    )
+    (property "MANUFACTURER" "CTS" (at 56.515 126.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom) hide)
+    )
+    (property "MAXIMUM_PACKAGE_HEIGHT" "3.85mm" (at 56.515 126.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom) hide)
+    )
+    (property "STANDARD" "Manufacturer Recommendations" (at 56.515 126.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom) hide)
+    )
+    (pin "1A" (uuid 6c82a999-1b05-4a60-af19-2eb7c4612aa0))
+    (pin "1B" (uuid a688c058-804b-4b19-8257-0ae421bc4e46))
+    (pin "2A" (uuid ccad1d98-25da-411f-9030-b9febc71a26a))
+    (pin "2B" (uuid 2146463a-c598-4bf4-9e5e-ec12065209f4))
+    (instances
+      (project "ESP32Sensor-Sensor_board"
+        (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
+          (reference "S1") (unit 1)
+        )
+      )
+      (project "ESP32Sensor"
+        (path "/9c413b8e-6557-4076-98bc-5e50cc60e6ad"
+          (reference "S3") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "LT1054IDWR:LT1054IDWR") (at 267.335 184.785 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c77546e1-2a50-4b1c-b32b-6c35301ceeda)
-    (property "Reference" "U11" (at 262.255 167.005 0)
+    (property "Reference" "U13" (at 262.255 167.005 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "LT1054IDWR" (at 260.985 170.18 0)
@@ -9069,7 +9136,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U11") (unit 1)
+          (reference "U13") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9083,7 +9150,7 @@
   (symbol (lib_id "PPTC041LFBN_RC:PPTC041LFBN-RC") (at 51.435 265.43 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d5065529-7ef0-4abb-9847-7198292c38c7)
-    (property "Reference" "J6" (at 36.83 267.97 0)
+    (property "Reference" "J5" (at 36.83 267.97 0)
       (effects (font (size 1.524 1.524)) (justify left))
     )
     (property "Value" "PPTC041LFBN-RC" (at 36.83 270.51 0)
@@ -9102,7 +9169,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "J6") (unit 1)
+          (reference "J5") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9147,7 +9214,7 @@
   (symbol (lib_id "4492:4492") (at 103.505 112.395 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d892d1ac-f5a3-46ee-81b8-354b7818f37c)
-    (property "Reference" "U13" (at 106.045 104.775 0)
+    (property "Reference" "U5" (at 106.045 104.775 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "4492" (at 106.045 107.315 0)
@@ -9166,7 +9233,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U13") (unit 1)
+          (reference "U5") (unit 1)
         )
       )
     )
@@ -9175,7 +9242,7 @@
   (symbol (lib_id "Device:C") (at 34.925 203.835 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d8c60b3f-794f-4cf8-b603-437a926fb6e3)
-    (property "Reference" "C4" (at 29.845 201.295 0)
+    (property "Reference" "C29" (at 29.845 201.295 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1uF" (at 29.845 203.835 0)
@@ -9192,7 +9259,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C4") (unit 1)
+          (reference "C29") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9206,7 +9273,7 @@
   (symbol (lib_id "Device:R") (at 26.67 176.53 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid dc39b380-1074-4e99-a7cf-0bcf4ea11bf6)
-    (property "Reference" "R2" (at 31.75 175.895 90)
+    (property "Reference" "R18" (at 31.75 175.895 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10k" (at 26.67 176.53 90)
@@ -9223,7 +9290,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R2") (unit 1)
+          (reference "R18") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9237,7 +9304,7 @@
   (symbol (lib_id "Device:C") (at 352.425 87.63 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid df6701b8-4631-4d83-bf15-38703a1017d1)
-    (property "Reference" "C23" (at 352.425 83.82 90)
+    (property "Reference" "C9" (at 352.425 83.82 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100nF" (at 352.425 90.805 90)
@@ -9254,7 +9321,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C23") (unit 1)
+          (reference "C9") (unit 1)
         )
       )
     )
@@ -9263,7 +9330,7 @@
   (symbol (lib_id "Device:C") (at 328.93 177.8 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e17dc10c-d30e-40dc-bb21-aefee0b6b65c)
-    (property "Reference" "C14" (at 331.47 175.26 0)
+    (property "Reference" "C25" (at 331.47 175.26 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "2.2uF" (at 331.47 177.8 0)
@@ -9280,7 +9347,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C14") (unit 1)
+          (reference "C25") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9294,7 +9361,7 @@
   (symbol (lib_id "Device:C") (at 287.02 192.405 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e4610d6d-a3f6-49eb-b83c-2969caee981a)
-    (property "Reference" "C12" (at 285.75 194.31 0)
+    (property "Reference" "C27" (at 285.75 194.31 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "0.002uF" (at 289.56 196.215 0)
@@ -9311,7 +9378,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C12") (unit 1)
+          (reference "C27") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9325,7 +9392,7 @@
   (symbol (lib_id "Device:R") (at 217.805 87.63 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e49d544d-ebd3-4c54-8adf-bccffcee0fb7)
-    (property "Reference" "R21" (at 217.805 87.63 90)
+    (property "Reference" "R9" (at 217.805 87.63 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "15k" (at 217.805 85.725 90)
@@ -9342,7 +9409,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R21") (unit 1)
+          (reference "R9") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9356,7 +9423,7 @@
   (symbol (lib_id "Device:R") (at 85.09 159.385 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ecddc6f4-1305-4ed4-af98-dda8d34d1099)
-    (property "Reference" "R20" (at 86.995 158.115 0)
+    (property "Reference" "R16" (at 86.995 158.115 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10k" (at 86.995 160.655 0)
@@ -9373,7 +9440,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R20") (unit 1)
+          (reference "R16") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9387,7 +9454,7 @@
   (symbol (lib_id "Device:R") (at 59.69 176.53 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ef594c67-039e-4ff3-878e-39b248b81b89)
-    (property "Reference" "R3" (at 54.61 175.895 90)
+    (property "Reference" "R19" (at 54.61 175.895 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10k" (at 59.69 176.53 90)
@@ -9404,7 +9471,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R3") (unit 1)
+          (reference "R19") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9418,7 +9485,7 @@
   (symbol (lib_id "219-2MSTR:219-2MSTR") (at 103.505 212.09 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f3135d0d-90be-432e-9122-ca76b34a30ec)
-    (property "Reference" "S1" (at 102.87 203.835 90)
+    (property "Reference" "S3" (at 102.87 203.835 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "219-2MSTR" (at 99.06 197.485 90)
@@ -9449,7 +9516,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "S1") (unit 1)
+          (reference "S3") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9463,7 +9530,7 @@
   (symbol (lib_id "Device:R") (at 199.39 83.82 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f4a956e4-b7f4-4a78-80c4-6fb607ebc37a)
-    (property "Reference" "R7" (at 201.93 82.55 0)
+    (property "Reference" "R8" (at 201.93 82.55 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "15k" (at 201.93 85.09 0)
@@ -9480,7 +9547,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R7") (unit 1)
+          (reference "R8") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9494,7 +9561,7 @@
   (symbol (lib_id "AD5274BRMZ-100:AD5274BRMZ-100") (at 205.105 45.72 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f721833b-4111-49c2-b2f2-55e3d29ea006)
-    (property "Reference" "U14" (at 205.105 26.67 0)
+    (property "Reference" "U1" (at 205.105 26.67 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "AD5274BRMZ-100" (at 205.105 29.21 0)
@@ -9561,7 +9628,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U14") (unit 1)
+          (reference "U1") (unit 1)
         )
       )
     )
@@ -9570,7 +9637,7 @@
   (symbol (lib_id "Device:C") (at 370.205 165.735 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f78a66d1-9747-4dae-ba2e-e0775351bc67)
-    (property "Reference" "C30" (at 373.38 164.465 0)
+    (property "Reference" "C21" (at 373.38 164.465 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1uF" (at 373.38 167.005 0)
@@ -9587,7 +9654,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C30") (unit 1)
+          (reference "C21") (unit 1)
         )
       )
     )
@@ -9596,13 +9663,13 @@
   (symbol (lib_id "Device:R") (at 388.62 178.435 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f7d06922-147b-41f6-9d5b-390e6e642ea1)
-    (property "Reference" "R6" (at 391.16 178.435 0)
+    (property "Reference" "R20" (at 391.16 178.435 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "500" (at 388.62 178.435 90)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 390.398 178.435 90)
+    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 390.398 178.435 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 388.62 178.435 0)
@@ -9613,7 +9680,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R6") (unit 1)
+          (reference "R20") (unit 1)
         )
       )
     )
@@ -9622,7 +9689,7 @@
   (symbol (lib_id "Device:R") (at 320.04 78.105 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f81da2a8-6b4d-4b4f-8797-dc737237c520)
-    (property "Reference" "R10" (at 322.58 76.835 0)
+    (property "Reference" "R6" (at 322.58 76.835 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "2.2k" (at 322.58 79.375 0)
@@ -9639,7 +9706,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R10") (unit 1)
+          (reference "R6") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9653,7 +9720,7 @@
   (symbol (lib_id "BC846AS_7:BC846AS-7") (at 22.86 173.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f907c878-7a13-4274-b235-122a626cfee7)
-    (property "Reference" "U4" (at 43.18 166.37 0)
+    (property "Reference" "U10" (at 43.18 166.37 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "BC846AS-7" (at 43.18 168.91 0)
@@ -9674,7 +9741,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U4") (unit 1)
+          (reference "U10") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9688,7 +9755,7 @@
   (symbol (lib_id "Device:R") (at 288.29 184.785 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f929ab59-6ec9-4670-9e9b-ea76bd065a02)
-    (property "Reference" "R15" (at 283.845 184.785 90)
+    (property "Reference" "R22" (at 283.845 184.785 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "20k" (at 288.29 184.785 90)
@@ -9705,7 +9772,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "R15") (unit 1)
+          (reference "R22") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9719,7 +9786,7 @@
   (symbol (lib_id "PPTC041LFBN_RC:PPTC041LFBN-RC") (at 51.435 251.46 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fb7b52d6-dfba-43d2-a58c-8a2c3f438f9d)
-    (property "Reference" "J5" (at 36.83 254 0)
+    (property "Reference" "J3" (at 36.83 254 0)
       (effects (font (size 1.524 1.524)) (justify left))
     )
     (property "Value" "PPTC041LFBN-RC" (at 36.83 256.54 0)
@@ -9738,7 +9805,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "J5") (unit 1)
+          (reference "J3") (unit 1)
         )
       )
       (project "ESP32Sensor"
@@ -9752,7 +9819,7 @@
   (symbol (lib_id "Device:C") (at 85.09 168.275 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ff2a323f-f698-400e-9d8d-bd43337f5eda)
-    (property "Reference" "C18" (at 88.265 167.005 0)
+    (property "Reference" "C22" (at 88.265 167.005 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "1uF" (at 88.265 169.545 0)
@@ -9769,7 +9836,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "C18") (unit 1)
+          (reference "C22") (unit 1)
         )
       )
     )
@@ -9778,7 +9845,7 @@
   (symbol (lib_id "ESP32C3WROOM02:ESP32-C3-WROOM-02-N4") (at 98.425 160.655 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ff2caa6a-96f6-47eb-94d0-187b7c4440cc)
-    (property "Reference" "U1" (at 118.745 149.86 0)
+    (property "Reference" "U9" (at 118.745 149.86 0)
       (effects (font (size 1.524 1.524)))
     )
     (property "Value" "ESP32-C3-WROOM-02-N4" (at 118.745 153.67 0)
@@ -9820,7 +9887,7 @@
     (instances
       (project "ESP32Sensor-Sensor_board"
         (path "/0a10f786-6a8a-40c9-81fc-25470a035472"
-          (reference "U1") (unit 1)
+          (reference "U9") (unit 1)
         )
       )
       (project "ESP32Sensor"
