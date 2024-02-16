@@ -1,0 +1,10 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Library_paul")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/Library.pretty")(options "")(descr ""))
+  (lib (name "footprints_paul")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/footprints.pretty")(options "")(descr ""))
+  (lib (name "PI3CH281QEX")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/PI3CH281QEX")(options "")(descr ""))
+  (lib (name "LIB_CAT5171")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/LIB_CAT5171")(options "")(descr ""))
+  (lib (name "AD5274BRMZ-100")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/AD5274BRMZ-100")(options "")(descr ""))
+  (lib (name "Library")(type "KiCad")(uri "D:/RPI/ILE/Summer/REPO/hfs.main/sensor/client-design/KiCad/External Lib/Library.pretty")(options "")(descr ""))
+  (lib (name "footprints")(type "KiCad")(uri "D:/RPI/ILE/Summer/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/footprints.pretty")(options "")(descr ""))
+)

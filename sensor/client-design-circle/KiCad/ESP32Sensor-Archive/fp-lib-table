@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name "footprints")(type "KiCad")(uri "C:/Users/LinKaihong/Dropbox/ILE/Summer/Summer 2023 production file/KiCad/External Lib/KiCADv6/footprints.pretty")(options "")(descr ""))
+  (lib (name "Library")(type "KiCad")(uri "C:/Users/LinKaihong/Dropbox/ILE/Summer/Summer 2023 production file/KiCad/External Lib/Library.pretty")(options "")(descr ""))
+)
