@@ -7,4 +7,5 @@
   (lib (name "AD5274BRMZ-100")(type "KiCad")(uri "C:/Users/nievep/Downloads/LESA Research/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/AD5274BRMZ-100")(options "")(descr ""))
   (lib (name "Library")(type "KiCad")(uri "D:/RPI/ILE/Summer/REPO/hfs.main/sensor/client-design/KiCad/External Lib/Library.pretty")(options "")(descr ""))
   (lib (name "footprints")(type "KiCad")(uri "D:/RPI/ILE/Summer/REPO/hfs.main/sensor/client-design/KiCad/External Lib/KiCADv6/footprints.pretty")(options "")(descr ""))
+  (lib (name "ESP32Sensor-Custom_Footprints")(type "KiCad")(uri "${KIPRJMOD}/ESP32Sensor-Custom_Footprints.pretty")(options "")(descr ""))
 )
