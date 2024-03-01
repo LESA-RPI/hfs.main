@@ -470,7 +470,6 @@
       "+Vs_For_Lock_in": "Power",
       "-VBUS": "Power",
       "-Vs_For_Lock_in": "Power",
-      "5V": "Power",
       "5V_ADC": "Power",
       "5V_PD": "Power",
       "Net-(U12-EN)": "Power",
