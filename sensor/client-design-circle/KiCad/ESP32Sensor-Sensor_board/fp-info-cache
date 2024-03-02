@@ -1,4 +1,4 @@
-22217402430754308
+22219111780493916
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -54697,6 +54697,13 @@ ODD-42W
 0
 0
 0
+ESP32Sensor-Custom_Footprints
+PJ-002A
+Barrel jack connector (5.5 mm outer diameter, 2.05 inner diameter ), https://gct.co/files/drawings/dcj200-10.pdf
+connector barrel jack
+0
+3
+3
 ESP32Sensor-Custom_Footprints
 QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm_ThermalVias_2x2
 QFN, 24 Pin (http://ww1.microchip.com/downloads/en/PackagingSpec/00000049BQ.pdf#page=278), generated with kicad-footprint-generator ipc_noLead_generator.py
