@@ -1,4 +1,4 @@
-22219111780493916
+22220822135720409
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -54691,15 +54691,15 @@ ESP32Sensor-Custom_Footprints
 4
 4
 ESP32Sensor-Custom_Footprints
-ODD-42W
+MODULE_ESP32-C3-WROOM-02-H4
 
 
 0
-0
-0
+27
+27
 ESP32Sensor-Custom_Footprints
 PJ-002A
-Barrel jack connector (5.5 mm outer diameter, 2.05 inner diameter ), https://gct.co/files/drawings/dcj200-10.pdf
+Barrel jack connector (5.5 mm outer diameter, 2.10 inner diameter)
 connector barrel jack
 0
 3
@@ -54725,6 +54725,13 @@ TYPEC-304S-ACP16
 0
 20
 17
+ESP32Sensor-Custom_Footprints
+USBC-12402012E212A
+
+
+0
+16
+16
 ESP32Sensor-Custom_Footprints
 WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias_Expanded
 WSON, 6 Pin (http://www.ti.com/lit/ds/symlink/tps61040.pdf#page=35), generated with kicad-footprint-generator ipc_noLead_generator.py

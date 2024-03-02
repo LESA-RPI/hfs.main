@@ -53,4 +53,9 @@
     (thermal_bridge_angle 45) (tstamp 9782d988-5229-4eee-ba0a-3990640f09af))
   (pad "2B" smd roundrect (at 4.3 1.27) (size 2.44 1.13) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.1)
     (thermal_bridge_angle 45) (tstamp df9b2416-c83d-4334-9111-5c310b4ac7aa))
+  (model "${KIPRJMOD}/HFS-Sensor_3D_Custom_3DModels/219-2MSTR--3DModel-STEP-269445.STEP"
+    (offset (xyz 0 0 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz -90 0 0))
+  )
 )
