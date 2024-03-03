@@ -510,7 +510,7 @@
       "netlist": "",
       "specctra_dsn": "",
       "step": "ESP32Sensor-Sensor_board.step",
-      "vrml": ""
+      "vrml": "ESP32Sensor-Sensor_board.wrl"
     },
     "page_layout_descr_file": ""
   },
