@@ -5,7 +5,7 @@ Reference,Value,Footprint,Qty,DIGI-KEY_PURCHASE_URL
 "C19, C20",200pF,Capacitor_SMD:C_0402_1005Metric,2,https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H201JA01D/702497
 "C23, C25, C30",2.2uF,Capacitor_SMD:C_0603_1608Metric,3,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL10A225KO8NNNC/3886698
 C27,0.002uF,Capacitor_SMD:C_0402_1005Metric,1,https://www.digikey.com/en/products/detail/yageo/CC0402JRX7R9BB202/11490409
-"C28, C31",100uF,Capacitor_SMD:C_1210_3225Metric,2,https://www.digikey.com/en/products/detail/taiyo-yuden/EMK325ABJ107MM-T/2774763
+C28,100uF,Capacitor_SMD:C_1210_3225Metric,1,https://www.digikey.com/en/products/detail/taiyo-yuden/EMK325ABJ107MM-T/2774763
 CR1,SRV05-4L-TP,Package_TO_SOT_SMD:SOT-23-6_Handsoldering,1,https://www.digikey.com/en/products/detail/micro-commercial-co/SRV05-4L-TP/2233919?s=N4IgTCBcDaIMoCUBqAGArAWgCwBkMBUAFEAXQF8g
 CR2,MMSZ5231B,Diode_SMD:D_SOD-123F,1,https://www.digikey.com/en/products/detail/diotec-semiconductor/MMSZ5231B/13164418
 CR3,MMSZ5226B-7-F,Diode_SMD:D_SOD-123,1,https://www.digikey.com/en/products/detail/diodes-incorporated/MMSZ5226B-7-F/717786?s=N4IgTCBcDaILJwMoC0CsYwDYBCBaA7LgGIgC6AvkA
