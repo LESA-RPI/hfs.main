@@ -467,14 +467,14 @@
     },
     "net_colors": null,
     "netclass_assignments": {
-      "+Vs_For_Lock_in": "Power",
-      "-VBUS": "Power",
-      "-Vs_For_Lock_in": "Power",
-      "5V_ADC": "Power",
-      "5V_PD": "Power",
-      "Net-(U12-EN)": "Power",
-      "USBC_VBUS": "Power",
-      "VBUS": "Power"
+      "+12V": "Power",
+      "+12VA": "Power",
+      "+5V": "Power",
+      "+5VA": "Power",
+      "+5VD": "Power",
+      "-12V": "Power",
+      "-12VA": "Power",
+      "USBC_VBUS": "Power"
     },
     "netclass_patterns": [
       {
