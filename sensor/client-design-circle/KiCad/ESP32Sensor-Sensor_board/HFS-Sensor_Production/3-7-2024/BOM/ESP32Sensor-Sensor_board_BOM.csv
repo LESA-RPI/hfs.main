@@ -1,52 +1,48 @@
-"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
-1;"J3";"USBC-12402012E212A";1;"12402012E212A";;;
-2;"PD1";"TO-8-3_Window";1;"ODD-42W";;;
-3;"FB2,FB4,FB1,FB3";"L_0402_1005Metric";4;"1k @ 100MHz";;;
-4;"S2,S1,S3";"219-2MSTR";3;"219-2MSTR";;;
-5;"U1";"TSSOP-14_4.4x5mm_P0.65mm";1;"MCP45HV51-104E/ST";;;
-6;"R6";"R_0402_1005Metric";1;"2.2k";;;
-7;"C9,C6,C3,C8,C11,C12,C32,C13,C7,C4,C14,C10,C33,C17,C5,C16";"C_0402_1005Metric";16;"100nF";;;
-8;"C18,C26,C1";"C_0805_2012Metric";3;"10uF";;;
-9;"C15,C22,C29,C21,C24";"C_0402_1005Metric";5;"1uF";;;
-10;"U4";"SOIC-8_3.9x4.9mm_P1.27mm";1;"AD620ARZ-REEL7";;;
-11;"D3";"LED_0603_1608Metric";1;"RX";;;
-12;"R9,R5,R8";"R_0402_1005Metric";3;"15k";;;
-13;"R24,R25,R1";"R_0402_1005Metric";3;"1k";;;
-14;"R12,R13";"R_0402_1005Metric";2;"1Meg";;;
-15;"R2";"R_0402_1005Metric";1;"590";;;
-16;"R3";"R_0402_1005Metric";1;"1670";;;
-17;"TP3";"TestPoint_Pad_D1.0mm";1;"DOUT";;;
-18;"R14,R22";"R_0402_1005Metric";2;"20k";;;
-19;"U6";"SOIC-8_3.9x4.9mm_P1.27mm";1;"OP27GSZ-REEL7";;;
-20;"R11";"R_0402_1005Metric";1;"6.3k";;;
-21;"CR1";"SOT-23-6_Handsoldering";1;"SRV05-4L-TP";;;
-22;"J6";"PinSocket_1x08_P2.54mm_Vertical";1;"Conn_01x08";;;
-23;"R4";"R_0402_1005Metric";1;"5490";;;
-24;"U2";"TSSOP-14_4.4x5mm_P0.65mm";1;"ADG1404YRUZ";;;
-25;"C27";"C_0402_1005Metric";1;"0.002uF";;;
-26;"D2";"LED_0603_1608Metric";1;"TX";;;
-27;"TP4";"TestPoint_Pad_D1.0mm";1;"P0B";;;
-28;"R15,R16,R7,R18,R19";"R_0402_1005Metric";5;"10k";;;
-29;"U3";"SOIC-20W_7.5x12.8mm_P1.27mm";1;"AD630ARZ";;;
-30;"U7";"DFN-8-1EP_2x3mm_P0.5mm_EP0.61x2.2mm";1;"LTC2453IDDB#TRMPBF";;;
-31;"C23,C25,C30";"C_0603_1608Metric";3;"2.2uF";;;
-32;"J1";"PJ-002A";1;"PJ-002A";;;
-33;"D1";"LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm";1;"WS2812B";;;
-34;"C31,C28";"C_1210_3225Metric";2;"100uF";;;
-35;"U13";"SOIC-16W_7.5x10.3mm_P1.27mm";1;"LT1054IDWR";;;
-36;"R10,R21,R20";"R_0402_1005Metric";3;"5.6k";;;
-37;"R23";"R_0402_1005Metric";1;"220k";;;
-38;"CR2";"D_SOD-123F";1;"MMSZ5231B";;;
-39;"U10";"SOT-363_SC-70-6";1;"BC846AS-7";;;
-40;"U14";"WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias_Expanded";1;"TLV76733DRVR";;;
-41;"TP1";"TestPoint_Pad_D1.0mm";1;"RX";;;
-42;"TP2";"TestPoint_Pad_D1.0mm";1;"TX";;;
-43;"U11";"WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias_Expanded";1;"TLV76750DRVR";;;
-44;"R17";"R_0402_1005Metric";1;"200k";;;
-45;"U8";"WQFN-14-1EP_2.5x2.5mm_P0.5mm_EP1.45x1.45mm";1;"FUSB302B11MPX";;;
-46;"CR3";"D_SOD-123";1;"MMSZ5226B-7-F";;;
-47;"U12";"VSSOP-8_2.3x2mm_P0.5mm";1;"PCA9306DCUR";;;
-48;"C20,C19";"C_0402_1005Metric";2;"200pF";;;
-49;"U9";"MODULE_ESP32-C3-WROOM-02-H4";1;"ESP32-C3-WROOM-02-N4";;;
-50;"J4,J7";"PinHeader_2x03_P1.27mm_Vertical";2;"Conn_02x03_Odd_Even";;;
-51;"U15";"QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm_ThermalVias_2x2";1;"CP2102N-A02-GQFN24R";;;
+Reference,Value,Footprint,Qty,DIGI-KEY_PURCHASE_URL
+"C1, C18, C26",10uF,Capacitor_SMD:C_0805_2012Metric,3,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21A106KOQNNNE/3886754
+"C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C16, C17, C32, C33",100nF,Capacitor_SMD:C_0402_1005Metric,16,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05B104KO5NNNC/3886659
+"C15, C21, C22, C24, C29",1uF,Capacitor_SMD:C_0402_1005Metric,5,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL05A105KO5NNNC/3886725
+"C19, C20",200pF,Capacitor_SMD:C_0402_1005Metric,2,https://www.digikey.com/en/products/detail/murata-electronics/GRM1555C1H201JA01D/702497
+"C23, C25, C30",2.2uF,Capacitor_SMD:C_0603_1608Metric,3,https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL10A225KO8NNNC/3886698
+C27,0.002uF,Capacitor_SMD:C_0402_1005Metric,1,https://www.digikey.com/en/products/detail/yageo/CC0402JRX7R9BB202/11490409
+"C28, C31",100uF,Capacitor_SMD:C_1210_3225Metric,2,https://www.digikey.com/en/products/detail/taiyo-yuden/EMK325ABJ107MM-T/2774763
+CR1,SRV05-4L-TP,Package_TO_SOT_SMD:SOT-23-6_Handsoldering,1,https://www.digikey.com/en/products/detail/micro-commercial-co/SRV05-4L-TP/2233919?s=N4IgTCBcDaIMoCUBqAGArAWgCwBkMBUAFEAXQF8g
+CR2,MMSZ5231B,Diode_SMD:D_SOD-123F,1,https://www.digikey.com/en/products/detail/diotec-semiconductor/MMSZ5231B/13164418
+CR3,MMSZ5226B-7-F,Diode_SMD:D_SOD-123,1,https://www.digikey.com/en/products/detail/diodes-incorporated/MMSZ5226B-7-F/717786?s=N4IgTCBcDaILJwMoC0CsYwDYBCBaA7LgGIgC6AvkA
+D1,WS2812B,LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm,1,https://www.digikey.com/en/products/detail/sparkfun-electronics/COM-16347/11630204
+D2,TX,LED_SMD:LED_0603_1608Metric,1,https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/150060RS75000/4489901
+D3,RX,LED_SMD:LED_0603_1608Metric,1,https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/150060RS75000/4489901
+"FB1, FB2, FB3, FB4",1k @ 100MHz,Inductor_SMD:L_0402_1005Metric,4,https://www.digikey.com/en/products/detail/murata-electronics/BLM15AG102SN1D/584218
+J1,PJ-002A,ESP32Sensor-Custom_Footprints:PJ-002A,1,https://www.digikey.com/en/products/detail/cui-devices/pj-002a/96962
+J3,12402012E212A,ESP32Sensor-Custom_Footprints:USBC-12402012E212A,1,https://www.digikey.com/en/products/detail/amphenol-cs-commercial-products/12402012E212A/13683192
+"J4, J7",Conn_02x03_Odd_Even,Connector_PinHeader_1.27mm:PinHeader_2x03_P1.27mm_Vertical,2,https://www.digikey.com/en/products/detail/sullins-connector-solutions/GRPB032VWVN-RC/1786453
+J6,Conn_01x08,Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical,1,https://www.digikey.com/en/products/detail/sullins-connector-solutions/PPPC081LFBN-RC/810180
+PD1,ODD-42W,Package_TO_SOT_THT:TO-8-3_Window,1,https://www.digikey.com/en/products/detail/opto-diode-corp/ODD-42W/2347749
+"R1, R24, R25",1k,Resistor_SMD:R_0402_1005Metric,3,https://www.digikey.com/en/products/detail/yageo/RC0402FR-071KL/726513
+R2,590,Resistor_SMD:R_0402_1005Metric,1,https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERA-2AEB5900X/2026033
+R3,1670,Resistor_SMD:R_0402_1005Metric,1,https://www.digikey.com/en/products/detail/koa-speer-electronics-inc/RN73H1ETTP1671F50/9914460
+R4,5490,Resistor_SMD:R_0402_1005Metric,1,https://www.digikey.com/en/products/detail/te-connectivity-passive-product/RP73PF1E5K49BTD/8260932
+"R5, R8, R9",15k,Resistor_SMD:R_0402_1005Metric,3,https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNCF0402DTE15K0/6260676
+R6,2.2k,Resistor_SMD:R_0402_1005Metric,1,https://www.digikey.com/en/products/detail/yageo/RC0402FR-072K2L/726553
+"R7, R15, R16, R18, R19",10k,Resistor_SMD:R_0402_1005Metric,5,https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNCF0402DTE10K0/1707899
+"R10, R20, R21",5.6k,Resistor_SMD:R_0402_1005Metric,3,https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERA-2AED562X/1706120
+R11,6.3k,Resistor_SMD:R_0402_1005Metric,1,
+"R12, R13",1Meg,Resistor_SMD:R_0402_1005Metric,2,https://www.digikey.com/en/products/detail/yageo/RC0402DR-071ML/5917254
+"R14, R22",20k,Resistor_SMD:R_0402_1005Metric,2,https://www.digikey.com/en/products/detail/yageo/RT0402DRE0720KL/1071391
+R17,200k,Resistor_SMD:R_0402_1005Metric,1,https://www.digikey.com/en/products/detail/panasonic-electronic-components/ERJ-2RKF2003X/192216
+R23,220k,Resistor_SMD:R_0402_1005Metric,1,https://www.digikey.com/en/products/detail/yageo/RC0402FR-07220KL/726564
+"S1, S2, S3",219-2MSTR,ESP32Sensor-Custom_Footprints:219-2MSTR,3,https://www.digikey.com/en/products/detail/cts-electrocomponents/219-2MSTR/5223989
+U1,MCP45HV51-104E/ST,Package_SO:TSSOP-14_4.4x5mm_P0.65mm,1,https://www.digikey.com/en/products/detail/microchip-technology/MCP45HV51-104E-ST/4902599
+U2,ADG1404YRUZ,Package_SO:TSSOP-14_4.4x5mm_P0.65mm,1,https://www.digikey.com/en/products/detail/analog-devices-inc/ADG1404YRUZ/1938206
+U3,AD630ARZ,Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm,1,https://www.digikey.com/en/products/detail/analog-devices-inc/AD630ARZ/750987
+U4,AD620ARZ-REEL7,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,1,https://www.digikey.com/en/products/detail/analog-devices-inc/AD620ARZ-REEL7/617757?s=N4IgTCBcDaIIIBEBsYAMcBKAtAtBgovgDIDsIAugL5A
+U6,OP27GSZ-REEL7,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,1,https://www.digikey.com/en/products/detail/analog-devices-inc/OP27GSZ-REEL7/652931?s=N4IgTCBcDaIPIAUwHYDiBlAWgWgEoFF8AZZEAXQF8g
+U7,LTC2453IDDB#TRMPBF,Package_DFN_QFN:DFN-8-1EP_2x3mm_P0.5mm_EP0.61x2.2mm,1,https://www.digikey.com/en/products/detail/analog-devices-inc/LTC2453IDDB-TRMPBF/1767937?s=N4IgTCBcDaIDIBUDCYAsBWAzASQCK4CEBaBAJQFkAFAgMRAF0BfIA
+U8,FUSB302B11MPX,Package_DFN_QFN:WQFN-14-1EP_2.5x2.5mm_P0.5mm_EP1.45x1.45mm,1,https://www.digikey.com/en/products/detail/onsemi/FUSB302B11MPX/7356100?s=N4IgTCBcDaIGIFUDKAhAzABjCgjDgsgAoAaIAugL5A
+U9,ESP32-C3-WROOM-02-N4,ESP32Sensor-Custom_Footprints:MODULE_ESP32-C3-WROOM-02-H4,1,https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C3-WROOM-02-N4/14553031?s=N4IgTCBcDaIKIGUAKBmMBaAwi9B1ASgPKECy6ADBgHIAsIAugL5A
+U10,BC846AS-7,Package_TO_SOT_SMD:SOT-363_SC-70-6,1,https://www.digikey.com/en/products/detail/diodes-incorporated/BC846AS-7/1629534?s=N4IgTCBcDaIEIGEAcAWAbAQQMoFoDsIAugL5A
+U11,TLV76750DRVR,ESP32Sensor-Custom_Footprints:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias_Expanded,1,https://www.digikey.com/en/products/detail/texas-instruments/TLV76750DRVR/10820367
+U12,PCA9306DCUR,Package_SO:VSSOP-8_2.3x2mm_P0.5mm,1,https://www.digikey.com/en/products/detail/texas-instruments/PCA9306DCUR/768359
+U13,LT1054IDWR,Package_SO:SOIC-16W_7.5x10.3mm_P1.27mm,1,https://www.digikey.com/en/products/detail/texas-instruments/LT1054IDWR/705719
+U14,TLV76733DRVR,ESP32Sensor-Custom_Footprints:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias_Expanded,1,https://www.digikey.com/en/products/detail/texas-instruments/TLV76733DRVR/10434657
+U15,CP2102N-A02-GQFN24R,ESP32Sensor-Custom_Footprints:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm_ThermalVias_2x2,1,https://www.digikey.com/en/products/detail/silicon-labs/CP2102N-A02-GQFN24R/9863479
