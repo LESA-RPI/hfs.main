@@ -1,4 +1,4 @@
-Designator,Footprint,Quantity,Value,LCSC Part #
+Designator,Footprint,Quantity,Value,Manufacturer Part #
 "C1, C11, C17",402,3,10uF,
 "C10, C14, C5",402,3,2.2uF,
 C12,402,1,0.002uF,
@@ -19,7 +19,7 @@ J2,AMPHENOL_12401598E4#2A,1,12401598E4-2A,
 PD1,ODD-42W-Side,1,~,
 "R1, R8",402,2,1k,
 R10,402,1,100k,
-R11,402,1,6.66K,
+R11,402,1,6.8K,RT0402BRD076K8L
 R12,402,1,7K,
 "R13, R14, R9",402,3,1M,
 "R15, R18",402,2,20k,
