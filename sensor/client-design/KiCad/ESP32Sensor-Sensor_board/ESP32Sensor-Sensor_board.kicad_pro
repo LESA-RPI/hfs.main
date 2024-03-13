@@ -474,7 +474,7 @@
       "5V_PD": "Power",
       "Net-(U12-EN)": "Power",
       "USBC_VBUS": "Power",
-      "VBUS": "VBUS"
+      "VBUS": "Power"
     },
     "netclass_patterns": [
       {
