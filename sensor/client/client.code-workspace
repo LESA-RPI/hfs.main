@@ -3,22 +3,13 @@
 		{
 			"name": "client",
 			"path": "."
-		},
-		{
-			"name": "serial:/COM4",
-			"uri": "serial://com4/"
-		},
-		{
-			"name": "temp",
-			"path": "../../../../../../../Desktop/temp doc/temp"
-		},
-		{
-			"name": "serial:/COM5",
-			"uri": "serial://com5/"
-		},
-		{
-			"name": "serial:/COM23",
-			"uri": "serial://com23"
 		}
-	]
+	],
+	"settings": {
+		"python.languageServer": "Pylance",
+		"python.analysis.diagnosticSeverityOverrides": {
+			"reportMissingModuleSource": "none",
+			"reportShadowedImports": "none"
+		}
+	}
 }
